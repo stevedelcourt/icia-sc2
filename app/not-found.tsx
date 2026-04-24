@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { I18nProvider, useT, LocalizedLink } from '@/lib/i18n'
@@ -54,8 +55,11 @@ function NotFoundContent() {
 }
 
 export default function NotFound() {
+  const pathname = usePathname()
+  const lang = pathname?.startsWith('/en/') ? 'en' : 'fr'
+
   return (
-    <I18nProvider lang="fr">
+    <I18nProvider lang={lang}>
       <NotFoundContent />
     </I18nProvider>
   )

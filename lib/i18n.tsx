@@ -22,7 +22,7 @@ export function useT(): (key: ContentKey) => string {
 export function LocalizedLink({ href, ...props }: React.ComponentProps<typeof Link>) {
   const lang = useLocale()
   const localizedHref =
-    typeof href === 'string' && href.startsWith('/') && !href.startsWith(`/${lang}/`) && !href.startsWith('/#')
+    typeof href === 'string' && href.startsWith('/') && !href.startsWith(`/${lang}/`)
       ? `/${lang}${href}`
       : href
   return <Link href={localizedHref} {...props} />

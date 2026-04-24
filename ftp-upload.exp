@@ -1,0 +1,48 @@
+#!/usr/bin/expect -f
+
+set host "sc1bovu7233.universe.wf"
+set user "sc1bovu7233"
+set pass "RoxanPascalSteven2024"
+set local_dir "/Users/stv/Documents/zed/icia/out"
+
+spawn ftp $host
+expect "Name"
+send "$user\r"
+expect "Password"
+send "$pass\r"
+
+expect "ftp>"
+send "cd public_html\r"
+expect "ftp>"
+
+# Upload each HTML file
+foreach file [glob -directory $local_dir *.html] {
+    set filename [file tail $file]
+    send "put $file $filename\r"
+    expect "ftp>"
+}
+
+# Upload directories
+send "lcd $local_dir/contact\r"
+expect "ftp>"
+send "cd public_html/contact\r"
+expect "ftp>"
+send "mput *\r"
+expect "ftp>"
+send "lcd ../..\r"
+expect "ftp>"
+
+# Add offre subdirectories
+send "lcd $local_dir/offres/diagnostic\r"
+expect "ftp>"
+send "mkdir -p public_html/offres/diagnostic\r"
+expect "ftp>"
+send "cd public_html/offres/diagnostic\r"
+expect "ftp>"
+send "mput *\r"
+expect "ftp>"
+send "lcd ../..\r"
+expect "ftp>"
+
+send "bye\r"
+expect eof

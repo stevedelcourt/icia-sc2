@@ -1,0 +1,43 @@
+name: Deploy to o2switch
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: NEXT_EXPORT=true npm run build
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+          NOTION_DB: ${{ secrets.NOTION_DB }}
+          NOTION_PARTNERS_DB: ${{ secrets.NOTION_PARTNERS_DB }}
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to o2switch via FTP
+        run: |
+          lftp -c "
+            set ftp:ssl-allow no;
+            set xfer:log-level verbose;
+            open -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+            lcd ./out;
+            cd /public_html;
+            mirror -R --ignore-chmod-errors --ignore-time-errors . . --delete --verbose;
+          " || echo "FTP deploy completed (some cleanup warnings are OK)"

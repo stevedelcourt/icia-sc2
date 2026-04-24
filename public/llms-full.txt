@@ -1,0 +1,224 @@
+# Marius IA - Full Content for LLM Ingestion
+
+## Informations générales
+
+**Nom:** Marius IA | L'institut collectif de l'IA
+**URL:** https://www.mariusia.com
+**Description:** Institut de conseil en intelligence artificielle. Accompagnement des organisations dans leur transformation IA: diagnostic, formation, transformation et support long terme.
+**Entité porteuse:** Mentivis SAS
+**Localisation:** Campus Cyber.AI Euromed, 4 Bd Euroméditerranée, Quai d'Arenc, 13002 Marseille, France
+**Positionnement:** Conseil IA indépendant - pas d'éditeur, pas d'intégrateur
+
+---
+
+## Page d'accueil (/)
+
+### Hero Section
+**H1:** Tout le monde parle d'IA. Nous, on vous aide à décider quoi en faire.
+**Sous-titre:** Diagnostic, formation, transformation.
+**Description:** Des missions cadrées, des résultats mesurables, aucun conflit d'intérêt avec un éditeur ou un intégrateur.
+
+### Trois piliers
+1. **Indépendance totale** - Aucun lien avec des éditeurs ou des intégrateurs. Nos recommandations ne servent que vos intérêts.
+2. **Résultats mesurables** - Chaque engagement est cadré, suivi, évalué. Vous savez exactement où vous en êtes à chaque étape.
+3. **Conformité AI Act intégrée** - Le cadre réglementaire européen est pris en compte dans chaque mission. Pas comme une contrainte. Comme une exigence de sérieux.
+
+### Offres (4)
+1. **Diagnostic IA et AI Act** - Savoir où vous en êtes. Décider où aller. Cartographie des usages, analyse des risques, feuille de route 12 mois.
+2. **Formations et Acculturation** - Former vos équipes, pas une audience. Programmes sur mesure par métier.
+3. **Transformation IA** - Une transformation à votre rythme. Gouvernance, montée en compétences, pilotage des prestataires.
+4. **Partenaire IA** - Un expert disponible quand l'IA touche vos sujets. Veille réglementaire, relecture de projets, alertes.
+
+### Pour qui ? (6 segments)
+- **PME et ETI** - Structurer votre approche avant que les obligations ne s'imposent.
+- **Écoles, CFA, Universités** - Rendre vos cursus pertinents dans un monde qui a changé.
+- **Industries créatives** - Créer avec l'IA sans y perdre son identité.
+- **Collectivités et administrations** - L'IA au service du public, avec les bons garde-fous.
+- **Professions libérales** - Votre expertise n'est pas remplaçable. Mais elle va changer de forme.
+- **Grand public** - Comprendre l'IA. L'utiliser. Ne pas se faire avoir.
+
+---
+
+## Page Diagnostic (/diagnostic)
+
+### Éléments de page
+- **H1:** Diagnostic IA & AI Act
+- **Sous-titre:** Porte d'entrée universelle
+- **Promesse:** En 4 à 6 semaines, vous savez exactement où vous en êtes, où vous pouvez aller, et ce que l'AI Act vous impose concrètement - avec une feuille de route prête à exécuter.
+
+### Livrables
+- Cartographie des usages IA actuels (outils, données, processus)
+- Mesure de maturité IA : gouvernance, culture, compétences, infrastructure
+- Analyse des risques réglementaires AI Act
+- Hiérarchisation des cas d'usage prioritaires
+- Feuille de route sur 12 mois
+- Rapport de conformité présentable au CODIR
+
+---
+
+## Page Formations (/formations)
+
+### Éléments de page
+- **H1:** Formations & Acculturation IA
+- **Sous-titre:** Volume & Financement
+- **Promesse:** Vos équipes utilisent déjà l'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu'elles le fassent bien, en lien avec leur métier, dans un cadre sécurisé.
+
+### Catalogue de programmes
+- **IA par métiers** - Managers, commerciaux, RH, finance, support client, logistique (1 jour)
+- **IA & sécurité** - Risques, données personnelles, arnaques, RGPD, bonnes pratiques (1/2 journée)
+- **IA & esprit critique** - Comprendre les LLM, biais, hallucinations, limites des outils (1/2 journée)
+- **Modules écoles/CFA** - Cours structurés, TD, cas pratiques pour établissements (Sur mesure)
+- **Parcours emploi IA** - Socle numérique + IA métier + badge de compétences (3 à 5 jours)
+- **Formation formateurs** - Former les équipes internes ou intervenants partenaires (2 jours)
+
+---
+
+## Page Transformation (/transformation)
+
+### Éléments de page
+- **H1:** Transformation IA
+- **Sous-titre:** Programme 6-12 mois
+- **Promesse:** On vous aide à faire passer l'IA de l'expérimentation à la pratique quotidienne - sans casser votre organisation, sans dépendre d'un seul prestataire, avec des résultats mesurables tous les 3 mois.
+
+### Ce que Mentivis apporte
+- Cadrage stratégique et gouvernance IA
+- Sélection et pilotage des prestataires techniques
+- Montée en compétences des équipes
+- Conformité AI Act intégrée
+- Résultats mesurables tous les 3 mois
+
+---
+
+## Page Partenaire (/partenaire)
+
+### Éléments de page
+- **H1:** Partenaire support long terme
+- **Sous-titre:** Abonnement
+- **Promesse:** Un partenaire indépendant pour vous aider à décider sur l'IA, en continu - veille, conseil, arbitrage, alerte réglementaire. Votre numéro à appeler quand l'IA touche vos sujets.
+
+### Niveaux d'abonnement
+1. **Essentiel** - Veille réglementaire IA personnalisée, 2h office hours, Alertes AI Act
+2. **Stratégique** - Tout Essentiel + Relecture projets IA + Revue prestataires techniques + 4h office hours
+3. **Dirigeant** - Tout Stratégique + 1 comité IA/trimestre + Accés événements Institut + Priorité diagnostics
+
+---
+
+## Page Entreprises (/entreprises)
+
+### Éléments de page
+- **H1:** PME / ETI
+- **Description:** Structurer votre approche avant que les obligations ne s'imposent. L'IA redessine les organisations et transforme les métiers plus vite que prévu. Intégrer les bons outils, former vos équipes et anticiper les exigences de l'AI Act relève désormais d'une décision stratégique.
+
+### Axes d'accompagnement
+- Diagnostic IA et AI Act
+- Formations et acculturation
+- Transformation IA
+- Partenaire support long terme
+
+---
+
+## Page Éducation (/education)
+
+### Éléments de page
+- **H1:** Écoles, CFA, Universités
+- **Promesse:** Vos étudiants utilisent déjà l'IA. Souvent sans méthode, sans cadre, sans comprendre les limites de ce qu'ils produisent. Ce n'est pas une question de discipline : c'est une question de formation.
+
+### Axes d'accompagnement
+- Bibliothèque pédagogique
+- Création de filière
+- Formation des formateurs
+- Certifications
+- Développement
+- Accréditation institutionnelle ICIA
+
+---
+
+## Page Secteurs Créatifs (/secteurs-creatifs)
+
+### Éléments de page
+- **H1:** Industries créatives
+- **Description:** Créer avec l'IA sans y perdre son identité. L'IA ouvre des espaces créatifs réels. Elle pose aussi des questions auxquelles vous avez le droit d'exiger des réponses claires.
+
+### Axes d'accompagnement
+- Ateliers créatifs IA
+- Sécurité juridique
+- Laboratoire d'innovation
+- Monétisation
+
+---
+
+## Page Professions Libérales (/professions-liberales)
+
+### Éléments de page
+- **H1:** Professions libérales
+- **Promesse:** Votre expertise n'est pas remplaçable. Mais elle va changer de forme. L'IA entre dans le droit, la médecine, la comptabilité et l'architecture avec une vitesse que peu de cabinets ont anticipée.
+
+### Axes d'accompagnement
+- Veille réglementaire
+- Sécurité des données
+- Outils IA adaptés
+- Délégation et responsabilité
+- Communication client
+- Formation continue
+
+---
+
+## Page Citoyens (/citoyens)
+
+### Éléments de page
+- **H1:** Grand public
+- **Description:** Comprendre l'IA. L'utiliser. Ne pas se faire avoir.
+
+### Axes d'accompagnement
+- Acculturation à l'IA
+- Sécurité et éthique
+- Emploi et reconversion
+- Passerelles vers la formation
+
+---
+
+## Page Expertises (/expertises)
+
+### Éléments de page
+- **H1:** Ce que nous savons faire !
+- **Description:** Une expertise construite sur le terrain, mobilisable selon vos besoins.
+
+### Expertises
+- Audit IA et conformité AI Act
+- Formation et acculturation des équipes
+- Pilotage de la transformation IA
+- Veille et conseil en continu
+
+---
+
+## Page À Propos (/a-propos)
+
+### Éléments de page
+- **H1:** Construire des solutions adaptées exactement à votre besoin, votre métier, votre structure.
+- **Description:** Marius IA est aux systèmes d'intelligence artificielle ce que les architectes sont aux bâtiments : définir le besoin, évaluer l'impact, construire la solution avec les experts adaptés.
+
+---
+
+## Page Contact (/contact)
+
+### Éléments de page
+- **H1:** Un projet, une question, une urgence réglementaire.
+- **Promesse:** Nous répondons dans les 48 heures.
+
+### Champs de formulaire
+- Prénom
+- Nom
+- Email
+- Organisation
+- Message (facultatif)
+- Consentement RGPD (obligatoire)
+
+### Adresse
+Campus Cyber.AI Euromed
+4 Bd Euroméditerranée, Quai d'Arenc
+13002 Marseille
+
+---
+
+## Mots-clés pertinents
+conseil IA, intelligence artificielle, AI Act, conformité IA, transformation IA, gouvernance IA, formation IA, audit IA, Marseille, Campus Cyber.AI, PME, ETI, Europe, France

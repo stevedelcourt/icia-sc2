@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICIA - Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.128.2/dist/styles.css" />
+</head>
+<body>
+  <div id="sveltia-cms"></div>
+  <script type="module">
+    import SveltiaCMS from 'https://cdn.jsdelivr.net/npm/@sveltia/cms@0.128.2/+esm';
+    SveltiaCMS.init({
+      config: {
+        load_config_file: false,
+        backend: {
+          name: 'github',
+          repo: 'stevedelcourt/icia',
+          branch: 'main',
+          base_url: 'https://icia.vercel.app',
+          auth_endpoint: 'api/oauth'
+        },
+        auth: {
+          providers: {
+            github: {
+              clientId: 'Ov23liK4C9e883PqAjXi'
+            }
+          }
+        },
+        media_folder: 'public/images',
+        public_folder: '/images',
+        collections: [
+          {
+            name: 'articles',
+            label: 'Articles',
+            folder: 'content/actualites',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              {label: 'Titre', name: 'title', widget: 'string'},
+              {label: 'Slug', name: 'slug', widget: 'string'},
+              {label: 'Excerpt', name: 'excerpt', widget: 'text'},
+              {label: 'Contenu', name: 'body', widget: 'markdown'},
+              {label: 'Catégorie', name: 'category', widget: 'select', options: ['Actualité', 'Partenariats', 'Think Tank', 'Formations', 'Événements']},
+              {label: 'Date', name: 'date', widget: 'string'}
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

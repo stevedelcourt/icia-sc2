@@ -1,0 +1,297 @@
+/* TarteAuCitron - Marius IA Custom Styles */
+
+/* ===== BANNER ===== */
+#tarteaucitronMain {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2147483647 !important;
+  max-width: 700px !important;
+  width: calc(100% - 40px) !important;
+  margin: 0 20px !important;
+  padding: 25px 30px !important;
+  background: #ffffff !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.2) !important;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  text-align: center !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* Logo in banner */
+#tarteaucitronMain > #tarteaucitronLogo {
+  display: block !important;
+  text-align: center !important;
+  margin-bottom: 15px !important;
+}
+
+#tarteaucitronMain #tarteaucitronLogo img,
+#tarteaucitronMain #tarteaucitronLogo svg {
+  width: 120px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Title */
+#tarteaucitronMain #tarteaucitronTitle,
+#tarteaucitronMain .tarteaucitronTitle {
+  display: none !important;
+}
+
+/* Paragraph */
+#tarteaucitronMain #tarteaucitronParagraph,
+#tarteaucitronMain .tarteaucitronParagraph {
+  font-size: 14px !important;
+  color: #333 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+/* Buttons container */
+#tarteaucitronMain #tarteaucitronButtons {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  margin-top: 15px !important;
+}
+
+/* Accept button - GREEN */
+#tarteaucitron .tarteaucitronAllow,
+#tarteaucitron #tarteaucitronACCEPT,
+#tarteaucitron #tarteaucitronAccept,
+#tarteaucitron a.tarteaucitronAllow,
+#tarteaucitron a[id*="Accept"],
+#tarteaucitron button[id*="Accept"],
+.tarteaucitronAllow,
+.tarteaucitron-Green {
+  background: #bdf5ab !important;
+  color: #00255D !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
+  text-align: center !important;
+  min-width: 120px !important;
+}
+
+#tarteaucitron .tarteaucitronAllow:hover,
+#tarteaucitron #tarteaucitronACCEPT:hover,
+#tarteaucitron #tarteaucitronAccept:hover {
+  background: #a8e6a0 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Deny button - Gray */
+#tarteaucitron .tarteaucitronDeny,
+#tarteaucitron #tarteaucitronDENY,
+#tarteaucitron #tarteaucitronDeny,
+#tarteaucitron a.tarteaucitronDeny,
+#tarteaucitron a[id*="Deny"],
+#tarteaucitron button[id*="Deny"],
+.tarteaucitronDeny {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+  border: 1px solid #ddd !important;
+  padding: 10px 24px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  text-align: center !important;
+  min-width: 120px !important;
+}
+
+/* ===== PERSONALIZE BUTTON - COMPLETELY HIDDEN ===== */
+#tarteaucitronPersonalize,
+#tarteaucitron #tarteaucitronPersonalize,
+#tarteaucitron a#tarteaucitronPersonalize,
+#tarteaucitron button#tarteaucitronPersonalize,
+#tarteaucitron .tarteaucitronPersonalize,
+#tarteaucitron [id*="Personalize"],
+#tarteaucitron a[href*="personalise"],
+#tarteaucitron #tarteaucitronUpdate,
+.tarteaucitronPersonalize,
+#tarteaucitronUpdate,
+.tarteaucitron-update {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  clip: rect(0,0,0,0) !important;
+}
+
+/* Legal notice */
+#tarteaucitronLegalNote,
+#tarteaucitron .tarteaucitronLegalNote {
+  font-size: 11px !important;
+  color: #888 !important;
+  margin-top: 15px !important;
+  text-align: center !important;
+}
+
+#tarteaucitronLegalNote a {
+  color: #00255D !important;
+  text-decoration: underline !important;
+}
+
+/* Alert small - hidden everywhere */
+#tarteaucitronAlertSmall,
+#tarteaucitronAlertSmall *,
+#tarteaucitron #tarteaucitronAlertSmall {
+  display: none !important;
+}
+
+/* ===== COOKIE MANAGER WINDOW (/services) ===== */
+#tarteaucitronServices {
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#tarteaucitronServices .tarteaucitronServicesList {
+  text-align: left !important;
+}
+
+#tarteaucitronServices .tarteaucitronServicesList .tarteaucitronTitle {
+  display: block !important;
+  text-align: left !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #00255D !important;
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+}
+
+#tarteaucitronServices .tarteaucitronServicesList .tarteaucitronDescription {
+  font-size: 13px !important;
+  color: #666 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 10px !important;
+}
+
+/* Service item */
+.tarteaucitronServicesList > li {
+  padding: 20px !important;
+  border-bottom: 1px solid #eee !important;
+  background: #fff !important;
+}
+
+.tarteaucitronServicesList > li:last-child {
+  border-bottom: none !important;
+}
+
+/* Toggle switch */
+.tarteaucitronSwitch {
+  position: relative !important;
+  width: 48px !important;
+  height: 24px !important;
+  background: #ddd !important;
+  border-radius: 24px !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.tarteaucitronSwitch::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 2px !important;
+  left: 2px !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  transition: transform 0.2s !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+}
+
+.tarteaucitronSwitch.tarteaucitronSwitchOn {
+  background: #bdf5ab !important;
+}
+
+.tarteaucitronSwitch.tarteaucitronSwitchOn::before {
+  transform: translateX(24px) !important;
+}
+
+/* Logo in manager header */
+#tarteaucitronServices .tarteaucitronTitle::before {
+  content: '' !important;
+  background: url('/MariusIA-logo-monogram.png') no-repeat center !important;
+  background-size: contain !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-right: 10px !important;
+}
+
+/* Close button */
+#tarteaucitronClosePanel,
+#tarteaucitron .tarteaucitronClose,
+#tarteaucitron a[id*="Close"] {
+  background: #00255D !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+#tarteaucitronClosePanel:hover,
+#tarteaucitron .tarteaucitronClose:hover {
+  background: #001a40 !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #tarteaucitronMain {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    border-radius: 12px 12px 0 0 !important;
+  }
+
+  #tarteaucitronMain #tarteaucitronButtons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  #tarteaucitronMain .tarteaucitronAllow,
+  #tarteaucitronMain .tarteaucitronDeny {
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+}

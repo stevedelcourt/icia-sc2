@@ -4,9 +4,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { t } from '@/generated/content'
+import { useT, LocalizedLink } from '@/lib/i18n'
 
 export default function NotFound() {
+  const t = useT()
   return (
     <>
       <Header />
@@ -30,18 +31,18 @@ export default function NotFound() {
         </p>
 
         <div className="flex gap-4 relative z-10">
-          <Link
+          <LocalizedLink
             href="/"
             className="px-8 py-4 bg-black text-white text-lg hover:bg-gray-800 transition-colors"
           >
             {t('not_found.cta_home')}
-          </Link>
-          <Link
+          </LocalizedLink>
+          <LocalizedLink
             href="/contact"
             className="px-8 py-4 border-2 border-black text-black text-lg hover:bg-black hover:text-white transition-colors"
           >
             {t('not_found.cta_contact')}
-          </Link>
+          </LocalizedLink>
         </div>
 
         <div className="mt-12 text-sm text-black opacity-60 relative z-10">

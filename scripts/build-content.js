@@ -1,11 +1,13 @@
 // scripts/build-content.js
-// Parses content/site.txt and generates generated/content.ts
+// Parses content/site.fr.txt and content/site.en.txt and generates generated/content.ts
 
 const fs = require('fs');
 const path = require('path');
 
-const contentFile = path.join(process.cwd(), 'content', 'site.txt');
+const contentDir = path.join(process.cwd(), 'content');
 const outputFile = path.join(process.cwd(), 'generated', 'content.ts');
+
+const locales = ['fr', 'en'];
 
 function parseContent(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -45,30 +47,59 @@ function escapeTemplate(str) {
     .replace(/\$/g, '\\$');
 }
 
-function generateTypeScript(content) {
-  const entries = Object.entries(content)
-    .filter(([, value]) => value !== '')
-    .map(([key, value]) => `  '${key}': \`${escapeTemplate(value)}\``)
-    .join(',\n');
+function generateTypeScript(localeContents) {
+  const allKeys = new Set();
+  for (const locale of locales) {
+    Object.keys(localeContents[locale]).forEach(k => allKeys.add(k));
+  }
+  const sortedKeys = Array.from(allKeys).sort();
 
-  return `// AUTO-GENERATED from content/site.txt
-// Do not edit manually. Run 'npm run content:build' to regenerate.
+  // Build nested structure per locale
+  const localeEntries = locales.map(locale => {
+    const entries = sortedKeys
+      .filter(key => localeContents[locale][key] !== undefined)
+      .map(key => `    '${key}': \`${escapeTemplate(localeContents[locale][key])}\``)
+      .join(',\n');
+    return `  '${locale}': {\n${entries}\n  }`;
+  }).join(',\n');
+
+  const keysType = sortedKeys.map(k => `  '${k}'`).join(' |\n');
+
+  return `// AUTO-GENERATED from content/site.fr.txt and content/site.en.txt
+// Do not edit manually. Run 'node scripts/build-content.js' to regenerate.
 
 export const siteContent = {
-${entries}
+${localeEntries}
 } as const;
 
-export type ContentKey = keyof typeof siteContent;
+export type Locale = keyof typeof siteContent;
+export type ContentKey = keyof typeof siteContent['fr'];
 
-export function t(key: ContentKey): string {
-  return siteContent[key] ?? key;
+export function t(lang: Locale, key: ContentKey): string {
+  return siteContent[lang]?.[key] ?? siteContent['fr'][key] ?? key;
+}
+
+export function getAvailableLocales(): Locale[] {
+  return ${JSON.stringify(locales)};
+}
+
+export function isValidLocale(lang: string): lang is Locale {
+  return getAvailableLocales().includes(lang as Locale);
 }
 `;
 }
 
-const content = parseContent(contentFile);
-const keysCount = Object.keys(content).length;
+const localeContents = {};
+let totalKeys = 0;
+
+for (const locale of locales) {
+  const filePath = path.join(contentDir, `site.${locale}.txt`);
+  localeContents[locale] = parseContent(filePath);
+  const keyCount = Object.keys(localeContents[locale]).length;
+  totalKeys = Math.max(totalKeys, keyCount);
+  console.log(`✓ Parsed ${keyCount} strings from site.${locale}.txt`);
+}
 
 fs.mkdirSync(path.dirname(outputFile), { recursive: true });
-fs.writeFileSync(outputFile, generateTypeScript(content));
-console.log(`✓ Generated ${keysCount} strings → ${outputFile}`);
+fs.writeFileSync(outputFile, generateTypeScript(localeContents));
+console.log(`✓ Generated ${totalKeys} keys for ${locales.length} locales → ${outputFile}`);

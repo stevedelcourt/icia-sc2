@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { t } from '@/generated/content'
+import { useT } from '@/lib/i18n'
 
 export default function SpeedBanner() {
+  const t = useT()
   const [loadTime, setLoadTime] = useState<number | null>(null)
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import ftplib
 ftp = ftplib.FTP('sc2bovu7233.universe.wf', 'sc2bovu7233', 'RoxanPascalSteven2024')
 ftp.cwd('public_html')
 
-local_root = '/Users/stv/Documents/zed/icia/out'
+local_root = '/Users/stv/Documents/zed/icia-sc2/out'
 
 def upload_recursive(local_path):
     items = sorted(os.listdir(local_path))

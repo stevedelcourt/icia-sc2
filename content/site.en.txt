@@ -1,0 +1,1433 @@
+# layout.seo.title.default
+Marius IA | IA Consulting Institute - Diagnosis, Training, Transformation
+
+# layout.seo.title.template
+%s | Marius IA
+
+# layout.seo.description
+Marius IA, l'institut collectif de l'IA. Strategy consulting and IA Act compliance for SMEs, mid-caps, and organizations. Diagnosis, training, transformation. Based in Marseille.
+
+# layout.seo.keywords
+IA consulting, artificial intelligence, IA Act, IA compliance, IA transformation, SMB, SME, IA training, IA audit, IA governance, Marseille, France
+
+# layout.seo.author
+Mentivis SAS
+
+# layout.seo.creator
+Mentivis SAS
+
+# layout.seo.publisher
+Mentivis SAS
+
+# layout.og.title
+Marius IA | IA Consulting Institute - Diagnosis, Training, Transformation
+
+# layout.og.description
+IA strategy consulting and IA Act compliance. Supporting companies and organizations through diagnosis, training, and transformation. Marseille.
+
+# layout.og.site_name
+Marius IA - l'institut collectif de l'IA
+
+# layout.og.image.alt
+Marius IA - l'institut collectif de l'IA
+
+# layout.twitter.title
+Marius IA | IA Consulting Institute
+
+# layout.twitter.description
+IA strategy consulting and IA Act compliance for SMEs, mid-caps, and organizations.
+
+# layout.ld_json.org.name
+Marius IA
+
+# layout.ld_json.org.alternate_name
+l'institut collectif de l'IA
+
+# layout.ld_json.org.description
+IA consulting institute. Supporting organizations in their IA transformation with independence and measurable results.
+
+# layout.ld_json.org.contact_type
+customer service
+
+# layout.ld_json.org.available_language.fr
+French
+
+# layout.ld_json.org.available_language.en
+English
+
+# layout.ld_json.org.parent_name
+Mentivis SAS
+
+# layout.ld_json.org.location.name
+Campus Cyber.IA Euromed
+
+# layout.ld_json.org.location.city
+Marseille
+
+# layout.ld_json.website.name
+Marius IA - l'institut collectif de l'IA
+
+# layout.ld_json.website.description
+IA strategy consulting and IA Act compliance for SMEs and organizations.
+
+# layout.ld_json.breadcrumb.home
+Home
+
+# header.nav.pour_qui
+Who is it for?
+
+# header.nav.offres
+Services
+
+# header.nav.a_propos
+About us
+
+# header.nav.nos_principes
+Our values
+
+# header.cta
+Get in touch!
+
+# header.aria.menu
+Menu
+
+# header.aria.close_submenu
+Close sub-menu
+
+# header.aria.open_submenu
+Open sub-menu
+
+# header.submenu.pour_qui.entreprises
+Businesses
+
+# header.submenu.pour_qui.professions_liberales
+Private practices
+
+# header.submenu.pour_qui.ecoles
+Schools & Universities
+
+# header.submenu.pour_qui.industries_creatives
+Creative industries
+
+# header.submenu.pour_qui.collectivites
+Public sector & Government
+
+# header.submenu.pour_qui.grand_public
+General public
+
+# header.submenu.offres.diagnostic
+Diagnosis
+
+# header.submenu.offres.formations
+Training
+
+# header.submenu.offres.transformation
+Transformation
+
+# header.submenu.offres.partenaire
+Partnership
+
+# footer.tagline
+l'institut collectif de l'IA
+
+# footer.by
+by
+
+# footer.location.prefix
+Campus
+
+# footer.location.city
+Marseille
+
+# footer.column.pour_qui
+Who is it for?
+
+# footer.column.offres
+Services
+
+# footer.column.a_propos
+About us
+
+# footer.column.legal
+Legal
+
+# footer.about.qui_sommes_nous
+Who we are
+
+# footer.about.expertises
+Expertise
+
+# footer.legal.mentions
+Legal notice
+
+# footer.legal.confidentialite
+Privacy policy
+
+# footer.legal.cookies
+Cookie management
+
+# footer.legal.cgv
+Terms of service
+
+# footer.cookies.loading
+Loading...
+
+# footer.copyright
+© {year} Marius IA · Mentivis. All rights reserved.
+
+# footer.social.linkedin_aria
+LinkedIn
+
+# footer.social.instagram_aria
+Instagram
+
+# speed_banner.text
+Page loaded in {seconds}s
+
+# not_found.title
+404
+
+# not_found.heading
+Oops. This page has taken off.
+
+# not_found.body
+We looked everywhere... It might have been eaten by a mutant algorithm.
+
+# not_found.cta_home
+Back to home
+
+# not_found.cta_contact
+Need a hand?
+
+# not_found.footer
+IA can be finicky sometimes. We get it.
+
+# homepage.hero.label
+Marius IA · Campus Cyber.IA, Marseille
+
+# homepage.hero.title
+Everyone is talking about IA. We help you make the right choices.
+
+# homepage.hero.subtitle
+Diagnosis, training, transformation.
+
+# homepage.hero.body
+Structured missions, measurable results, total independence.
+
+# homepage.hero.cta
+Who is it for?
+
+# homepage.piliers.title
+Three core values.
+
+# homepage.piliers.1.title
+Total independence
+
+# homepage.piliers.1.desc
+We have no ties to software vendors or integrators. Our recommendations serve only your interests.
+
+# homepage.piliers.2.title
+Measurable results
+
+# homepage.piliers.2.desc
+Every engagement is structured, tracked, and evaluated. You know exactly where you stand at every step.
+
+# homepage.piliers.3.title
+Built-in IA Act compliance
+
+# homepage.piliers.3.desc
+The European regulatory framework is integrated into every mission, both as a requirement and a lever for excellence.
+
+# homepage.pour_qui.title
+Who is it for?
+
+# homepage.pour_qui.subtitle
+One organization, unique challenges. A tailored response.
+
+# homepage.pour_qui.body
+Our interventions are designed and adapted to your specific context and needs.
+
+# homepage.pour_qui.1.title
+SMEs and Mid-caps
+
+# homepage.pour_qui.1.desc
+Structure your approach to stay competitive. IA is redrawing organizations and transforming jobs at lightning speed. Integrating the right tools, training your teams, and anticipating IA Act requirements is now a strategic must. We help you do it with method and efficiency.
+
+# homepage.pour_qui.2.title
+Private practices
+
+# homepage.pour_qui.2.desc
+Your expertise is irreplaceable. But its form will change. IA is entering law, medicine, accounting, and architecture faster than most firms anticipated. Understanding what is a tool, what is your responsibility, and what you can safely delegate: this is exactly what you need to decide with confidence.
+
+# homepage.pour_qui.3.title
+Schools & Universities
+
+# homepage.pour_qui.3.desc
+Keeping your curriculum relevant in a changed world. The arrival of IA in all sectors requires rethinking current training and methods. New programs, training the trainers, pedagogical integration: we intervene at every level with a pragmatic approach.
+
+# homepage.pour_qui.4.title
+Creative industries
+
+# homepage.pour_qui.4.desc
+Creating with IA without losing your identity. New workflows, new tools, and new rights to understand. IA opens real creative spaces, but it also raises questions that deserve clear answers. We help you find your footing.
+
+# homepage.pour_qui.5.title
+Public sector & Government
+
+# homepage.pour_qui.5.desc
+IA serving the public. Digital inclusion, service transformation, territorial observation. IA can strengthen the efficiency and fairness of public services, provided it's approached with ethical rigor and independence. That's exactly what we bring.
+
+# homepage.pour_qui.6.title
+General public
+
+# homepage.pour_qui.6.desc
+Understand IA. Use it. Don't get left behind. Accessible workshops with no technical prerequisites for anyone who wants to understand how their daily life is changing. IA isn't just for those who already know everything.
+
+# homepage.offres.title
+Our Services
+
+# homepage.offres.subtitle
+Every mission is calibrated and built specifically for you, adapted to your needs, context, and goals.
+
+# homepage.offres.1.num
+01
+
+# homepage.offres.1.title
+Assess your situation. Decide on choices and strategy.
+
+# homepage.offres.1.subtitle
+IA & IA Act Diagnosis
+
+# homepage.offres.1.desc
+Your IA usage mapped. Your regulatory risks identified. Your priority use cases evaluated. At the end of the mission, you'll have a 12-month roadmap and a compliance report ready for your board.
+
+# homepage.offres.1.price
+Starting at $1,650
+
+# homepage.offres.1.duration
+4 to 6 weeks
+
+# homepage.offres.2.num
+02
+
+# homepage.offres.2.title
+Train your teams, not an audience.
+
+# homepage.offres.2.subtitle
+Training & Awareness
+
+# homepage.offres.2.desc
+Every program is built around the professional reality of your employees. A sales manager, an HR director, and a logistics manager don't have the same challenges. Neither do their training sessions. From half-day workshops to 5-day courses.
+
+# homepage.offres.2.price
+Starting at $825
+
+# homepage.offres.2.duration
+Half-day to 5 days
+
+# homepage.offres.3.num
+03
+
+# homepage.offres.3.title
+A transformation at your own pace.
+
+# homepage.offres.3.subtitle
+IA Transformation
+
+# homepage.offres.3.desc
+IA governance, upskilling, vendor management, IA Act compliance. Tailored support with measurable results from the first months. You keep control of every decision, at every stage.
+
+# homepage.offres.3.price
+Starting at $2,750
+
+# homepage.offres.3.duration
+3 to 12 months
+
+# homepage.offres.4.num
+04
+
+# homepage.offres.4.title
+An expert available whenever IA touches your business.
+
+# homepage.offres.4.subtitle
+IA Partner
+
+# homepage.offres.4.desc
+Continuous regulatory monitoring, project reviews, IA Act alerts, ad-hoc advice. An independent partner available when you need them. Three levels of engagement based on your pace.
+
+# homepage.offres.4.price
+Starting at $825 per month
+
+# homepage.offres.4.duration
+3 levels
+
+# homepage.contact.label
+Let's talk about your project
+
+# homepage.contact.heading
+Ready to get started?
+
+# homepage.contact.body
+Let's schedule an initial chat to understand your challenges and identify how we can help.
+
+# homepage.contact.cta
+Contact us
+
+# homepage.nav.accueil
+Home
+
+# homepage.nav.piliers
+3 Pillars
+
+# homepage.nav.pour_qui
+Who for?
+
+# homepage.nav.offres
+Services
+
+# homepage.nav.contact
+Contact
+
+# acteurs.nav.entreprises
+Businesses
+
+# acteurs.nav.professions_liberales
+Practices
+
+# acteurs.nav.ecoles
+Education
+
+# acteurs.nav.creatifs
+Creative
+
+# acteurs.nav.collectivites
+Government
+
+# acteurs.nav.grand_public
+Public
+
+# acteurs.shared.label
+Who for?
+
+# acteurs.shared.cta
+Contact us
+
+# acteurs.shared.approche_title
+Our approach
+
+# acteurs.shared.axes_title
+Support areas
+
+# acteurs.entreprises.title
+SMEs / Mid-caps
+
+# acteurs.entreprises.hero
+The IA Act goes into effect in August 2026. But that's not the only reason to act. The world is transforming, your competitors are moving, and your employees are improvising. Your IA decisions today will define your position tomorrow. Acting with method and pragmatism now means gaining ground.
+
+# acteurs.entreprises.approche.1.title
+IA & IA Act Diagnosis
+
+# acteurs.entreprises.approche.1.desc
+Before any transformation, understand your situation and context. Mapping real usage, analyzing regulatory risks, 12-month roadmap. Practical, not theoretical.
+
+# acteurs.entreprises.approche.2.title
+Training & Awareness
+
+# acteurs.entreprises.approche.2.desc
+Your teams are likely already using IA, often quietly, without the right reflexes. We help this usage become beneficial within a secure framework adapted to your business.
+
+# acteurs.entreprises.approche.3.title
+IA Transformation
+
+# acteurs.entreprises.approche.3.desc
+Move from scattered experimentation to a coherent daily practice. Governance, upskilling, change management: we support you for the long haul, not just for the launch.
+
+# acteurs.entreprises.approche.4.title
+Long-term Support Partner
+
+# acteurs.entreprises.approche.4.desc
+IA questions don't stop after one mission. We remain available to help you decide, continuously and independently from vendors or integrators.
+
+# acteurs.entreprises.en_savoir_plus
+Learn more
+
+# acteurs.professions_liberales.title
+Private Practices
+
+# acteurs.professions_liberales.hero
+Your expertise is irreplaceable. But its form will change. IA is entering law, medicine, accounting, and architecture faster than most firms anticipated. Understanding what is a tool, what is your responsibility, and what you can safely delegate is exactly what you need to decide with confidence.
+
+# acteurs.professions_liberales.axes.1.title
+Regulatory Monitoring
+
+# acteurs.professions_liberales.axes.1.desc
+The IA Act and regulated professions: understanding what concretely changes for your activity, your clients, and your responsibilities.
+
+# acteurs.professions_liberales.axes.2.title
+Data Security
+
+# acteurs.professions_liberales.axes.2.desc
+Client file confidentiality, GDPR, IA, and professional secrecy. What are the obligations and best practices when IA enters your office?
+
+# acteurs.professions_liberales.axes.3.title
+Adapted IA Tools
+
+# acteurs.professions_liberales.axes.3.desc
+Selecting IA tools that truly match your practice without depending on a single software vendor. Real time savings, improved quality.
+
+# acteurs.professions_liberales.axes.4.title
+Delegation & Responsibility
+
+# acteurs.professions_liberales.axes.4.desc
+What you can safely delegate to IA, what remains your exclusive expertise, and how to document your processes to stay in control of your decisions.
+
+# acteurs.professions_liberales.axes.5.title
+Client Communication
+
+# acteurs.professions_liberales.axes.5.desc
+Explaining IA to your clients, reassuring them, informing them. A matter of trust and transparency that becomes a competitive advantage.
+
+# acteurs.professions_liberales.axes.6.title
+Ongoing Training
+
+# acteurs.professions_liberales.axes.6.desc
+Programs adapted for regulated professions, with regular updates according to regulatory and technological changes.
+
+# acteurs.ecoles.title
+Schools & Universities
+
+# acteurs.ecoles.hero
+Keeping your curriculum relevant in a changed world. The arrival of IA in all sectors requires rethinking current training. New programs, training the trainers, pedagogical integration: we intervene at every level with a pragmatic approach.
+
+# acteurs.ecoles.axes.1.title
+Pedagogical Library
+
+# acteurs.ecoles.axes.1.desc
+Resources and tools built to be used directly in class, at all levels and in all disciplines.
+
+# acteurs.ecoles.axes.2.title
+Program Creation
+
+# acteurs.ecoles.axes.2.desc
+Some jobs didn't exist three years ago. We help you build pathways that prepare your students for the actual market demands.
+
+# acteurs.ecoles.axes.3.title
+Training the Trainers
+
+# acteurs.ecoles.axes.3.desc
+Before teaching IA, you must master it. We support your teaching teams with an approach adapted to their context—pragmatic and accessible.
+
+# acteurs.ecoles.axes.4.title
+Certifications
+
+# acteurs.ecoles.axes.4.desc
+Certifications recognized by employers, so your students' IA mastery becomes a visible asset on the job market.
+
+# acteurs.ecoles.axes.5.title
+Development
+
+# acteurs.ecoles.axes.5.desc
+Structuring an IA training offer takes time and method. We support you through the whole journey, not just the launch.
+
+# acteurs.ecoles.axes.6.title
+Institutional Accreditation
+
+# acteurs.ecoles.axes.6.desc
+Advice and support for the accreditation and labeling of your IA programs so they are properly recognized.
+
+# acteurs.creatifs.title
+Creative Industries
+
+# acteurs.creatifs.hero
+IA is disrupting creation. New tools, new workflows, new questions about authorship. Knowing what IA can do for you—and what it can't—is a strategic challenge. We help you clarify your vision with independent solutions.
+
+# acteurs.creatifs.secteurs_title
+Sectors covered
+
+# acteurs.creatifs.secteurs.1
+Music
+
+# acteurs.creatifs.secteurs.2
+Visual Arts
+
+# acteurs.creatifs.secteurs.3
+Film
+
+# acteurs.creatifs.secteurs.4
+Video Games
+
+# acteurs.creatifs.secteurs.5
+Publishing
+
+# acteurs.creatifs.secteurs.6
+Architecture
+
+# acteurs.creatifs.axes.1.title
+IA Creative Workshops
+
+# acteurs.creatifs.axes.1.desc
+Explore generation tools in your discipline with perspective. Not to use everything, but to clearly identify your needs.
+
+# acteurs.creatifs.axes.2.title
+Legal Security
+
+# acteurs.creatifs.axes.2.desc
+Copyright, model training on your works, contracts with platforms: the legal framework is evolving. We help you understand and position yourself.
+
+# acteurs.creatifs.axes.3.title
+Innovation Lab
+
+# acteurs.creatifs.axes.3.desc
+A space to test, experiment, and "fail well." No commercial pressure, no immediate obligation of results.
+
+# acteurs.creatifs.axes.4.title
+Monetization
+
+# acteurs.creatifs.axes.4.desc
+How to integrate IA into your value chain without devaluing your work. New business models and new markets.
+
+# acteurs.collectivites.title
+Government & Public Sector
+
+# acteurs.collectivites.hero
+IA is entering public services. Sometimes by choice, sometimes by obligation, often without a sufficient framework. At stake is fairness of access and the trust of citizens. This deserves a serious approach, independent of software vendors.
+
+# acteurs.collectivites.programmes.1.title
+Digital Inclusion
+
+# acteurs.collectivites.programmes.1.desc
+Supporting citizens through change—a mission as social as it is essential. We help you build systems that reduce the digital divide.
+
+# acteurs.collectivites.programmes.2.title
+Public Service Transformation
+
+# acteurs.collectivites.programmes.2.desc
+Identify relevant use cases, evaluate risks, and prioritize what truly improves service. Neither resistance nor blind adoption: a structured approach.
+
+# acteurs.collectivites.programmes.3.title
+Staff Empowerment
+
+# acteurs.collectivites.programmes.3.desc
+Public employees are on the front lines of IA-induced changes. Supporting them prevents the transformation from happening against them.
+
+# acteurs.collectivites.programmes.4.title
+Territorial Observatory
+
+# acteurs.collectivites.programmes.4.desc
+Managing an IA policy on a territory requires seeing what is actually happening. We give you the tools to measure effects and adjust your policy.
+
+# acteurs.grand_public.title
+General Public
+
+# acteurs.grand_public.hero
+The IA divide is growing. Those who master the tools move forward. Those who don't understand them suffer. We offer accessible workshops to help everyone understand what's changing and act with knowledge.
+
+# acteurs.grand_public.cta
+Get support
+
+# acteurs.grand_public.axes.1.title
+IA Awareness
+
+# acteurs.grand_public.axes.1.desc
+Hands-on workshops to understand what IA really is, what it can do for you, and what it doesn't do as well as people say.
+
+# acteurs.grand_public.axes.2.title
+Security & Ethics
+
+# acteurs.grand_public.axes.2.desc
+Deepfakes, scams, information manipulation: knowing how to recognize what's trying to deceive you is now a basic skill. We give it to you.
+
+# acteurs.grand_public.axes.3.title
+Jobs & Career Change
+
+# acteurs.grand_public.axes.3.desc
+Your job is changing. Maybe fast. We help you read what's really happening in the job market and identify the paths opening up for you.
+
+# acteurs.grand_public.axes.4.title
+Bridge to Training
+
+# acteurs.grand_public.axes.4.desc
+If you want to go further, we don't let you search alone. We guide you toward the programs that match your situation and goals.
+
+# offres.nav.diagnostic
+Diagnosis
+
+# offres.nav.formations
+Training
+
+# offres.nav.transformation
+Transformation
+
+# offres.nav.partenaire
+Partner
+
+# offres.shared.retour
+← Back
+
+# offres.shared.cta.contact
+Contact us
+
+# offres.shared.cta.contact_mobile
+Let's talk
+
+# offres.shared.cta.retour
+Back to home
+
+# offres.shared.cta.retour_mobile
+Back
+
+# offres.diagnostic.num
+SERVICE 01
+
+# offres.diagnostic.title
+IA & IA Act Diagnosis
+
+# offres.diagnostic.subtitle
+Universal Entry Point
+
+# offres.diagnostic.promesse.title
+Our Promise
+
+# offres.diagnostic.promesse.body
+In {duree}, you'll know exactly where you stand, where you can go, and what the IA Act concretely requires of you, with a roadmap ready to execute.
+
+# offres.diagnostic.contenu.title
+Deliverables
+
+# offres.diagnostic.contenu.1
+Mapping of current IA usage (tools, data, processes)
+
+# offres.diagnostic.contenu.2
+IA maturity measurement: governance, culture, skills, infrastructure
+
+# offres.diagnostic.contenu.3
+IA Act risk analysis: classification, high-risk obligations, GPAI, GDPR
+
+# offres.diagnostic.contenu.4
+Identification of 3 to 5 priority use cases with ROI estimation
+
+# offres.diagnostic.contenu.5
+12-month roadmap: quick wins + structural projects
+
+# offres.diagnostic.contenu.6
+Presentation to the executive board with an executive report
+
+# offres.diagnostic.exemple.title
+Example
+
+# offres.diagnostic.exemple.contexte
+Logistics SME, 80 people (Marseille)
+
+# offres.diagnostic.exemple.desc
+A regional carrier uses ChatGPT informally, with no IA policy, worried about GDPR and competition. Goal: structure a risk-free IA approach.
+
+# offres.diagnostic.exemple.phase.1
+Interviews with CEO, CFO, Operations Manager, IT Manager
+
+# offres.diagnostic.exemple.phase.2
+Analysis of data, existing tools, and IA Act risk mapping
+
+# offres.diagnostic.exemple.phase.3
+Formalization of use cases (optimized routes, IA customer service, auto reporting)
+
+# offres.diagnostic.exemple.phase.4
+Drafting the roadmap + compliance report
+
+# offres.diagnostic.exemple.phase.5
+Board presentation - decision to launch Service 03
+
+# offres.diagnostic.levier.title
+Leverage
+
+# offres.diagnostic.levier.body
+IA Act in effect August {annee} - Regulatory urgency = immediate buy-in. Ticket decidable by CEO/CFO alone (starting at {montant} euros).
+
+# offres.formations.num
+SERVICE 02
+
+# offres.formations.title
+Training & IA Awareness
+
+# offres.formations.subtitle
+Volume & Funding
+
+# offres.formations.promesse.title
+Our Promise
+
+# offres.formations.promesse.body
+Your teams are already using IA, often without knowing it. We make sure they do it well, in line with their jobs, within a secure framework.
+
+# offres.formations.catalogue.title
+Program Catalog
+
+# offres.formations.catalogue.header.programme
+Program
+
+# offres.formations.catalogue.header.contenu
+Content
+
+# offres.formations.catalogue.header.duree
+Duration
+
+# offres.formations.catalogue.1.nom
+IA by Industry/Job
+
+# offres.formations.catalogue.1.contenu
+Managers, sales, HR, finance, customer support, logistics
+
+# offres.formations.catalogue.1.duree
+1 day
+
+# offres.formations.catalogue.2.nom
+IA & Security
+
+# offres.formations.catalogue.2.contenu
+Risks, personal data, scams, GDPR, best practices
+
+# offres.formations.catalogue.2.duree
+1/2 day
+
+# offres.formations.catalogue.3.nom
+IA & Critical Thinking
+
+# offres.formations.catalogue.3.contenu
+Understanding LLMs, biases, hallucinations, tool limits
+
+# offres.formations.catalogue.3.duree
+1/2 day
+
+# offres.formations.catalogue.4.nom
+School/University Modules
+
+# offres.formations.catalogue.4.contenu
+Structured courses, practical cases for institutions
+
+# offres.formations.catalogue.4.duree
+Tailored
+
+# offres.formations.catalogue.5.nom
+IA Career Path
+
+# offres.formations.catalogue.5.contenu
+Digital core + professional IA + skill badges
+
+# offres.formations.catalogue.5.duree
+3 to 5 days
+
+# offres.formations.catalogue.6.nom
+Train the Trainer
+
+# offres.formations.catalogue.6.contenu
+Training internal teams or partner instructors
+
+# offres.formations.catalogue.6.duree
+2 days
+
+# offres.formations.exemple.title
+Example
+
+# offres.formations.exemple.contexte
+Construction Training Center, Marseille (120 apprentices)
+
+# offres.formations.exemple.desc
+A center wants to integrate IA but doesn't know how. Instructors aren't familiar with tools. Apprentices already use IA for assignments.
+
+# offres.formations.exemple.phase.1
+Pedagogical audit of the existing curriculum (2 days)
+
+# offres.formations.exemple.phase.2
+Co-construction of 3 IA job modules: augmented surveying, IA & site safety, reporting
+
+# offres.formations.exemple.phase.3
+Training the trainers (2 days)
+
+# offres.formations.exemple.phase.4
+Delivery of materials + associated skill badges
+
+# offres.formations.exemple.phase.5
+3-month implementation support
+
+# offres.transformation.num
+SERVICE 03
+
+# offres.transformation.title
+IA Transformation
+
+# offres.transformation.subtitle
+3-12 Month Program
+
+# offres.transformation.promesse.title
+Our Promise
+
+# offres.transformation.promesse.body
+We help you move IA from experimentation to daily practice without breaking your organization, without depending on a single vendor, and with measurable results from the first months.
+
+# offres.transformation.apports.title
+What Mentivis Brings
+
+# offres.transformation.apports.1
+IA Governance: creation of the IA committee, usage charter, trained internal referent
+
+# offres.transformation.apports.2
+Skills Plan: mapping needs by role, upskilling pathways
+
+# offres.transformation.apports.3
+Change Management: internal communication, buy-in workshops, manager coaching
+
+# offres.transformation.apports.4
+IA Act + GDPR Compliance: aligning usage with legal obligations
+
+# offres.transformation.apports.5
+Technical Partner Management: Mentivis arbitrates, controls, and validates (Flowt or others)
+
+# offres.transformation.apports.6
+Impact Measurement: quarterly milestones, defined KPIs, board reports
+
+# offres.transformation.exemple.title
+Example
+
+# offres.transformation.exemple.contexte
+Mid-cap Services, 350 people
+
+# offres.transformation.exemple.desc
+A service company performed a diagnosis. 3 priority use cases: customer support automation, IA in sales prospecting, report generation. Goal: deploy safely over 9 months.
+
+# offres.transformation.exemple.phase.1
+Setting up IA governance, charter, board training
+
+# offres.transformation.exemple.phase.2
+Deploying IA customer support with Flowt under Mentivis management
+
+# offres.transformation.exemple.phase.3
+Sales team training, IA prospecting deployment
+
+# offres.transformation.exemple.phase.4
+Reporting automation, impact measurement, adjustment
+
+# offres.transformation.exemple.phase.5
+Review, measured ROI, phase 2 roadmap
+
+# offres.partenaire.num
+SERVICE 04
+
+# offres.partenaire.title
+Long-term Support Partner
+
+# offres.partenaire.subtitle
+Subscription
+
+# offres.partenaire.promesse.title
+Our Promise
+
+# offres.partenaire.promesse.body
+An independent partner to help you decide on IA continuously—monitoring, advice, arbitration, regulatory alerts. The number to call when IA touches your business.
+
+# offres.partenaire.niveaux.title
+3 Subscription Levels
+
+# offres.partenaire.niveaux.1.nom
+Essential
+
+# offres.partenaire.niveaux.1.1
+Personalized IA regulatory monitoring
+
+# offres.partenaire.niveaux.1.2
+2h office hours
+
+# offres.partenaire.niveaux.1.3
+IA Act alerts
+
+# offres.partenaire.niveaux.2.nom
+Strategic
+
+# offres.partenaire.niveaux.2.1
+Everything in Essential
+
+# offres.partenaire.niveaux.2.2
+IA project reviews
+
+# offres.partenaire.niveaux.2.3
+Technical vendor reviews
+
+# offres.partenaire.niveaux.2.4
+4h office hours
+
+# offres.partenaire.niveaux.3.nom
+Executive
+
+# offres.partenaire.niveaux.3.1
+Everything in Strategic
+
+# offres.partenaire.niveaux.3.2
+1 IA committee meeting per quarter
+
+# offres.partenaire.niveaux.3.3
+Access to Institute events
+
+# offres.partenaire.niveaux.3.4
+Priority diagnosis
+
+# offres.partenaire.approche.title
+Our Approach
+
+# offres.partenaire.approche.body
+Zero dependence: 100% pure consulting, no technical sub-contracting required.
+
+# a_propos.label
+About us
+
+# a_propos.title
+Building solutions tailored exactly to your needs, your industry, and your structure.
+
+# a_propos.paragraph.1
+Marius IA is to artificial intelligence systems what architects are to buildings: defining the need, evaluating the impact, and building the solution with the right experts.
+
+# a_propos.paragraph.2
+Our role is to help organizations integrate IA in a structured, compliant, and sustainable way. We intervene from training to the design, construction, and orchestration of operational IA systems.
+
+# a_propos.paragraph.3
+Marius IA is powered by Mentivis, based at the Campus Cyber.IA Euromed in Marseille.
+
+# a_propos.institut.label
+l'institut collectif de l'IA
+
+# a_propos.institut.title
+A shared good and faith
+
+# a_propos.institut.paragraph.1
+l'institut collectif de l'IA is an association currently in development. Its mission: make the skills needed to understand and master IA accessible to all.
+
+# a_propos.institut.paragraph.2
+A place, a platform, a network of experts. Driven by the conviction that artificial intelligence should not stay in the hands of a few.
+
+# a_propos.institut.mission_title
+Mission and Vision
+
+# a_propos.institut.mission
+Empowering everyone to make informed decisions about IA and benefit from its advancements.
+
+# a_propos.institut.vision
+Our vision: an IA transformation that is clear, controlled, and aligned with the values of those who lead it.
+
+# a_propos.campus.title
+Campus Cyber.IA
+
+# a_propos.campus.paragraph
+Based at Campus Cyber.IA Euromed, we operate at the heart of an active ecosystem dedicated to cybersecurity and IA. A concrete anchor in a city embracing its transformation.
+
+# a_propos.cta
+Contact us
+
+# contact.label
+Contact
+
+# contact.title
+A project, a question, or a regulatory emergency.
+
+# contact.subtitle
+We respond within 48 hours.
+
+# contact.form.prenom
+First Name
+
+# contact.form.nom
+Last Name
+
+# contact.form.email
+Your email address
+
+# contact.form.organisation
+Your organization
+
+# contact.form.message
+Your message
+
+# contact.form.message_optional
+(optional)
+
+# contact.form.consent
+I agree to receive information from Marius IA, in accordance with the privacy policy.
+
+# contact.form.submit
+Send
+
+# contact.form.submitting
+Sending...
+
+# contact.success.title
+Message sent!
+
+# contact.success.body
+We have received your request. We will get back to you within 48h.
+
+# contact.success.retour
+Back to home
+
+# contact.error.default
+An error occurred. Please try again or contact us directly.
+
+# contact.adresse.title
+Campus Cyber.IA Euromed Marseille
+
+# contact.adresse.ligne
+4 Bd Euroméditerranée, Quai d'Arenc, 13002 Marseille
+
+# contact.adresse.itineraire
+Get directions on OpenStreetMap
+
+# contact.adresse.site
+campuscyber.fr
+
+# contact.phone
++33 1 89 48 10 02
+
+# contact.email.local
+contact
+
+# contact.email.domain
+mariusia.com
+
+# expertises.label
+Expertise
+
+# expertises.title
+What we do best!
+
+# expertises.subtitle
+Expertise built on the ground, available according to your needs.
+
+# expertises.competences_title
+Skills
+
+# expertises.competence.1.title
+IA Audit and IA Act Compliance
+
+# expertises.competence.1.desc
+Mapping usage and risks. Organizational maturity analysis. Regulatory compliance evaluation. Preparing for European IA Act obligations.
+
+# expertises.competence.2.title
+Team Training and Awareness
+
+# expertises.competence.2.desc
+Tailored programs by job, sector, and maturity level. Awareness, upskilling, and training the trainers.
+
+# expertises.competence.3.title
+IA Transformation Management
+
+# expertises.competence.3.desc
+Governance, vendor selection and oversight, tracking results over time. Structured support that stays with you after the first deliverable.
+
+# expertises.competence.4.title
+Continuous Monitoring and Advice
+
+# expertises.competence.4.desc
+Regulatory tracking, IA Act alerts, project reviews, ad-hoc advice. An expert available at the right time, not just at the start.
+
+# expertises.cta
+Discuss your project
+
+# actualites.title
+News
+
+# actualites.subtitle
+Follow news from Marius IA and l'institut collectif de l'IA: events, publications, partnerships, and reflections on IA.
+
+# actualites.article.non_trouve
+Article not found
+
+# actualites.article.inexistant
+This article does not exist.
+
+# actualites.article.retour
+Back to news
+
+# actualites.article.retour_liste
+← Back to news
+
+# actualites.article.precedent
+Previous article
+
+# actualites.article.suivant
+Next article
+
+# mentions_legales.title
+Legal Notice
+
+# mentions_legales.editeur.title
+Publisher
+
+# mentions_legales.editeur.nom
+Mentivis SAS
+
+# mentions_legales.editeur.forme
+Simplified Joint Stock Company with capital of 10,000 euros
+
+# mentions_legales.editeur.siege
+Headquarters: 60 rue François 1er, 75008 Paris
+
+# mentions_legales.editeur.rcs
+941 914 814 R.C.S. Paris
+
+# mentions_legales.hebergement.title
+Hosting
+
+# mentions_legales.hebergement.nom
+O2switch
+
+# mentions_legales.hebergement.siret
+Siret: 510 909 807 00032
+
+# mentions_legales.hebergement.rcs
+RCS Clermont Ferrand
+
+# mentions_legales.hebergement.capital
+SAS with capital of 100,000€
+
+# mentions_legales.presentation.title
+Corporate Presentation
+
+# mentions_legales.presentation.lien
+Download corporate presentation (PDF)
+
+# mentions_legales.pi.title
+Intellectual Property
+
+# mentions_legales.pi.text
+All content on this site is protected by copyright. Any reproduction, even partial, is prohibited without prior authorization.
+
+# confidentialite.title
+Privacy Policy
+
+# confidentialite.responsable.title
+Data Controller
+
+# confidentialite.responsable.text
+Mentivis SAS, as data controller, is committed to protecting your personal data.
+
+# confidentialite.donnees.title
+Data Collected
+
+# confidentialite.donnees.text
+We only collect data necessary for the performance of our services: name, email, phone, and company information.
+
+# confidentialite.utilisation.title
+Use of Data
+
+# confidentialite.utilisation.intro
+Your data is used to:
+
+# confidentialite.utilisation.1
+Respond to your contact requests
+
+# confidentialite.utilisation.2
+Inform you about our services
+
+# confidentialite.utilisation.3
+Execute ordered services
+
+# confidentialite.droits.title
+Your Rights
+
+# confidentialite.droits.text
+In accordance with GDPR, you have the right to access, rectify, delete, and port your data. To exercise these rights, contact us at privacy@icia.fr.
+
+# confidentialite.duree.title
+Retention Period
+
+# confidentialite.duree.text
+Your data is kept for the duration of our contractual relationship and up to 3 years after your last contact.
+
+# confidentialite.cookies.title
+Cookies and Audience Measurement
+
+# confidentialite.cookies.text
+This site uses Google Analytics to measure audience and understand how visitors interact with our site.
+
+# confidentialite.cookies.finalite
+Purpose
+
+# confidentialite.cookies.finalite_text
+Audience measurement, traffic analysis, and site improvement
+
+# confidentialite.cookies.utilises
+Cookies used
+
+# confidentialite.cookies.utilises_text
+_ga, _gid, _gat (Google Analytics)
+
+# confidentialite.cookies.duree
+Retention period
+
+# confidentialite.cookies.duree_text
+Up to 13 months
+
+# confidentialite.cookies.consentement
+Consent
+
+# confidentialite.cookies.consentement_text
+Analytical cookies are only activated after your explicit consent via the cookie banner. You can change your preferences at any time via the "Cookie Management" link at the bottom of the page.
+
+# conditions.title
+Terms of Use
+
+# conditions.acceptation.title
+Acceptance of Terms
+
+# conditions.acceptation.text
+By using this site, you accept these terms of use without reservation.
+
+# conditions.utilisation.title
+Use of the Site
+
+# conditions.utilisation.text
+The site is intended to provide information about Marius IA services. Use for illegal purposes is prohibited.
+
+# conditions.pi.title
+Intellectual Property
+
+# conditions.pi.text
+All content on this site (text, images, logos) is protected by copyright. Reproduction is prohibited without authorization.
+
+# conditions.responsabilite.title
+Limitation of Liability
+
+# conditions.responsabilite.text
+Information on this site is provided for guidance only. Marius IA cannot be held liable for damages resulting from site use.
+
+# conditions.droit.title
+Governing Law
+
+# conditions.droit.text
+These terms are governed by French law. Any dispute will be submitted to the competent courts.
+
+# cookies.title
+Cookie Policy
+
+# cookies.definition.title
+What is a cookie?
+
+# cookies.definition.text
+A cookie is a text file placed on your computer when you visit a website. It helps remember your preferences and improve your browsing experience.
+
+# cookies.utilises.title
+Cookies used
+
+# cookies.utilises.text
+Our site uses strictly necessary cookies for the site to function and analytical cookies to measure audience.
+
+# cookies.essentiels
+Essential cookies
+
+# cookies.essentiels_text
+Necessary for the site to function properly
+
+# cookies.analytiques
+Analytical cookies
+
+# cookies.analytiques_text
+Help us understand how you use the site
+
+# cookies.gestion.title
+Cookie Management
+
+# cookies.gestion.text
+You can configure your browser to refuse cookies. However, some site features might no longer function properly.
+
+# contact_formspree.label
+Contact
+
+# contact_formspree.title
+Let's start with an initial editorial probe, then we'll see.
+
+# contact_formspree.form.prenom
+First Name
+
+# contact_formspree.form.nom
+Last Name
+
+# contact_formspree.form.email
+Email
+
+# contact_formspree.form.entreprise
+Company
+
+# contact_formspree.form.secteur
+Industry
+
+# contact_formspree.form.effectif
+Number of employees
+
+# contact_formspree.form.priorite
+What is your priority?
+
+# contact_formspree.form.consent
+I agree to receive information and offers from Marius IA, in accordance with the privacy policy.
+
+# contact_formspree.form.submit
+Submit your request
+
+# contact_formspree.form.submitting
+Sending...
+
+# contact_formspree.form.select_default
+Choose a value
+
+# contact_formspree.form.secteur.pme
+SME / Mid-cap
+
+# contact_formspree.form.secteur.collectivite
+Government / Public Service
+
+# contact_formspree.form.secteur.education
+Education / Training
+
+# contact_formspree.form.secteur.creatif
+Creative Industries
+
+# contact_formspree.form.secteur.citoyen
+Individual / Job Seeker
+
+# contact_formspree.form.secteur.autre
+Other
+
+# contact_formspree.form.effectif.1_10
+1 to 10
+
+# contact_formspree.form.effectif.11_50
+11 to 50
+
+# contact_formspree.form.effectif.51_250
+51 to 250
+
+# contact_formspree.form.effectif.251_1000
+251 to 1000
+
+# contact_formspree.form.effectif.1000+
+Over 1000
+
+# contact_formspree.form.priorite.ai_act
+Understand the IA Act and my obligations
+
+# contact_formspree.form.priorite.diagnostic
+Perform an IA diagnosis
+
+# contact_formspree.form.priorite.formation
+Train my teams
+
+# contact_formspree.form.priorite.transformation
+Transform my organization
+
+# contact_formspree.form.priorite.partenaire
+Have an IA partner
+
+# contact_formspree.form.priorite.autre
+Other
+
+# contact_formspree.success.title
+Thank you!
+
+# contact_formspree.success.body
+We have received your request. We will get back to you within 48h.
+
+# contact_formspree.success.retour
+Back to home

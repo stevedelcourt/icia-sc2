@@ -1,12 +1,10 @@
 'use client'
 
-import Link from 'next/link'
-import Image from 'next/image'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { useT, LocalizedLink } from '@/lib/i18n'
+import { I18nProvider, useT, LocalizedLink } from '@/lib/i18n'
 
-export default function NotFound() {
+function NotFoundContent() {
   const t = useT()
   return (
     <>
@@ -51,5 +49,13 @@ export default function NotFound() {
       </div>
       <Footer />
     </>
+  )
+}
+
+export default function NotFound() {
+  return (
+    <I18nProvider lang="fr">
+      <NotFoundContent />
+    </I18nProvider>
   )
 }

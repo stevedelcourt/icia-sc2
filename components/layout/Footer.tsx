@@ -40,19 +40,19 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800 py-12 md:py-16">
+    <footer className="bg-gray-900 border-t border-gray-800 py-10 md:py-12">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <LocalizedLink href="/">
           <motion.img
             src="/MariusIA-logo.svg"
             alt="MARIUS IA"
-            className="h-24 w-auto cursor-pointer brightness-0 invert opacity-80"
+            className="h-10 w-auto cursor-pointer brightness-0 invert opacity-80"
             whileHover={{ scale: 1.05, opacity: 1 }}
             transition={{ duration: 0.2 }}
           />
         </LocalizedLink>
 
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12 mt-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12 mt-4">
           <div>
             <p className="text-base text-gray-300">{t('footer.tagline')}</p>
             <p className="text-sm text-gray-400 mt-1">{t('footer.by')} <a href="https://mentivis.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Mentivis</a></p>

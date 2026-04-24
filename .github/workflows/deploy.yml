@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
@@ -27,6 +27,11 @@ jobs:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
           NOTION_DB: ${{ secrets.NOTION_DB }}
           NOTION_PARTNERS_DB: ${{ secrets.NOTION_PARTNERS_DB }}
+
+      - name: Copy 404 to locale folders
+        run: |
+          cp out/404.html out/fr/404.html
+          cp out/404.html out/en/404.html
 
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp

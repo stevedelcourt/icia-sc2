@@ -111,21 +111,29 @@ export function Header() {
             </LocalizedLink>
           </div>
 
-          <button
-            type="button"
-            className="lg:hidden p-1.5 xs:p-2 text-black"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={t('header.aria.menu')}
-            style={{ touchAction: 'manipulation' }}
-          >
-            <svg className="w-6 xs:w-7 h-6 xs:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          <div className="flex items-center gap-3 lg:hidden">
+            <Link
+              href={pathname.replace(new RegExp(`^/${lang}`), lang === 'fr' ? '/en' : '/fr')}
+              className="text-sm font-medium text-black hover:text-gray-600 uppercase transition-colors duration-200"
+            >
+              {lang === 'fr' ? 'EN' : 'FR'}
+            </Link>
+            <button
+              type="button"
+              className="p-1.5 xs:p-2 text-black"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={t('header.aria.menu')}
+              style={{ touchAction: 'manipulation' }}
+            >
+              <svg className="w-6 xs:w-7 h-6 xs:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -219,13 +227,6 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <Link
-                href={pathname.replace(new RegExp(`^/${lang}`), lang === 'fr' ? '/en' : '/fr')}
-                onClick={closeMenu}
-                className="block text-center py-2.5 mt-4 text-sm text-white border-2 border-white rounded-lg hover:bg-white hover:text-[#111827] transition-colors"
-              >
-                {lang === 'fr' ? 'English' : 'Français'}
-              </Link>
               <LocalizedLink
                 href="/contact"
                 onClick={closeMenu}

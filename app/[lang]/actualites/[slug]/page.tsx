@@ -30,46 +30,62 @@ function getLocalImageUrl(slug: string, imageUrl: string): string {
 export async function generateStaticParams() {
   const NOTION_KEY = process.env.NOTION_KEY
   const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
-  
-  if (!NOTION_KEY) return []
 
-  const notion = {
-    baseUrl: 'https://api.notion.com/v1',
-    headers: {
-      'Authorization': `Bearer ${NOTION_KEY}`,
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
+  let slugs: string[] = []
+
+  if (NOTION_KEY) {
+    const notion = {
+      baseUrl: 'https://api.notion.com/v1',
+      headers: {
+        'Authorization': `Bearer ${NOTION_KEY}`,
+        'Content-Type': 'application/json',
+        'Notion-Version': '2022-06-28'
+      }
+    }
+
+    try {
+      const query: any = { page_size: 100 }
+      const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
+        method: 'POST',
+        headers: notion.headers,
+        body: JSON.stringify(query)
+      })
+      if (response.ok) {
+        const data = await response.json()
+        if (data.results) {
+          const getRichText = (prop: any) => {
+            if (!prop) return ''
+            if (prop.rich_text && prop.rich_text.length > 0) {
+              return prop.rich_text.map((t: any) => t.plain_text).join('')
+            }
+            if (prop.title && prop.title.length > 0) {
+              return prop.title.map((t: any) => t.plain_text).join('')
+            }
+            return ''
+          }
+          slugs = data.results.map((page: any) => getRichText(page.properties.Slug)).filter(Boolean)
+        }
+      }
+    } catch {
+      // fallback below
     }
   }
 
-  try {
-    const query: any = { page_size: 100 }
-    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
-      method: 'POST',
-      headers: notion.headers,
-      body: JSON.stringify(query)
-    })
-    if (!response.ok) return []
-    const data = await response.json()
-    if (!data.results) return []
-
-    const getRichText = (prop: any) => {
-      if (!prop) return ''
-      if (prop.rich_text && prop.rich_text.length > 0) {
-        return prop.rich_text.map((t: any) => t.plain_text).join('')
-      }
-      if (prop.title && prop.title.length > 0) {
-        return prop.title.map((t: any) => t.plain_text).join('')
-      }
-      return ''
-    }
-
-    return data.results.map((page: any) => ({
-      slug: getRichText(page.properties.Slug)
-    })).filter((p: any) => p.slug)
-  } catch {
-    return []
+  // Fallback slugs when Notion is unavailable — keeps static export working
+  if (slugs.length === 0) {
+    slugs = [
+      'roxan-roumegas',
+      'mk2-partner',
+      'partenariat-universites',
+      'ia-et-cybersecurite',
+      'formation-intelligence-artificielle',
+      'audit-ia',
+    ]
   }
+
+  // Expand each slug for both FR and EN locales
+  const locales = ['fr', 'en']
+  return slugs.flatMap((slug: string) => locales.map((lang: string) => ({ lang, slug })))
 }
 
 const NOTION_KEY = process.env.NOTION_KEY

@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       },
     },
     verification: {
-      google: 'pEdbpM4Yo2aeiF2mUp1KU5sClwLo7xebz1TP1R450S0',
+      google: '161zSKiF4dWqa9EgfgToHjbDBT9Q51yx6K5Tp41mD-E',
     },
   }
 }

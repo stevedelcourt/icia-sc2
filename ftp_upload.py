@@ -21,7 +21,7 @@ def upload_recursive(local_path):
             ftp.cwd('..')
         else:
             ext = os.path.splitext(item)[1]
-            if ext in ['.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot']:
+            if item == '.htaccess' or ext in ['.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot']:
                 print(f'Uploading {item}')
                 with open(local_full, 'rb') as f:
                     ftp.storbinary(f'STOR {item}', f)

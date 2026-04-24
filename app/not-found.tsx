@@ -8,6 +8,7 @@ function NotFoundContent() {
   const t = useT()
   return (
     <>
+      <meta name="robots" content="noindex" />
       <Header />
       <div className="min-h-screen bg-[#bdf5ab] flex flex-col items-center justify-center p-8 text-center">
         <div className="mb-8">

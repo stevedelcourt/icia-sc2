@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { MapTilerMap } from '@/components/MapTilerMap'
 
 export default function ContactPage() {
   const t = useT()
@@ -246,20 +247,12 @@ export default function ContactPage() {
               </div>
 
               <AnimatedDivider className="mt-16 pt-12 border-t border-gray-200" />
-              <div className="w-full h-[300px] border border-gray-200 overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  scrolling="yes"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=5.360486%2C43.308887%2C5.370486%2C43.318887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
-                  style={{ border: 0 }}
-                  title={t('contact.adresse.title')}
-                ></iframe>
+              <div className="w-full aspect-square border border-gray-200 overflow-hidden">
+                <MapTilerMap />
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 <a
-                  href="https://www.openstreetmap.org/directions?from=&to=43.3139%2C5.3655"
+                  href="https://www.openstreetmap.org/directions?from=&to=43.3136605%2C5.3637474"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:underline"

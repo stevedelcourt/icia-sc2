@@ -236,7 +236,7 @@ export default function ContactPage() {
               </form>
 
               <div className="mt-16 pt-12 border-t border-gray-200">
-                <img src="/MariusIA-logo.svg" alt="Marius IA" className="h-16 w-auto mb-6" />
+                <img src="/MariusIA-logo.svg" alt="Marius IA" className="h-16 w-auto mb-2" />
                 <p className="text-base text-gray-600 mb-2">{t('contact.phone')}</p>
                 <LocalizedLink href="/contact" className="text-base text-gray-600 hover:text-black transition-colors duration-200 block mb-4">
                   {t('contact.email.local')}&#x40;{t('contact.email.domain')}

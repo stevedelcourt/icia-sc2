@@ -21,17 +21,17 @@ export function useT(): (key: ContentKey) => string {
 
 export function LocalizedLink({ href, ...props }: React.ComponentProps<typeof Link>) {
   const lang = useLocale()
-  const isLocalePrefixed = typeof href === 'string' && /^\/(fr|en)\//.test(href)
+  const isString = typeof href === 'string'
+  const isAnchorLink = isString && href.startsWith('#')
+  const hasLocalePrefix = isString && /^\/(fr|en)\//.test(href)
   const localizedHref =
-    typeof href === 'string' && href.startsWith('/') && !isLocalePrefixed
+    isString && !isAnchorLink && !hasLocalePrefix && href.startsWith('/')
       ? `/${lang}${href}`
       : href
   return <Link href={localizedHref} {...props} />
 }
 
 export function useLocalizedPathname(): string {
-  // Only works in Client Components wrapped by I18nProvider
-  // In Server Components, use params.lang directly
   if (typeof window === 'undefined') return ''
   const lang = useLocale()
   return window.location.pathname.replace(new RegExp(`^/${lang}`), '') || '/'

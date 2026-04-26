@@ -214,7 +214,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
             <FadeIn delay={0.1} className="mt-10 max-w-3xl mx-auto">
               <LocalizedLink
                 href={pub.ctaLink}
-                className="inline-block text-base font-semibold text-navy hover:text-navy-light underline underline-offset-4 transition-colors duration-200"
+                className="inline-block text-base font-semibold text-navy hover:text-navy-light underline underline-offset-4 transition-colors duration-200 whitespace-nowrap"
               >
                 {pub.ctaText}
               </LocalizedLink>
@@ -243,10 +243,9 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
                     {card.link && (
                       <LocalizedLink
                         href={card.link}
-                        className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light mt-4 transition-colors duration-200"
+                        className="inline-block text-sm font-semibold text-navy hover:text-navy-light mt-4 transition-colors duration-200 whitespace-nowrap"
                       >
                         {card.linkLabel || (lang === 'en' ? 'Read more' : 'Lire la suite')}
-                        <ArrowRight className="w-4 h-4 ml-1" />
                       </LocalizedLink>
                     )}
                   </div>

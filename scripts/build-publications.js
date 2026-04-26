@@ -233,7 +233,7 @@ export const publicationTranslations: Record<string, { fr?: string; en?: string 
 export function getPublicationTranslation(slug: string, lang: Locale): string | undefined {
   const mapping = publicationTranslations[slug];
   if (!mapping) return undefined;
-  return lang === 'en' ? mapping.en : mapping.fr;
+  return lang === 'en' ? mapping.fr : mapping.en;
 }
 `;
 

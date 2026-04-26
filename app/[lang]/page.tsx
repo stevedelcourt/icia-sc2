@@ -345,9 +345,9 @@ export default function Home() {
               </p>
             </StaggerBlock>
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
-              <LocalizedLink href="/contact" className="inline-flex items-center px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+              <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
                 {t('homepage.contact.cta')}
-                <ArrowRight className="ml-2" />
+                <span className="shrink-0"><ArrowRight className="ml-2" /></span>
               </LocalizedLink>
             </motion.div>
           </div>

@@ -124,9 +124,9 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
           </div>
 
           <FadeIn delay={0.1} className="mt-16 text-center">
-            <LocalizedLink href="/contact" className="inline-flex items-center px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+            <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
               {t(params.lang as Locale, 'a_propos.cta')}
-              <ArrowRight className="ml-2" />
+              <span className="shrink-0"><ArrowRight className="ml-2" /></span>
             </LocalizedLink>
           </FadeIn>
         </div>

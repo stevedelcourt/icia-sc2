@@ -90,32 +90,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Actualités -->
-  <url>
-    <loc>https://www.mariusia.com/actualites/</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mariusia.com/actualites/roxan-roumegas/</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.mariusia.com/actualites/mk2-partner/</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.mariusia.com/actualites/partenariat-universites/</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
   <!-- Publications -->
   <url>
     <loc>https://www.mariusia.com/fr/publications/</loc>

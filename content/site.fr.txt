@@ -82,8 +82,8 @@ Offres
 # header.nav.a_propos
 À propos
 
-# header.nav.nos_principes
-Nos principes
+# header.nav.publications
+Publications
 
 # header.cta
 Contactez Marius IA !
@@ -1431,10 +1431,10 @@ Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
 Retour à l'accueil
 
 # publications.page.title
-Actualités & Perspectives
+Publications
 
 # publications.page.headline
-Ressources et analyses stratégiques sur l'IA
+Actualités & Perspectives
 
 # publications.filter.all_tags
 Tous les sujets

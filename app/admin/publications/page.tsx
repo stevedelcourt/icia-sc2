@@ -8,7 +8,7 @@ const CATEGORIES = ['announcements', 'perspectives', 'regulatory-insights', 'new
 const EMPTY_FORM = {
   slug: '',
   lang: 'fr' as Locale,
-  date: new Date().toISOString().split('T')[0],
+  date: '',
   category: 'announcements',
   headline: '',
   subheadline: '',
@@ -64,7 +64,7 @@ export default function AdminPublicationsPage() {
   function loadPublication(lang: Locale, slug: string) {
     if (!slug) {
       setSelectedSlug('')
-      setForm({ ...EMPTY_FORM, lang })
+      setForm({ ...EMPTY_FORM, lang, date: new Date().toISOString().split('T')[0] })
       setExistingImages({ heroImage: '', card1Image: '', card2Image: '', card3Image: '' })
       return
     }

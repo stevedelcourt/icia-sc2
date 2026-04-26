@@ -3,6 +3,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { MarkdownBody } from '@/components/MarkdownBody'
 import { FadeIn } from '@/components/ui/FadeIn'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 import { LocalizedLink } from '@/lib/i18n'
 import { getPublications, getPublicationBySlug, getPublicationSlugs, type Locale } from '@/generated/publications'
 import { t } from '@/generated/content'
@@ -215,9 +216,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
                         className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light mt-4 transition-colors duration-200"
                       >
                         {card.linkLabel || (lang === 'en' ? 'Read more' : 'Lire la suite')}
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        <ArrowRight className="w-4 h-4 ml-1" />
                       </LocalizedLink>
                     )}
                   </div>

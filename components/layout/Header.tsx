@@ -29,7 +29,7 @@ export function Header() {
       { label: t('header.submenu.offres.partenaire'), href: '/partenaire' },
     ]},
     { label: t('header.nav.a_propos'), href: '/a-propos/', bold: true },
-    { label: t('header.nav.nos_principes'), href: '/#piliers', bold: true },
+    { label: t('header.nav.publications'), href: '/publications/', bold: true },
   ]
 
   const [isScrolled, setIsScrolled] = useState(false)

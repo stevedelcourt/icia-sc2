@@ -82,8 +82,8 @@ Services
 # header.nav.a_propos
 About us
 
-# header.nav.nos_principes
-Our values
+# header.nav.publications
+Publications
 
 # header.cta
 Get in touch!
@@ -1433,10 +1433,10 @@ We have received your request. We will get back to you within 48h.
 Back to home
 
 # publications.page.title
-News & Perspectives
+Publications
 
 # publications.page.headline
-Strategic resources and analyses on AI
+News & Perspectives
 
 # publications.filter.all_tags
 All topics

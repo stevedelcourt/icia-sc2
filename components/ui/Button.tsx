@@ -2,6 +2,7 @@
 
 import { ButtonHTMLAttributes, forwardRef, ReactNode, CSSProperties } from 'react'
 import Link from 'next/link'
+import { ArrowRight } from './ArrowRight'
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -34,12 +35,6 @@ const hoverStyles: Record<ButtonVariant, { bg: string; text: string }> = {
   ghost: { bg: '#191919', text: '#ffffff' },
 }
 
-const Arrow = () => (
-  <span className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-    ➔
-  </span>
-)
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, style, ...props }, ref) => {
     const baseClasses = `inline-flex items-center justify-center font-semibold whitespace-nowrap select-none transition-colors duration-200 ${sizeClasses[size]} ${variantClasses[variant]}`
@@ -57,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const linkContent = (
       <>
         <span>{children}</span>
-        {arrow && <Arrow />}
+        {arrow && <ArrowRight className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />}
       </>
     )
 

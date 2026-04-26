@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { LocalizedLink } from '@/lib/i18n'
 import { t, type Locale } from '@/generated/content'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 
 interface PublicationCardProps {
   slug: string
@@ -99,14 +100,7 @@ export function PublicationCard({
             className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light transition-colors duration-200"
           >
             {t(lang, 'publications.card.read_button')}
-            <svg
-              className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+              <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
           </LocalizedLink>
         </div>
       </div>

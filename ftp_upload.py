@@ -27,10 +27,9 @@ def upload_recursive(local_path):
                     ftp.storbinary(f'STOR {item}', f)
 
 upload_recursive(local_root)
-ftp.quit()
 
 with open('/Users/stv/Documents/zed/icia-sc2/public/.htaccess.pagespeed.bkp', 'rb') as f:
     ftp.storbinary('STOR .htaccess.pagespeed.bkp', f)
-ftp.quit()
 
+ftp.quit()
 print('Done!')

@@ -62,11 +62,11 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
 }
 
 const tagColors: Record<string, string> = {
-  announcements: 'bg-gray-100 text-gray-700',
-  perspectives: 'bg-gray-100 text-gray-700',
-  'regulatory-insights': 'bg-gray-100 text-gray-700',
-  news: 'bg-gray-100 text-gray-700',
-  'strategy-papers': 'bg-gray-100 text-gray-700',
+  announcements: 'bg-[#a6a6a6] text-white',
+  perspectives: 'bg-[#a6a6a6] text-white',
+  'regulatory-insights': 'bg-[#a6a6a6] text-white',
+  news: 'bg-[#a6a6a6] text-white',
+  'strategy-papers': 'bg-[#a6a6a6] text-white',
 }
 
 export default function PublicationDetailPage({ params }: { params: { lang: string; slug: string } }) {

@@ -1,7 +1,7 @@
 ---
-slug: "ai-strategy-2025"
+slug: "arius--and-"
 date: "2025-04-25"
-category: "strategy-papers"
+category: "announcements"
 headline: "Marius IA and ICIA: two projects, one shared conviction"
 subheadline: "There is a very real paradox in today's professional world: everyone talks about artificial intelligence, but few people actually know what to do with it. Between the dazzling promises of solution vendors and the growing regulatory complexity brought by the European AI Act, organisations often find themselves alone when facing strategic decisions they don't feel equipped to make."
 keywords: "AI strategy, digital transformation, SME, AI Act, business"

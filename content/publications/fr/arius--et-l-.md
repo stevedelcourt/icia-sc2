@@ -1,7 +1,7 @@
 ---
-slug: "strategie-ia-2025"
+slug: "arius--et-l-"
 date: "2025-04-25"
-category: "strategy-papers"
+category: "announcements"
 headline: "Marius IA et l'ICIA : deux projets, une même conviction"
 subheadline: "Il y a un paradoxe bien réel dans le monde professionnel d'aujourd'hui : tout le monde parle d'intelligence artificielle, mais peu de gens savent vraiment quoi en faire. Entre les promesses mirobolantes des vendeurs de solutions et la complexité réglementaire qui s'installe avec l'AI Act européen, les organisations se retrouvent souvent seules face à des décisions stratégiques qu'elles ne se sentent pas équipées pour prendre."
 keywords: "stratégie IA, transformation digitale, PME, ETI, AI Act"

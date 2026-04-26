@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { getPublications, type Locale } from '@/generated/publications'
+import { t as tFn } from '@/generated/content'
 
 const CATEGORIES = ['announcements', 'perspectives', 'regulatory-insights', 'news', 'strategy-papers']
 
@@ -314,7 +315,7 @@ export default function AdminPublicationsPage() {
                 >
                   {CATEGORIES.map((c) => (
                     <option key={c} value={c}>
-                      {c}
+                      {tFn(form.lang, `publications.tag.${c}` as any) || c}
                     </option>
                   ))}
                 </select>
@@ -559,22 +560,22 @@ export default function AdminPublicationsPage() {
               {status === 'saving' ? 'Saving...' : isEditing ? 'Update Publication' : 'Save Publication'}
             </button>
             {isEditing && (
-              <button
-                type="button"
-                onClick={() => loadPublication(form.lang, '')}
-                className="px-8 py-4 text-lg text-black border border-black hover:bg-black hover:text-white transition-colors duration-200"
-              >
-                Cancel / New
-              </button>
-            )}
-            {isEditing && (
-              <button
-                type="button"
-                onClick={() => setShowDeleteModal(true)}
-                className="px-8 py-4 text-lg text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-colors duration-200"
-              >
-                Supprimer
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() => loadPublication(form.lang, '')}
+                  className="px-8 py-4 text-lg text-black border border-black hover:bg-black hover:text-white transition-colors duration-200"
+                >
+                  Cancel / New
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteModal(true)}
+                  className="px-8 py-4 text-lg text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  Supprimer
+                </button>
+              </>
             )}
           </div>
         </form>

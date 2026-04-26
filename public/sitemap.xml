@@ -116,6 +116,20 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Publications -->
+  <url>
+    <loc>https://www.mariusia.com/fr/publications/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/publications/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Pages légales -->
   <url>
     <loc>https://www.mariusia.com/mentions-legales/</loc>

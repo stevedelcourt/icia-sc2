@@ -117,8 +117,33 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     .filter(Boolean)
     .slice(0, 2)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}`,
+    headline: pub.headline,
+    description: pub.subheadline,
+    image: heroPath,
+    datePublished: pub.date,
+    dateModified: pub.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Marius IA',
+      url: 'https://www.mariusia.com'
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization'
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}`
+    }
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main className="pt-36 pb-24" style={{ backgroundColor: '#f9f7f3' }}>
         <div className="max-w-6xl mx-auto px-8">

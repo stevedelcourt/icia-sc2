@@ -146,7 +146,7 @@ Who is it for?
 Services
 
 # footer.column.a_propos
-About us
+Marius IA
 
 # footer.column.legal
 Legal
@@ -156,6 +156,9 @@ Who we are
 
 # footer.about.expertises
 Expertise
+
+# footer.about.publications
+Publications
 
 # footer.legal.mentions
 Legal notice

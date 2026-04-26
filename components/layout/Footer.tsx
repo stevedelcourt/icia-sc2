@@ -120,6 +120,14 @@ export function Footer() {
                     {t('footer.about.expertises')}
                   </LocalizedLink>
                 </motion.div>
+                <motion.div whileHover={{ x: 6 }}>
+                  <LocalizedLink
+                    href="/publications"
+                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {t('footer.about.publications')}
+                  </LocalizedLink>
+                </motion.div>
               </nav>
             </div>
 

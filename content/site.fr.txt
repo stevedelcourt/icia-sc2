@@ -146,7 +146,7 @@ Pour qui ?
 Offres
 
 # footer.column.a_propos
-À propos
+Marius IA
 
 # footer.column.legal
 Légal
@@ -156,6 +156,9 @@ Qui sommes-nous
 
 # footer.about.expertises
 Expertises
+
+# footer.about.publications
+Publications
 
 # footer.legal.mentions
 Mentions légales

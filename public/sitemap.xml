@@ -6,86 +6,164 @@
 
   <!-- Pages principales -->
   <url>
-    <loc>https://www.mariusia.com/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/contact/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/contact/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/contact/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Pages À propos -->
   <url>
-    <loc>https://www.mariusia.com/a-propos/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/a-propos/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/expertises/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/a-propos/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/expertises/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/expertises/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Offres -->
   <url>
-    <loc>https://www.mariusia.com/diagnostic/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/diagnostic/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/formations/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/diagnostic/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/transformation/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/formations/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/partenaire/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/formations/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/transformation/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/transformation/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/partenaire/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/partenaire/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Pages Acteurs -->
   <url>
-    <loc>https://www.mariusia.com/entreprises/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/entreprises/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/pouvoirs-publics/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/entreprises/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/pouvoirs-publics/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/education/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/pouvoirs-publics/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/secteurs-creatifs/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/education/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/citoyens/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/education/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/secteurs-creatifs/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/secteurs-creatifs/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/citoyens/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/citoyens/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -94,38 +172,62 @@
   <url>
     <loc>https://www.mariusia.com/fr/publications/</loc>
     <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.mariusia.com/en/publications/</loc>
     <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Pages légales -->
   <url>
-    <loc>https://www.mariusia.com/mentions-legales/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/mentions-legales/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/politique-confidentialite/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/mentions-legales/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/cookies/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/fr/politique-confidentialite/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.mariusia.com/conditions-utilisation/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.mariusia.com/en/politique-confidentialite/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/cookies/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/cookies/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/fr/conditions-utilisation/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mariusia.com/en/conditions-utilisation/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

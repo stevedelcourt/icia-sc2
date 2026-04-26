@@ -20,8 +20,8 @@ export function MapTilerMap({ className = '' }: MapTilerMapProps) {
     const map = new maplibregl.Map({
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/basic-v2/style.json?key=${MAPTILER_KEY}`,
-      center: [5.3637474, 43.3136605],
-      zoom: 16,
+      center: [5.366328, 43.313887],
+      zoom: 14,
       attributionControl: false,
     })
 
@@ -29,7 +29,7 @@ export function MapTilerMap({ className = '' }: MapTilerMapProps) {
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
 
     new maplibregl.Marker({ color: '#00255D' })
-      .setLngLat([5.3637474, 43.3136605])
+      .setLngLat([5.366328, 43.313887])
       .addTo(map)
 
     mapRef.current = map

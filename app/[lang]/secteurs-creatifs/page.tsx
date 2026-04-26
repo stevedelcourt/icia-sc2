@@ -175,7 +175,7 @@ export default function SecteursCreatifsPage() {
               <LocalizedLink href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}</LocalizedLink>
             </StaggerBlock>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/music.png" alt="Industries créatives" className="w-full" />
+              <img src="/images/music.webp" alt="Industries créatives" className="w-full" />
             </motion.div>
           </div>
           </section>

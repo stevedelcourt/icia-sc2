@@ -119,7 +119,7 @@ export default function Home() {
       desc: t('homepage.pour_qui.4.desc'),
       href: '/secteurs-creatifs',
       anchor: 'secteurs-creatifs',
-      image: '/images/music.png'
+      image: '/images/music.webp'
     },
     {
       title: t('homepage.pour_qui.5.title'),
@@ -247,7 +247,7 @@ export default function Home() {
               >
                 <motion.div style={{ y: heroImageY }}>
                   <motion.img
-                    src="/images/paperplane.png"
+                    src="/images/paperplane.webp"
                     alt="Institut de l'IA"
                     className="w-full shadow-xl"
                     whileHover={{ scale: 1.03 }}

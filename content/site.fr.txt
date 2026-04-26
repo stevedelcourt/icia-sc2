@@ -992,7 +992,7 @@ Marius IA est porté par Mentivis, depuis le Campus Cyber.IA Euromed de Marseill
 L'Institut Collectif de l'IA
 
 # a_propos.institut.title
-Un bien et une fois communs
+Un bien et une foi communs
 
 # a_propos.institut.paragraph.1
 L'Institut Collectif de l'IA est une association en cours de développement. Sa mission : rendre accessibles à tous les compétences nécessaires pour comprendre et maîtriser l'IA. Un lieu, une plateforme, un réseau d'experts. Porté par la conviction que l'intelligence artificielle ne doit pas rester entre les mains de quelques-uns.
@@ -1429,3 +1429,45 @@ Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
 
 # contact_formspree.success.retour
 Retour à l'accueil
+
+# publications.page.title
+Publications stratégiques
+
+# publications.page.headline
+Ressources et analyses stratégiques sur l'IA
+
+# publications.filter.all_tags
+Tous les sujets
+
+# publications.filter.sort_newest
+Plus récent
+
+# publications.filter.sort_oldest
+Plus ancien
+
+# publications.card.read_button
+Lire
+
+# publications.detail.back_button
+Toutes les publications
+
+# publications.detail.published_on
+Publié le
+
+# publications.tag.business
+Business
+
+# publications.tag.techno
+Technologie
+
+# publications.tag.people
+People
+
+# publications.tag.reglementation
+Réglementation
+
+# publications.tag.metier
+Métier
+
+# publications.detail.related_title
+Lire aussi

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useT, LocalizedLink, useLocale } from '@/lib/i18n'
+import { AnimatedLogo } from '@/components/AnimatedLogo'
 
 export function Header() {
   const t = useT()
@@ -75,13 +76,7 @@ export function Header() {
       style={{ backgroundColor: headerBg() }}>
       <div className="max-w-6xl mx-auto px-4 xs:px-6 sm:px-8">
         <div className="flex items-center justify-between">
-          <LocalizedLink href="/" className="flex items-center">
-            <img
-              src="/MariusIA-logo.svg"
-              alt="Marius IA"
-              className="h-[72px] sm:h-20 w-auto"
-            />
-          </LocalizedLink>
+          <AnimatedLogo />
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (

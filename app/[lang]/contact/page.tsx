@@ -252,7 +252,7 @@ export default function ContactPage() {
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 <a
-                  href="https://www.openstreetmap.org/directions?from=&to=43.3136605%2C5.3637474"
+                  href="https://www.openstreetmap.org/directions?from=&to=43.313887%2C5.366328"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:underline"

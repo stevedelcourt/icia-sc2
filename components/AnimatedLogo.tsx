@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { LocalizedLink } from '@/lib/i18n'
 
 export function AnimatedLogo() {
   const [scrolled, setScrolled] = useState(false)
@@ -14,8 +14,8 @@ export function AnimatedLogo() {
   }, [])
 
   return (
-    <Link href="/" className="flex items-center">
-      <div className="relative h-14 w-[160px] sm:w-[250px] flex items-center">
+    <LocalizedLink href="/" className="flex items-center">
+      <div className="relative flex items-center">
         <svg
           viewBox="0 0 2551 940"
           className="h-[72px] sm:h-20 w-auto brightness-0 -mt-0.5"
@@ -114,6 +114,6 @@ export function AnimatedLogo() {
           </g>
         </svg>
       </div>
-    </Link>
+    </LocalizedLink>
   )
 }

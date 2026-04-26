@@ -992,7 +992,7 @@ Marius IA is powered by Mentivis, based at the Campus Cyber.IA Euromed in Marsei
 l'institut collectif de l'IA
 
 # a_propos.institut.title
-A shared good and faith
+A common asset and a shared faith
 
 # a_propos.institut.paragraph.1
 l'institut collectif de l'IA is an association currently in development. Its mission: make the skills needed to understand and master IA accessible to all.
@@ -1431,3 +1431,45 @@ We have received your request. We will get back to you within 48h.
 
 # contact_formspree.success.retour
 Back to home
+
+# publications.page.title
+Strategic Publications
+
+# publications.page.headline
+Strategic resources and analyses on AI
+
+# publications.filter.all_tags
+All topics
+
+# publications.filter.sort_newest
+Newest first
+
+# publications.filter.sort_oldest
+Oldest first
+
+# publications.card.read_button
+Read
+
+# publications.detail.back_button
+All publications
+
+# publications.detail.published_on
+Published on
+
+# publications.tag.business
+Business
+
+# publications.tag.techno
+Technology
+
+# publications.tag.people
+People
+
+# publications.tag.reglementation
+Regulation
+
+# publications.tag.metier
+Profession
+
+# publications.detail.related_title
+Related articles

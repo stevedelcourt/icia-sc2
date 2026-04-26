@@ -161,13 +161,13 @@ export default function Home() {
 
     const handleScroll = () => {
       const rect1 = hero.getBoundingClientRect()
-      const heroHeight = hero.offsetHeight
+      const heroHeight = rect1.height
       const maxScroll1 = heroHeight * 1.5
       const scrolled1 = Math.max(0, -rect1.top)
       setScrollProgress(Math.min(scrolled1 / maxScroll1, 1))
 
       const rect2 = offre.getBoundingClientRect()
-      const offreHeight = offre.offsetHeight
+      const offreHeight = rect2.height
       const maxScroll2 = offreHeight * 1.5
       const scrolled2 = Math.max(0, -rect2.top)
       setOffreProgress(Math.min(scrolled2 / maxScroll2, 1))
@@ -251,6 +251,7 @@ export default function Home() {
                     src="/images/paperplane.webp"
                     alt="Institut de l'IA"
                     className="w-full shadow-xl"
+                    fetchPriority="high"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.4 }}
                   />

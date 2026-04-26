@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useEffect, useRef, useState } from 'react'
 
 const MAPTILER_KEY = 'hlDK4JqkqAmVM3NkMA8g'
+const MAPLIBRE_CDN = 'https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js'
 
 interface MapTilerMapProps {
   className?: string
@@ -12,33 +11,8 @@ interface MapTilerMapProps {
 
 export function MapTilerMap({ className = '' }: MapTilerMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<maplibregl.Map | null>(null)
-
-  useEffect(() => {
-    if (!mapContainer.current || mapRef.current) return
-
-    const map = new maplibregl.Map({
-      container: mapContainer.current,
-      style: `https://api.maptiler.com/maps/basic-v2/style.json?key=${MAPTILER_KEY}`,
-      center: [5.366328, 43.313887],
-      zoom: 14,
-      attributionControl: false,
-    })
-
-    map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right')
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
-
-    new maplibregl.Marker({ color: '#00255D' })
-      .setLngLat([5.366328, 43.313887])
-      .addTo(map)
-
-    mapRef.current = map
-
-    return () => {
-      map.remove()
-      mapRef.current = null
-    }
-  }, [])
+  const [mapLib, setMapLib] = useState<any>(null)
+  const mapRef = useRef<any>(null)
 
   return <div ref={mapContainer} className={`w-full h-full ${className}`} />
 }

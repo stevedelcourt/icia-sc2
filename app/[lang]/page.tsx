@@ -250,7 +250,7 @@ export default function Home() {
                   <motion.img
                     src="/images/paperplane.webp"
                     alt="Institut de l'IA"
-                    className="w-full shadow-xl"
+                    className="w-full aspect-square object-contain shadow-xl"
                     fetchPriority="high"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.4 }}

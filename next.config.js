@@ -27,7 +27,7 @@ const nextConfig = {
   },
   experimental: {
     ppr: false,
-    optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei'],
+    optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei', 'maplibre-gl'],
   },
   webpack: (config, { isServer }) => {
     return config

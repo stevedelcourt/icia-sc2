@@ -76,7 +76,7 @@ export function Footer() {
                   <motion.div key={link.href} whileHover={{ x: 6 }}>
                     <LocalizedLink
                       href={link.href}
-                      className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                      className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </LocalizedLink>
@@ -92,7 +92,7 @@ export function Footer() {
                   <motion.div key={link.href} whileHover={{ x: 6 }}>
                     <LocalizedLink
                       href={link.href}
-                      className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                      className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </LocalizedLink>
@@ -107,7 +107,7 @@ export function Footer() {
                 <motion.div whileHover={{ x: 6 }}>
                   <LocalizedLink
                     href="/a-propos"
-                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                   >
                     {t('footer.about.qui_sommes_nous')}
                   </LocalizedLink>
@@ -115,7 +115,7 @@ export function Footer() {
                 <motion.div whileHover={{ x: 6 }}>
                   <LocalizedLink
                     href="/expertises"
-                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                   >
                     {t('footer.about.expertises')}
                   </LocalizedLink>
@@ -123,7 +123,7 @@ export function Footer() {
                 <motion.div whileHover={{ x: 6 }}>
                   <LocalizedLink
                     href="/publications"
-                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                   >
                     {t('footer.about.publications')}
                   </LocalizedLink>
@@ -146,7 +146,7 @@ export function Footer() {
                     ) : (
                       <LocalizedLink
                         href={link.href}
-                        className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                        className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
                       >
                         {link.label}
                       </LocalizedLink>

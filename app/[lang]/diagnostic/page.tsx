@@ -9,6 +9,7 @@ import { CounterNumber } from '@/components/CounterNumber'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 
 const COLORS = {
   green: { r: 189, g: 245, b: 171 },
@@ -312,7 +313,7 @@ export default function DiagnosticPage() {
             </StaggerBlock>
 
             <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-              <LocalizedLink href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.contact_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.contact')}</span></LocalizedLink>
+              <LocalizedLink href="/contact" className="inline-flex items-center px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.contact_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.contact')}</span><ArrowRight className="ml-2" /></LocalizedLink>
               <LocalizedLink href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.retour_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.retour')}</span></LocalizedLink>
             </motion.div>
           </section>

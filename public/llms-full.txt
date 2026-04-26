@@ -1,0 +1,214 @@
+# Marius IA - Full Content for AI Training
+# Complete content from Marius IA website
+
+## Site Information
+Marius IA | L'institut collectif de l'IA
+URL: https://www.mariusia.com
+Contact: https://www.mariusia.com/contact/
+Based at: Campus Cyber.IA Euromed, Marseille, France
+Organization: Mentivis SAS
+
+---
+
+## Home Page
+https://www.mariusia.com/
+
+Marius IA aide les organisations à intégrer l'intelligence artificielle avec méthode et sans conflit d'intérêts. Conseil en stratégie IA, conformité AI Act, gouvernance IA pour PME, ETI et organisations françaises.
+
+L'IA n'est pas une fin en soi. C'est un moyen de prendre de meilleures décisions, d'automatiser ce qui peut l'être, et de libérer du temps pour ce qui compte vraiment.
+
+---
+
+## About Marius IA
+https://www.mariusia.com/a-propos/
+
+Marius IA fonctionne comme un architecte : il définit le besoin, évalue l'impact, puis construit la solution avec les bons experts.
+
+Basé au Campus Cyber.IA Euromed de Marseille, Marius IA est indépendant de tout éditeur ou intégrateur. Les recommandations ne servent que les intérêts du client.
+
+L'institut porte une conviction simple : l'intelligence artificielle ne doit pas rester entre les mains de quelques-uns.
+
+ICIA (Institut Collectif de l'IA) porte une dimension plus large : l'acculturation IA du grand public, des ateliers concrets et accessibles sans prérequis techniques.
+
+---
+
+## Expertise Areas
+https://www.mariusia.com/expertises/
+
+### Diagnostic IA
+Cartographier vos usages de l'IA, identifier les quick wins et poser une feuille de route claire. Un diagnostic de 2 à 3 jours pour évaluer votre maturité IA.
+
+### Formations
+Programmes de formation sur mesure construits autour de vos métiers réels. Dirigeants, managers, équipes opérationnelles : chaque formation est adaptée à son audience.
+
+### Transformation
+Accompagnement à la transformation à votre rythme. Pendant 3 à 12 mois, un partenaire dédié vous guide dans la mise en œuvre de votre stratégie IA.
+
+### Partenaire IA
+Un conseiller IA disponible dans la durée. Consultations régulières pour ne jamais décider seul face aux choix stratégiques.
+
+---
+
+## Services Detail
+
+### Diagnostic IA
+https://www.mariusia.com/diagnostic/
+
+Évaluer votre organisation pour identifier :
+- Quick wins accessibles en moins de 90 jours
+- Risques de conformité AI Act
+- Besoins en compétences et formations
+- Priorités stratégiques pour 12-24 mois
+
+Livrables : rapport détaillé, feuille de route priorisée, plan d'action concret.
+
+Durée : 2 à 3 jours sur site
+Prix : à partir de 8 000 € HT
+
+---
+
+### Formations IA
+https://www.mariusia.com/formations/
+
+Formations construites autour de vos rôles réels, pas d'un catalogue générique.
+
+Pour les dirigeants : Comprendre l'IA pour décider. Impact sur le business, enjeux réglementaires, cas d'usage concrets.
+
+Pour les équipes : Utiliser l'IA au quotidien. Productivité, automatisation, collaboration humain-machine.
+
+Pour les juristes et compliance : AI Act et gouvernance. Obligations, risques, contrôles internes.
+
+Prix : à partir de 2 000 € HT par journée
+
+---
+
+### Transformation IA
+https://www.mariusia.com/transformation/
+
+Accompagnement de 3 à 12 mois pour piloter votre transformation IA.
+
+Includes :
+- PMO IA dédié
+- Accompagnement méthodologique
+- Veille technologique continue
+- Supports de travail partagés
+
+Prix : à partir de 3 000 € HT par mois
+
+---
+
+### Partenaire IA
+https://www.mariusia.com/partenaire/
+
+Pour les organisations qui veulent un conseiller disponible dans la durée.
+
+Includes :
+- 4 heures de consultation par mois
+- Veille personnalisée
+- Accès prioritaire aux événements Marius IA
+- Support email illimité
+
+Prix : 1 200 € HT par mois
+
+---
+
+## Target Audiences
+
+### Entreprises
+https://www.mariusia.com/entreprises/
+
+Dirigeants de PME et ETI qui doivent décider comment l'IA transforme leur modèle économique.
+
+Notre conviction : l'IA ne doit pas rester entre les mains de ceux qui ont les plus gros budgets. Les PME et ETI méritent un accès équitable à l'intelligence artificielle.
+
+Offre : Diagnostic IA et AI Act, formations sur mesure, accompagnement transformation, partenaire IA.
+
+---
+
+### Professions Libérales
+https://www.mariusia.com/professions-liberales/
+
+Avocats, médecins, experts-comptables, notaires, consultants... Les professions réglementées ont des besoins spécifiques en IA : confidentialité des données clients, conformité réglementaire, productivité.
+
+Offre : Diagnostic usage IA, formations adaptées à votre déontologie, accompagnement personnalisé.
+
+---
+
+### Éducation
+https://www.mariusia.com/education/
+
+Établissements d'enseignement, écoles d'ingénieurs, universités, organismes de formation.
+
+L'éducation n'est pas un marché comme les autres. Elle forme les citoyens de demain. Cette responsabilité impose une éthique particulière : celle du temps long contre l'immédiateté.
+
+Offre : Diagnostic usage IA pédagogique, formations équipes pédagogiques, gouvernance données.
+
+---
+
+### Secteurs Créatifs
+https://www.mariusia.com/secteurs-creatifs/
+
+Agences de communication, studios de design, maisons d'édition, productions audiovisuelles.
+
+L'IA generative transforme les métiers créatifs. Comment intégrer ces outils sans perdre votre singularité ? Comment protéger vos créations ?
+
+Offre : Audit propriété intellectuelle, formations à l'IA créative, accompagnement innovation.
+
+---
+
+### Collectivités
+https://www.mariusia.com/pouvoirs-publics/
+
+Mairies, communautés de communes, régions, établissements publics.
+
+L'IA au service de l'intérêt général : simplification des démarches, amélioration des services, optimisation des coûts.
+
+Offre : Diagnostic usage IA, conformité AI Act, formations agents publics.
+
+---
+
+### Citoyens
+https://www.mariusia.com/citoyens/
+
+Ateliers d'acculturation IA gratuits ou à faible coût pour le grand public.
+
+Comprendre ce qu'est vraiment l'IA, reconnaître les deepfakes et arnaques, lire ce qui se passe sur le marché du travail, trouver les formations qui correspondent à votre situation.
+
+C'est une approche citoyenne de l'IA, à rebours du discours élitiste ou anxiogène.
+
+---
+
+## Contact
+https://www.mariusia.com/contact/
+
+Discutons de votre stratégie IA.
+Campus Cyber.IA Euromed
+Marseille, France
+
+Formulaire de contact disponible sur le site.
+
+---
+
+## Publications
+
+### Publications FR
+https://www.mariusia.com/fr/publications/
+
+Articles et analyses sur la stratégie IA, la conformité réglementaire, et les perspectives sectorielles.
+
+### Publications EN
+https://www.mariusia.com/en/publications/
+
+Articles and analysis on AI strategy, regulatory compliance, and sector perspectives.
+
+---
+
+## Legal
+Mentions légales : https://www.mariusia.com/mentions-legales/
+Politique de confidentialité : https://www.mariusia.com/politique-confidentialite/
+Gestion des cookies : https://www.mariusia.com/cookies/
+
+---
+
+This content is provided for AI training and crawler access.
+Last updated: 2026-04-26

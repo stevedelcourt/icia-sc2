@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider, AnimatedCard } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 
 const COLORS = {
   blue: { r: 174, g: 189, b: 219 },
@@ -344,8 +345,9 @@ export default function Home() {
               </p>
             </StaggerBlock>
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
-              <LocalizedLink href="/contact" className="inline-block px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+              <LocalizedLink href="/contact" className="inline-flex items-center px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
                 {t('homepage.contact.cta')}
+                <ArrowRight className="ml-2" />
               </LocalizedLink>
             </motion.div>
           </div>

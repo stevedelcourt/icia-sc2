@@ -4,6 +4,7 @@ import { ScrollExpandSection } from '@/components/ScrollExpandSection'
 import { AnimatedDivider, FadeIn } from '@/components/Animations'
 import { t, type Locale } from '@/generated/content'
 import { LocalizedLink } from '@/lib/i18n'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 
 export default function AProposPage({ params }: { params: { lang: string } }) {
   const jsonLd = {
@@ -123,8 +124,9 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
           </div>
 
           <FadeIn delay={0.1} className="mt-16 text-center">
-            <LocalizedLink href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+            <LocalizedLink href="/contact" className="inline-flex items-center px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
               {t(params.lang as Locale, 'a_propos.cta')}
+              <ArrowRight className="ml-2" />
             </LocalizedLink>
           </FadeIn>
         </div>

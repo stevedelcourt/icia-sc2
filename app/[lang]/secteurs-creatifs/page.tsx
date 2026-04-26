@@ -7,6 +7,7 @@ import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 
 const COLORS = {
   blue: { r: 174, g: 189, b: 219 },
@@ -172,7 +173,7 @@ export default function SecteursCreatifsPage() {
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('acteurs.shared.label')}</p>
               <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">{t('acteurs.creatifs.title')}</h1>
               <p className="text-xl font-medium text-gray-600 mb-10">{t('acteurs.creatifs.hero')}</p>
-              <LocalizedLink href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}</LocalizedLink>
+              <LocalizedLink href="/contact" className="inline-flex items-center px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}<ArrowRight className="ml-2" /></LocalizedLink>
             </StaggerBlock>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
               <img src="/images/music.webp" alt="Industries créatives" className="w-full" />

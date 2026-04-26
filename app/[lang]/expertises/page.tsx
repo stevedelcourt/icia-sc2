@@ -4,6 +4,7 @@ import { StaggerBlock, AnimatedCard } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { ArrowRight } from '@/components/ui/ArrowRight'
 import Link from 'next/link'
 
 export default function ExpertisesPage() {
@@ -89,8 +90,9 @@ export default function ExpertisesPage() {
             delay={0.4}
             className="text-center"
           >
-            <LocalizedLink href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+            <LocalizedLink href="/contact" className="inline-flex items-center px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
               {t('expertises.cta')}
+              <ArrowRight className="ml-2" />
             </LocalizedLink>
           </StaggerBlock>
         </div>

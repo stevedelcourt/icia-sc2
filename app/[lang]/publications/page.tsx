@@ -6,7 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { PublicationCard } from '@/components/PublicationCard'
 import { PublicationFilter } from '@/components/PublicationFilter'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { publications, getCategories } from '@/generated/publications'
+import { getPublications, getCategories } from '@/generated/publications'
 import { t, type Locale } from '@/generated/content'
 
 export default function PublicationsPage({ params }: { params: { lang: string } }) {
@@ -14,7 +14,8 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
   const [activeCategory, setActiveCategory] = useState('')
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest')
 
-  const categories = useMemo(() => getCategories(), [])
+  const publications = useMemo(() => getPublications(lang), [lang])
+  const categories = useMemo(() => getCategories(lang), [lang])
 
   const filteredPublications = useMemo(() => {
     let result = activeCategory
@@ -28,7 +29,7 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
     })
 
     return result
-  }, [activeCategory, sortOrder])
+  }, [activeCategory, sortOrder, publications])
 
   return (
     <>
@@ -41,7 +42,7 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
                 {t(lang, 'publications.page.title')}
               </p>
               <h1 className="text-4xl md:text-5xl font-bold text-black leading-[1.1]">
-                Publications
+                {t(lang, 'publications.page.headline')}
               </h1>
             </div>
           </FadeIn>
@@ -75,7 +76,9 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
 
           {filteredPublications.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-lg text-gray-400">Aucune publication pour ce filtre.</p>
+              <p className="text-lg text-gray-400">
+                {lang === 'en' ? 'No publications for this filter.' : 'Aucune publication pour ce filtre.'}
+              </p>
             </div>
           )}
         </div>

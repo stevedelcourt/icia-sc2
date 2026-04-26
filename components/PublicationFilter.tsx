@@ -13,11 +13,11 @@ interface PublicationFilterProps {
 }
 
 const tagColors: Record<string, string> = {
-  business: 'bg-navy text-white border-navy',
-  techno: 'bg-rouge text-white border-rouge',
-  people: 'bg-accent-green text-white border-accent-green',
-  reglementation: 'bg-accent-purple text-white border-accent-purple',
-  metier: 'bg-accent-teal text-white border-accent-teal',
+  announcements: 'bg-gray-100 text-gray-700 border-gray-200',
+  perspectives: 'bg-gray-100 text-gray-700 border-gray-200',
+  'regulatory-insights': 'bg-gray-100 text-gray-700 border-gray-200',
+  news: 'bg-gray-100 text-gray-700 border-gray-200',
+  'strategy-papers': 'bg-gray-100 text-gray-700 border-gray-200',
 }
 
 export function PublicationFilter({

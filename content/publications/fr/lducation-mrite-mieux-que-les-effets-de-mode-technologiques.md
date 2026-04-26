@@ -1,7 +1,7 @@
 ---
 slug: "lducation-mrite-mieux-que-les-effets-de-mode-technologiques"
 date: "2026-04-25"
-category: "metier"
+category: "perspectives"
 headline: "L’éducation mérite mieux que les effets de mode technologiques"
 subheadline: "Il y a quelques semaines, j’ai reçu l’appel désabusé d’un directeur d’école d’ingénieurs. Son établissement venait d’investir plusieurs centaines de milliers d’euros dans une plateforme d’apprentissage « révolutionnaire » prometteuse d’« individualisation par IA ». Résultat : des étudiants perdus, des enseignants en colère, et un système moins performant qu’avant. « Comment ai-je pu me laisser avoir ? », me demandait-il."
 keywords: "formation IA, éducation, Marseille"

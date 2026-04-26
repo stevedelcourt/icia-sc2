@@ -16,11 +16,11 @@ interface PublicationCardProps {
 }
 
 const tagColors: Record<string, string> = {
-  business: 'bg-navy text-white',
-  techno: 'bg-rouge text-white',
-  people: 'bg-accent-green text-white',
-  reglementation: 'bg-accent-purple text-white',
-  metier: 'bg-accent-teal text-white',
+  announcements: 'bg-gray-100 text-gray-700',
+  perspectives: 'bg-gray-100 text-gray-700',
+  'regulatory-insights': 'bg-gray-100 text-gray-700',
+  news: 'bg-gray-100 text-gray-700',
+  'strategy-papers': 'bg-gray-100 text-gray-700',
 }
 
 export function PublicationCard({

@@ -17,6 +17,8 @@ export async function POST(request: NextRequest) {
     }
 
     const safeSlug = slug.replace(/[^a-z0-9-]/g, '')
+    const lang = (data.get('lang') as string) || 'fr'
+    const safeLang = lang === 'en' ? 'en' : 'fr'
 
     // Build frontmatter
     const frontmatter: Record<string, string> = {
@@ -59,6 +61,8 @@ export async function POST(request: NextRequest) {
 
       frontmatter[`card${i}Title`] = (data.get(`card${i}Title`) as string) || ''
       frontmatter[`card${i}Body`] = (data.get(`card${i}Body`) as string) || ''
+      frontmatter[`card${i}Link`] = (data.get(`card${i}Link`) as string) || ''
+      frontmatter[`card${i}LinkLabel`] = (data.get(`card${i}LinkLabel`) as string) || ''
     }
 
     frontmatter.ctaText = (data.get('ctaText') as string) || ''
@@ -92,8 +96,8 @@ export async function POST(request: NextRequest) {
 
     const mdContent = `---\n${fmLines.join('\n')}\n---\n\n${body}\n`
 
-    // Save markdown file
-    const publicationsDir = path.join(process.cwd(), 'content', 'publications')
+    // Save markdown file to locale subdirectory
+    const publicationsDir = path.join(process.cwd(), 'content', 'publications', safeLang)
     fs.mkdirSync(publicationsDir, { recursive: true })
     const mdPath = path.join(publicationsDir, `${safeSlug}.md`)
     fs.writeFileSync(mdPath, mdContent, 'utf8')
@@ -101,6 +105,50 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, slug: safeSlug })
   } catch (err) {
     console.error('Save publication error:', err)
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : 'Unknown error' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not available in production' }, { status: 403 })
+  }
+
+  try {
+    const { searchParams } = new URL(request.url)
+    const slug = searchParams.get('slug')
+    const lang = searchParams.get('lang')
+
+    if (!slug || !lang) {
+      return NextResponse.json({ error: 'slug and lang are required' }, { status: 400 })
+    }
+
+    const safeSlug = slug.replace(/[^a-z0-9-]/g, '')
+    const safeLang = lang === 'en' ? 'en' : 'fr'
+
+    const publicationsDir = path.join(process.cwd(), 'content', 'publications')
+
+    const frPath = path.join(publicationsDir, 'fr', `${safeSlug}.md`)
+    if (fs.existsSync(frPath)) {
+      fs.unlinkSync(frPath)
+    }
+
+    const enPath = path.join(publicationsDir, 'en', `${safeSlug}.md`)
+    if (fs.existsSync(enPath)) {
+      fs.unlinkSync(enPath)
+    }
+
+    const imageDir = path.join(process.cwd(), 'public', 'images', 'publications', safeSlug)
+    if (fs.existsSync(imageDir)) {
+      fs.rmSync(imageDir, { recursive: true, force: true })
+    }
+
+    return NextResponse.json({ success: true, deleted: safeSlug })
+  } catch (err) {
+    console.error('Delete publication error:', err)
     return NextResponse.json(
       { error: err instanceof Error ? err.message : 'Unknown error' },
       { status: 500 }

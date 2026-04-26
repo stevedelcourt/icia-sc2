@@ -1,7 +1,7 @@
 ---
 slug: "strategie-ia-2025"
 date: "2025-04-25"
-category: "business"
+category: "strategy-papers"
 headline: "L'IA générative révolutionne la stratégie d'entreprise"
 subheadline: "Comment les directions générales peuvent intégrer l'IA sans perdre le contrôle"
 keywords: "stratégie IA, transformation digitale, PME, ETI, AI Act"

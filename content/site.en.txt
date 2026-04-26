@@ -1433,7 +1433,7 @@ We have received your request. We will get back to you within 48h.
 Back to home
 
 # publications.page.title
-Strategic Publications
+News & Perspectives
 
 # publications.page.headline
 Strategic resources and analyses on AI
@@ -1456,20 +1456,20 @@ All publications
 # publications.detail.published_on
 Published on
 
-# publications.tag.business
-Business
+# publications.tag.announcements
+Announcements
 
-# publications.tag.techno
-Technology
+# publications.tag.perspectives
+Perspectives
 
-# publications.tag.people
-People
+# publications.tag.regulatory-insights
+Regulatory Insights
 
-# publications.tag.reglementation
-Regulation
+# publications.tag.news
+News
 
-# publications.tag.metier
-Profession
+# publications.tag.strategy-papers
+Strategy Papers
 
 # publications.detail.related_title
 Related articles

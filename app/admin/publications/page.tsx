@@ -1,14 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { publications, type Publication } from '@/generated/publications'
+import { getPublications, type Locale } from '@/generated/publications'
 
-const CATEGORIES = ['business', 'techno', 'people', 'reglementation', 'metier']
+const CATEGORIES = ['announcements', 'perspectives', 'regulatory-insights', 'news', 'strategy-papers']
 
 const EMPTY_FORM = {
   slug: '',
+  lang: 'fr' as Locale,
   date: new Date().toISOString().split('T')[0],
-  category: 'business',
+  category: 'announcements',
   headline: '',
   subheadline: '',
   keywords: '',
@@ -22,6 +23,12 @@ const EMPTY_FORM = {
   card3Title: '',
   card3Body: '',
   card3Image: null as File | null,
+  card1Link: '',
+  card1LinkLabel: '',
+  card2Link: '',
+  card2LinkLabel: '',
+  card3Link: '',
+  card3LinkLabel: '',
   ctaText: '',
   ctaLink: '',
   link: '/fr/contact/',
@@ -40,6 +47,7 @@ export default function AdminPublicationsPage() {
   }
 
   const [selectedSlug, setSelectedSlug] = useState('')
+  const [selectedLang, setSelectedLang] = useState<Locale>('fr')
   const [form, setForm] = useState({ ...EMPTY_FORM })
   const [existingImages, setExistingImages] = useState({
     heroImage: '',
@@ -51,21 +59,25 @@ export default function AdminPublicationsPage() {
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [message, setMessage] = useState('')
   const [preview, setPreview] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
-  function loadPublication(slug: string) {
+  function loadPublication(lang: Locale, slug: string) {
     if (!slug) {
       setSelectedSlug('')
-      setForm({ ...EMPTY_FORM })
+      setForm({ ...EMPTY_FORM, lang })
       setExistingImages({ heroImage: '', card1Image: '', card2Image: '', card3Image: '' })
       return
     }
 
-    const pub = publications.find((p) => p.slug === slug)
+    const pubs = getPublications(lang)
+    const pub = pubs.find((p) => p.slug === slug)
     if (!pub) return
 
     setSelectedSlug(slug)
+    setSelectedLang(lang)
     setForm({
       ...EMPTY_FORM,
+      lang,
       slug: pub.slug,
       date: pub.date,
       category: pub.category,
@@ -78,6 +90,12 @@ export default function AdminPublicationsPage() {
       card2Body: pub.card2Body,
       card3Title: pub.card3Title,
       card3Body: pub.card3Body,
+      card1Link: (pub as any).card1Link || '',
+      card1LinkLabel: (pub as any).card1LinkLabel || '',
+      card2Link: (pub as any).card2Link || '',
+      card2LinkLabel: (pub as any).card2LinkLabel || '',
+      card3Link: (pub as any).card3Link || '',
+      card3LinkLabel: (pub as any).card3LinkLabel || '',
       ctaText: pub.ctaText,
       ctaLink: pub.ctaLink,
       link: pub.link,
@@ -134,6 +152,7 @@ export default function AdminPublicationsPage() {
     const slug = form.slug || generateSlug(form.headline)
     const data = new FormData()
     data.append('slug', slug)
+    data.append('lang', form.lang)
     data.append('date', form.date)
     data.append('category', form.category)
     data.append('headline', form.headline)
@@ -141,10 +160,16 @@ export default function AdminPublicationsPage() {
     data.append('keywords', form.keywords)
     data.append('card1Title', form.card1Title)
     data.append('card1Body', form.card1Body)
+    data.append('card1Link', form.card1Link)
+    data.append('card1LinkLabel', form.card1LinkLabel)
     data.append('card2Title', form.card2Title)
     data.append('card2Body', form.card2Body)
+    data.append('card2Link', form.card2Link)
+    data.append('card2LinkLabel', form.card2LinkLabel)
     data.append('card3Title', form.card3Title)
     data.append('card3Body', form.card3Body)
+    data.append('card3Link', form.card3Link)
+    data.append('card3LinkLabel', form.card3LinkLabel)
     data.append('ctaText', form.ctaText)
     data.append('ctaLink', form.ctaLink)
     data.append('link', form.link)
@@ -152,7 +177,6 @@ export default function AdminPublicationsPage() {
     data.append('relatedSlugs', form.relatedSlugs.join(','))
     data.append('body', form.body)
 
-    // Send existing image names so API can keep them if no new upload
     data.append('existingHeroImage', existingImages.heroImage)
     data.append('existingCard1Image', existingImages.card1Image)
     data.append('existingCard2Image', existingImages.card2Image)
@@ -171,7 +195,7 @@ export default function AdminPublicationsPage() {
 
       if (res.ok) {
         setStatus('saved')
-        setMessage(`Publication "${slug}" saved successfully!`)
+        setMessage(`Publication "${slug}" (${form.lang}) saved successfully!`)
       } else {
         const err = await res.text()
         setStatus('error')
@@ -186,32 +210,50 @@ export default function AdminPublicationsPage() {
   const inputClass = 'w-full px-4 py-3 border border-gray-200 bg-white focus:border-navy outline-none transition-all duration-200'
   const labelClass = 'block text-sm font-medium text-gray-700 mb-2'
 
-  const existingPublications = publications.filter((p) => p.slug !== form.slug)
+  const allPublications = [...getPublications('fr'), ...getPublications('en')]
+  const existingPublications = getPublications(form.lang).filter((p) => p.slug !== form.slug)
   const isEditing = !!selectedSlug
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-12" suppressHydrationWarning>
       <div className="max-w-4xl mx-auto px-8">
         <h1 className="text-3xl font-bold text-black mb-2">Publication Editor</h1>
         <p className="text-gray-500 mb-8">
-          {isEditing ? `Editing: ${form.headline || selectedSlug}` : 'Create a new strategic publication.'}
+          {isEditing ? `Editing: ${form.headline || selectedSlug} (${form.lang.toUpperCase()})` : 'Create a new strategic publication.'}
         </p>
 
-        {/* Article selector */}
-        <div className="mb-8">
-          <label className={labelClass}>Select Article</label>
-          <select
-            value={selectedSlug}
-            onChange={(e) => loadPublication(e.target.value)}
-            className={inputClass}
-          >
-            <option value="">+ Create new article</option>
-            {publications.map((pub) => (
-              <option key={pub.slug} value={pub.slug}>
-                {pub.headline || pub.slug} ({pub.date})
-              </option>
-            ))}
-          </select>
+        {/* Language + Article selector */}
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
+          <div>
+            <label className={labelClass}>Language</label>
+            <select
+              value={selectedLang}
+              onChange={(e) => {
+                const lang = e.target.value as Locale
+                setSelectedLang(lang)
+                loadPublication(lang, '')
+              }}
+              className={inputClass}
+            >
+              <option value="fr">French (FR)</option>
+              <option value="en">English (EN)</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClass}>Select Article</label>
+            <select
+              value={selectedSlug}
+              onChange={(e) => loadPublication(selectedLang, e.target.value)}
+              className={inputClass}
+            >
+              <option value="">+ Create new article</option>
+              {getPublications(selectedLang).map((pub) => (
+                <option key={pub.slug} value={pub.slug}>
+                  {pub.headline || pub.slug} ({pub.date})
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {status === 'saved' && (
@@ -339,7 +381,7 @@ export default function AdminPublicationsPage() {
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>Optional Image</label>
+                        <label className={labelClass}>Optional Image (16:9)</label>
                         {existingImg && !(form[`card${i}Image` as keyof typeof form] as File | null) && (
                           <p className="text-sm text-gray-500 mb-1">
                             Current: <span className="font-mono text-navy">{existingImg}</span>
@@ -366,6 +408,26 @@ export default function AdminPublicationsPage() {
                           onChange={(e) => handleChange(`card${i}Body`, e.target.value)}
                           className={`${inputClass} resize-none`}
                           rows={3}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Link URL (optional)</label>
+                        <input
+                          type="text"
+                          value={form[`card${i}Link` as keyof typeof form] as string}
+                          onChange={(e) => handleChange(`card${i}Link`, e.target.value)}
+                          className={inputClass}
+                          placeholder="/fr/contact/"
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Link Label (optional)</label>
+                        <input
+                          type="text"
+                          value={form[`card${i}LinkLabel` as keyof typeof form] as string}
+                          onChange={(e) => handleChange(`card${i}LinkLabel`, e.target.value)}
+                          className={inputClass}
+                          placeholder="En savoir plus"
                         />
                       </div>
                     </div>
@@ -430,7 +492,7 @@ export default function AdminPublicationsPage() {
 
           {/* Related articles */}
           {existingPublications.length > 0 && (
-            <div className="bg-white p-8 border border-gray-200">
+<div className="bg-white p-8 border border-gray-200" suppressHydrationWarning={true}>
               <h2 className="text-xl font-bold text-black mb-2">Related Articles</h2>
               <p className="text-sm text-gray-500 mb-6">Select up to 2 articles to show in the &quot;Lire aussi&quot; section.</p>
               <div className="space-y-2">
@@ -499,14 +561,68 @@ export default function AdminPublicationsPage() {
             {isEditing && (
               <button
                 type="button"
-                onClick={() => loadPublication('')}
+                onClick={() => loadPublication(form.lang, '')}
                 className="px-8 py-4 text-lg text-black border border-black hover:bg-black hover:text-white transition-colors duration-200"
               >
                 Cancel / New
               </button>
             )}
+            {isEditing && (
+              <button
+                type="button"
+                onClick={() => setShowDeleteModal(true)}
+                className="px-8 py-4 text-lg text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-colors duration-200"
+              >
+                Supprimer
+              </button>
+            )}
           </div>
         </form>
+
+        {/* Delete confirmation modal */}
+        {showDeleteModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white p-8 max-w-md">
+              <h3 className="text-xl font-bold text-black mb-4">Confirmer la suppression</h3>
+              <p className="text-gray-600 mb-6">
+                Cette action supprimera l&apos;article &quot;{form.headline || form.slug}&quot; en FR et EN, ainsi que toutes ses images. Cette action est irr&apos;versible.
+              </p>
+              <div className="flex gap-4">
+                <button
+                  onClick={async () => {
+                    setShowDeleteModal(false)
+                    setStatus('saving')
+                    try {
+                      const res = await fetch(`/api/publications?slug=${form.slug}&lang=${form.lang}`, { method: 'DELETE' })
+                      if (res.ok) {
+                        setStatus('idle')
+                        setMessage(`Publication "${form.slug}" deleted from FR and EN.`)
+                        setSelectedSlug('')
+                        setForm({ ...EMPTY_FORM, lang: form.lang })
+                      } else {
+                        const err = await res.text()
+                        setStatus('error')
+                        setMessage(err || 'Failed to delete.')
+                      }
+                    } catch {
+                      setStatus('error')
+                      setMessage('Network error.')
+                    }
+                  }}
+                  className="px-6 py-3 bg-red-600 text-white hover:bg-red-700 transition-colors"
+                >
+                  Supprimer
+                </button>
+                <button
+                  onClick={() => setShowDeleteModal(false)}
+                  className="px-6 py-3 border border-gray-300 hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

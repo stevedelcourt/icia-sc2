@@ -4,19 +4,26 @@ import { Footer } from '@/components/layout/Footer'
 import { MarkdownBody } from '@/components/MarkdownBody'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { LocalizedLink } from '@/lib/i18n'
-import { publications, publicationSlugs, getPublicationBySlug } from '@/generated/publications'
-import { t, type Locale } from '@/generated/content'
+import { getPublications, getPublicationBySlug, getPublicationSlugs, type Locale } from '@/generated/publications'
+import { t } from '@/generated/content'
 
 export async function generateStaticParams() {
-  return publicationSlugs.flatMap((slug) => [
-    { lang: 'fr', slug },
-    { lang: 'en', slug },
-  ])
+  const locales: Locale[] = ['fr', 'en']
+  const params: { lang: string; slug: string }[] = []
+
+  for (const lang of locales) {
+    const slugs = getPublicationSlugs(lang)
+    for (const slug of slugs) {
+      params.push({ lang, slug })
+    }
+  }
+
+  return params
 }
 
 export async function generateMetadata({ params }: { params: { lang: string; slug: string } }): Promise<Metadata> {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
-  const pub = getPublicationBySlug(params.slug)
+  const pub = getPublicationBySlug(params.slug, lang)
 
   if (!pub) {
     return {
@@ -54,16 +61,16 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
 }
 
 const tagColors: Record<string, string> = {
-  business: 'bg-navy text-white',
-  techno: 'bg-rouge text-white',
-  people: 'bg-accent-green text-white',
-  reglementation: 'bg-accent-purple text-white',
-  metier: 'bg-accent-teal text-white',
+  announcements: 'bg-gray-100 text-gray-700',
+  perspectives: 'bg-gray-100 text-gray-700',
+  'regulatory-insights': 'bg-gray-100 text-gray-700',
+  news: 'bg-gray-100 text-gray-700',
+  'strategy-papers': 'bg-gray-100 text-gray-700',
 }
 
 export default function PublicationDetailPage({ params }: { params: { lang: string; slug: string } }) {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
-  const pub = getPublicationBySlug(params.slug)
+  const pub = getPublicationBySlug(params.slug, lang)
 
   if (!pub) {
     return (
@@ -71,7 +78,9 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
         <Header />
         <main className="pt-36 pb-24" style={{ backgroundColor: '#f9f7f3' }}>
           <div className="max-w-6xl mx-auto px-8 text-center">
-            <h1 className="text-3xl font-bold text-black mb-4">Publication non trouvée</h1>
+            <h1 className="text-3xl font-bold text-black mb-4">
+              {lang === 'en' ? 'Publication not found' : 'Publication non trouvée'}
+            </h1>
             <LocalizedLink href="/publications/" className="text-navy hover:underline">
               {t(lang, 'publications.detail.back_button')}
             </LocalizedLink>
@@ -90,14 +99,15 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     : '/images/og-image.png'
 
   const cards = [
-    { title: pub.card1Title, body: pub.card1Body, image: pub.card1Image },
-    { title: pub.card2Title, body: pub.card2Body, image: pub.card2Image },
-    { title: pub.card3Title, body: pub.card3Body, image: pub.card3Image },
+    { title: pub.card1Title, body: pub.card1Body, image: pub.card1Image, link: (pub as any).card1Link, linkLabel: (pub as any).card1LinkLabel },
+    { title: pub.card2Title, body: pub.card2Body, image: pub.card2Image, link: (pub as any).card2Link, linkLabel: (pub as any).card2LinkLabel },
+    { title: pub.card3Title, body: pub.card3Body, image: pub.card3Image, link: (pub as any).card3Link, linkLabel: (pub as any).card3LinkLabel },
   ].filter((c) => c.title)
 
-  // Get related articles (max 2)
+  // Get related articles (max 2) from same locale
+  const allPubs = getPublications(lang)
   const relatedArticles = pub.relatedSlugs
-    .map((s) => publications.find((p) => p.slug === s))
+    .map((s) => allPubs.find((p) => p.slug === s))
     .filter(Boolean)
     .slice(0, 2)
 
@@ -188,15 +198,28 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
                   <div className="bg-white p-8 h-full">
                     {card.image && (
                       <div className="mb-4">
-                        <img
-                          src={`/images/publications/${pub.slug}/${card.image}`}
-                          alt={card.title}
-                          className="h-16 w-auto object-contain"
-                        />
+                        <div className="aspect-video overflow-hidden bg-gray-100">
+                          <img
+                            src={`/images/publications/${pub.slug}/${card.image}`}
+                            alt={card.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
                     )}
                     <h3 className="text-lg font-bold text-black mb-3">{card.title}</h3>
                     <p className="text-base text-gray-500 leading-relaxed">{card.body}</p>
+                    {card.link && (
+                      <LocalizedLink
+                        href={card.link}
+                        className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light mt-4 transition-colors duration-200"
+                      >
+                        {card.linkLabel || (lang === 'en' ? 'Read more' : 'Lire la suite')}
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </LocalizedLink>
+                    )}
                   </div>
                 </FadeIn>
               ))}
@@ -239,7 +262,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
                 href={pub.link}
                 className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200"
               >
-                {pub.linkLabel || 'En savoir plus'}
+                {pub.linkLabel || (lang === 'en' ? 'Learn more' : 'En savoir plus')}
               </LocalizedLink>
             </FadeIn>
           )}

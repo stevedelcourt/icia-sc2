@@ -1431,7 +1431,7 @@ Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
 Retour à l'accueil
 
 # publications.page.title
-Publications stratégiques
+Actualités & Perspectives
 
 # publications.page.headline
 Ressources et analyses stratégiques sur l'IA
@@ -1454,20 +1454,20 @@ Toutes les publications
 # publications.detail.published_on
 Publié le
 
-# publications.tag.business
-Business
+# publications.tag.announcements
+Annonces
 
-# publications.tag.techno
-Technologie
+# publications.tag.perspectives
+Perspectives
 
-# publications.tag.people
-People
+# publications.tag.regulatory-insights
+Analyses réglementaires
 
-# publications.tag.reglementation
-Réglementation
+# publications.tag.news
+Actualités
 
-# publications.tag.metier
-Métier
+# publications.tag.strategy-papers
+Notes stratégiques
 
 # publications.detail.related_title
 Lire aussi

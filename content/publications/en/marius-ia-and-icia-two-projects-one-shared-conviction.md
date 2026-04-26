@@ -18,7 +18,8 @@ card3Title: "Who's behind?"
 card3Body: "Marius IA works like an architect: defining the need, assessing the impact, then building the solution with the right experts. Based at the Campus Cyber.IA Euromed in Marseille, independent from any publisher or integrator, the institute holds one simple conviction: artificial intelligence must not remain in the hands of a few. "
 card3Link: "/en/a-propos/"
 card3LinkLabel: "Read"
-link: "/fr/contact/"
+link: "/en/contact/"
+translationSlug: "marius-ia-et-licia-deux-projets-une-mme-conviction"
 ---
 
 That is exactly where Marius IA steps in, on the business side.

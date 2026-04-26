@@ -17,6 +17,7 @@ card3Body: "Marius IA fonctionne comme un architecte : il définit le besoin, é
 card3Link: "/fr/a-propos/"
 link: "/fr/contact/"
 linkLabel: "Discutons ensemble"
+translationSlug: "marius-ia-and-icia-two-projects-one-shared-conviction"
 ---
 
 C'est exactement là que Marius IA entre en jeu, côté entreprises.

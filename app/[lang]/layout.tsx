@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Work_Sans } from 'next/font/google'
 import Script from 'next/script'
 import ScrollGradient from '@/components/ScrollGradient'
 import SpeedBanner from '@/components/SpeedBanner'
@@ -6,6 +7,13 @@ import CookieConsentBanner from '@/components/CookieConsent'
 import { I18nProvider } from '@/lib/i18n'
 import { LangSetter } from '@/components/LangSetter'
 import { t, type Locale } from '@/generated/content'
+import '@/app/globals.css'
+
+const workSans = Work_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-work-sans',
+})
 
 export async function generateStaticParams() {
   return [{ lang: 'fr' }, { lang: 'en' }]
@@ -168,24 +176,26 @@ export default function RootLayout({
   }
 
   return (
-    <>
-      <LangSetter lang={lang} />
-      <Script
-        type="application/ld+json"
-        id="jsonld-organization"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
-      />
-      <Script
-        type="application/ld+json"
-        id="jsonld-website"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
-      />
-      <I18nProvider lang={lang}>
-        <ScrollGradient />
-        {children}
-        <SpeedBanner />
-        <CookieConsentBanner />
-      </I18nProvider>
-    </>
+    <html lang={lang} className={workSans.variable}>
+      <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+        <LangSetter lang={lang} />
+        <Script
+          type="application/ld+json"
+          id="jsonld-organization"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+        />
+        <Script
+          type="application/ld+json"
+          id="jsonld-website"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
+        <I18nProvider lang={lang}>
+          <ScrollGradient />
+          {children}
+          <SpeedBanner />
+          <CookieConsentBanner />
+        </I18nProvider>
+      </body>
+    </html>
   )
 }

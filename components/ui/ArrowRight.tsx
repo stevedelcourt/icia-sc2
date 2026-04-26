@@ -1,20 +1,17 @@
 'use client'
 
-import Image from 'next/image'
-
 interface ArrowRightProps {
   className?: string
 }
 
-export function ArrowRight({ className = 'w-4 h-4 shrink-0' }: ArrowRightProps) {
+export function ArrowRight({ className = 'shrink-0' }: ArrowRightProps) {
   return (
-    <Image
-      src="/images/arrow-right.svg"
-      alt="→"
-      width={16}
-      height={16}
+    <svg
       className={className}
-      style={{ filter: 'none' }}
-    />
+      style={{ width: '1em', height: '1em', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }}
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </svg>
   )
 }

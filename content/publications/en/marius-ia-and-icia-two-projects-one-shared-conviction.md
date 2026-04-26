@@ -19,10 +19,7 @@ card3Body: "Marius IA works like an architect: defining the need, assessing the 
 card3Link: "/en/a-propos/"
 card3LinkLabel: "Read"
 link: "/fr/contact/"
-translationSlug: "marius-ia-et-licia-deux-projets-une-mme-conviction"
 ---
-
-There is a very real paradox in today's professional world: everyone talks about artificial intelligence, but few people actually know what to do with it. Between the dazzling promises of solution vendors and the growing regulatory complexity brought by the European AI Act, organisations often find themselves alone when facing strategic decisions they don't feel equipped to make.
 
 That is exactly where Marius IA steps in, on the business side.
 

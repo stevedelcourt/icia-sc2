@@ -100,7 +100,7 @@ export function PublicationCard({
             className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light transition-colors duration-200"
           >
             {t(lang, 'publications.card.read_button')}
-              <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />
           </LocalizedLink>
         </div>
       </div>

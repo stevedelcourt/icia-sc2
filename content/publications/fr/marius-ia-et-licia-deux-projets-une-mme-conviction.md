@@ -17,6 +17,7 @@ card3Body: "Marius IA fonctionne comme un architecte : il définit le besoin, é
 card3Link: "/fr/a-propos/"
 link: "/fr/contact/"
 linkLabel: "Discutons ensemble"
+translationSlug: "marius-ia-and-icia-two-projects-one-shared-conviction"
 ---
 
 Il y a un paradoxe bien réel dans le monde professionnel d'aujourd'hui : tout le monde parle d'intelligence artificielle, mais peu de gens savent vraiment quoi en faire. Entre les promesses mirobolantes des vendeurs de solutions et la complexité réglementaire qui s'installe avec l'AI Act européen, les organisations se retrouvent souvent seules face à des décisions stratégiques qu'elles ne se sentent pas équipées pour prendre.

@@ -6,12 +6,27 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useT, LocalizedLink, useLocale } from '@/lib/i18n'
 import { AnimatedLogo } from '@/components/AnimatedLogo'
+import { getPublicationTranslation } from '@/generated/publication-translations'
 
 export function Header() {
   const t = useT()
   const lang = useLocale()
   const pathname = usePathname()
   const pathWithoutLang = pathname.replace(new RegExp(`^/${lang}`), '') || '/'
+
+  // Get translation slug if on a publication page
+  const isPublicationPage = pathname.match(/^\/(fr|en)\/publications\/([^/]+)\//);
+  const getLangSwitchHref = () => {
+    if (isPublicationPage) {
+      const slug = isPublicationPage[2];
+      const translationSlug = getPublicationTranslation(slug, lang);
+      if (translationSlug) {
+        const newLang = lang === 'fr' ? 'en' : 'fr';
+        return `/${newLang}/publications/${translationSlug}/`;
+      }
+    }
+    return pathname.replace(new RegExp(`^/${lang}`), lang === 'fr' ? '/en' : '/fr');
+  };
 
   const navLinks = [
     { label: t('header.nav.pour_qui'), href: '/#acteurs', bold: true, children: [
@@ -93,7 +108,7 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              href={pathname.replace(new RegExp(`^/${lang}`), lang === 'fr' ? '/en' : '/fr')}
+              href={getLangSwitchHref()}
               className="text-sm font-medium text-black hover:text-gray-600 uppercase transition-colors duration-200"
             >
               {lang === 'fr' ? 'EN' : 'FR'}
@@ -108,7 +123,7 @@ export function Header() {
 
           <div className="flex items-center gap-3 lg:hidden">
             <Link
-              href={pathname.replace(new RegExp(`^/${lang}`), lang === 'fr' ? '/en' : '/fr')}
+              href={getLangSwitchHref()}
               className="text-sm font-medium text-black hover:text-gray-600 uppercase transition-colors duration-200"
             >
               {lang === 'fr' ? 'EN' : 'FR'}

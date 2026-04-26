@@ -8,6 +8,7 @@ const matter = require('gray-matter');
 
 const publicationsDir = path.join(process.cwd(), 'content', 'publications');
 const outputFile = path.join(process.cwd(), 'generated', 'publications.ts');
+const translationsFile = path.join(process.cwd(), 'generated', 'publication-translations.ts');
 const locales = ['fr', 'en'];
 
 function parsePublication(filePath) {
@@ -53,6 +54,7 @@ function parsePublication(filePath) {
     link: data.link || '',
     linkLabel: data.linkLabel || '',
     relatedSlugs,
+    translationSlug: data.translationSlug || '',
     body: parsed.content.trim(),
   };
 }
@@ -167,6 +169,7 @@ export interface Publication {
   link: string;
   linkLabel: string;
   relatedSlugs: string[];
+  translationSlug: string;
   body: string;
 }
 
@@ -193,6 +196,11 @@ export function getCategories(lang: Locale): string[] {
   return Array.from(cats);
 }
 
+export function getPublicationTranslationSlug(slug: string, lang: Locale): string | undefined {
+  const pub = getPublicationBySlug(slug, lang);
+  return pub?.translationSlug || undefined;
+}
+
 export const allPublicationSlugs: { lang: string; slug: string }[] = [
 ${locales.map(locale => localeSlugs[locale].map(slug => `  { lang: '${locale}', slug: '${slug}' }`).join(',\n')).filter(Boolean).join(',\n')}
 ];
@@ -201,8 +209,39 @@ ${locales.map(locale => localeSlugs[locale].map(slug => `  { lang: '${locale}', 
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   fs.writeFileSync(outputFile, ts);
 
+  // Generate client-safe translations mapping
+  const translations = {};
+  for (const locale of locales) {
+    const pubs = localePublications[locale] || [];
+    for (const pub of pubs) {
+      if (pub.translationSlug) {
+        if (!translations[pub.slug]) {
+          translations[pub.slug] = {};
+        }
+        translations[pub.slug][locale === 'fr' ? 'en' : 'fr'] = pub.translationSlug;
+      }
+    }
+  }
+
+  const translationsTs = `// AUTO-GENERATED from content/publications/fr/*.md and content/publications/en/*.md
+// Do not edit manually. Run 'node scripts/build-publications.js' to regenerate.
+
+export type Locale = 'fr' | 'en';
+
+export const publicationTranslations: Record<string, { fr?: string; en?: string }> = ${JSON.stringify(translations, null, 2)};
+
+export function getPublicationTranslation(slug: string, lang: Locale): string | undefined {
+  const mapping = publicationTranslations[slug];
+  if (!mapping) return undefined;
+  return lang === 'en' ? mapping.en : mapping.fr;
+}
+`;
+
+  fs.writeFileSync(translationsFile, translationsTs);
+
   const total = locales.reduce((sum, l) => sum + localePublications[l].length, 0);
   console.log(`✓ Generated ${total} publications (${locales.map(l => `${localePublications[l].length} ${l}`).join(', ')}) → ${outputFile}`);
+  console.log(`✓ Generated translations mapping → ${translationsFile}`);
 }
 
 buildPublications();

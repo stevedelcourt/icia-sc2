@@ -19,6 +19,11 @@ export async function generateStaticParams() {
     }
   }
 
+  if (params.length === 0) {
+    params.push({ lang: 'fr', slug: '-' })
+    params.push({ lang: 'en', slug: '-' })
+  }
+
   return params
 }
 

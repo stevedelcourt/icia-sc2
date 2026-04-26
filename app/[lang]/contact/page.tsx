@@ -3,11 +3,19 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { MapTilerMap } from '@/components/MapTilerMap'
+
+const MapTilerMap = dynamic(
+  () => import('@/components/MapTilerMap').then((mod) => mod.MapTilerMap),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-64 bg-gray-100" />
+  }
+)
 
 export default function ContactPage() {
   const t = useT()

@@ -8,15 +8,14 @@ export function ArrowRight({ className = 'w-4 h-4' }: ArrowRightProps) {
   return (
     <svg
       className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
+      viewBox="-4.5 0 20 20"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M5 12h14m0 0l-5-5m5 5l-5 5"
+        fill="currentColor"
+        d="M370.39,6519 L369,6520.406 L377.261,6529.013 L376.38,6529.931 L376.385,6529.926 L369.045,6537.573 L370.414,6539 C372.443,6536.887 378.107,6530.986 380,6529.013 C378.594,6527.547 379.965,6528.976 370.39,6519"
       />
     </svg>
   )

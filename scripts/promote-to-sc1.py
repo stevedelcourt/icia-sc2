@@ -9,7 +9,7 @@ FTP_PASS = 'RoxanPascalSteven2024'
 REMOTE_DIR = 'public_html'
 LOCAL_ROOT = '/Users/stv/Documents/zed/icia-sc2/out'
 
-ALLOWED_EXTS = {'.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot'}
+ALLOWED_EXTS = {'.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.avif', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot'}
 
 def delete_all(ftp, path=''):
     """Recursively delete all files and directories in the current FTP directory."""

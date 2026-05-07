@@ -1,8 +1,6 @@
 # o2switch pagespeed start / DO NOT REMOVE OR EDIT
 <IfModule pagespeed_module>
-ModPagespeed on
-ModPagespeedRewriteLevel PassThrough
-ModPagespeedEnableFilters add_head,collapse_whitespace,convert_meta_tags,dedup_inlined_images,recompress_images,hint_preload_subresources,lazyload_images,insert_dns_prefetch,remove_comments,remove_quotes,rewrite_images,strip_image_meta_data
+ModPagespeed off
 </IfModule>
 # o2switch pagespeed end / DO NOT REMOVE OR EDIT
 

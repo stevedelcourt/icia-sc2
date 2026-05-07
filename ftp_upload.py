@@ -11,7 +11,7 @@ REMOTE_ROOT = 'public_html'
 LOCAL_ROOT = '/Users/stv/Documents/zed/icia-sc2/out'
 MANIFEST_PATH = '/Users/stv/Documents/zed/icia-sc2/.upload_manifest.json'
 
-ALLOWED_EXTS = {'.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot'}
+ALLOWED_EXTS = {'.html', '.js', '.css', '.json', '.png', '.jpg', '.svg', '.webp', '.avif', '.txt', '.xml', '.gz', '.pdf', '.ico', '.woff2', '.woff', '.ttf', '.eot'}
 
 def is_allowed(filename):
     if filename in ('.htaccess', '.htaccess.pagespeed.bkp'):

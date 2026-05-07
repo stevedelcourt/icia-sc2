@@ -7,6 +7,7 @@ import { ArrowRight } from '@/components/ui/ArrowRight'
 import { LocalizedLink } from '@/lib/i18n'
 import { getPublications, getPublicationBySlug, getPublicationSlugs, type Locale } from '@/generated/publications'
 import { t } from '@/generated/content'
+import { Picture } from '@/components/Picture'
 
 export async function generateStaticParams() {
   const locales: Locale[] = ['fr', 'en']
@@ -62,6 +63,11 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
     },
     alternates: {
       canonical,
+      languages: {
+        'fr-FR': `${baseUrl}/fr/publications/${params.slug}/`,
+        'en-US': `${baseUrl}/en/publications/${params.slug}/`,
+        'x-default': `${baseUrl}/fr/publications/${params.slug}/`,
+      },
     },
   }
 }
@@ -117,15 +123,20 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     .filter(Boolean)
     .slice(0, 2)
 
+  const wordCount = pub.body.split(/\s+/).filter(Boolean).length
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}`,
+    '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}/`,
     headline: pub.headline,
     description: pub.subheadline,
     image: heroPath,
     datePublished: pub.date,
     dateModified: pub.date,
+    articleSection: pub.category,
+    inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
+    wordCount,
     author: {
       '@type': 'Organization',
       name: 'Marius IA',
@@ -137,7 +148,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}`
+      '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}/`
     }
   }
 
@@ -163,7 +174,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
           {/* Hero image */}
           <FadeIn>
             <div className="w-full aspect-video overflow-hidden bg-gray-100 mb-8">
-              <img
+              <Picture
                 src={heroPath}
                 alt={pub.headline}
                 className="w-full h-full object-cover"
@@ -230,7 +241,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
                     {card.image && (
                       <div className="mb-4">
                         <div className="aspect-video overflow-hidden bg-gray-100">
-                          <img
+                          <Picture
                             src={`/images/publications/${pub.slug}/${card.image}`}
                             alt={card.title}
                             className="w-full h-full object-cover"

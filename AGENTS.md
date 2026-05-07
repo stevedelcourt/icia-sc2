@@ -34,9 +34,18 @@
 - CI triggers on push to `main`
 
 ## FTP Upload Quirks
+- **Manual FTP deployment**: User deploys manually via FTP (not automated scripts)
+- When adding new asset types (like .avif), ensure they are included in manual upload
 - `ftp_upload.py` has hardcoded credentials and path (`/Users/stv/Documents/zed/icia/out`)
 - Only uploads specific extensions (line 24): `.html .js .css .json .png .jpg .svg .webp .txt .xml .gz .pdf .ico .woff2 .woff .ttf .eot`
 - Adding new asset types requires updating this list
+
+## Image Optimization
+- **Picture component**: `components/Picture.tsx` wraps images with avif/webp fallback
+- Usage: `<Picture src="/images/name.webp" alt="..." className="..." />`
+- Automatically generates `<source type="image/avif">` and `<source type="image/webp">` from .webp path
+- **avif files**: Located alongside .webp files in `public/images/`
+- **Rule**: Always use `<Picture>` component (not `<img>`) for .webp images to enable avif fallback
 
 ## Key Paths
 | Path | Purpose |
@@ -81,6 +90,15 @@ Each has a mobile scrollable nav with left/right arrow buttons. The nav backgrou
 - Self-hosted TarteAuCitron in `public/js/`
 - Config in `public/js/cookies.js`
 - CSS overrides in `app/globals.css` (white background, site styling)
+
+## SEO Optimizations (Completed)
+- **x-default hreflang**: Added to `app/[lang]/layout.tsx` and `app/sitemap.ts`
+- **LocalBusiness schema**: Added to Organization JSON-LD in layout (address, geo coords, telephone)
+- **Sitemap**: Updated with hreflang annotations for all pages
+- **404 page**: Fixed links to use `/fr/` and `/en/` instead of `/_not-found/`
+- **Picture component**: All .webp images now use avif fallback via `<Picture>` component
+- **Publications**: JSON-LD Article schema present with author, publisher, datePublished
+- **Pages with JSON-LD**: contact, diagnostic, formations, transformation, all actor pages, publications
 
 ## French Typography
 - Use French apostrophe (U+2019 ') in French text, not straight apostrophe

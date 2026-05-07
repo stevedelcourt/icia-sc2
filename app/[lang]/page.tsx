@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useParams } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider, AnimatedCard } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { RecentArticles } from '@/components/RecentArticles'
 import { Picture } from '@/components/Picture'
 
 const COLORS = {
@@ -44,6 +46,8 @@ const partners = [
 
 export default function Home() {
   const t = useT()
+  const params = useParams()
+  const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
 
   const piliers = [
     { title: t('homepage.piliers.1.title'), desc: t('homepage.piliers.1.desc'), anchor: 'independance' },
@@ -330,7 +334,7 @@ export default function Home() {
 
         <AnimatedDivider />
 
-        <section id="contact" className="py-20" style={{ backgroundColor: '#ffffff' }}>
+        <section id="contact" className="py-20" style={{ backgroundColor: '#aebddb' }}>
           <div className="max-w-3xl mx-auto px-8 text-center">
             <StaggerBlock delay={0}>
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('homepage.contact.label')}</p>
@@ -375,6 +379,7 @@ export default function Home() {
         </section>
         */}
       </main>
+      <RecentArticles lang={lang} />
       <Footer />
     </>
   )

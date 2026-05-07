@@ -30,7 +30,9 @@
 
 ## Deployment
 - **Vercel**: Primary hosting (https://icia.vercel.app)
-- **o2switch**: FTP upload from `out/` folder via `python3 ftp_upload.py`
+- **o2switch**: Manual FTP upload from `out/` folder (user deploys manually)
+- **sc2**: Test environment (sc2bovu7233.universe.wf)
+- **sc1**: Production environment (sc1bovu7233.universe.wf)
 - CI triggers on push to `main`
 
 ## FTP Upload Quirks
@@ -39,6 +41,7 @@
 - `ftp_upload.py` has hardcoded credentials and path (`/Users/stv/Documents/zed/icia/out`)
 - Only uploads specific extensions (line 24): `.html .js .css .json .png .jpg .svg .webp .txt .xml .gz .pdf .ico .woff2 .woff .ttf .eot`
 - Adding new asset types requires updating this list
+- **IMPORTANT**: `.avif` files must be uploaded manually alongside `.webp` files
 
 ## Image Optimization
 - **Picture component**: `components/Picture.tsx` wraps images with avif/webp fallback
@@ -99,6 +102,10 @@ Each has a mobile scrollable nav with left/right arrow buttons. The nav backgrou
 - **Picture component**: All .webp images now use avif fallback via `<Picture>` component
 - **Publications**: JSON-LD Article schema present with author, publisher, datePublished
 - **Pages with JSON-LD**: contact, diagnostic, formations, transformation, all actor pages, publications
+
+## Known Issues
+- **404 hydration error**: `usePathname()` in `app/not-found.tsx` causes React hydration mismatch on static 404 pages (pre-existing, cosmetic only)
+- **Pagespeed preload warnings**: Cosmetic warnings for polyfills/fonts preloaded by Pagespeed but not used within load event
 
 ## French Typography
 - Use French apostrophe (U+2019 ') in French text, not straight apostrophe

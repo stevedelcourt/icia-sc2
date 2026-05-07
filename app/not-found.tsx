@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { I18nProvider, useT, LocalizedLink } from '@/lib/i18n'
+import { Picture } from '@/components/Picture'
 
 function NotFoundContent() {
   const t = useT()
@@ -13,7 +14,7 @@ function NotFoundContent() {
       <Header />
       <div className="min-h-screen bg-[#bdf5ab] flex flex-col items-center justify-center p-8 text-center">
         <div className="mb-8">
-          <img
+          <Picture
             src="/images/808.webp"
             alt="808"
             className="w-full max-w-md mx-auto"
@@ -43,6 +44,11 @@ function NotFoundContent() {
           >
             {t('not_found.cta_contact')}
           </LocalizedLink>
+        </div>
+        <div className="mt-8 text-sm text-black opacity-60 relative z-10">
+          <LocalizedLink href="/fr/" className="underline hover:no-underline">Français</LocalizedLink>
+          {' · '}
+          <LocalizedLink href="/en/" className="underline hover:no-underline">English</LocalizedLink>
         </div>
 
         <div className="mt-12 text-sm text-black opacity-60 relative z-10">

@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider, AnimatedCard } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { Picture } from '@/components/Picture'
 
 const COLORS = {
   blue: { r: 174, g: 189, b: 219 },
@@ -245,17 +246,14 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative overflow-hidden rounded-sm"
+                whileHover={{ scale: 1.03 }}
               >
-                <motion.div style={{ y: heroImageY }}>
-                  <motion.img
-                    src="/images/paperplane.webp"
-                    alt="Institut de l'IA"
-                    className="w-full aspect-square object-contain shadow-xl"
-                    fetchPriority="high"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                </motion.div>
+                <Picture
+                  src="/images/paperplane.webp"
+                  alt="Institut de l'IA"
+                  className="w-full aspect-square object-contain shadow-xl"
+                  fetchPriority="high"
+                />
               </motion.div>
             </div>
           </div>
@@ -294,7 +292,7 @@ export default function Home() {
               {acteurs.map((acteur, i) => (
                 <AnimatedCard key={acteur.title} id={acteur.anchor} delay={i * 0.05} whileHover={{ y: -4 }}>
                   <LocalizedLink href={acteur.href} className="group block p-8 bg-white hover:shadow-xl transition-all duration-200 h-full">
-                    {acteur.image && <div className="w-full aspect-square mb-4 overflow-hidden"><img src={acteur.image} alt={acteur.title} className="w-full h-full object-contain" /></div>}
+                    {acteur.image && <div className="w-full aspect-square mb-4 overflow-hidden"><Picture src={acteur.image} alt={acteur.title} className="w-full h-full object-contain" /></div>}
                     <h3 className="text-xl font-bold text-black mb-3 group-hover:text-gray-600 transition-colors duration-200">{acteur.title}</h3>
                     <p className="text-gray-500 text-sm">{acteur.desc}</p>
                   </LocalizedLink>
@@ -322,7 +320,7 @@ export default function Home() {
                       <p className="text-gray-500 mb-3">{offre.description}</p>
                       <p className="text-sm text-gray-400">{offre.price} · {offre.duration}</p>
                     </div>
-                    <img src={offre.image} alt={offre.title} className="w-full md:w-[300px] aspect-square object-contain order-1 md:order-2" />
+                      <Picture src={offre.image} alt={offre.title} className="w-full md:w-[300px] aspect-square object-contain order-1 md:order-2" />
                   </LocalizedLink>
                 </AnimatedCard>
               ))}

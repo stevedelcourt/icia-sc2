@@ -6,6 +6,8 @@ ModPagespeedEnableFilters add_head,canonicalize_javascript_libraries,collapse_wh
 </IfModule>
 # o2switch pagespeed end / DO NOT REMOVE OR EDIT
 
+DirectoryIndex index.html
+
 ErrorDocument 404 /404.html
 
 <IfModule mod_expires.c>

@@ -33,6 +33,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: path === '/publications' ? 'daily' : path === '' ? 'weekly' : path.startsWith('/mentions') || path.startsWith('/politique') || path.startsWith('/cookies') || path.startsWith('/conditions') ? 'yearly' : 'monthly',
       priority: path === '' ? 1 : ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/professions-liberales', '/citoyens'].includes(path) ? 0.9 : ['/diagnostic', '/formations', '/transformation', '/partenaire', '/publications'].includes(path) ? 0.8 : 0.7,
+      alternates: {
+        languages: {
+          'fr-FR': `${baseUrl}/fr${path}`,
+          'en-US': `${baseUrl}/en${path}`,
+          'x-default': `${baseUrl}/fr${path}`,
+        },
+      },
     }))
   )
 
@@ -42,6 +49,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
+      alternates: {
+        languages: {
+          'fr-FR': `${baseUrl}/fr/publications/${slug}`,
+          'en-US': `${baseUrl}/en/publications/${slug}`,
+          'x-default': `${baseUrl}/fr/publications/${slug}`,
+        },
+      },
     }))
   )
 

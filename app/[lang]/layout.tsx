@@ -76,6 +76,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       languages: {
         'fr-FR': `${baseUrl}/fr/`,
         'en-US': `${baseUrl}/en/`,
+        'x-default': `${baseUrl}/fr/`,
       },
     },
     verification: {
@@ -93,56 +94,65 @@ export default function RootLayout({
 }) {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
 
-  const jsonLdOrganization = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': 'https://www.mariusia.com/#organization',
-    name: t(lang, 'layout.ld_json.org.name'),
-    alternateName: t(lang, 'layout.ld_json.org.alternate_name'),
-    url: 'https://www.mariusia.com',
-    logo: 'https://www.mariusia.com/images/MariusIA-logo.svg',
-    description: t(lang, 'layout.ld_json.org.description'),
-    areaServed: [
-      { '@type': 'Country', name: 'France' },
-      { '@type': 'Country', name: 'Europe' },
-    ],
-    knowsAbout: [
-      'Artificial Intelligence',
-      'AI Act',
-      'EU AI Regulation',
-      'AI Governance',
-      'Machine Learning',
-      'Change Management',
-      'Digital Transformation',
-    ],
-    serviceType: [
-      'AI Strategy Consulting',
-      'AI Compliance',
-      'AI Training',
-      'Digital Transformation',
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: t(lang, 'layout.ld_json.org.contact_type'),
-      email: 'contact@mariusia.com',
-      areaServed: 'FR',
-      availableLanguage: [t(lang, 'layout.ld_json.org.available_language.fr'), t(lang, 'layout.ld_json.org.available_language.en')],
-    },
-    parentOrganization: {
-      '@type': 'Organization',
-      name: t(lang, 'layout.ld_json.org.parent_name'),
-      url: 'https://www.mentivis.com',
-    },
-    location: {
-      '@type': 'Place',
-      name: t(lang, 'layout.ld_json.org.location.name'),
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: t(lang, 'layout.ld_json.org.location.city'),
-        addressCountry: 'FR',
+    const jsonLdOrganization = {
+      '@context': 'https://schema.org',
+      '@type': ['Organization', 'LocalBusiness'],
+      '@id': 'https://www.mariusia.com/#organization',
+      name: t(lang, 'layout.ld_json.org.name'),
+      alternateName: t(lang, 'layout.ld_json.org.alternate_name'),
+      url: 'https://www.mariusia.com',
+      logo: 'https://www.mariusia.com/images/MariusIA-logo.svg',
+      description: t(lang, 'layout.ld_json.org.description'),
+      areaServed: [
+        { '@type': 'Country', name: 'France' },
+        { '@type': 'Country', name: 'Europe' },
+      ],
+      knowsAbout: [
+        'Artificial Intelligence',
+        'AI Act',
+        'EU AI Regulation',
+        'AI Governance',
+        'Machine Learning',
+        'Change Management',
+        'Digital Transformation',
+      ],
+      serviceType: [
+        'AI Strategy Consulting',
+        'AI Compliance',
+        'AI Training',
+        'Digital Transformation',
+      ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: t(lang, 'layout.ld_json.org.contact_type'),
+        telephone: '+33 1 89 48 10 02',
+        email: 'contact@mariusia.com',
+        areaServed: 'FR',
+        availableLanguage: [t(lang, 'layout.ld_json.org.available_language.fr'), t(lang, 'layout.ld_json.org.available_language.en')],
       },
-    },
-  }
+      parentOrganization: {
+        '@type': 'Organization',
+        name: t(lang, 'layout.ld_json.org.parent_name'),
+        url: 'https://www.mentivis.com',
+      },
+      location: {
+        '@type': 'Place',
+        name: t(lang, 'layout.ld_json.org.location.name'),
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '4 Bd Euroméditerranée',
+          addressLocality: t(lang, 'layout.ld_json.org.location.city'),
+          addressRegion: 'Bouches-du-Rhône',
+          postalCode: '13002',
+          addressCountry: 'FR',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '43.313887',
+          longitude: '5.366328',
+        },
+      },
+    }
 
   const jsonLdWebSite = {
     '@context': 'https://schema.org',

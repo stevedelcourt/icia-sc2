@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { Picture } from '@/components/Picture'
 
 const COLORS = {
   blue: { r: 174, g: 189, b: 219 },
@@ -166,7 +167,7 @@ export default function CitoyensPage() {
               <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">{t('acteurs.grand_public.cta')}<span className="shrink-0"><ArrowRight className="ml-2" /></span></LocalizedLink>
             </StaggerBlock>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/grandpublic.webp" alt="Grand public" className="w-full" />
+              <Picture src="/images/grandpublic.webp" alt="Grand public" className="w-full" />
             </motion.div>
           </div>
           </section>

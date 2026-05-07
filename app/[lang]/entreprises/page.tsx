@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { Picture } from '@/components/Picture'
 
 const COLORS = {
   blue: { r: 174, g: 189, b: 219 },
@@ -167,7 +168,7 @@ export default function EntreprisesPage() {
               <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}<span className="shrink-0"><ArrowRight className="ml-2" /></span></LocalizedLink>
             </StaggerBlock>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/overworked.webp" alt="Entreprises" className="w-full" />
+              <Picture src="/images/overworked.webp" alt="Entreprises" className="w-full" />
             </motion.div>
           </div>
           </section>

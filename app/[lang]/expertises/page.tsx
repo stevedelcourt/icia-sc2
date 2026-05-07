@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { Picture } from '@/components/Picture'
 import Link from 'next/link'
 
 export default function ExpertisesPage() {
@@ -62,9 +63,9 @@ export default function ExpertisesPage() {
                 {t('expertises.subtitle')}
               </p>
             </div>
-            <div className="w-full md:w-[400px] flex-shrink-0">
-              <img src="/images/worker.webp" alt="Expert" className="w-full h-auto" />
-            </div>
+              <div className="w-full md:w-[400px] flex-shrink-0">
+                <Picture src="/images/worker.webp" alt="Expert" className="w-full h-auto" />
+              </div>
           </StaggerBlock>
 
           <StaggerBlock

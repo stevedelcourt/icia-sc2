@@ -5,6 +5,7 @@ import { AnimatedDivider, FadeIn } from '@/components/Animations'
 import { t, type Locale } from '@/generated/content'
 import { LocalizedLink } from '@/lib/i18n'
 import { ArrowRight } from '@/components/ui/ArrowRight'
+import { Picture } from '@/components/Picture'
 
 export default function AProposPage({ params }: { params: { lang: string } }) {
   const jsonLd = {
@@ -114,7 +115,7 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
                 </p>
               </FadeIn>
               <FadeIn delay={0.15} direction="left">
-                <img
+                <Picture
                   src="/images/cybercampus.webp"
                   alt="Campus Cyber.AI"
                   className="w-full md:w-[400px] h-auto object-cover self-start"

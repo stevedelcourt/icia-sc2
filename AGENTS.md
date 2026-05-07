@@ -84,3 +84,4 @@ Each has a mobile scrollable nav with left/right arrow buttons. The nav backgrou
 
 ## French Typography
 - Use French apostrophe (U+2019 ') in French text, not straight apostrophe
+- Always put chevron_right (right of button text) for all buttons in a pill

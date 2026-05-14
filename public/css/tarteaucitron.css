@@ -69,8 +69,8 @@
 #tarteaucitron button[id*="Accept"],
 .tarteaucitronAllow,
 .tarteaucitron-Green {
-  background: #bdf5ab !important;
-  color: #00255D !important;
+  background: #039e76 !important;
+  color: #ffffff !important;
   border: none !important;
   padding: 10px 24px !important;
   font-size: 13px !important;
@@ -88,7 +88,7 @@
 #tarteaucitron .tarteaucitronAllow:hover,
 #tarteaucitron #tarteaucitronACCEPT:hover,
 #tarteaucitron #tarteaucitronAccept:hover {
-  background: #a8e6a0 !important;
+  background: #028a65 !important;
   transform: translateY(-1px) !important;
 }
 
@@ -235,7 +235,7 @@
 }
 
 .tarteaucitronSwitch.tarteaucitronSwitchOn {
-  background: #bdf5ab !important;
+  background: #039e76 !important;
 }
 
 .tarteaucitronSwitch.tarteaucitronSwitchOn::before {
@@ -258,7 +258,7 @@
 #tarteaucitronClosePanel,
 #tarteaucitron .tarteaucitronClose,
 #tarteaucitron a[id*="Close"] {
-  background: #00255D !important;
+  background: #3886c1 !important;
   color: #fff !important;
   border: none !important;
   padding: 10px 24px !important;
@@ -272,7 +272,7 @@
 
 #tarteaucitronClosePanel:hover,
 #tarteaucitron .tarteaucitronClose:hover {
-  background: #001a40 !important;
+  background: #2d75ab !important;
 }
 
 /* Responsive */

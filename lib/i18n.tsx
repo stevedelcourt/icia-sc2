@@ -32,7 +32,7 @@ export function LocalizedLink({ href, ...props }: React.ComponentProps<typeof Li
 }
 
 export function useLocalizedPathname(): string {
-  if (typeof window === 'undefined') return ''
   const lang = useLocale()
+  if (typeof window === 'undefined') return ''
   return window.location.pathname.replace(new RegExp(`^/${lang}`), '') || '/'
 }

@@ -6,23 +6,23 @@ export default function ConditionsUtilisation({ params }: { params: { lang: stri
   return (
     <>
       <Header />
-      <main className="pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl  text-black mb-12">{t(params.lang as Locale, 'conditions.title')}</h1>
-          <div className="prose prose-lg max-w-none text-[#666666]">
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'conditions.acceptation.title')}</h2>
+      <main className="section pt-16">
+        <div className="container-mentivis">
+          <h1 className="t-display text-primary mb-12">{t(params.lang as Locale, 'conditions.title')}</h1>
+          <div className="prose prose-lg max-w-none">
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'conditions.acceptation.title')}</h2>
             <p>{t(params.lang as Locale, 'conditions.acceptation.text')}</p>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'conditions.utilisation.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'conditions.utilisation.title')}</h2>
             <p>{t(params.lang as Locale, 'conditions.utilisation.text')}</p>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'conditions.pi.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'conditions.pi.title')}</h2>
             <p>{t(params.lang as Locale, 'conditions.pi.text')}</p>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'conditions.responsabilite.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'conditions.responsabilite.title')}</h2>
             <p>{t(params.lang as Locale, 'conditions.responsabilite.text')}</p>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'conditions.droit.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'conditions.droit.title')}</h2>
             <p>{t(params.lang as Locale, 'conditions.droit.text')}</p>
           </div>
         </div>

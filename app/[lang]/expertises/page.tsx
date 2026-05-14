@@ -4,9 +4,7 @@ import { StaggerBlock, AnimatedCard } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { ArrowRight } from '@/components/ui/ArrowRight'
-import { Picture } from '@/components/Picture'
-import Link from 'next/link'
+import { BauhausIcon } from '@/components/BauhausIcon'
 
 export default function ExpertisesPage() {
   const t = useT()
@@ -14,19 +12,19 @@ export default function ExpertisesPage() {
   const expertises = [
     {
       title: t('expertises.competence.1.title'),
-      description: t('expertises.competence.1.desc')
+      description: t('expertises.competence.1.desc'),
     },
     {
       title: t('expertises.competence.2.title'),
-      description: t('expertises.competence.2.desc')
+      description: t('expertises.competence.2.desc'),
     },
     {
       title: t('expertises.competence.3.title'),
-      description: t('expertises.competence.3.desc')
+      description: t('expertises.competence.3.desc'),
     },
     {
       title: t('expertises.competence.4.title'),
-      description: t('expertises.competence.4.desc')
+      description: t('expertises.competence.4.desc'),
     },
   ]
 
@@ -49,51 +47,47 @@ export default function ExpertisesPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
-        <div className="max-w-6xl mx-auto px-8">
-          <StaggerBlock
-            className="flex flex-col md:flex-row items-center gap-8 mb-16"
-          >
-            <div className="flex-1 text-center md:text-left">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('expertises.label')}</p>
-              <h1 className="text-5xl md:text-6xl font-bold text-black leading-[1.1] mb-6">
-                {t('expertises.title').split('\n')[0]}<br className="hidden sm:block" />{t('expertises.title').split('\n')[1]}
-              </h1>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto md:mx-0">
-                {t('expertises.subtitle')}
-              </p>
-            </div>
-              <div className="w-full md:w-[400px] flex-shrink-0">
-                <Picture src="/images/worker.webp" alt="Expert" className="w-full h-auto" />
+      <main className="section pt-16 bg-secondary">
+        <div className="container-mentivis">
+          <section>
+            <StaggerBlock className="flex flex-col md:flex-row items-center gap-12 mb-16">
+              <div className="flex-1">
+                <p className="t-caption uppercase tracking-widest mb-4">{t('expertises.label')}</p>
+                <h1 className="t-display text-primary leading-tight mb-6 whitespace-pre-line">
+                  {t('expertises.title')}
+                </h1>
+                <p className="t-lead">
+                  {t('expertises.subtitle')}
+                </p>
               </div>
-          </StaggerBlock>
+              <div className="w-full lg:w-48 aspect-square flex-shrink-0 overflow-hidden">
+                <BauhausIcon icon="01" />
+              </div>
+            </StaggerBlock>
+          </section>
 
-          <StaggerBlock
-            delay={0.2}
-            className="mb-16"
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('expertises.competences_title')}</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+          <StaggerBlock delay={0.2} className="mb-16">
+            <h2 className="t-caption uppercase tracking-widest mb-8">{t('expertises.competences_title')}</h2>
+            <div className="grid md:grid-cols-2 gap-6">
               {expertises.map((item, i) => (
                 <AnimatedCard
                   key={item.title}
                   delay={i * 0.1}
-                  className="p-8 bg-white hover:shadow-xl transition-all duration-300"
+                  className="p-8 bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-300"
                 >
-                  <h3 className="text-xl font-bold text-black mb-4">{item.title}</h3>
-                  <p className="text-gray-500">{item.description}</p>
+                  <h3 className="t-heading text-primary mb-3">{item.title}</h3>
+                  <p className="t-caption">{item.description}</p>
                 </AnimatedCard>
               ))}
             </div>
           </StaggerBlock>
 
-          <StaggerBlock
-            delay={0.4}
-            className="text-center"
-          >
-            <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+          <StaggerBlock delay={0.4} className="text-center">
+            <LocalizedLink href="/contact" className="btn-pill btn-black">
               {t('expertises.cta')}
-              <span className="shrink-0"><ArrowRight className="ml-2" /></span>
+              <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </LocalizedLink>
           </StaggerBlock>
         </div>

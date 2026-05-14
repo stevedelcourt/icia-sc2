@@ -16,16 +16,16 @@ export function RecentArticles({ lang }: { lang: Locale }) {
   if (recent.length === 0) return null
 
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: '#f9f7f3' }}>
-      <div className="max-w-6xl mx-auto px-8">
+    <section className="section bg-warm">
+      <div className="container-mentivis">
         <FadeIn>
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black">
+            <h2 className="t-display text-primary">
               {lang === 'fr' ? 'Dernières publications' : 'Latest publications'}
             </h2>
             <LocalizedLink
               href="/publications/"
-              className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light transition-colors duration-200 whitespace-nowrap"
+              className="inline-flex items-center t-caption text-primary hover:text-secondary hover:underline hover:underline-offset-4 transition-colors duration-200 whitespace-nowrap"
             >
               {lang === 'fr' ? 'Voir tout' : 'View all'}
               <ArrowRight className="ml-1" />
@@ -33,7 +33,7 @@ export function RecentArticles({ lang }: { lang: Locale }) {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {recent.map((pub, i) => {
             const imagePath = pub.heroImage
               ? `/images/publications/${pub.slug}/${pub.heroImage}`
@@ -46,10 +46,10 @@ export function RecentArticles({ lang }: { lang: Locale }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group bg-white hover:shadow-lg transition-all duration-300"
+                className="group bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-300"
               >
                 <LocalizedLink href={`/publications/${pub.slug}/`} className="block">
-                  <div className="aspect-video overflow-hidden bg-gray-100">
+                  <div className="aspect-video overflow-hidden bg-secondary rounded-card rounded-b-none">
                     <Picture
                       src={imagePath}
                       alt={pub.headline}
@@ -59,7 +59,7 @@ export function RecentArticles({ lang }: { lang: Locale }) {
                 </LocalizedLink>
 
                 <div className="p-6">
-                  <p className="text-sm text-gray-400 mb-2">
+                  <p className="t-caption text-tertiary mb-2">
                     {new Date(pub.date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
                       year: 'numeric',
                       month: 'long',
@@ -68,18 +68,18 @@ export function RecentArticles({ lang }: { lang: Locale }) {
                   </p>
 
                   <LocalizedLink href={`/publications/${pub.slug}/`}>
-                    <h3 className="text-lg font-bold text-black group-hover:text-navy transition-colors duration-200 mb-2 leading-tight line-clamp-2">
+                    <h3 className="t-heading text-primary group-hover:text-secondary transition-colors duration-200 mb-2 line-clamp-2">
                       {pub.headline}
                     </h3>
                   </LocalizedLink>
 
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-2">
+                  <p className="t-caption text-secondary mb-4 line-clamp-2">
                     {pub.subheadline}
                   </p>
 
                   <LocalizedLink
                     href={`/publications/${pub.slug}/`}
-                    className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light transition-colors duration-200"
+                    className="inline-flex items-center t-caption text-primary hover:text-secondary hover:underline hover:underline-offset-4 transition-colors duration-200"
                   >
                     {lang === 'fr' ? 'Lire la suite' : 'Read more'}
                     <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />

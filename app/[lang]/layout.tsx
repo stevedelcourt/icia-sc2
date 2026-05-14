@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
-import { Work_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import ScrollGradient from '@/components/ScrollGradient'
 import SpeedBanner from '@/components/SpeedBanner'
-import CookieConsentBanner from '@/components/CookieConsent'
+import { CookieConsentBanner } from '@/components/CookieConsentClient'
 import { I18nProvider } from '@/lib/i18n'
 import { LangSetter } from '@/components/LangSetter'
 import { t, type Locale } from '@/generated/content'
 import '@/app/globals.css'
 
-const workSans = Work_Sans({
-  weight: ['400', '500', '600', '700'],
+const inter = Inter({
+  weight: ['300', '400', '500', '600'],
   subsets: ['latin'],
-  variable: '--font-work-sans',
+  variable: '--font-inter',
 })
 
 export async function generateStaticParams() {
@@ -140,7 +140,7 @@ export default function RootLayout({
         name: t(lang, 'layout.ld_json.org.location.name'),
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '4 Bd Euroméditerranée',
+          streetAddress: '4 boulevard Jacques Saadé',
           addressLocality: t(lang, 'layout.ld_json.org.location.city'),
           addressRegion: 'Bouches-du-Rhône',
           postalCode: '13002',
@@ -186,8 +186,8 @@ export default function RootLayout({
   }
 
   return (
-    <html lang={lang} className={workSans.variable}>
-      <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+    <html lang={lang} className={inter.variable}>
+      <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Inter, sans-serif' }}>
         <LangSetter lang={lang} />
         <Script
           type="application/ld+json"

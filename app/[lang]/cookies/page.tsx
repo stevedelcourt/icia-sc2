@@ -6,21 +6,21 @@ export default function Cookies({ params }: { params: { lang: string } }) {
   return (
     <>
       <Header />
-      <main className="pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl  text-black mb-12">{t(params.lang as Locale, 'cookies.title')}</h1>
-          <div className="prose prose-lg max-w-none text-[#666666]">
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'cookies.definition.title')}</h2>
+      <main className="section pt-16">
+        <div className="container-mentivis">
+          <h1 className="t-display text-primary mb-12">{t(params.lang as Locale, 'cookies.title')}</h1>
+          <div className="prose prose-lg max-w-none">
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'cookies.definition.title')}</h2>
             <p>{t(params.lang as Locale, 'cookies.definition.text')}</p>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'cookies.utilises.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'cookies.utilises.title')}</h2>
             <p>{t(params.lang as Locale, 'cookies.utilises.text')}</p>
             <ul className="list-disc pl-6">
               <li><strong>{t(params.lang as Locale, 'cookies.essentiels')} :</strong> {t(params.lang as Locale, 'cookies.essentiels_text')}</li>
               <li><strong>{t(params.lang as Locale, 'cookies.analytiques')} :</strong> {t(params.lang as Locale, 'cookies.analytiques_text')}</li>
             </ul>
             
-            <h2 className="text-xl font-medium text-black mt-8 mb-4">{t(params.lang as Locale, 'cookies.gestion.title')}</h2>
+            <h2 className="t-heading text-primary mt-8 mb-4">{t(params.lang as Locale, 'cookies.gestion.title')}</h2>
             <p>{t(params.lang as Locale, 'cookies.gestion.text')}</p>
           </div>
         </div>

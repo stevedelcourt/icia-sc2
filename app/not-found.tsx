@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { I18nProvider, useT, LocalizedLink } from '@/lib/i18n'
@@ -12,7 +11,7 @@ function NotFoundContent() {
     <>
       <meta name="robots" content="noindex" />
       <Header />
-      <div className="min-h-screen bg-[#bdf5ab] flex flex-col items-center justify-center p-8 text-center">
+      <div className="min-h-screen bg-[#fec302] flex flex-col items-center justify-center p-8 text-center">
         <div className="mb-8">
           <Picture
             src="/images/808.webp"
@@ -33,13 +32,13 @@ function NotFoundContent() {
 
         <div className="flex gap-4 relative z-10">
           <LocalizedLink
-            href="/"
+            href="/fr/"
             className="px-8 py-4 bg-black text-white text-lg hover:bg-gray-800 transition-colors"
           >
             {t('not_found.cta_home')}
           </LocalizedLink>
           <LocalizedLink
-            href="/contact"
+            href="/fr/contact"
             className="px-8 py-4 border-2 border-black text-black text-lg hover:bg-black hover:text-white transition-colors"
           >
             {t('not_found.cta_contact')}
@@ -61,11 +60,8 @@ function NotFoundContent() {
 }
 
 export default function NotFound() {
-  const pathname = usePathname()
-  const lang = pathname?.startsWith('/en/') ? 'en' : 'fr'
-
   return (
-    <I18nProvider lang={lang}>
+    <I18nProvider lang="fr">
       <NotFoundContent />
     </I18nProvider>
   )

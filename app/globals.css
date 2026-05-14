@@ -3,18 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --bg: #FAFAF7;
-  --bg-card: #ffffff;
-  --text: #191919;
-  --text-muted: #666663;
-  --border: #E5E4DF;
-  --accent: #00255D;
-  --accent-hover: #001A3A;
-  --error: #D92A1C;
-  --success: #3a7f5c;
-  --gradient-start: #aebddb;
-  --gradient-mid: #e5e5e0;
-  --gradient-end: #ebe9e6;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-warm: #f5f3f1;
+  --text-primary: #000000;
+  --text-secondary: #4e4e4e;
+  --text-tertiary: #777169;
+  --border-light: #e5e5e5;
+
+  --container-max: 1240px;
+  --container-wide: 1440px;
+  --grid-margin: clamp(1.5rem, 5vw, 5rem);
+  --section-gap: clamp(6rem, 12vw, 10rem);
+  --section-gap-sm: clamp(4rem, 8vw, 6rem);
+
+  --r-card: 16px;
+  --r-pill: 8px;
+
+  --shadow-card: rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.04) 0px 4px 4px;
+  --shadow-card-full: rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px;
 }
 
 * {
@@ -71,65 +78,40 @@ html {
   box-shadow: none !important;
 }
 
-.gradient-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transition: background 0.3s ease-out;
-}
 
-.page-scroll-gradient {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
-  background: linear-gradient(180deg, #aebddb 0%, #d5d8de 40%, #ebe9e6 80%, #f0f0f0 100%);
-  pointer-events: none;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-scroll {
-  animation: scroll 20s linear infinite;
-}
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
+  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
   line-height: 1.2;
+  color: var(--text-primary);
+  text-wrap: balance;
 }
 
-.font-stats {
-  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
-}
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.03em;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: -0.02em;
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -139,7 +121,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--text-secondary);
 }
 
 button {
@@ -155,13 +137,13 @@ input, textarea, select {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--text-primary);
   outline-offset: 2px;
 }
 
 ::selection {
   background-color: rgba(0, 0, 0, 0.1);
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -177,11 +159,11 @@ input, textarea, select {
   }
   
   h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -196,9 +178,9 @@ input, textarea, select {
 .prose h4,
 .prose h5,
 .prose h6 {
-  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
-  color: var(--text);
+  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  color: var(--text-primary);
   margin-top: 2em;
   margin-bottom: 0.75em;
 }
@@ -221,21 +203,22 @@ input, textarea, select {
 }
 
 .prose strong {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 700;
 }
 
 .prose a {
-  color: var(--accent);
+  color: var(--text-primary);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .prose a:hover {
-  color: var(--accent-hover);
+  color: var(--text-secondary);
 }
 
 .prose blockquote {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--text-primary);
   padding-left: 1.5em;
   font-style: italic;
   color: #666666;
@@ -251,7 +234,7 @@ input, textarea, select {
   background-color: #f0f0eb;
   padding: 0.2em 0.4em;
   font-size: 0.9em;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .prose pre {
@@ -268,6 +251,181 @@ input, textarea, select {
 
 .prose hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-light);
   margin: 3em 0;
+}
+
+/* Color utilities */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-warm { background-color: var(--bg-warm); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+/* Layout utilities */
+.container-mentivis {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+.container-wide {
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+.section {
+  padding: var(--section-gap) 0;
+}
+
+.section-sm {
+  padding: var(--section-gap-sm) 0;
+}
+
+/* Typography utilities */
+.t-display {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+.t-hero {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+.t-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+.t-heading {
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+.t-lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.t-caption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
+.t-micro {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+.t-nav {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.t-btn {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* Card shadow utilities */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-card-full {
+  box-shadow: var(--shadow-card-full);
+}
+
+/* Button base styles */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-pill);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 12px 20px;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-black {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-black:hover {
+  background-color: #222222;
+}
+
+.btn-warm {
+  background-color: var(--bg-warm);
+  color: var(--text-primary);
+}
+
+.btn-warm:hover {
+  background-color: #eae6e0;
+}
+
+.btn-chevron {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.btn-outline-shadow {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid #d4d4d4;
+  box-shadow: var(--shadow-card);
+}
+
+.btn-outline-shadow:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  box-shadow: var(--shadow-card-full);
+}
+
+.scroll-expand-content,
+.scroll-expand-content .t-lead,
+.scroll-expand-content .t-caption,
+.scroll-expand-content .t-micro,
+.scroll-expand-content .t-nav,
+.scroll-expand-content .t-display,
+.scroll-expand-content .t-title,
+.scroll-expand-content .t-heading,
+.scroll-expand-content .t-hero {
+  color: #ffffff;
 }

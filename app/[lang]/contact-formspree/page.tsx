@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import { Button } from '@/components/ui/Button'
 
 export default function ContactPage() {
   const t = useT()
@@ -72,22 +72,22 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
-        <div className="max-w-2xl mx-auto px-8">
+      <main className="pt-section pb-section-sm bg-secondary">
+        <div className="max-w-2xl mx-auto" style={{ paddingLeft: 'var(--grid-margin)', paddingRight: 'var(--grid-margin)' }}>
           {submitStatus === 'success' ? (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16"
             >
-              <div className="w-16 h-16 mx-auto mb-6 border-2 border-gray-200 flex items-center justify-center text-2xl text-gray-400">
+              <div className="w-16 h-16 mx-auto mb-6 border-2 border-border flex items-center justify-center text-2xl text-tertiary">
                 ✓
               </div>
-              <h2 className="text-3xl  text-black mb-4">{t('contact_formspree.success.title')}</h2>
-              <p className="text-gray-500 mb-8">
+              <h2 className="t-display text-primary mb-4">{t('contact_formspree.success.title')}</h2>
+              <p className="text-secondary mb-8">
                 {t('contact_formspree.success.body')}
               </p>
-              <LocalizedLink href="/" className="text-base text-black hover:underline transition-colors duration-200">
+              <LocalizedLink href="/" className="text-base text-primary hover:underline transition-colors duration-200">
                 {t('contact_formspree.success.retour')}
               </LocalizedLink>
             </motion.div>
@@ -96,15 +96,15 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('contact_formspree.label')}</p>
-              <h1 className="text-3xl md:text-4xl  text-black mb-8">
+              <p className="t-caption uppercase tracking-widest mb-4">{t('contact_formspree.label')}</p>
+              <h1 className="t-display text-primary mb-8">
                 {t('contact_formspree.title')}
               </h1>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.prenom')}</label>
+                    <label htmlFor="firstName" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.prenom')}</label>
                     <input 
                       type="text" 
                       id="firstName" 
@@ -112,11 +112,11 @@ export default function ContactPage() {
                       required
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.nom')}</label>
+                    <label htmlFor="lastName" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.nom')}</label>
                     <input 
                       type="text" 
                       id="lastName" 
@@ -124,13 +124,13 @@ export default function ContactPage() {
                       required
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.email')}</label>
+                  <label htmlFor="email" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.email')}</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -138,12 +138,12 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="entreprise" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.entreprise')}</label>
+                  <label htmlFor="entreprise" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.entreprise')}</label>
                   <input 
                     type="text" 
                     id="entreprise" 
@@ -151,19 +151,19 @@ export default function ContactPage() {
                     required
                     value={formData.entreprise}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="secteur" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.secteur')}</label>
+                  <label htmlFor="secteur" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.secteur')}</label>
                   <select 
                     id="secteur" 
                     name="secteur"
                     required
                     value={formData.secteur}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                   >
                     <option value="">{t('contact_formspree.form.select_default')}</option>
                     <option value="pmi-eti">{t('contact_formspree.form.secteur.pme')}</option>
@@ -176,14 +176,14 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="effectif" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.effectif')}</label>
+                  <label htmlFor="effectif" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.effectif')}</label>
                   <select 
                     id="effectif" 
                     name="effectif"
                     required
                     value={formData.effectif}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                   >
                     <option value="">{t('contact_formspree.form.select_default')}</option>
                     <option value="1-10">{t('contact_formspree.form.effectif.1_10')}</option>
@@ -195,14 +195,14 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="priorite" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.priorite')}</label>
+                  <label htmlFor="priorite" className="block text-sm text-secondary mb-2">{t('contact_formspree.form.priorite')}</label>
                   <select 
                     id="priorite" 
                     name="priorite"
                     required
                     value={formData.priorite}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none transition-colors duration-200"
                   >
                     <option value="">{t('contact_formspree.form.select_default')}</option>
                     <option value="comprendre">{t('contact_formspree.form.priorite.ai_act')}</option>
@@ -224,21 +224,20 @@ export default function ContactPage() {
                       onChange={handleChange}
                       className="mt-1"
                     />
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-secondary">
                       {t('contact_formspree.form.consent')}
                     </span>
                   </label>
                 </div>
 
-                <motion.button 
+                <Button
                   type="submit"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
                   disabled={isSubmitting}
-                  className="w-full px-8 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50"
+                  className="w-full justify-center"
+                  arrow={false}
                 >
                   {isSubmitting ? t('contact_formspree.form.submitting') : t('contact_formspree.form.submit')}
-                </motion.button>
+                </Button>
               </form>
             </motion.div>
           )}

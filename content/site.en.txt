@@ -1073,7 +1073,10 @@ An error occurred. Please try again or contact us directly.
 Campus Cyber.IA Euromed Marseille
 
 # contact.adresse.ligne
-4 Bd Euroméditerranée, Quai d'Arenc, 13002 Marseille
+4 boulevard Jacques Saadé, 13002 Marseille
+
+# contact.adresse.google_maps
+View on Google Maps
 
 # contact.adresse.itineraire
 Get directions on OpenStreetMap

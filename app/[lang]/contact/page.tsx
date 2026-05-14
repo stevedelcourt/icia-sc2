@@ -1,13 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { MapTilerMap } from '@/components/MapTilerMap'
+import { Button } from '@/components/ui/Button'
+
+const OpenFreeMap = dynamic(() => import('@/components/OpenFreeMap').then(mod => ({ default: mod.OpenFreeMap })), { ssr: false })
 
 export default function ContactPage() {
   const t = useT()
@@ -90,7 +92,7 @@ export default function ContactPage() {
       },
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '4 Bd Euroméditerranée, Quai d\'Arenc',
+        streetAddress: '4 boulevard Jacques Saadé',
         addressLocality: 'Marseille',
         postalCode: '13002',
         addressCountry: 'FR'
@@ -102,46 +104,47 @@ export default function ContactPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
-        <div className="max-w-2xl mx-auto px-8">
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-1 pt-section pb-section-sm bg-secondary">
+          <div className="max-w-2xl mx-auto" style={{ paddingLeft: 'var(--grid-margin)', paddingRight: 'var(--grid-margin)' }}>
           {submitStatus === 'success' ? (
             <div className="text-center py-16">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-                className="w-16 h-16 mx-auto mb-6 border-2 border-[#00255D] flex items-center justify-center text-2xl text-[#00255D]"
+                className="w-16 h-16 mx-auto mb-6 border-2 border-border flex items-center justify-center text-2xl text-primary"
               >
                 ✓
               </motion.div>
               <StaggerBlock delay={0.15}>
-                <h2 className="text-3xl text-black mb-4">{t('contact.success.title')}</h2>
+                <h2 className="t-display text-primary mb-4">{t('contact.success.title')}</h2>
               </StaggerBlock>
               <StaggerBlock delay={0.3}>
-                <p className="text-gray-500 mb-8">
+                <p className="text-secondary mb-8">
                   {t('contact.success.body')}
                 </p>
               </StaggerBlock>
               <StaggerBlock delay={0.4}>
-                <LocalizedLink href="/" className="text-base text-black hover:underline transition-colors duration-200">
+                <LocalizedLink href="/" className="text-base text-primary hover:underline transition-colors duration-200">
                   {t('contact.success.retour')}
                 </LocalizedLink>
               </StaggerBlock>
             </div>
           ) : (
             <StaggerBlock delay={0}>
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('contact.label')}</p>
-              <h1 className="text-3xl md:text-4xl text-black mb-4">
+              <p className="t-caption uppercase tracking-widest mb-4">{t('contact.label')}</p>
+              <h1 className="t-display text-primary mb-4">
                 {t('contact.title')}
               </h1>
-              <p className="text-lg text-gray-500 mb-10">
+              <p className="t-lead text-secondary mb-10">
                 {t('contact.subtitle')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="group">
-                    <label htmlFor="firstname" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.prenom')}</label>
+                    <label htmlFor="firstname" className="block text-sm text-secondary mb-2 transition-colors duration-200 group-focus-within:text-primary">{t('contact.form.prenom')}</label>
                     <input
                       type="text"
                       id="firstname"
@@ -149,11 +152,11 @@ export default function ContactPage() {
                       required
                       value={formData.firstname}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
+                      className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none ring-0 focus:ring-0 transition-all duration-200"
                     />
                   </div>
                   <div className="group">
-                    <label htmlFor="lastname" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.nom')}</label>
+                    <label htmlFor="lastname" className="block text-sm text-secondary mb-2 transition-colors duration-200 group-focus-within:text-primary">{t('contact.form.nom')}</label>
                     <input
                       type="text"
                       id="lastname"
@@ -161,13 +164,13 @@ export default function ContactPage() {
                       required
                       value={formData.lastname}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
+                      className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none ring-0 focus:ring-0 transition-all duration-200"
                     />
                   </div>
                 </div>
 
                 <div className="group">
-                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.email')}</label>
+                  <label htmlFor="email" className="block text-sm text-secondary mb-2 transition-colors duration-200 group-focus-within:text-primary">{t('contact.form.email')}</label>
                   <input
                     type="email"
                     id="email"
@@ -175,12 +178,12 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none ring-0 focus:ring-0 transition-all duration-200"
                   />
                 </div>
 
                 <div className="group">
-                  <label htmlFor="organisation" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.organisation')}</label>
+                  <label htmlFor="organisation" className="block text-sm text-secondary mb-2 transition-colors duration-200 group-focus-within:text-primary">{t('contact.form.organisation')}</label>
                   <input
                     type="text"
                     id="organisation"
@@ -188,19 +191,19 @@ export default function ContactPage() {
                     required
                     value={formData.organisation}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none ring-0 focus:ring-0 transition-all duration-200"
                   />
                 </div>
 
                 <div className="group">
-                  <label htmlFor="message" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.message')} <span className="text-gray-400">{t('contact.form.message_optional')}</span></label>
+                  <label htmlFor="message" className="block text-sm text-secondary mb-2 transition-colors duration-200 group-focus-within:text-primary">{t('contact.form.message')} <span className="text-tertiary">{t('contact.form.message_optional')}</span></label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200 resize-none"
+                    className="w-full px-4 py-3 border border-border bg-primary focus:border-primary outline-none ring-0 focus:ring-0 transition-all duration-200 resize-none"
                   />
                 </div>
 
@@ -214,20 +217,19 @@ export default function ContactPage() {
                     className="mt-1 w-4 h-4"
                     required
                   />
-                  <label htmlFor="consent" className="text-sm text-gray-500">
+                  <label htmlFor="consent" className="text-sm text-secondary">
                     {t('contact.form.consent')}
                   </label>
                 </div>
 
-                <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-8 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50"
-                  >
-                    {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
-                  </button>
-                </motion.div>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full justify-center"
+                  arrow={false}
+                >
+                  {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
+                </Button>
 
                 {submitStatus === 'error' && (
                   <p className="text-red-500 text-center">
@@ -236,43 +238,34 @@ export default function ContactPage() {
                 )}
               </form>
 
-              <div className="mt-16 pt-12 border-t border-gray-200">
-                <img src="/MariusIA-logo.svg" alt="Marius IA" className="h-16 w-auto mb-2" />
-                <p className="text-base text-gray-600 mb-2">{t('contact.phone')}</p>
-                <LocalizedLink href="/contact" className="text-base text-gray-600 hover:text-black transition-colors duration-200 block mb-4">
+              <div className="mt-16 pt-12 border-t border-border">
+                <img src="/MariusIA-logo.svg" alt="Marius IA" className="h-16 w-auto mb-2" width="200" height="56" />
+                <p className="text-base text-secondary mb-2">{t('contact.phone')}</p>
+                <LocalizedLink href="/contact" className="text-base text-secondary hover:text-primary transition-colors duration-200 block mb-4">
                   {t('contact.email.local')}&#x40;{t('contact.email.domain')}
                 </LocalizedLink>
-                <p className="text-sm font-bold text-gray-800">{t('contact.adresse.title')}</p>
-                <p className="text-sm text-gray-500">{t('contact.adresse.ligne')}</p>
+                <p className="text-sm font-bold text-primary">{t('contact.adresse.title')}</p>
+                <p className="text-sm text-secondary">{t('contact.adresse.ligne')}</p>
+                <a
+                  href="https://maps.app.goo.gl/nw2Ugmzh1av1gfku8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline inline-block mt-1"
+                >
+                  {t('contact.adresse.google_maps')}
+                </a>
               </div>
 
-              <AnimatedDivider className="mt-16 pt-12 border-t border-gray-200" />
-              <div className="w-full aspect-square border border-gray-200 overflow-hidden">
-                <MapTilerMap />
+              <AnimatedDivider className="mt-16 pt-12 border-t border-border" />
+              <div className="w-full aspect-square border border-border overflow-hidden">
+                <OpenFreeMap />
               </div>
-              <p className="text-sm text-gray-500 mt-4">
-                <a
-                  href="https://www.openstreetmap.org/directions?from=&to=43.313887%2C5.366328"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:underline"
-                >
-                  {t('contact.adresse.itineraire')}
-                </a>
-                {' • '}
-                <a
-                  href="https://campuscyber.fr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:underline"
-                >
-                  {t('contact.adresse.site')}
-                </a>
-              </p>
+              
             </StaggerBlock>
           )}
         </div>
       </main>
+      </div>
       <Footer />
     </>
   )

@@ -78,53 +78,78 @@ export function Header() {
     setExpandedMenu(null)
   }
 
-  const headerBg = () => {
-    if (isHomePage) return isScrolled ? '#ffffff' : '#aebddb'
-    if (isActeursPage) return isScrolled ? '#ffffff' : '#aebddb'
-    if (isOffresPage) return isScrolled ? '#ffffff' : '#bdf5ab'
-    return 'white'
-  }
+  const headerBg = () => '#ffffff'
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 py-3"
-      style={{ backgroundColor: headerBg() }}>
-      <div className="max-w-6xl mx-auto px-4 xs:px-6 sm:px-8">
-        <div className="flex items-center justify-between">
-          <AnimatedLogo />
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-16"
+      style={{ 
+        backgroundColor: headerBg(),
+        boxShadow: isScrolled ? 'var(--shadow-card)' : 'none',
+        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+      }}>
+      <div className="container-mentivis h-full">
+        <div className="flex items-center justify-between h-full">
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <AnimatedLogo />
+          </motion.div>
 
           <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <LocalizedLink
+            {navLinks.map((link, i) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                className="text-base font-medium text-black hover:text-gray-600 transition-colors duration-200 relative group"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
-              </LocalizedLink>
+                <LocalizedLink
+                  href={link.href}
+                  className="t-nav text-primary hover:text-secondary hover:underline hover:underline-offset-4 transition-colors duration-200"
+                >
+                  {link.label}
+                </LocalizedLink>
+              </motion.div>
             ))}
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href={getLangSwitchHref()}
-              className="text-sm font-medium text-black hover:text-gray-600 uppercase transition-colors duration-200"
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
             >
-              {lang === 'fr' ? 'EN' : 'FR'}
-            </Link>
-            <LocalizedLink
-              href="/contact"
-              className="inline-block px-5 py-1.5 xs:px-6 xs:py-2 text-sm font-medium text-[#00255D] border-2 border-[#00255D] hover:bg-[#00255D] hover:text-white transition-all duration-200"
+              <Link
+                href={getLangSwitchHref()}
+                className="t-nav text-tertiary hover:text-primary hover:underline hover:underline-offset-4 uppercase transition-colors duration-200"
+              >
+                {lang === 'fr' ? 'EN' : 'FR'}
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              {t('header.cta')}
-            </LocalizedLink>
+              <LocalizedLink
+                href="/contact"
+                className="btn-pill btn-black"
+              >
+                {t('header.cta')}
+                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </LocalizedLink>
+            </motion.div>
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
             <Link
               href={getLangSwitchHref()}
-              className="text-sm font-medium text-black hover:text-gray-600 uppercase transition-colors duration-200"
+              className="text-sm font-medium text-black hover:text-gray-600 hover:underline hover:underline-offset-4 uppercase transition-colors duration-200"
             >
               {lang === 'fr' ? 'EN' : 'FR'}
             </Link>
@@ -166,7 +191,7 @@ export function Header() {
                         <LocalizedLink
                           href={link.href}
                           onClick={closeMenu}
-                          className={`flex-1 text-left text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+                          className={`flex-1 text-left text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 hover:underline hover:underline-offset-4 transition-colors`}
                         >
                           {link.label}
                         </LocalizedLink>
@@ -214,8 +239,8 @@ export function Header() {
                                     className={`block text-base xs:text-lg py-3 ${
                                       isActive
                                         ? 'text-white underline decoration-[#D92A1C] underline-offset-4'
-                                        : 'text-gray-300 hover:text-white'
-                                    } transition-colors`}
+                                        : 'text-gray-300 hover:text-white hover:underline hover:underline-offset-4'
+                                      } transition-colors`}
                                   >
                                     {child.label}
                                   </LocalizedLink>
@@ -230,7 +255,7 @@ export function Header() {
                     <LocalizedLink
                       href={link.href}
                       onClick={closeMenu}
-                      className={`block text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+                      className={`block text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 hover:underline hover:underline-offset-4 transition-colors`}
                     >
                       {link.label}
                     </LocalizedLink>
@@ -240,9 +265,12 @@ export function Header() {
               <LocalizedLink
                 href="/contact"
                 onClick={closeMenu}
-                className="block text-center py-2.5 mt-2 text-sm text-white border-2 border-white rounded-lg hover:bg-white hover:text-[#111827] transition-colors"
+                className="btn-pill btn-black w-full justify-center mt-2"
               >
-            {t('header.cta')}
+                {t('header.cta')}
+                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </LocalizedLink>
             </div>
           </motion.div>

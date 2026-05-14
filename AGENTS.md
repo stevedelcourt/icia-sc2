@@ -32,11 +32,12 @@
 - **Vercel**: Primary hosting (https://icia.vercel.app)
 - **o2switch**: Manual FTP upload from `out/` folder (user deploys manually)
 - **sc2**: Test environment (sc2bovu7233.universe.wf)
-- **sc1**: Production environment (sc1bovu7233.universe.wf)
+- **sc1**: Production environment (sc1bovu7233.universe.wf) — **never deploy to sc1**
 - CI triggers on push to `main`
 
 ## FTP Upload Quirks
 - **Manual FTP deployment**: User deploys manually via FTP (not automated scripts)
+- **IMPORTANT**: `scripts/promote-to-sc1.py` must **never** be used — sc1 is production and must not be touched
 - When adding new asset types (like .avif), ensure they are included in manual upload
 - `ftp_upload.py` has hardcoded credentials and path (`/Users/stv/Documents/zed/icia/out`)
 - Only uploads specific extensions (line 24): `.html .js .css .json .png .jpg .svg .webp .txt .xml .gz .pdf .ico .woff2 .woff .ttf .eot`

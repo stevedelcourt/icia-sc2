@@ -4,7 +4,6 @@ import { ScrollExpandSection } from '@/components/ScrollExpandSection'
 import { AnimatedDivider, FadeIn } from '@/components/Animations'
 import { t, type Locale } from '@/generated/content'
 import { LocalizedLink } from '@/lib/i18n'
-import { ArrowRight } from '@/components/ui/ArrowRight'
 import { Picture } from '@/components/Picture'
 
 export default function AProposPage({ params }: { params: { lang: string } }) {
@@ -22,7 +21,7 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
       logo: 'https://www.mariusia.com/MariusIA-logo.svg',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '4 Bd Euroméditerranée, Quai d\'Arenc',
+        streetAddress: '4 boulevard Jacques Saadé',
         addressLocality: 'Marseille',
         postalCode: '13002',
         addressCountry: 'FR'
@@ -36,38 +35,42 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main className="pt-36 pb-24" style={{ backgroundColor: '#f9f7f3' }}>
-        <div className="max-w-6xl mx-auto px-8">
+      <main className="section pt-16 bg-warm">
+        <div className="container-mentivis">
           <FadeIn>
-            <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t(params.lang as Locale, 'a_propos.label')}</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-black leading-[1.1] mb-16 whitespace-pre-line">
+            <p className="t-caption uppercase tracking-widest mb-4">{t(params.lang as Locale, 'a_propos.label')}</p>
+            <h1 className="t-display text-primary mb-16 whitespace-pre-line">
               {t(params.lang as Locale, 'a_propos.title')}
             </h1>
           </FadeIn>
 
           <div className="grid lg:grid-cols-2 gap-20 mb-24">
             <FadeIn delay={0.1}>
-              <p className="text-xl text-gray-500 leading-relaxed mb-8">
+              <p className="t-lead mb-8">
                 {t(params.lang as Locale, 'a_propos.paragraph.1')}
               </p>
-              <p className="text-lg text-gray-500 leading-relaxed">
+              <p className="t-lead">
                 {t(params.lang as Locale, 'a_propos.paragraph.2')}
               </p>
             </FadeIn>
             <FadeIn delay={0.2} direction="left">
-              <div className="flex items-start gap-12 mb-6" style={{ alignItems: 'flex-start' }}>
+              <div className="flex items-start gap-12 mb-6">
                 <img
                   src="/images/MariusIA-logo-grey-monogram.svg"
                   alt="Marius IA"
                   className="h-[70px] w-auto"
+                  width="70"
+                  height="70"
                 />
                 <img
                   src="/images/cyber-campus-logo.svg"
                   alt="Campus Cyber.AI"
                   className="h-[50px] md:h-[70px] w-auto"
+                  width="150"
+                  height="70"
                 />
               </div>
-              <p className="text-lg text-gray-500 leading-relaxed">
+              <p className="t-lead">
                 {t(params.lang as Locale, 'a_propos.paragraph.3')}
               </p>
             </FadeIn>
@@ -75,21 +78,21 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
 
           <ScrollExpandSection>
             <FadeIn>
-              <p className="text-sm tracking-widest text-gray-500 uppercase mb-4">{t(params.lang as Locale, 'a_propos.institut.label')}</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">{t(params.lang as Locale, 'a_propos.institut.title')}</h2>
+              <p className="t-caption uppercase tracking-widest text-white mb-4">{t(params.lang as Locale, 'a_propos.institut.label')}</p>
+              <h2 className="t-title text-white mb-8">{t(params.lang as Locale, 'a_propos.institut.title')}</h2>
             </FadeIn>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <FadeIn delay={0.1}>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="t-lead text-white">
                   {t(params.lang as Locale, 'a_propos.institut.paragraph.1')}
                 </p>
               </FadeIn>
               <FadeIn delay={0.2} direction="left">
-                <h3 className="text-xl font-bold text-[#00255D] mb-4">{t(params.lang as Locale, 'a_propos.institut.mission_title')}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <h3 className="t-heading text-white mb-4">{t(params.lang as Locale, 'a_propos.institut.mission_title')}</h3>
+                <p className="t-lead text-white mb-6">
                   {t(params.lang as Locale, 'a_propos.institut.mission')}
                 </p>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="t-lead text-white">
                   {t(params.lang as Locale, 'a_propos.institut.vision')}
                 </p>
               </FadeIn>
@@ -100,17 +103,17 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
           <div className="pt-16">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <FadeIn>
-                <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">
+                <h2 className="t-display text-primary mb-8">
                   <a
                     href="https://campuscyber.fr/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-gray-600 transition-colors"
+                    className="hover:text-secondary hover:underline hover:underline-offset-4 transition-colors"
                   >
                     {t(params.lang as Locale, 'a_propos.campus.title')}
                   </a>
                 </h2>
-                <p className="text-lg text-gray-500 leading-relaxed">
+                <p className="t-lead">
                   {t(params.lang as Locale, 'a_propos.campus.paragraph')}
                 </p>
               </FadeIn>
@@ -118,16 +121,18 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
                 <Picture
                   src="/images/cybercampus.webp"
                   alt="Campus Cyber.AI"
-                  className="w-full md:w-[400px] h-auto object-cover self-start"
+                  className="w-full md:w-[400px] h-auto object-cover self-start ml-auto rounded-card"
                 />
               </FadeIn>
             </div>
           </div>
 
-          <FadeIn delay={0.1} className="mt-16 text-center">
-            <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+          <FadeIn delay={0.1} className="mt-16">
+            <LocalizedLink href="/contact" className="btn-pill btn-black">
               {t(params.lang as Locale, 'a_propos.cta')}
-              <span className="shrink-0"><ArrowRight className="ml-2" /></span>
+              <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </LocalizedLink>
           </FadeIn>
         </div>

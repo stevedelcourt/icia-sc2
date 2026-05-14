@@ -1,48 +1,15 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useParams } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { StaggerBlock, AnimatedDivider, AnimatedCard } from '@/components/Animations'
+import { StaggerBlock, AnimatedCard } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { ArrowRight } from '@/components/ui/ArrowRight'
 import { RecentArticles } from '@/components/RecentArticles'
+import { BauhausHero } from '@/components/BauhausHero'
 import { Picture } from '@/components/Picture'
-
-const COLORS = {
-  blue: { r: 174, g: 189, b: 219 },
-  cream: { r: 249, g: 247, b: 243 },
-  white: { r: 255, g: 255, b: 255 },
-}
-
-function interpolateColor(progress: number): string {
-  const { r, g, b } = COLORS.blue
-  const { r: r2, g: g2, b: b2 } = COLORS.cream
-  const eased = 1 - Math.pow(1 - progress, 3)
-  const R = Math.round(r + (r2 - r) * eased)
-  const G = Math.round(g + (g2 - g) * eased)
-  const B = Math.round(b + (b2 - b) * eased)
-  return `rgb(${R}, ${G}, ${B})`
-}
-
-function interpolateToWhite(progress: number): string {
-  const { r, g, b } = COLORS.blue
-  const { r: r2, g: g2, b: b2 } = COLORS.white
-  const eased = 1 - Math.pow(1 - progress, 3)
-  const R = Math.round(r + (r2 - r) * eased)
-  const G = Math.round(g + (g2 - g) * eased)
-  const B = Math.round(b + (b2 - b) * eased)
-  return `rgb(${R}, ${G}, ${B})`
-}
-
-const partners = [
-  '/partners/tertium-invest.webp',
-  '/partners/ionis-education-group.webp',
-  '/partners/airwell.webp',
-  '/partners/mk2-.webp',
-]
 
 export default function Home() {
   const t = useT()
@@ -64,7 +31,7 @@ export default function Home() {
       price: t('homepage.offres.1.price'),
       duration: t('homepage.offres.1.duration'),
       href: '/diagnostic',
-      image: '/images/IA.webp'
+      img: '/images/illustrations/01- ia.webp'
     },
     {
       num: t('homepage.offres.2.num'),
@@ -74,7 +41,7 @@ export default function Home() {
       price: t('homepage.offres.2.price'),
       duration: t('homepage.offres.2.duration'),
       href: '/formations',
-      image: '/images/book.webp'
+      img: '/images/illustrations/02-equipe.webp'
     },
     {
       num: t('homepage.offres.3.num'),
@@ -84,7 +51,7 @@ export default function Home() {
       price: t('homepage.offres.3.price'),
       duration: t('homepage.offres.3.duration'),
       href: '/transformation',
-      image: '/images/tree.webp'
+      img: '/images/illustrations/03-transfo.webp'
     },
     {
       num: t('homepage.offres.4.num'),
@@ -94,7 +61,7 @@ export default function Home() {
       price: t('homepage.offres.4.price'),
       duration: t('homepage.offres.4.duration'),
       href: '/partenaire',
-      image: '/images/team-work.webp'
+      img: '/images/illustrations/04-expert.webp'
     },
   ]
 
@@ -104,87 +71,49 @@ export default function Home() {
       desc: t('homepage.pour_qui.1.desc'),
       href: '/entreprises',
       anchor: 'entreprises',
-      image: '/images/overworked.webp'
+      img: '/images/illustrations/pme-tpe.webp'
     },
     {
       title: t('homepage.pour_qui.2.title'),
       desc: t('homepage.pour_qui.2.desc'),
       href: '/professions-liberales',
       anchor: 'professions-liberales',
-      image: '/images/lawyer.webp'
+      img: '/images/illustrations/lawyer.webp'
     },
     {
       title: t('homepage.pour_qui.3.title'),
       desc: t('homepage.pour_qui.3.desc'),
       href: '/education',
       anchor: 'education',
-      image: '/images/educa.webp'
+      img: '/images/illustrations/etudiant.webp'
     },
     {
       title: t('homepage.pour_qui.4.title'),
       desc: t('homepage.pour_qui.4.desc'),
       href: '/secteurs-creatifs',
       anchor: 'secteurs-creatifs',
-      image: '/images/music.webp'
+      img: '/images/illustrations/crea.webp'
     },
     {
       title: t('homepage.pour_qui.5.title'),
       desc: t('homepage.pour_qui.5.desc'),
       href: '/pouvoirs-publics',
       anchor: 'pouvoirs-publics',
-      image: '/images/crea.webp'
+      img: '/images/illustrations/collectivite.webp'
     },
     {
       title: t('homepage.pour_qui.6.title'),
       desc: t('homepage.pour_qui.6.desc'),
       href: '/citoyens',
       anchor: 'citoyen',
-      image: '/images/grandpublic.webp'
+      img: '/images/illustrations/public.webp'
     },
   ]
 
-  const navLinks = [
-    { label: t('homepage.nav.accueil'), href: '#accueil' },
-    { label: t('homepage.nav.piliers'), href: '#piliers' },
-    { label: t('homepage.nav.pour_qui'), href: '#acteurs' },
-    { label: t('homepage.nav.offres'), href: '#offres' },
-    { label: t('homepage.nav.contact'), href: '#contact' },
-  ]
-
   const heroRef = useRef<HTMLElement>(null)
-  const offreRef = useRef<HTMLElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [offreProgress, setOffreProgress] = useState(0)
 
   const { scrollYProgress: heroScrollProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroImageY = useTransform(heroScrollProgress, [0, 1], [0, -80])
-
-  useEffect(() => {
-    const hero = heroRef.current
-    const offre = offreRef.current
-    if (!hero || !offre) return
-
-    const handleScroll = () => {
-      const rect1 = hero.getBoundingClientRect()
-      const heroHeight = rect1.height
-      const maxScroll1 = heroHeight * 1.5
-      const scrolled1 = Math.max(0, -rect1.top)
-      setScrollProgress(Math.min(scrolled1 / maxScroll1, 1))
-
-      const rect2 = offre.getBoundingClientRect()
-      const offreHeight = rect2.height
-      const maxScroll2 = offreHeight * 1.5
-      const scrolled2 = Math.max(0, -rect2.top)
-      setOffreProgress(Math.min(scrolled2 / maxScroll2, 1))
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const heroBackground = interpolateColor(scrollProgress)
-  const offreBackground = interpolateToWhite(offreProgress)
 
   return (
     <>
@@ -205,43 +134,44 @@ export default function Home() {
         }}
       />
       <Header />
-      <main className="pt-14">
+      <main className="pt-16">
 
+        {/* Hero */}
         <section
           id="accueil"
           ref={heroRef}
-          className="py-16 md:py-20 border-b border-gray-200"
-          style={{ backgroundColor: heroBackground }}
+          className="section bg-primary"
         >
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="grid lg:grid-cols-2 gap-20 items-start">
-              <StaggerBlock delay={0}>
-                <p className="text-sm tracking-widest uppercase mb-8" style={{ color: '#000000' }}>{t('homepage.hero.label')}</p>
-              </StaggerBlock>
-            </div>
-            <div className="grid lg:grid-cols-2 gap-20 items-start">
+          <div className="container-mentivis">
+            <StaggerBlock delay={0}>
+              <p className="t-caption uppercase tracking-widest mb-6">{t('homepage.hero.label')}</p>
+            </StaggerBlock>
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div>
                 <StaggerBlock delay={0.1}>
-                  <h1 className="text-5xl md:text-6xl font-bold text-black leading-[1.1] mb-8 whitespace-pre-line">
+                  <h1 className="t-hero mb-6 whitespace-pre-line text-primary">
                     {t('homepage.hero.title')}
                   </h1>
                 </StaggerBlock>
                 <StaggerBlock delay={0.2}>
-                  <p className="text-xl text-gray-500 mb-8 max-w-xl leading-relaxed">
+                  <p className="t-lead mb-6 max-w-xl">
                     {t('homepage.hero.subtitle')}
                   </p>
                 </StaggerBlock>
                 <StaggerBlock delay={0.3}>
-                  <p className="text-xl text-gray-500 mb-6 max-w-lg leading-relaxed">
+                  <p className="t-lead mb-8 max-w-lg">
                     {t('homepage.hero.body')}
                   </p>
                 </StaggerBlock>
                 <StaggerBlock delay={0.4}>
                   <LocalizedLink
                     href="/#acteurs"
-                    className="inline-block px-8 py-4 text-lg text-[#00255D] bg-[#bdf5ab] hover:bg-[#a8e6a0] transition-colors duration-200 font-semibold"
+                    className="btn-pill btn-black"
                   >
                     {t('homepage.hero.cta')}
+                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </LocalizedLink>
                 </StaggerBlock>
               </div>
@@ -249,135 +179,108 @@ export default function Home() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative overflow-hidden rounded-sm"
-                whileHover={{ scale: 1.03 }}
+                className="relative"
+                style={{ y: heroImageY }}
               >
-                <Picture
-                  src="/images/paperplane.webp"
-                  alt="Institut de l'IA"
-                  className="w-full aspect-square object-contain shadow-xl"
-                  fetchPriority="high"
-                />
+                <div className="w-full aspect-square overflow-hidden">
+                  <BauhausHero />
+                </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        <section id="piliers" className="py-16 md:py-20" style={{ backgroundColor: '#f9f7f3' }}>
-          <div className="max-w-6xl mx-auto px-8">
-            <StaggerBlock delay={0} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">{t('homepage.piliers.title')}</h2>
+        {/* Piliers */}
+        <section id="piliers" className="section bg-secondary">
+          <div className="container-mentivis">
+            <StaggerBlock delay={0} className="mb-12">
+              <h2 className="t-display text-primary">{t('homepage.piliers.title')}</h2>
             </StaggerBlock>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6">
               {piliers.map((p, i) => (
-                <AnimatedCard key={p.title} id={p.anchor} delay={i * 0.1} className="p-10 bg-white hover:shadow-xl transition-all duration-300">
-                  <h3 className="text-3xl font-bold text-black mb-4">{p.title}</h3>
-                  <p className="text-gray-500">{p.desc}</p>
+                <AnimatedCard key={p.title} id={p.anchor} delay={i * 0.1} className="p-8 bg-primary rounded-card shadow-card hover:shadow-card-full transition-shadow duration-200">
+                  <h3 className="t-heading text-primary mb-3">{p.title}</h3>
+                  <p className="t-caption">{p.desc}</p>
                 </AnimatedCard>
               ))}
             </div>
           </div>
         </section>
 
-        <AnimatedDivider />
-
-        <section
-          id="acteurs"
-          ref={offreRef}
-          className="py-16 md:py-20"
-          style={{ backgroundColor: offreBackground }}
-        >
-          <div className="max-w-6xl mx-auto px-8">
-            <StaggerBlock delay={0} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">{t('homepage.pour_qui.title')}</h2>
-              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">{t('homepage.pour_qui.subtitle')}</p>
+        {/* Acteurs */}
+        <section id="acteurs" className="section bg-primary">
+          <div className="container-mentivis">
+            <StaggerBlock delay={0} className="mb-12">
+              <h2 className="t-display text-primary mb-3">{t('homepage.pour_qui.title')}</h2>
+              <p className="t-lead max-w-2xl">{t('homepage.pour_qui.subtitle')}</p>
             </StaggerBlock>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {acteurs.map((acteur, i) => (
                 <AnimatedCard key={acteur.title} id={acteur.anchor} delay={i * 0.05} whileHover={{ y: -4 }}>
-                  <LocalizedLink href={acteur.href} className="group block p-8 bg-white hover:shadow-xl transition-all duration-200 h-full">
-                    {acteur.image && <div className="w-full aspect-square mb-4 overflow-hidden"><Picture src={acteur.image} alt={acteur.title} className="w-full h-full object-contain" /></div>}
-                    <h3 className="text-xl font-bold text-black mb-3 group-hover:text-gray-600 transition-colors duration-200">{acteur.title}</h3>
-                    <p className="text-gray-500 text-sm">{acteur.desc}</p>
-                  </LocalizedLink>
-                </AnimatedCard>
-              ))}
-            </div>
-            </div>
-        </section>
-
-        <AnimatedDivider />
-
-        <section id="offres" className="py-16 md:py-20" style={{ backgroundColor: '#f9f7f3' }}>
-          <div className="max-w-6xl mx-auto px-8">
-            <StaggerBlock delay={0} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">{t('homepage.offres.title')}</h2>
-              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">{t('homepage.offres.subtitle')}</p>
-            </StaggerBlock>
-            <div className="py-10">
-              {offres.map((offre, i) => (
-                <AnimatedCard key={offre.num} delay={i * 0.1} id={'offre-' + offre.href.replace('/', '')} whileHover={{ scale: 1.01 }}>
-                  <LocalizedLink href={offre.href} className="flex flex-col md:flex-row items-stretch group hover:bg-gray-100 transition-all duration-200 py-10">
-                    <div className="flex-1 pl-6 self-center order-2 md:order-1">
-                      <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
-                      <p className="text-sm text-gray-400 mb-3">{offre.subtitle}</p>
-                      <p className="text-gray-500 mb-3">{offre.description}</p>
-                      <p className="text-sm text-gray-400">{offre.price} · {offre.duration}</p>
+                  <LocalizedLink href={acteur.href} className="group block p-6 bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-200 h-full">
+                    <div className="w-full aspect-square mb-4 overflow-hidden rounded-lg">
+                      <Picture src={acteur.img} alt={acteur.title} className="w-full h-full object-cover" width={400} height={400} />
                     </div>
-                      <Picture src={offre.image} alt={offre.title} className="w-full md:w-[300px] aspect-square object-contain order-1 md:order-2" />
+                    <h3 className="t-heading text-primary mb-2">{acteur.title}</h3>
+                    <p className="t-caption">{acteur.desc}</p>
                   </LocalizedLink>
                 </AnimatedCard>
               ))}
             </div>
-            </div>
+          </div>
         </section>
 
-        <AnimatedDivider />
+        {/* Offres */}
+        <section id="offres" className="section bg-secondary">
+          <div className="container-mentivis">
+            <StaggerBlock delay={0} className="mb-12">
+              <h2 className="t-display text-primary mb-3">{t('homepage.offres.title')}</h2>
+              <p className="t-lead max-w-2xl">{t('homepage.offres.subtitle')}</p>
+            </StaggerBlock>
+            <div className="space-y-6">
+              {offres.map((offre, i) => (
+                <AnimatedCard key={offre.num} delay={i * 0.1} id={'offre-' + offre.href.replace('/', '')}>
+                  <LocalizedLink href={offre.href} className="flex flex-col md:flex-row items-center gap-8 p-8 bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-200">
+                    <div className="flex-1">
+                      <h3 className="t-title text-primary mb-1">{offre.num} {offre.title}</h3>
+                      <p className="t-caption mb-3">{offre.subtitle}</p>
+                      <p className="t-lead mb-3">{offre.description}</p>
+                      <p className="t-caption">{offre.price} · {offre.duration}</p>
+                    </div>
+                    <div className="w-full md:w-48 aspect-square flex-shrink-0 overflow-hidden">
+                      <Picture src={offre.img} alt={offre.title} className="w-full h-full object-cover" width={192} height={192} />
+                    </div>
+                  </LocalizedLink>
+                </AnimatedCard>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <section id="contact" className="py-20" style={{ backgroundColor: '#aebddb' }}>
-          <div className="max-w-3xl mx-auto px-8 text-center">
+        {/* Contact CTA */}
+        <section id="contact" className="section bg-warm">
+          <div className="container-mentivis">
             <StaggerBlock delay={0}>
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('homepage.contact.label')}</p>
+              <p className="t-caption uppercase tracking-widest mb-4">{t('homepage.contact.label')}</p>
             </StaggerBlock>
             <StaggerBlock delay={0.1}>
-              <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">{t('homepage.contact.heading')}</h2>
+              <h2 className="t-display text-primary mb-6 max-w-2xl">{t('homepage.contact.heading')}</h2>
             </StaggerBlock>
             <StaggerBlock delay={0.2}>
-              <p className="text-xl text-gray-500 mb-10 max-w-xl mx-auto">
+              <p className="t-lead mb-8 max-w-xl">
                 {t('homepage.contact.body')}
               </p>
             </StaggerBlock>
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
-              <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+            <StaggerBlock delay={0.3}>
+              <LocalizedLink href="/contact" className="btn-pill btn-black">
                 {t('homepage.contact.cta')}
-                <span className="shrink-0"><ArrowRight className="ml-2" /></span>
+                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </LocalizedLink>
-            </motion.div>
+            </StaggerBlock>
           </div>
         </section>
-
-        {/* Partners section hidden temporarily
-        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#d8d8d8' }}>
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="text-center mb-16">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Confiance</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-black">Ils nous font confiance</h2>
-            </div>
-            <div className="relative">
-              <div className="flex gap-16 animate-scroll">
-                {[...partners, ...partners].map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt={`Partenaire ${(i % 5) + 1}`}
-                    className="w-[150px] h-auto grayscale opacity-60 flex-shrink-0"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-        */}
       </main>
       <RecentArticles lang={lang} />
       <Footer />

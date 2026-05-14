@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { LocalizedLink } from '@/lib/i18n'
 import { t, type Locale } from '@/generated/content'
-import { ArrowRight } from '@/components/ui/ArrowRight'
 
 interface PublicationCardProps {
   slug: string
@@ -55,11 +54,13 @@ export function PublicationCard({
           href={`/publications/${slug}/`}
           className="block w-full md:w-48 lg:w-56 flex-shrink-0"
         >
-          <div className="aspect-square overflow-hidden bg-gray-100">
+          <div className="aspect-square overflow-hidden bg-secondary rounded-card">
             <img
               src={imagePath}
               alt={headline}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              width="400"
+              height="400"
             />
           </div>
         </LocalizedLink>
@@ -74,7 +75,7 @@ export function PublicationCard({
           </span>
 
           {/* Date */}
-          <p className="text-sm text-gray-400 mb-2">
+          <p className="t-caption text-tertiary mb-2">
             {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
               year: 'numeric',
               month: 'long',
@@ -84,23 +85,25 @@ export function PublicationCard({
 
           {/* Headline */}
           <LocalizedLink href={`/publications/${slug}/`}>
-            <h2 className="text-xl md:text-2xl font-bold text-black group-hover:text-navy transition-colors duration-200 mb-2 leading-tight">
+            <h2 className="t-heading text-primary group-hover:text-secondary transition-colors duration-200 mb-2">
               {headline}
             </h2>
           </LocalizedLink>
 
           {/* Subheadline */}
-          <p className="text-base text-gray-500 leading-relaxed mb-4 line-clamp-3">
+          <p className="t-caption text-secondary mb-4 line-clamp-3">
             {subheadline}
           </p>
 
           {/* Read button */}
           <LocalizedLink
             href={`/publications/${slug}/`}
-            className="inline-flex items-center text-sm font-semibold text-navy hover:text-navy-light transition-colors duration-200"
+            className="inline-flex items-center t-caption text-primary hover:text-secondary hover:underline hover:underline-offset-4 transition-colors duration-200"
           >
             {t(lang, 'publications.card.read_button')}
-              <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />
+            <svg className="ml-1 w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </LocalizedLink>
         </div>
       </div>

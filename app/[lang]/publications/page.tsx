@@ -34,14 +34,14 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
   return (
     <>
       <Header />
-      <main className="pt-36 pb-24" style={{ backgroundColor: '#f9f7f3' }}>
-        <div className="max-w-6xl mx-auto px-8">
+      <main className="section pt-16 bg-primary">
+        <div className="container-mentivis">
           <FadeIn>
             <div className="mb-16">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">
+              <p className="t-caption uppercase tracking-widest mb-4">
                 {t(lang, 'publications.page.title')}
               </p>
-              <h1 className="text-4xl md:text-5xl font-bold text-black leading-[1.1]">
+              <h1 className="t-display text-primary">
                 {t(lang, 'publications.page.headline')}
               </h1>
             </div>
@@ -76,7 +76,7 @@ export default function PublicationsPage({ params }: { params: { lang: string } 
 
           {filteredPublications.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-lg text-gray-400">
+              <p className="t-caption text-tertiary">
                 {lang === 'en' ? 'No publications for this filter.' : 'Aucune publication pour ce filtre.'}
               </p>
             </div>

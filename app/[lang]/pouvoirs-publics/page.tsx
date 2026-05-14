@@ -1,29 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { ArrowRight } from '@/components/ui/ArrowRight'
 import { Picture } from '@/components/Picture'
-
-const COLORS = {
-  blue: { r: 174, g: 189, b: 219 },
-  white: { r: 255, g: 255, b: 255 },
-}
-
-function interpolateToWhite(progress: number): string {
-  const { r, g, b } = COLORS.blue
-  const { r: r2, g: g2, b: b2 } = COLORS.white
-  const eased = 1 - Math.pow(1 - progress, 5)
-  const R = Math.round(r + (r2 - r) * eased)
-  const G = Math.round(g + (g2 - g) * eased)
-  const B = Math.round(b + (b2 - b) * eased)
-  return `rgb(${R}, ${G}, ${B})`
-}
 
 export default function PouvoirsPublicsPage() {
   const t = useT()
@@ -44,29 +27,9 @@ export default function PouvoirsPublicsPage() {
     { title: t('acteurs.collectivites.programmes.4.title'), description: t('acteurs.collectivites.programmes.4.desc') },
   ]
 
-  const heroRef = useRef<HTMLElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
-
-  useEffect(() => {
-    const hero = heroRef.current
-    if (!hero) return
-
-    const handleScroll = () => {
-      if (!hero) return
-      const rect = hero.getBoundingClientRect()
-      const offset = -rect.top
-      const maxOffset = hero.offsetHeight - window.innerHeight * 0.3
-      const progress = Math.min(Math.max(offset / Math.max(maxOffset, 1), 0), 1)
-      setScrollProgress(progress)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     const container = scrollRef.current
@@ -93,8 +56,6 @@ export default function PouvoirsPublicsPage() {
     container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' })
   }
 
-  const heroBackground = interpolateToWhite(scrollProgress)
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -114,15 +75,15 @@ export default function PouvoirsPublicsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main className="pt-36 pb-24" style={{ background: heroBackground }}>
-        <div className="max-w-6xl mx-auto px-8">
-          <section ref={heroRef}>
+      <main className="section pt-16 bg-secondary">
+        <div className="container-mentivis">
+          <section>
           <nav className="mb-12 md:mb-16">
             <div className="lg:hidden relative flex items-center">
               <button
                 onClick={() => scrollMenu('left')}
                 className={`absolute left-0 z-10 transition-opacity flex items-center justify-center ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                style={{ background: '#aebddb', width: '32px', height: '32px', padding: 0 }}
+                style={{ background: 'var(--bg-secondary)', width: '32px', height: '32px', padding: 0 }}
                 aria-label="Scroll left"
               >
                 <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,11 +92,11 @@ export default function PouvoirsPublicsPage() {
               </button>
               <div
                 ref={scrollRef}
-                className="flex gap-4 text-sm text-gray-400 pl-7 pr-7 overflow-x-auto scrollbar-hide whitespace-nowrap"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: '#aebddb' }}
+                className="flex gap-4 t-caption text-secondary pl-7 pr-7 overflow-x-auto scrollbar-hide whitespace-nowrap"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: 'var(--bg-secondary)' }}
               >
                 {navActeurs.map((item) => (
-                  <LocalizedLink key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 flex-shrink-0 ${item.href === '/pouvoirs-publics' ? 'text-black font-medium' : ''}`}>
+                  <LocalizedLink key={item.href} href={item.href} className={`hover:text-black hover:underline hover:underline-offset-4 transition-colors duration-200 flex-shrink-0 ${item.href === '/pouvoirs-publics' ? 'text-black font-medium' : ''}`}>
                     {item.label}
                   </LocalizedLink>
                 ))}
@@ -143,7 +104,7 @@ export default function PouvoirsPublicsPage() {
               <button
                 onClick={() => scrollMenu('right')}
                 className={`absolute right-0 z-10 transition-opacity flex items-center justify-center ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                style={{ background: '#aebddb', width: '32px', height: '32px', padding: 0 }}
+                style={{ background: 'var(--bg-secondary)', width: '32px', height: '32px', padding: 0 }}
                 aria-label="Scroll right"
               >
                 <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,9 +112,9 @@ export default function PouvoirsPublicsPage() {
                 </svg>
               </button>
             </div>
-            <div className="hidden lg:flex gap-8 text-sm text-gray-400">
+            <div className="hidden lg:flex gap-8 t-caption text-secondary">
               {navActeurs.map((item) => (
-              <LocalizedLink key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/pouvoirs-publics' ? 'text-black font-medium' : ''}`}>
+              <LocalizedLink key={item.href} href={item.href} className={`hover:text-black hover:underline hover:underline-offset-4 transition-colors duration-200 ${item.href === '/pouvoirs-publics' ? 'text-black font-medium' : ''}`}>
                 {item.label}
               </LocalizedLink>
               ))}
@@ -162,25 +123,30 @@ export default function PouvoirsPublicsPage() {
 
           <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
             <StaggerBlock>
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('acteurs.shared.label')}</p>
-              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">{t('acteurs.collectivites.title')}</h1>
-              <p className="text-xl font-medium text-gray-600 mb-10">{t('acteurs.collectivites.hero')}</p>
-              <LocalizedLink href="/contact" className="inline-flex items-center whitespace-nowrap px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}<span className="shrink-0"><ArrowRight className="ml-2" /></span></LocalizedLink>
+              <p className="t-caption uppercase tracking-widest mb-4">{t('acteurs.shared.label')}</p>
+              <h1 className="t-display text-primary leading-tight mb-6">{t('acteurs.collectivites.title')}</h1>
+              <p className="t-lead mb-8">{t('acteurs.collectivites.hero')}</p>
+              <LocalizedLink href="/contact" className="btn-pill btn-black">
+                {t('acteurs.shared.cta')}
+                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </LocalizedLink>
             </StaggerBlock>
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <Picture src="/images/crea.webp" alt="Pouvoirs publics" className="w-full" />
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20 w-full lg:w-[500px] aspect-square overflow-hidden flex-shrink-0">
+              <Picture src="/images/illustrations/collectivite.webp" alt="Collectivités et administrations" className="w-full h-full object-cover" width={500} height={500} />
             </motion.div>
           </div>
           </section>
 
           <AnimatedDivider />
           <StaggerBlock delay={0.2} className="pt-16">
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-12">{t('acteurs.shared.axes_title')}</h2>
+            <h2 className="t-caption uppercase tracking-widest mb-12">{t('acteurs.shared.axes_title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {programmes.map((prog) => (
                 <div key={prog.title} className="p-10 transition-colors duration-300">
-                  <h3 className="text-xl  text-black mb-3">{prog.title}</h3>
-                  <p className="text-gray-500">{prog.description}</p>
+                  <h3 className="t-heading text-primary mb-3">{prog.title}</h3>
+                  <p className="text-secondary">{prog.description}</p>
                 </div>
               ))}
             </div>

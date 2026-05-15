@@ -35,14 +35,9 @@
 - **sc1**: Production environment (sc1bovu7233.universe.wf) — **never deploy to sc1**
 - CI triggers on push to `main`
 
-## FTP Upload Quirks
-- **Manual FTP deployment**: User deploys manually via FTP (not automated scripts)
-- **IMPORTANT**: `scripts/promote-to-sc1.py` must **never** be used — sc1 is production and must not be touched
-- When adding new asset types (like .avif), ensure they are included in manual upload
-- `ftp_upload.py` has hardcoded credentials and path (`/Users/stv/Documents/zed/icia/out`)
-- Only uploads specific extensions (line 24): `.html .js .css .json .png .jpg .svg .webp .txt .xml .gz .pdf .ico .woff2 .woff .ttf .eot`
-- Adding new asset types requires updating this list
-- **IMPORTANT**: `.avif` files must be uploaded manually alongside `.webp` files
+## FTP Upload (Manual)
+- Upload `out/` contents manually via FTP
+- Include all file types: `.html .js .css .json .png .jpg .svg .webp .avif .txt .xml .gz .pdf .ico .woff2 .woff .ttf .eot`
 
 ## Image Optimization
 - **Picture component**: `components/Picture.tsx` wraps images with avif/webp fallback
@@ -107,6 +102,7 @@ Each has a mobile scrollable nav with left/right arrow buttons. The nav backgrou
 ## Known Issues
 - **404 hydration error**: `usePathname()` in `app/not-found.tsx` causes React hydration mismatch on static 404 pages (pre-existing, cosmetic only)
 - **Pagespeed preload warnings**: Cosmetic warnings for polyfills/fonts preloaded by Pagespeed but not used within load event
+- **Stale `.next` cache**: After builds, stale cache can cause `Cannot find module './682.js'` or `motion-dom.js` errors. **Always delete `.next` + kill stale processes** before restarting: `rm -rf .next && pkill -f next && npm run dev`
 
 ## French Typography
 - Use French apostrophe (U+2019 ') in French text, not straight apostrophe

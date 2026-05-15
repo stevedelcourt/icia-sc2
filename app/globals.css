@@ -387,6 +387,7 @@ input, textarea, select {
 
 .btn-black:hover {
   background-color: #222222;
+  color: #ffffff;
 }
 
 .btn-warm {
@@ -396,6 +397,7 @@ input, textarea, select {
 
 .btn-warm:hover {
   background-color: #eae6e0;
+  color: var(--text-primary);
 }
 
 .btn-chevron {

@@ -7,21 +7,23 @@ interface PictureProps {
   [key: string]: any
 }
 
-export function Picture({ src, alt, className, width, height, ...props }: PictureProps) {
+export function Picture({ src, alt, className, width: _w, height: _h, ...props }: PictureProps) {
   const avifSrc = src.replace(/\.webp$/, '.avif')
-  
+  const enc = (s: string) => s.replace(/ /g, '%20')
+
   return (
-    <picture>
-      <source srcSet={avifSrc} type="image/avif" />
-      <source srcSet={src} type="image/webp" />
-      <img 
-        src={src} 
-        alt={alt} 
-        className={className}
-        width={width}
-        height={height}
-        {...props} 
-      />
-    </picture>
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      <picture>
+        <source srcSet={enc(avifSrc)} type="image/avif" />
+        <source srcSet={enc(src)} type="image/webp" />
+        <img
+          src={enc(src)}
+          alt={alt}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          className={className}
+          {...props}
+        />
+      </picture>
+    </div>
   )
 }

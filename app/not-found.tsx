@@ -3,7 +3,6 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { I18nProvider, useT, LocalizedLink } from '@/lib/i18n'
-import { Picture } from '@/components/Picture'
 
 function NotFoundContent() {
   const t = useT()
@@ -11,47 +10,62 @@ function NotFoundContent() {
     <>
       <meta name="robots" content="noindex" />
       <Header />
-      <div className="min-h-screen bg-[#fec302] flex flex-col items-center justify-center p-8 text-center">
-        <div className="mb-8">
-          <Picture
-            src="/images/808.webp"
-            alt="808"
-            className="w-full max-w-md mx-auto"
-          />
-        </div>
+      <div style={{
+        minHeight: '100vh',
+        backgroundColor: '#f5f3f1',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '32px',
+        textAlign: 'center',
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(80px, 12vw, 180px)',
+          fontWeight: 700,
+          color: 'var(--text-primary)',
+          lineHeight: 1,
+          marginBottom: '16px',
+        }}>
+          {t('not_found.title')}
+        </h1>
 
-        <h1 className="text-[120px] md:text-[180px] font-bold text-black leading-none mb-4">{t('not_found.title')}</h1>
-
-        <p className="text-3xl md:text-4xl font-bold text-black mb-4 relative z-10">
+        <p style={{
+          fontSize: 'clamp(20px, 3vw, 36px)',
+          fontWeight: 700,
+          color: 'var(--text-primary)',
+          marginBottom: '12px',
+        }}>
           {t('not_found.heading')}
         </p>
 
-        <p className="text-xl text-black mb-8 max-w-lg relative z-10">
+        <p className="t-lead" style={{ maxWidth: '480px', marginBottom: '32px' }}>
           {t('not_found.body')}
         </p>
 
-        <div className="flex gap-4 relative z-10">
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
           <LocalizedLink
             href="/fr/"
-            className="px-8 py-4 bg-black text-white text-lg hover:bg-gray-800 transition-colors"
+            className="btn-pill btn-black"
           >
             {t('not_found.cta_home')}
           </LocalizedLink>
           <LocalizedLink
             href="/fr/contact"
-            className="px-8 py-4 border-2 border-black text-black text-lg hover:bg-black hover:text-white transition-colors"
+            className="btn-pill btn-outline-shadow"
           >
             {t('not_found.cta_contact')}
           </LocalizedLink>
         </div>
-        <div className="mt-8 text-sm text-black opacity-60 relative z-10">
-          <LocalizedLink href="/fr/" className="underline hover:no-underline">Français</LocalizedLink>
-          {' · '}
-          <LocalizedLink href="/en/" className="underline hover:no-underline">English</LocalizedLink>
+
+        <div style={{ marginTop: '32px', display: 'flex', gap: '12px' }}>
+          <LocalizedLink href="/fr/" style={{ fontSize: '14px', color: 'var(--text-tertiary)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Français</LocalizedLink>
+          <span style={{ color: 'var(--text-tertiary)' }}>·</span>
+          <LocalizedLink href="/en/" style={{ fontSize: '14px', color: 'var(--text-tertiary)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>English</LocalizedLink>
         </div>
 
-        <div className="mt-12 text-sm text-black opacity-60 relative z-10">
-          <p>{t('not_found.footer')}</p>
+        <div style={{ marginTop: '48px' }}>
+          <p className="t-micro">{t('not_found.footer')}</p>
         </div>
       </div>
       <Footer />

@@ -12,16 +12,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
 }
 
-const variantClasses: Record<ButtonVariant, string> = {
-  black: 'bg-black text-white hover:bg-[#222]',
-  warm: 'bg-warm text-primary hover:bg-[#eae6e0]',
-  outline: 'border border-border text-primary hover:bg-secondary',
-  ghost: 'text-tertiary hover:text-primary',
+const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
+  black: { backgroundColor: '#000000', color: '#ffffff' },
+  warm: { backgroundColor: 'var(--bg-warm)', color: 'var(--text-primary)' },
+  outline: { border: '1px solid var(--border-light)', color: 'var(--text-primary)', backgroundColor: 'transparent' },
+  ghost: { color: 'var(--text-tertiary)', backgroundColor: 'transparent', padding: '8px 12px' },
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'black', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `btn-pill ${variantClasses[variant]} ${className}`
+    const style = variantStyles[variant]
+    const baseClasses = `btn-pill ${className}`
 
     const content = (
       <>
@@ -36,14 +37,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <Link href={href} className={baseClasses}>
+        <Link href={href} className={baseClasses} style={style}>
           {content}
         </Link>
       )
     }
 
     return (
-      <button ref={ref} className={baseClasses} {...props}>
+      <button ref={ref} className={baseClasses} style={style} {...props}>
         {content}
       </button>
     )

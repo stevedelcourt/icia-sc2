@@ -12,12 +12,37 @@ interface PublicationFilterProps {
   lang: Locale
 }
 
-const tagColors: Record<string, string> = {
-  announcements: 'bg-[#a6a6a6] text-white border-[#a6a6a6]',
-  perspectives: 'bg-[#a6a6a6] text-white border-[#a6a6a6]',
-  'regulatory-insights': 'bg-[#a6a6a6] text-white border-[#a6a6a6]',
-  news: 'bg-[#a6a6a6] text-white border-[#a6a6a6]',
-  'strategy-papers': 'bg-[#a6a6a6] text-white border-[#a6a6a6]',
+const activeTagBgMap: Record<string, string> = {
+  announcements: '#a6a6a6',
+  perspectives: '#a6a6a6',
+  'regulatory-insights': '#a6a6a6',
+  news: '#a6a6a6',
+  'strategy-papers': '#a6a6a6',
+}
+
+const pillBase: React.CSSProperties = {
+  padding: '8px 16px',
+  fontSize: '0.875rem',
+  fontWeight: 500,
+  borderRadius: '2px',
+  border: '1px solid',
+  transition: 'all 0.2s ease',
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+}
+
+const pillInactive: React.CSSProperties = {
+  ...pillBase,
+  backgroundColor: '#ffffff',
+  color: '#4e4e4e',
+  borderColor: '#e5e5e5',
+}
+
+const pillActiveAll: React.CSSProperties = {
+  ...pillBase,
+  backgroundColor: '#000000',
+  color: '#ffffff',
+  borderColor: '#000000',
 }
 
 export function PublicationFilter({
@@ -31,89 +56,137 @@ export function PublicationFilter({
   const [isSortOpen, setIsSortOpen] = useState(false)
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
-      {/* Category pills */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={() => onCategoryChange('')}
-          className={`px-4 py-2 text-sm font-medium rounded-sm border transition-all duration-200 ${
-            activeCategory === ''
-              ? 'bg-black text-white border-black'
-              : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
-          }`}
-        >
-          {t(lang, 'publications.filter.all_tags')}
-        </button>
-        {categories.map((cat) => {
-          const tagKey = `publications.tag.${cat}`
-          const tagLabel = (t as any)(lang, tagKey) || cat
-          const isActive = activeCategory === cat
-          const colorClass = tagColors[cat] || 'bg-gray-200 text-gray-700 border-gray-200'
-          return (
-            <button
-              key={cat}
-              onClick={() => onCategoryChange(isActive ? '' : cat)}
-              className={`px-4 py-2 text-sm font-medium rounded-sm border transition-all duration-200 ${
-                isActive
-                  ? colorClass
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
-              }`}
-            >
-              {tagLabel}
-            </button>
-          )
-        })}
-      </div>
-
-      {/* Sort dropdown */}
-      <div className="relative">
-        <button
-          onClick={() => setIsSortOpen(!isSortOpen)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-sm hover:border-gray-400 transition-all duration-200"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-          </svg>
-          {sortOrder === 'newest'
-            ? t(lang, 'publications.filter.sort_newest')
-            : t(lang, 'publications.filter.sort_oldest')}
-          <svg
-            className={`w-4 h-4 transition-transform duration-200 ${isSortOpen ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+    <>
+      <style>{`
+        .pf-row { flex-direction: column; }
+        @media (min-width: 640px) {
+          .pf-row { flex-direction: row !important; align-items: center !important; justify-content: space-between !important; }
+        }
+        .pf-pill-hover:hover { border-color: #a3a3a3; }
+        .pf-sortbtn:hover { border-color: #a3a3a3; }
+        .pf-sortopt:hover { background-color: #f9f9f9; }
+        .pf-chevron { transition: transform 0.2s ease; }
+        .pf-chevron.open { transform: rotate(180deg); }
+      `}</style>
+      <div
+        className="pf-row"
+        style={{
+          display: 'flex',
+          gap: '16px',
+          marginBottom: '48px',
+        }}
+      >
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          <button
+            onClick={() => onCategoryChange('')}
+            className={activeCategory === '' ? undefined : 'pf-pill-hover'}
+            style={activeCategory === '' ? pillActiveAll : pillInactive}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+            {t(lang, 'publications.filter.all_tags')}
+          </button>
+          {categories.map((cat) => {
+            const tagKey = `publications.tag.${cat}`
+            const tagLabel = (t as any)(lang, tagKey) || cat
+            const isActive = activeCategory === cat
+            const bg = activeTagBgMap[cat] || '#e5e5e5'
+            const txt = activeTagBgMap[cat] ? '#ffffff' : '#4e4e4e'
+            const bdr = activeTagBgMap[cat] || '#e5e5e5'
+            return (
+              <button
+                key={cat}
+                onClick={() => onCategoryChange(isActive ? '' : cat)}
+                className={isActive ? undefined : 'pf-pill-hover'}
+                style={
+                  isActive
+                    ? { ...pillBase, backgroundColor: bg, color: txt, borderColor: bdr }
+                    : pillInactive
+                }
+              >
+                {tagLabel}
+              </button>
+            )
+          })}
+        </div>
 
-        {isSortOpen && (
-          <div className="absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-sm shadow-lg z-10">
-            <button
-              onClick={() => {
-                onSortChange('newest')
-                setIsSortOpen(false)
-              }}
-              className={`w-full px-4 py-2 text-sm text-left hover:bg-gray-50 transition-colors ${
-                sortOrder === 'newest' ? 'font-semibold text-black' : 'text-gray-600'
-              }`}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setIsSortOpen(!isSortOpen)}
+            className="pf-sortbtn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              color: '#4e4e4e',
+              backgroundColor: '#ffffff',
+              border: '1px solid #e5e5e5',
+              borderRadius: '2px',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            <svg style={{ width: '16px', height: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+            </svg>
+            {sortOrder === 'newest'
+              ? t(lang, 'publications.filter.sort_newest')
+              : t(lang, 'publications.filter.sort_oldest')}
+            <svg
+              className={`pf-chevron${isSortOpen ? ' open' : ''}`}
+              style={{ width: '16px', height: '16px' }}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              {t(lang, 'publications.filter.sort_newest')}
-            </button>
-            <button
-              onClick={() => {
-                onSortChange('oldest')
-                setIsSortOpen(false)
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          {isSortOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                marginTop: '4px',
+                width: '12rem',
+                backgroundColor: '#ffffff',
+                border: '1px solid #e5e5e5',
+                borderRadius: '2px',
+                boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
+                zIndex: 10,
               }}
-              className={`w-full px-4 py-2 text-sm text-left hover:bg-gray-50 transition-colors ${
-                sortOrder === 'oldest' ? 'font-semibold text-black' : 'text-gray-600'
-              }`}
             >
-              {t(lang, 'publications.filter.sort_oldest')}
-            </button>
-          </div>
-        )}
+              {(['newest', 'oldest'] as const).map((order) => (
+                <button
+                  key={order}
+                  onClick={() => {
+                    onSortChange(order)
+                    setIsSortOpen(false)
+                  }}
+                  className="pf-sortopt"
+                  style={{
+                    width: '100%',
+                    padding: '8px 16px',
+                    fontSize: '0.875rem',
+                    textAlign: 'left',
+                    color: sortOrder === order ? '#000000' : '#4e4e4e',
+                    fontWeight: sortOrder === order ? 600 : 400,
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {t(lang, `publications.filter.sort_${order}`)}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+svg {
+  width: 100vmin;
+  height: 100vmin;
+  display: block;
+}
+</style>
+</head>
+<body>
+<svg id="s" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <g id="g" stroke="#000" stroke-linecap="round" stroke-linejoin="round" fill="none"></g>
+</svg>
+<script>
+const phi = (1 + Math.sqrt(5)) / 2;
+
+const raw = [
+  [ 0,  1,  phi], [ 0, -1,  phi], [ 0,  1, -phi], [ 0, -1, -phi],
+  [ 1,  phi,  0], [-1,  phi,  0], [ 1, -phi,  0], [-1, -phi,  0],
+  [ phi, 0,  1], [-phi,  0,  1], [ phi,  0, -1], [-phi,  0, -1]
+];
+
+const r = Math.sqrt(1 + phi * phi);
+const verts = raw.map(v => [v[0]/r, v[1]/r, v[2]/r]);
+
+const edges = [];
+for (let i = 0; i < 12; i++) {
+  for (let j = i + 1; j < 12; j++) {
+    const d = Math.sqrt(
+      (raw[i][0]-raw[j][0])**2 +
+      (raw[i][1]-raw[j][1])**2 +
+      (raw[i][2]-raw[j][2])**2
+    );
+    if (Math.abs(d - 2) < 0.001) edges.push([i, j]);
+  }
+}
+
+const g = document.getElementById('g');
+const lines = edges.map(() => {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  g.appendChild(el);
+  return el;
+});
+
+const TILT = 23 * Math.PI / 180;
+const cosTilt = Math.cos(TILT);
+const sinTilt = Math.sin(TILT);
+
+function applyTilt([x, y, z]) {
+  return [x, cosTilt * y - sinTilt * z, sinTilt * y + cosTilt * z];
+}
+
+function spinY([x, y, z], a) {
+  const c = Math.cos(a), s = Math.sin(a);
+  return [c * x + s * z, y, -s * x + c * z];
+}
+
+const CX = 300, CY = 300, SCALE = 218;
+
+function project([x, y]) {
+  return [x * SCALE + CX, -y * SCALE + CY];
+}
+
+let t = 0;
+const SPEED = (Math.PI * 2) / (60 * 20);
+
+(function frame() {
+  const pts = verts.map(v => {
+    const [x, y, z] = spinY(applyTilt(v), t);
+    return project([x, y]);
+  });
+
+  edges.forEach(([i, j], k) => {
+    const line = lines[k];
+    line.setAttribute('x1', pts[i][0].toFixed(2));
+    line.setAttribute('y1', pts[i][1].toFixed(2));
+    line.setAttribute('x2', pts[j][0].toFixed(2));
+    line.setAttribute('y2', pts[j][1].toFixed(2));
+    const mz = (verts[i][2] + verts[j][2]) / 2;
+    const depth = (mz + 1) / 2;
+    line.setAttribute('stroke-width', (0.7 + depth * 0.9).toFixed(2));
+  });
+
+  t += SPEED;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

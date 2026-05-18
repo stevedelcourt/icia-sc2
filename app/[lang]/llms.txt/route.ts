@@ -13,62 +13,55 @@ export async function GET(
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
 
   const content = `# Site: ${t(lang, 'layout.ld_json.org.name')}
-# URL: https://www.mariusia.com/${lang}/
+# URL: https://www.iciafrance.com/${lang}/
 # Description: ${t(lang, 'layout.seo.description')}
 # Language: ${lang === 'fr' ? 'Français' : 'English'}
 
-## Core Topics
-- ${t(lang, 'homepage.piliers.1.title')}
-- ${t(lang, 'homepage.piliers.2.title')}
-- ${t(lang, 'homepage.piliers.3.title')}
-
 ## Mission
-${t(lang, 'homepage.hero.title')}
+${t(lang, 'homepage.mission.intro')}
 
-${t(lang, 'homepage.hero.subtitle')}
+## Our Commitments
+- ${t(lang, 'homepage.engagements.independance.title')}: ${t(lang, 'homepage.engagements.independance.desc')}
+- ${t(lang, 'homepage.engagements.interet.title')}: ${t(lang, 'homepage.engagements.interet.desc')}
+- ${t(lang, 'homepage.engagements.accessibilite.title')}: ${t(lang, 'homepage.engagements.accessibilite.desc')}
+- ${t(lang, 'homepage.engagements.critique.title')}: ${t(lang, 'homepage.engagements.critique.desc')}
+- ${t(lang, 'homepage.engagements.action.title')}: ${t(lang, 'homepage.engagements.action.desc')}
 
-${t(lang, 'homepage.hero.body')}
+## What We Do
+- ${t(lang, 'homepage.actions.formation.title')}
+- ${t(lang, 'homepage.actions.recherche.title')}
+- ${t(lang, 'homepage.actions.territoires.title')}
+- ${t(lang, 'homepage.actions.ressources.title')}
+- ${t(lang, 'homepage.actions.debats.title')}
 
-## Services
+## Who We Serve
+- ${t(lang, 'homepage.pour_qui.citoyens.title')}: ${t(lang, 'homepage.pour_qui.citoyens.desc')}
+- ${t(lang, 'homepage.pour_qui.professionnels.title')}: ${t(lang, 'homepage.pour_qui.professionnels.desc')}
+- ${t(lang, 'homepage.pour_qui.organisations.title')}: ${t(lang, 'homepage.pour_qui.organisations.desc')}
+- ${t(lang, 'homepage.pour_qui.publics.title')}: ${t(lang, 'homepage.pour_qui.publics.desc')}
+- ${t(lang, 'homepage.pour_qui.education.title')}: ${t(lang, 'homepage.pour_qui.education.desc')}
 
-### ${t(lang, 'homepage.offres.1.subtitle')}
-${t(lang, 'homepage.offres.1.title')}
-${t(lang, 'homepage.offres.1.desc')}
-${t(lang, 'homepage.offres.1.price')} · ${t(lang, 'homepage.offres.1.duration')}
+## Programs
+- ${t(lang, 'homepage.programmes.impact.title')}: ${t(lang, 'homepage.programmes.impact.desc')}
+- ${t(lang, 'homepage.programmes.territoires.title')}: ${t(lang, 'homepage.programmes.territoires.desc')}
+- ${t(lang, 'homepage.programmes.education.title')}: ${t(lang, 'homepage.programmes.education.desc')}
+- ${t(lang, 'homepage.programmes.travail.title')}: ${t(lang, 'homepage.programmes.travail.desc')}
 
-### ${t(lang, 'homepage.offres.2.subtitle')}
-${t(lang, 'homepage.offres.2.title')}
-${t(lang, 'homepage.offres.2.desc')}
-${t(lang, 'homepage.offres.2.price')} · ${t(lang, 'homepage.offres.2.duration')}
+## About
+${t(lang, 'homepage.a_propos.body.1')}
 
-### ${t(lang, 'homepage.offres.3.subtitle')}
-${t(lang, 'homepage.offres.3.title')}
-${t(lang, 'homepage.offres.3.desc')}
-${t(lang, 'homepage.offres.3.price')} · ${t(lang, 'homepage.offres.3.duration')}
+${t(lang, 'homepage.a_propos.body.2')}
 
-### ${t(lang, 'homepage.offres.4.subtitle')}
-${t(lang, 'homepage.offres.4.title')}
-${t(lang, 'homepage.offres.4.desc')}
-${t(lang, 'homepage.offres.4.price')} · ${t(lang, 'homepage.offres.4.duration')}
+${t(lang, 'homepage.territoire.body.1')}
+${t(lang, 'homepage.territoire.adresse')}
 
-## Target Sectors
-- ${t(lang, 'homepage.pour_qui.1.title')}: ${t(lang, 'homepage.pour_qui.1.desc')}
-- ${t(lang, 'homepage.pour_qui.2.title')}: ${t(lang, 'homepage.pour_qui.2.desc')}
-- ${t(lang, 'homepage.pour_qui.3.title')}: ${t(lang, 'homepage.pour_qui.3.desc')}
-- ${t(lang, 'homepage.pour_qui.4.title')}: ${t(lang, 'homepage.pour_qui.4.desc')}
-- ${t(lang, 'homepage.pour_qui.5.title')}: ${t(lang, 'homepage.pour_qui.5.desc')}
-- ${t(lang, 'homepage.pour_qui.6.title')}: ${t(lang, 'homepage.pour_qui.6.desc')}
+## Governance
+${t(lang, 'homepage.gouvernance.body.1')}
 
-## Core Principles
-1. ${t(lang, 'homepage.piliers.1.title')} — ${t(lang, 'homepage.piliers.1.desc')}
-2. ${t(lang, 'homepage.piliers.2.title')} — ${t(lang, 'homepage.piliers.2.desc')}
-3. ${t(lang, 'homepage.piliers.3.title')} — ${t(lang, 'homepage.piliers.3.desc')}
+${t(lang, 'homepage.gouvernance.mentivis.title')}
 
 ## Contact
-${t(lang, 'contact.adresse.ligne')}
-${lang === 'fr' ? 'Tél' : 'Phone'}: ${t(lang, 'contact.phone')}
-Email: ${t(lang, 'contact.email.local')}@${t(lang, 'contact.email.domain')}
-https://www.mariusia.com/${lang}/contact
+https://www.iciafrance.com/${lang}/contact
 
 ## Parent Organization
 ${t(lang, 'layout.ld_json.org.parent_name')}

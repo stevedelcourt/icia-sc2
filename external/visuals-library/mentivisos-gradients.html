@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MentivisOS Gradient Library</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0C0C0C;
+    padding: 24px;
+    min-height: 100vh;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    max-width: 900px;
+  }
+
+  .sq {
+    aspect-ratio: 1;
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ANIMATIONS */
+  @keyframes drift {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+
+  @keyframes glow {
+    0%, 100% { filter: brightness(0.92) saturate(1.05); }
+    50%       { filter: brightness(1.18) saturate(1.35); }
+  }
+
+  @keyframes hueshift {
+    0%   { filter: hue-rotate(0deg) saturate(1.2); }
+    100% { filter: hue-rotate(360deg) saturate(1.2); }
+  }
+
+  @keyframes breathe {
+    0%, 100% { filter: brightness(0.88) contrast(1.05); }
+    50%       { filter: brightness(1.22) contrast(0.95); }
+  }
+
+  @keyframes sway {
+    0%   { background-position: 0% 0%; }
+    33%  { background-position: 100% 50%; }
+    66%  { background-position: 50% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+
+
+  /* ─── 01 Simple warm amber radial ─── */
+  .s01 {
+    background: radial-gradient(ellipse at 42% 38%, #F5A520 0%, #C05015 52%, #5C1200 100%);
+  }
+
+  /* ─── 02 Deep teal radial ─── */
+  .s02 {
+    background: radial-gradient(ellipse at 58% 42%, #3ECFC6 0%, #0E7068 52%, #031F1D 100%);
+  }
+
+  /* ─── 03 Ruby radial ─── */
+  .s03 {
+    background: radial-gradient(ellipse at 50% 35%, #E8325A 0%, #7A0820 55%, #200008 100%);
+  }
+
+  /* ─── 04 Indigo night radial ─── */
+  .s04 {
+    background: radial-gradient(ellipse at 55% 45%, #8B78F0 0%, #320E90 52%, #0A0220 100%);
+  }
+
+  /* ─── 05 Sunset linear ─── */
+  .s05 {
+    background: linear-gradient(140deg, #C40058 0%, #E8501A 55%, #FAAA00 100%);
+  }
+
+  /* ─── 06 Deep forest linear ─── */
+  .s06 {
+    background: linear-gradient(155deg, #0A2010 0%, #1E6830 50%, #6EB830 100%);
+  }
+
+  /* ─── 07 Ocean depth linear ─── */
+  .s07 {
+    background: linear-gradient(125deg, #060E1E 0%, #0E4870 52%, #18B8D0 100%);
+  }
+
+  /* ─── 08 Terracotta linear ─── */
+  .s08 {
+    background: linear-gradient(165deg, #5C1800 0%, #A84820 50%, #D89858 100%);
+  }
+
+  /* ─── 09 Fire tri-linear ─── */
+  .s09 {
+    background: linear-gradient(50deg, #6A0000 0%, #E03000 42%, #FFB800 100%);
+  }
+
+  /* ─── 10 Aurora diagonal ─── */
+  .s10 {
+    background: linear-gradient(140deg, #082030 0%, #0F6848 35%, #22B870 68%, #A0EAC0 100%);
+  }
+
+  /* ─── 11 Dusk tri-color ─── */
+  .s11 {
+    background: linear-gradient(155deg, #180328 0%, #8B1020 48%, #D86010 100%);
+  }
+
+  /* ─── 12 Storm gradient ─── */
+  .s12 {
+    background: linear-gradient(115deg, #0E1820 0%, #1C4870 45%, #70A8CC 100%);
+  }
+
+  /* ─── 13 Warm watercolor – layered radials ─── */
+  .s13 {
+    background:
+      radial-gradient(ellipse 68% 52% at 22% 78%, rgba(210, 70, 20, 0.78) 0%, transparent 62%),
+      radial-gradient(ellipse 52% 68% at 78% 22%, rgba(240, 150, 20, 0.72) 0%, transparent 58%),
+      radial-gradient(ellipse 80% 58% at 52% 52%, rgba(180, 40, 60, 0.48) 0%, transparent 72%),
+      #3E0C00;
+  }
+
+  /* ─── 14 Cool ocean watercolor ─── */
+  .s14 {
+    background:
+      radial-gradient(ellipse 62% 48% at 28% 32%, rgba(20, 180, 175, 0.72) 0%, transparent 60%),
+      radial-gradient(ellipse 52% 68% at 72% 72%, rgba(0, 90, 165, 0.78) 0%, transparent 62%),
+      radial-gradient(ellipse 72% 52% at 52% 42%, rgba(0, 210, 205, 0.38) 0%, transparent 68%),
+      #020A12;
+  }
+
+  /* ─── 15 Garden watercolor ─── */
+  .s15 {
+    background:
+      radial-gradient(ellipse 58% 52% at 18% 62%, rgba(40, 155, 55, 0.78) 0%, transparent 62%),
+      radial-gradient(ellipse 52% 62% at 78% 32%, rgba(175, 210, 40, 0.72) 0%, transparent 60%),
+      radial-gradient(ellipse 68% 48% at 55% 78%, rgba(15, 95, 38, 0.62) 0%, transparent 68%),
+      #081408;
+  }
+
+  /* ─── 16 Ink watercolor ─── */
+  .s16 {
+    background:
+      radial-gradient(ellipse 58% 52% at 32% 38%, rgba(85, 18, 165, 0.82) 0%, transparent 58%),
+      radial-gradient(ellipse 48% 65% at 72% 68%, rgba(18, 38, 125, 0.78) 0%, transparent 58%),
+      radial-gradient(ellipse 72% 48% at 52% 28%, rgba(125, 0, 85, 0.52) 0%, transparent 68%),
+      #030108;
+  }
+
+  /* ─── 17 Animated amber drift ─── */
+  .s17 {
+    background: linear-gradient(45deg,
+      #7A2800, #D05000, #F09000, #FFD000, #F09000, #D05000, #7A2800);
+    background-size: 400% 400%;
+    animation: drift 5s ease infinite;
+  }
+
+  /* ─── 18 Animated teal shift ─── */
+  .s18 {
+    background: linear-gradient(135deg,
+      #021820, #055870, #10B8C8, #055870, #021820);
+    background-size: 400% 400%;
+    animation: drift 6s ease infinite;
+  }
+
+  /* ─── 19 Animated magenta fire ─── */
+  .s19 {
+    background: linear-gradient(45deg,
+      #5A0010, #B00030, #E02060, #E87020, #F0B000, #E87020, #B00030, #5A0010);
+    background-size: 400% 400%;
+    animation: drift 4.5s ease infinite;
+  }
+
+  /* ─── 20 Animated northern lights ─── */
+  .s20 {
+    background: linear-gradient(135deg,
+      #000E05, #0A5828, #38C880, #0A5828, #001838, #0A2878, #4878C8, #0A2878, #000E05);
+    background-size: 400% 400%;
+    animation: drift 8s ease infinite;
+  }
+
+  /* ─── 21 Complex warm watercolor + breathe ─── */
+  .s21 {
+    background:
+      radial-gradient(ellipse 52% 45% at 18% 82%, rgba(205, 45, 15, 0.82) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 58% at 82% 18%, rgba(245, 135, 8, 0.78) 0%, transparent 52%),
+      radial-gradient(ellipse 62% 52% at 62% 62%, rgba(175, 18, 78, 0.62) 0%, transparent 65%),
+      radial-gradient(ellipse 75% 38% at 38% 28%, rgba(225, 88, 8, 0.52) 0%, transparent 68%),
+      #280500;
+    animation: breathe 4s ease infinite;
+  }
+
+  /* ─── 22 Complex cool watercolor + breathe ─── */
+  .s22 {
+    background:
+      radial-gradient(ellipse 52% 45% at 22% 78%, rgba(0, 165, 185, 0.78) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 58% at 78% 22%, rgba(0, 78, 185, 0.82) 0%, transparent 52%),
+      radial-gradient(ellipse 62% 52% at 52% 52%, rgba(55, 185, 165, 0.55) 0%, transparent 62%),
+      radial-gradient(ellipse 68% 38% at 32% 22%, rgba(0, 115, 205, 0.52) 0%, transparent 68%),
+      #010810;
+    animation: breathe 5.5s ease infinite;
+  }
+
+  /* ─── 23 Warm/cool collision + glow ─── */
+  .s23 {
+    background:
+      radial-gradient(ellipse 58% 78% at 12% 50%, rgba(225, 55, 15, 0.88) 0%, transparent 52%),
+      radial-gradient(ellipse 58% 78% at 88% 50%, rgba(0, 115, 205, 0.88) 0%, transparent 52%),
+      radial-gradient(ellipse 38% 38% at 50% 50%, rgba(185, 55, 165, 0.62) 0%, transparent 48%),
+      #0E0210;
+    animation: glow 5s ease infinite;
+  }
+
+  /* ─── 24 Full spectrum maximum + hue rotation ─── */
+  .s24 {
+    background:
+      radial-gradient(ellipse 38% 32% at 12% 18%, rgba(225, 18, 78, 0.82) 0%, transparent 48%),
+      radial-gradient(ellipse 32% 42% at 88% 12%, rgba(245, 148, 8, 0.78) 0%, transparent 48%),
+      radial-gradient(ellipse 42% 38% at 82% 82%, rgba(18, 165, 78, 0.72) 0%, transparent 48%),
+      radial-gradient(ellipse 38% 32% at 18% 82%, rgba(58, 18, 205, 0.78) 0%, transparent 48%),
+      radial-gradient(ellipse 48% 48% at 50% 50%, rgba(158, 0, 158, 0.52) 0%, transparent 58%),
+      radial-gradient(ellipse 28% 28% at 50% 18%, rgba(0, 205, 225, 0.62) 0%, transparent 44%),
+      #050005;
+    animation: hueshift 14s linear infinite;
+  }
+
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="sq s01"></div>
+  <div class="sq s02"></div>
+  <div class="sq s03"></div>
+  <div class="sq s04"></div>
+  <div class="sq s05"></div>
+  <div class="sq s06"></div>
+
+  <div class="sq s07"></div>
+  <div class="sq s08"></div>
+  <div class="sq s09"></div>
+  <div class="sq s10"></div>
+  <div class="sq s11"></div>
+  <div class="sq s12"></div>
+
+  <div class="sq s13"></div>
+  <div class="sq s14"></div>
+  <div class="sq s15"></div>
+  <div class="sq s16"></div>
+  <div class="sq s17"></div>
+  <div class="sq s18"></div>
+
+  <div class="sq s19"></div>
+  <div class="sq s20"></div>
+  <div class="sq s21"></div>
+  <div class="sq s22"></div>
+  <div class="sq s23"></div>
+  <div class="sq s24"></div>
+</div>
+</body>
+</html>

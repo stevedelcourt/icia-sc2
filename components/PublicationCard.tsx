@@ -15,12 +15,17 @@ interface PublicationCardProps {
   index?: number
 }
 
-const tagColors: Record<string, string> = {
-  announcements: 'bg-[#a6a6a6] text-white',
-  perspectives: 'bg-[#a6a6a6] text-white',
-  'regulatory-insights': 'bg-[#a6a6a6] text-white',
-  news: 'bg-[#a6a6a6] text-white',
-  'strategy-papers': 'bg-[#a6a6a6] text-white',
+const tagStyle: Record<string, React.CSSProperties> = {
+  announcements: { backgroundColor: '#a6a6a6', color: '#ffffff' },
+  perspectives: { backgroundColor: '#a6a6a6', color: '#ffffff' },
+  'regulatory-insights': { backgroundColor: '#a6a6a6', color: '#ffffff' },
+  news: { backgroundColor: '#a6a6a6', color: '#ffffff' },
+  'strategy-papers': { backgroundColor: '#a6a6a6', color: '#ffffff' },
+}
+
+const defaultTagStyle: React.CSSProperties = {
+  backgroundColor: '#e5e5e5',
+  color: '#4e4e4e',
 }
 
 export function PublicationCard({
@@ -35,78 +40,141 @@ export function PublicationCard({
 }: PublicationCardProps) {
   const tagKey = `publications.tag.${category}`
   const tagLabel = (t as any)(lang, tagKey) || category
-  const tagClass = tagColors[category] || 'bg-gray-200 text-gray-700'
+  const tagS = tagStyle[category] || defaultTagStyle
   const imagePath = heroImage
     ? `/images/publications/${slug}/${heroImage}`
     : '/images/og-image.png'
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group"
-    >
-      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-        {/* Thumbnail - 1:1 crop from 16:9 */}
-        <LocalizedLink
-          href={`/publications/${slug}/`}
-          className="block w-full md:w-48 lg:w-56 flex-shrink-0"
+    <>
+      <style>{`
+        .pc-row { flex-direction: column; }
+        @media (min-width: 768px) {
+          .pc-row { flex-direction: row !important; gap: 32px !important; }
+          .pc-thumb { width: 12rem !important; }
+        }
+        @media (min-width: 1024px) {
+          .pc-thumb { width: 14rem !important; }
+        }
+        .pc-img { transition: transform 0.5s ease; }
+        .pc-group:hover .pc-img { transform: scale(1.05); }
+        .pc-headline { transition: color 0.2s ease; }
+        .pc-group:hover .pc-headline { color: var(--text-secondary); }
+        .pc-link:hover { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 4px; }
+      `}</style>
+      <motion.article
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="pc-group"
+      >
+        <div
+          className="pc-row"
+          style={{
+            display: 'flex',
+            gap: '24px',
+            alignItems: 'flex-start',
+          }}
         >
-          <div className="aspect-square overflow-hidden bg-secondary rounded-card">
-            <img
-              src={imagePath}
-              alt={headline}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              width="400"
-              height="400"
-            />
-          </div>
-        </LocalizedLink>
-
-        {/* Content */}
-        <div className="flex-1 flex flex-col justify-center py-1">
-          {/* Tag */}
-          <span
-            className={`inline-block self-start px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-sm mb-3 ${tagClass}`}
-          >
-            {tagLabel}
-          </span>
-
-          {/* Date */}
-          <p className="t-caption text-tertiary mb-2">
-            {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </p>
-
-          {/* Headline */}
-          <LocalizedLink href={`/publications/${slug}/`}>
-            <h2 className="t-heading text-primary group-hover:text-secondary transition-colors duration-200 mb-2">
-              {headline}
-            </h2>
-          </LocalizedLink>
-
-          {/* Subheadline */}
-          <p className="t-caption text-secondary mb-4 line-clamp-3">
-            {subheadline}
-          </p>
-
-          {/* Read button */}
           <LocalizedLink
             href={`/publications/${slug}/`}
-            className="inline-flex items-center t-caption text-primary hover:text-secondary hover:underline hover:underline-offset-4 transition-colors duration-200"
+            className="pc-thumb"
+            style={{ display: 'block', width: '100%', flexShrink: 0 }}
           >
-            {t(lang, 'publications.card.read_button')}
-            <svg className="ml-1 w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <div
+              className="bg-secondary rounded-card"
+              style={{ aspectRatio: '1 / 1', overflow: 'hidden' }}
+            >
+              <img
+                src={imagePath}
+                alt={headline}
+                className="pc-img"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                width="400"
+                height="400"
+              />
+            </div>
           </LocalizedLink>
+
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingTop: '4px',
+              paddingBottom: '4px',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                alignSelf: 'flex-start',
+                padding: '4px 12px',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                borderRadius: '2px',
+                marginBottom: '12px',
+                ...tagS,
+              }}
+            >
+              {tagLabel}
+            </span>
+
+            <p className="t-caption text-tertiary" style={{ marginBottom: '8px' }}>
+              {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </p>
+
+            <LocalizedLink href={`/publications/${slug}/`}>
+              <h2 className="t-heading text-primary pc-headline" style={{ marginBottom: '8px' }}>
+                {headline}
+              </h2>
+            </LocalizedLink>
+
+            <p
+              className="t-caption text-secondary"
+              style={{
+                marginBottom: '16px',
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}
+            >
+              {subheadline}
+            </p>
+
+            <LocalizedLink
+              href={`/publications/${slug}/`}
+              className="t-caption text-primary pc-link"
+              style={{ display: 'inline-flex', alignItems: 'center' }}
+            >
+              {t(lang, 'publications.card.read_button')}
+              <svg
+                style={{ marginLeft: '4px', width: '14px', height: '14px' }}
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.25 2.625L9.625 7L5.25 11.375"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </LocalizedLink>
+          </div>
         </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </>
   )
 }

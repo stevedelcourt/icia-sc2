@@ -2,22 +2,15 @@ import { MetadataRoute } from 'next'
 import { getPublicationSlugs } from '@/generated/publications'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.mariusia.com'
+  const baseUrl = 'https://www.iciafrance.com'
 
   const locales = ['fr', 'en']
   const paths = [
     '',
-    '/entreprises',
-    '/pouvoirs-publics',
-    '/education',
-    '/secteurs-creatifs',
-    '/professions-liberales',
-    '/citoyens',
-    '/diagnostic',
-    '/formations',
-    '/transformation',
-    '/partenaire',
-    '/expertises',
+    '/programmes',
+    '/programme-impact',
+    '/gouvernance',
+    '/mission',
     '/publications',
     '/contact',
     '/a-propos',
@@ -32,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/${locale}${path}`,
       lastModified: new Date(),
       changeFrequency: path === '/publications' ? 'daily' : path === '' ? 'weekly' : path.startsWith('/mentions') || path.startsWith('/politique') || path.startsWith('/cookies') || path.startsWith('/conditions') ? 'yearly' : 'monthly',
-      priority: path === '' ? 1 : ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/professions-liberales', '/citoyens'].includes(path) ? 0.9 : ['/diagnostic', '/formations', '/transformation', '/partenaire', '/publications'].includes(path) ? 0.8 : 0.7,
+      priority: path === '' ? 1 : ['/programmes', '/programme-impact', '/gouvernance', '/mission'].includes(path) ? 0.9 : ['/publications'].includes(path) ? 0.8 : 0.7,
       alternates: {
         languages: {
           'fr-FR': `${baseUrl}/fr${path}`,

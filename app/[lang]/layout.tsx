@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
-import ScrollGradient from '@/components/ScrollGradient'
-import SpeedBanner from '@/components/SpeedBanner'
-import { CookieConsentBanner } from '@/components/CookieConsentClient'
 import { I18nProvider } from '@/lib/i18n'
 import { LangSetter } from '@/components/LangSetter'
 import { t, type Locale } from '@/generated/content'
@@ -21,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
-  const baseUrl = 'https://www.mariusia.com'
+  const baseUrl = 'https://www.iciafrance.com'
   const canonical = `${baseUrl}/${lang}/`
 
   return {
@@ -36,7 +32,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     },
     description: t(lang, 'layout.seo.description'),
     keywords: t(lang, 'layout.seo.keywords').split(',').map(k => k.trim()),
-    authors: [{ name: t(lang, 'layout.seo.author'), url: 'https://www.mentivis.com' }],
+    authors: [{ name: t(lang, 'layout.seo.author'), url: 'https://www.iciafrance.com' }],
     creator: t(lang, 'layout.seo.creator'),
     publisher: t(lang, 'layout.seo.publisher'),
     robots: {
@@ -79,9 +75,6 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         'x-default': `${baseUrl}/fr/`,
       },
     },
-    verification: {
-      google: '161zSKiF4dWqa9EgfgToHjbDBT9Q51yx6K5Tp41mD-E',
-    },
   }
 }
 
@@ -94,116 +87,90 @@ export default function RootLayout({
 }) {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
 
-    const jsonLdOrganization = {
-      '@context': 'https://schema.org',
-      '@type': ['Organization', 'LocalBusiness'],
-      '@id': 'https://www.mariusia.com/#organization',
-      name: t(lang, 'layout.ld_json.org.name'),
-      alternateName: t(lang, 'layout.ld_json.org.alternate_name'),
-      url: 'https://www.mariusia.com',
-      logo: 'https://www.mariusia.com/images/MariusIA-logo.svg',
-      description: t(lang, 'layout.ld_json.org.description'),
-      areaServed: [
-        { '@type': 'Country', name: 'France' },
-        { '@type': 'Country', name: 'Europe' },
-      ],
-      knowsAbout: [
-        'Artificial Intelligence',
-        'AI Act',
-        'EU AI Regulation',
-        'AI Governance',
-        'Machine Learning',
-        'Change Management',
-        'Digital Transformation',
-      ],
-      serviceType: [
-        'AI Strategy Consulting',
-        'AI Compliance',
-        'AI Training',
-        'Digital Transformation',
-      ],
-      contactPoint: {
-        '@type': 'ContactPoint',
-        contactType: t(lang, 'layout.ld_json.org.contact_type'),
-        telephone: '+33 1 89 48 10 02',
-        email: 'contact@mariusia.com',
-        areaServed: 'FR',
-        availableLanguage: [t(lang, 'layout.ld_json.org.available_language.fr'), t(lang, 'layout.ld_json.org.available_language.en')],
+  const jsonLdOrganization = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://www.iciafrance.com/#organization',
+    name: t(lang, 'layout.ld_json.org.name'),
+    alternateName: t(lang, 'layout.ld_json.org.alternate_name'),
+    url: 'https://www.iciafrance.com',
+    logo: 'https://www.iciafrance.com/images/ICIA-logo.svg',
+    description: t(lang, 'layout.ld_json.org.description'),
+    areaServed: [
+      { '@type': 'Country', name: 'France' },
+      { '@type': 'Country', name: 'Europe' },
+    ],
+    knowsAbout: [
+      'Artificial Intelligence',
+      'AI Education',
+      'AI Skills',
+      'Digital Inclusion',
+      'AI Ethics',
+      'AI Governance',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: t(lang, 'layout.ld_json.org.contact_type'),
+      email: 'contact@iciafrance.com',
+      areaServed: 'FR',
+      availableLanguage: [t(lang, 'layout.ld_json.org.available_language.fr'), t(lang, 'layout.ld_json.org.available_language.en')],
+    },
+    parentOrganization: {
+      '@type': 'Organization',
+      name: t(lang, 'layout.ld_json.org.parent_name'),
+      url: 'https://www.mentivis.com',
+    },
+    location: {
+      '@type': 'Place',
+      name: t(lang, 'layout.ld_json.org.location.name'),
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '4 boulevard Jacques Saadé',
+        addressLocality: t(lang, 'layout.ld_json.org.location.city'),
+        addressRegion: 'Bouches-du-Rhône',
+        postalCode: '13002',
+        addressCountry: 'FR',
       },
-      parentOrganization: {
-        '@type': 'Organization',
-        name: t(lang, 'layout.ld_json.org.parent_name'),
-        url: 'https://www.mentivis.com',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '43.313887',
+        longitude: '5.366328',
       },
-      location: {
-        '@type': 'Place',
-        name: t(lang, 'layout.ld_json.org.location.name'),
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '4 boulevard Jacques Saadé',
-          addressLocality: t(lang, 'layout.ld_json.org.location.city'),
-          addressRegion: 'Bouches-du-Rhône',
-          postalCode: '13002',
-          addressCountry: 'FR',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: '43.313887',
-          longitude: '5.366328',
-        },
-      },
-    }
+    },
+  }
 
   const jsonLdWebSite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://www.mariusia.com/#website',
-    url: 'https://www.mariusia.com',
+    '@id': 'https://www.iciafrance.com/#website',
+    url: 'https://www.iciafrance.com',
     name: t(lang, 'layout.ld_json.website.name'),
     description: t(lang, 'layout.ld_json.website.description'),
-    publisher: { '@id': 'https://www.mariusia.com/#organization' },
+    publisher: { '@id': 'https://www.iciafrance.com/#organization' },
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `https://www.mariusia.com/${lang}/contact`,
+        urlTemplate: `https://www.iciafrance.com/${lang}/contact`,
       },
       'query-input': 'required name=search_term_string',
     },
   }
 
-  const jsonLdBreadcrumb = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: t(lang, 'layout.ld_json.breadcrumb.home'),
-        item: `https://www.mariusia.com/${lang}/`,
-      },
-    ],
-  }
-
   return (
     <html lang={lang} className={inter.variable}>
-      <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <body className="antialiased bg-primary text-secondary" style={{ fontFamily: 'Inter, sans-serif' }}>
         <LangSetter lang={lang} />
-        <Script
+        <script
           type="application/ld+json"
-          id="jsonld-organization"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
         />
-        <Script
+        <script
           type="application/ld+json"
-          id="jsonld-website"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
         <I18nProvider lang={lang}>
-          <ScrollGradient />
           {children}
-          <SpeedBanner />
-          <CookieConsentBanner />
         </I18nProvider>
       </body>
     </html>

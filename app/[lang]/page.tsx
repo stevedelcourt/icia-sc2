@@ -1,119 +1,22 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useParams } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { StaggerBlock, AnimatedCard } from '@/components/Animations'
+import { StaggerBlock, AnimatedCard, FadeIn } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
-import { RecentArticles } from '@/components/RecentArticles'
-import { BauhausHero } from '@/components/BauhausHero'
-import { Picture } from '@/components/Picture'
+
+const chevronRight = (
+  <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)
 
 export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
-
-  const piliers = [
-    { title: t('homepage.piliers.1.title'), desc: t('homepage.piliers.1.desc'), anchor: 'independance' },
-    { title: t('homepage.piliers.2.title'), desc: t('homepage.piliers.2.desc'), anchor: 'conseil' },
-    { title: t('homepage.piliers.3.title'), desc: t('homepage.piliers.3.desc'), anchor: 'confiance' },
-  ]
-
-  const offres = [
-    {
-      num: t('homepage.offres.1.num'),
-      title: t('homepage.offres.1.title'),
-      subtitle: t('homepage.offres.1.subtitle'),
-      description: t('homepage.offres.1.desc'),
-      price: t('homepage.offres.1.price'),
-      duration: t('homepage.offres.1.duration'),
-      href: '/diagnostic',
-      img: '/images/illustrations/01- ia.webp'
-    },
-    {
-      num: t('homepage.offres.2.num'),
-      title: t('homepage.offres.2.title'),
-      subtitle: t('homepage.offres.2.subtitle'),
-      description: t('homepage.offres.2.desc'),
-      price: t('homepage.offres.2.price'),
-      duration: t('homepage.offres.2.duration'),
-      href: '/formations',
-      img: '/images/illustrations/02-equipe.webp'
-    },
-    {
-      num: t('homepage.offres.3.num'),
-      title: t('homepage.offres.3.title'),
-      subtitle: t('homepage.offres.3.subtitle'),
-      description: t('homepage.offres.3.desc'),
-      price: t('homepage.offres.3.price'),
-      duration: t('homepage.offres.3.duration'),
-      href: '/transformation',
-      img: '/images/illustrations/03-transfo.webp'
-    },
-    {
-      num: t('homepage.offres.4.num'),
-      title: t('homepage.offres.4.title'),
-      subtitle: t('homepage.offres.4.subtitle'),
-      description: t('homepage.offres.4.desc'),
-      price: t('homepage.offres.4.price'),
-      duration: t('homepage.offres.4.duration'),
-      href: '/partenaire',
-      img: '/images/illustrations/04-expert.webp'
-    },
-  ]
-
-  const acteurs = [
-    {
-      title: t('homepage.pour_qui.1.title'),
-      desc: t('homepage.pour_qui.1.desc'),
-      href: '/entreprises',
-      anchor: 'entreprises',
-      img: '/images/illustrations/pme-tpe.webp'
-    },
-    {
-      title: t('homepage.pour_qui.2.title'),
-      desc: t('homepage.pour_qui.2.desc'),
-      href: '/professions-liberales',
-      anchor: 'professions-liberales',
-      img: '/images/illustrations/lawyer.webp'
-    },
-    {
-      title: t('homepage.pour_qui.3.title'),
-      desc: t('homepage.pour_qui.3.desc'),
-      href: '/education',
-      anchor: 'education',
-      img: '/images/illustrations/etudiant.webp'
-    },
-    {
-      title: t('homepage.pour_qui.4.title'),
-      desc: t('homepage.pour_qui.4.desc'),
-      href: '/secteurs-creatifs',
-      anchor: 'secteurs-creatifs',
-      img: '/images/illustrations/crea.webp'
-    },
-    {
-      title: t('homepage.pour_qui.5.title'),
-      desc: t('homepage.pour_qui.5.desc'),
-      href: '/pouvoirs-publics',
-      anchor: 'pouvoirs-publics',
-      img: '/images/illustrations/collectivite.webp'
-    },
-    {
-      title: t('homepage.pour_qui.6.title'),
-      desc: t('homepage.pour_qui.6.desc'),
-      href: '/citoyens',
-      anchor: 'citoyen',
-      img: '/images/illustrations/public.webp'
-    },
-  ]
-
-  const heroRef = useRef<HTMLElement>(null)
-
-  const { scrollYProgress: heroScrollProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const heroImageY = useTransform(heroScrollProgress, [0, 1], [0, -80])
 
   return (
     <>
@@ -123,166 +26,350 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Marius IA",
-            "url": "https://www.mariusia.com",
-            "description": "Conseil en stratégie IA et conformité AI Act pour PME et ETI. Accompagnement pragmatique vers la transformation IA.",
-            "areaServed": ["Europe", "France"],
-            "knowsAbout": ["Artificial Intelligence", "AI Act", "AI Governance", "Machine Learning", "Change Management"],
-            "serviceType": ["AI Strategy Consulting", "AI Compliance", "AI Training"],
-            "contactPoint": { "@type": "ContactPoint", "url": "https://www.mariusia.com/contact" }
+            "name": "Institut Collectif de l'IA",
+            "alternateName": "ICIA",
+            "url": "https://www.iciafrance.com",
+            "description": "Association loi 1901 d\u00e9di\u00e9e aux enjeux collectifs de l'intelligence artificielle.",
+            "areaServed": ["France", "Europe"],
+            "knowsAbout": ["Artificial Intelligence", "AI Education", "AI Skills", "Digital Inclusion"],
+            "contactPoint": { "@type": "ContactPoint", "url": "https://www.iciafrance.com/contact" }
           })
         }}
       />
       <Header />
-      <main className="pt-16">
+      <main style={{ paddingTop: '64px' }}>
 
-        {/* Hero */}
-        <section
-          id="accueil"
-          ref={heroRef}
-          className="section bg-primary"
-        >
+        {/* 1. Hero */}
+        <section id="accueil" className="section bg-primary">
           <div className="container-mentivis">
             <StaggerBlock delay={0}>
-              <p className="t-caption uppercase tracking-widest mb-6">{t('homepage.hero.label')}</p>
-            </StaggerBlock>
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-              <div>
-                <StaggerBlock delay={0.1}>
-                  <h1 className="t-hero mb-6 whitespace-pre-line text-primary">
-                    {t('homepage.hero.title')}
-                  </h1>
-                </StaggerBlock>
-                <StaggerBlock delay={0.2}>
-                  <p className="t-lead mb-6 max-w-xl">
-                    {t('homepage.hero.subtitle')}
-                  </p>
-                </StaggerBlock>
-                <StaggerBlock delay={0.3}>
-                  <p className="t-lead mb-8 max-w-lg">
-                    {t('homepage.hero.body')}
-                  </p>
-                </StaggerBlock>
-                <StaggerBlock delay={0.4}>
-                  <LocalizedLink
-                    href="/#acteurs"
-                    className="btn-pill btn-black"
-                  >
-                    {t('homepage.hero.cta')}
-                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </LocalizedLink>
-                </StaggerBlock>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-                style={{ y: heroImageY }}
-              >
-                <div className="w-full aspect-square overflow-hidden">
-                  <BauhausHero />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Piliers */}
-        <section id="piliers" className="section bg-secondary">
-          <div className="container-mentivis">
-            <StaggerBlock delay={0} className="mb-12">
-              <h2 className="t-display text-primary">{t('homepage.piliers.title')}</h2>
-            </StaggerBlock>
-            <div className="grid md:grid-cols-3 gap-6">
-              {piliers.map((p, i) => (
-                <AnimatedCard key={p.title} id={p.anchor} delay={i * 0.1} className="p-8 bg-primary rounded-card shadow-card hover:shadow-card-full transition-shadow duration-200">
-                  <h3 className="t-heading text-primary mb-3">{p.title}</h3>
-                  <p className="t-caption">{p.desc}</p>
-                </AnimatedCard>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Acteurs */}
-        <section id="acteurs" className="section bg-primary">
-          <div className="container-mentivis">
-            <StaggerBlock delay={0} className="mb-12">
-              <h2 className="t-display text-primary mb-3">{t('homepage.pour_qui.title')}</h2>
-              <p className="t-lead max-w-2xl">{t('homepage.pour_qui.subtitle')}</p>
-            </StaggerBlock>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {acteurs.map((acteur, i) => (
-                <AnimatedCard key={acteur.title} id={acteur.anchor} delay={i * 0.05} whileHover={{ y: -4 }}>
-                  <LocalizedLink href={acteur.href} className="group block p-6 bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-200 h-full">
-                    <div className="w-full aspect-square mb-4 overflow-hidden rounded-lg">
-                      <Picture src={acteur.img} alt={acteur.title} className="w-full h-full object-cover" width={400} height={400} />
-                    </div>
-                    <h3 className="t-heading text-primary mb-2">{acteur.title}</h3>
-                    <p className="t-caption">{acteur.desc}</p>
-                  </LocalizedLink>
-                </AnimatedCard>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Offres */}
-        <section id="offres" className="section bg-secondary">
-          <div className="container-mentivis">
-            <StaggerBlock delay={0} className="mb-12">
-              <h2 className="t-display text-primary mb-3">{t('homepage.offres.title')}</h2>
-              <p className="t-lead max-w-2xl">{t('homepage.offres.subtitle')}</p>
-            </StaggerBlock>
-            <div className="space-y-6">
-              {offres.map((offre, i) => (
-                <AnimatedCard key={offre.num} delay={i * 0.1} id={'offre-' + offre.href.replace('/', '')}>
-                  <LocalizedLink href={offre.href} className="flex flex-col md:flex-row items-center gap-8 p-8 bg-primary rounded-card shadow-card hover:shadow-card-full transition-all duration-200">
-                    <div className="flex-1">
-                      <h3 className="t-title text-primary mb-1">{offre.num} {offre.title}</h3>
-                      <p className="t-caption mb-3">{offre.subtitle}</p>
-                      <p className="t-lead mb-3">{offre.description}</p>
-                      <p className="t-caption">{offre.price} · {offre.duration}</p>
-                    </div>
-                    <div className="w-full md:w-48 aspect-square flex-shrink-0 overflow-hidden">
-                      <Picture src={offre.img} alt={offre.title} className="w-full h-full object-cover" width={192} height={192} />
-                    </div>
-                  </LocalizedLink>
-                </AnimatedCard>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact CTA */}
-        <section id="contact" className="section bg-warm">
-          <div className="container-mentivis">
-            <StaggerBlock delay={0}>
-              <p className="t-caption uppercase tracking-widest mb-4">{t('homepage.contact.label')}</p>
+              <p className="t-micro" style={{ textTransform: 'uppercase', letterSpacing: '0.14px', marginBottom: '24px' }}>
+                {t('homepage.hero.label')}
+              </p>
             </StaggerBlock>
             <StaggerBlock delay={0.1}>
-              <h2 className="t-display text-primary mb-6 max-w-2xl">{t('homepage.contact.heading')}</h2>
+              <h1 className="t-hero text-primary" style={{ marginBottom: '20px', whiteSpace: 'pre-line' }}>
+                {t('homepage.hero.h1')}
+              </h1>
             </StaggerBlock>
             <StaggerBlock delay={0.2}>
-              <p className="t-lead mb-8 max-w-xl">
-                {t('homepage.contact.body')}
+              <p className="t-lead" style={{ maxWidth: '560px', marginBottom: '16px' }}>
+                {t('homepage.hero.baseline')}
               </p>
             </StaggerBlock>
             <StaggerBlock delay={0.3}>
-              <LocalizedLink href="/contact" className="btn-pill btn-black">
-                {t('homepage.contact.cta')}
-                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </LocalizedLink>
+              <p className="t-lead" style={{ maxWidth: '600px', marginBottom: '40px' }}>
+                {t('homepage.hero.intro')}
+              </p>
+            </StaggerBlock>
+            <StaggerBlock delay={0.4}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <LocalizedLink href="/#mission" className="btn-pill btn-black">
+                  {t('homepage.hero.cta_mission')}
+                  {chevronRight}
+                </LocalizedLink>
+                <LocalizedLink href="/#programmes" className="btn-pill btn-outline-shadow">
+                  {t('homepage.hero.cta_programmes')}
+                  {chevronRight}
+                </LocalizedLink>
+              </div>
             </StaggerBlock>
           </div>
         </section>
+
+        {/* 2. Mission */}
+        <section id="mission" className="section bg-secondary">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                {t('homepage.mission.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ maxWidth: '800px', marginBottom: '48px' }}>
+                {t('homepage.mission.intro')}
+              </p>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+              {[
+                [t('homepage.mission.intelligible.title'), t('homepage.mission.intelligible.desc')],
+                [t('homepage.mission.competences.title'), t('homepage.mission.competences.desc')],
+                [t('homepage.mission.fractures.title'), t('homepage.mission.fractures.desc')],
+                [t('homepage.mission.debat.title'), t('homepage.mission.debat.desc')],
+              ].map(([title, desc], i) => (
+                <AnimatedCard key={title} delay={i * 0.1} className="p-8 bg-primary rounded-card shadow-card" whileHover={{ y: -4 }}>
+                  <h3 className="t-heading text-primary" style={{ marginBottom: '12px' }}>{title}</h3>
+                  <p className="t-caption">{desc}</p>
+                </AnimatedCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Nos actions */}
+        <section id="actions" className="section bg-primary">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>
+                {t('homepage.actions.title')}
+              </h2>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+              {[
+                [t('homepage.actions.formation.title'), t('homepage.actions.formation.desc')],
+                [t('homepage.actions.recherche.title'), t('homepage.actions.recherche.desc')],
+                [t('homepage.actions.territoires.title'), t('homepage.actions.territoires.desc')],
+                [t('homepage.actions.ressources.title'), t('homepage.actions.ressources.desc')],
+                [t('homepage.actions.debats.title'), t('homepage.actions.debats.desc')],
+              ].map(([title, desc], i) => (
+                <AnimatedCard key={title} delay={i * 0.08} className="p-8 bg-secondary rounded-card shadow-card" whileHover={{ y: -4 }}>
+                  <h3 className="t-heading text-primary" style={{ marginBottom: '12px' }}>{title}</h3>
+                  <p className="t-caption">{desc}</p>
+                </AnimatedCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Pour qui */}
+        <section id="pour-qui" className="section bg-warm">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '12px', whiteSpace: 'pre-line' }}>
+                {t('homepage.pour_qui.title')}
+              </h2>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginTop: '48px' }}>
+              {[
+                [t('homepage.pour_qui.citoyens.title'), t('homepage.pour_qui.citoyens.desc')],
+                [t('homepage.pour_qui.professionnels.title'), t('homepage.pour_qui.professionnels.desc')],
+                [t('homepage.pour_qui.organisations.title'), t('homepage.pour_qui.organisations.desc')],
+                [t('homepage.pour_qui.publics.title'), t('homepage.pour_qui.publics.desc')],
+                [t('homepage.pour_qui.education.title'), t('homepage.pour_qui.education.desc')],
+              ].map(([title, desc], i) => (
+                <AnimatedCard key={title} delay={i * 0.06} className="p-8 bg-primary rounded-card shadow-card" whileHover={{ y: -4 }}>
+                  <h3 className="t-heading text-primary" style={{ marginBottom: '12px' }}>{title}</h3>
+                  <p className="t-caption">{desc}</p>
+                </AnimatedCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Nos engagements */}
+        <section id="engagements" className="section bg-secondary">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>
+                {t('homepage.engagements.title')}
+              </h2>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
+              {[
+                [t('homepage.engagements.independance.title'), t('homepage.engagements.independance.desc')],
+                [t('homepage.engagements.interet.title'), t('homepage.engagements.interet.desc')],
+                [t('homepage.engagements.accessibilite.title'), t('homepage.engagements.accessibilite.desc')],
+                [t('homepage.engagements.critique.title'), t('homepage.engagements.critique.desc')],
+                [t('homepage.engagements.action.title'), t('homepage.engagements.action.desc')],
+              ].map(([title, desc], i) => (
+                <AnimatedCard key={title} delay={i * 0.08} className="p-8 bg-primary rounded-card shadow-card" whileHover={{ y: -4 }}>
+                  <h3 className="t-heading text-primary" style={{ marginBottom: '12px' }}>{title}</h3>
+                  <p className="t-caption">{desc}</p>
+                </AnimatedCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Programmes ICIA */}
+        <section id="programmes" className="section bg-primary">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>
+                {t('homepage.programmes.title')}
+              </h2>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+              {[
+                [t('homepage.programmes.territoires.title'), t('homepage.programmes.territoires.desc')],
+                [t('homepage.programmes.education.title'), t('homepage.programmes.education.desc')],
+                [t('homepage.programmes.travail.title'), t('homepage.programmes.travail.desc')],
+              ].map(([title, desc], i) => (
+                <AnimatedCard key={title} delay={i * 0.1} className="p-8 bg-secondary rounded-card shadow-card" whileHover={{ y: -4 }}>
+                  <h3 className="t-heading text-primary" style={{ marginBottom: '12px' }}>{title}</h3>
+                  <p className="t-caption">{desc}</p>
+                </AnimatedCard>
+              ))}
+            </div>
+            <AnimatedCard delay={0.3} className="p-10 bg-warm rounded-card shadow-card">
+              <div style={{ maxWidth: '640px' }}>
+                <h3 className="t-title text-primary" style={{ marginBottom: '16px' }}>
+                  {t('homepage.programmes.impact.title')}
+                </h3>
+                <p className="t-lead" style={{ marginBottom: '12px' }}>
+                  {t('homepage.programmes.impact.desc')}
+                </p>
+                <p className="t-caption" style={{ marginBottom: '24px', fontWeight: 500, color: 'var(--text-primary)' }}>
+                  {t('homepage.programmes.impact.tagline')}
+                </p>
+                <LocalizedLink href="/programme-impact" className="btn-pill btn-black">
+                  {t('homepage.programmes.impact.cta')}
+                  {chevronRight}
+                </LocalizedLink>
+              </div>
+            </AnimatedCard>
+          </div>
+        </section>
+
+        {/* 7. Qui sommes-nous ? */}
+        <section id="a-propos" className="section bg-secondary">
+          <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                {t('homepage.a_propos.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t('homepage.a_propos.body.1')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t('homepage.a_propos.body.2')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <p className="t-lead">
+                {t('homepage.a_propos.body.3')}
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* 8. Collaborer */}
+        <section id="collaborer" className="section bg-primary">
+          <div className="container-mentivis">
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                {t('homepage.collaborer.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '12px' }}>
+                {t('homepage.collaborer.intro')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
+                {t('homepage.collaborer.list').split('\n').map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
+                    className="t-lead text-primary"
+                    style={{ padding: '12px 0' }}
+                  >
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* 9. Gouvernance & Opération */}
+        <section id="gouvernance" className="section bg-secondary">
+          <div className="container-mentivis" style={{ maxWidth: '800px' }}>
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>
+                {t('homepage.gouvernance.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t('homepage.gouvernance.body.1')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t('homepage.gouvernance.body.2')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="t-lead" style={{ marginBottom: '32px' }}>
+                {t('homepage.gouvernance.body.3')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.25}>
+              <div className="p-8 bg-primary rounded-card shadow-card" style={{ marginBottom: '16px' }}>
+                <p className="t-heading text-primary" style={{ fontWeight: 500, marginBottom: '12px' }}>
+                  {t('homepage.gouvernance.mentivis.title')}
+                </p>
+                <p className="t-caption">
+                  {t('homepage.gouvernance.mentivis.desc')}
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <p className="t-micro">
+                {t('homepage.gouvernance.mentivis.note')}
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* 10. Ancrage territorial */}
+        <section id="territoire" className="section bg-warm">
+          <div className="container-mentivis" style={{ maxWidth: '800px' }}>
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                {t('homepage.territoire.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t('homepage.territoire.body.1')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="t-lead" style={{ marginBottom: '24px' }}>
+                {t('homepage.territoire.body.2')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="t-caption text-primary" style={{ fontWeight: 500 }}>
+                {t('homepage.territoire.adresse')}
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* 11. CTA Final */}
+        <section id="cta" className="section bg-secondary">
+          <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+            <FadeIn>
+              <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                {t('homepage.cta.title')}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '40px' }}>
+                {t('homepage.cta.body')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <LocalizedLink href="/contact" className="btn-pill btn-black">
+                {t('homepage.cta.button')}
+                {chevronRight}
+              </LocalizedLink>
+            </FadeIn>
+          </div>
+        </section>
+
       </main>
-      <RecentArticles lang={lang} />
       <Footer />
     </>
   )

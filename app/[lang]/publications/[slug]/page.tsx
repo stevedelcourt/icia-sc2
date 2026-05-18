@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/ui/FadeIn'
@@ -7,8 +6,7 @@ import { LocalizedLink } from '@/lib/i18n'
 import { getPublications, getPublicationBySlug, getPublicationSlugs, type Locale } from '@/generated/publications'
 import { t } from '@/generated/content'
 import { Picture } from '@/components/Picture'
-
-const MarkdownBody = dynamic(() => import('@/components/MarkdownBody').then(mod => ({ default: mod.MarkdownBody })), { ssr: false })
+import { MarkdownBody } from '@/components/MarkdownBody'
 
 export async function generateStaticParams() {
   const locales: Locale[] = ['fr', 'en']

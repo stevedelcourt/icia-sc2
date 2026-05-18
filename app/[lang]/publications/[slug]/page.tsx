@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
     }
   }
 
-  const baseUrl = 'https://www.mariusia.com'
+  const baseUrl = 'https://www.iciafrance.com'
   const canonical = `${baseUrl}/${lang}/publications/${params.slug}/`
 
   return {
@@ -71,14 +71,6 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
   }
 }
 
-const tagColors: Record<string, string> = {
-  announcements: 'bg-[#a6a6a6] text-white',
-  perspectives: 'bg-[#a6a6a6] text-white',
-  'regulatory-insights': 'bg-[#a6a6a6] text-white',
-  news: 'bg-[#a6a6a6] text-white',
-  'strategy-papers': 'bg-[#a6a6a6] text-white',
-}
-
 export default function PublicationDetailPage({ params }: { params: { lang: string; slug: string } }) {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
   const pub = getPublicationBySlug(params.slug, lang)
@@ -104,7 +96,6 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
 
   const tagKey = `publications.tag.${pub.category}`
   const tagLabel = (t as any)(lang, tagKey) || pub.category
-  const tagClass = tagColors[pub.category] || 'bg-gray-200 text-gray-700'
   const heroPath = pub.heroImage
     ? `/images/publications/${pub.slug}/${pub.heroImage}`
     : '/images/og-image.png'
@@ -127,7 +118,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}/`,
+    '@id': `https://www.iciafrance.com/${lang}/publications/${pub.slug}/`,
     headline: pub.headline,
     description: pub.subheadline,
     image: heroPath,
@@ -139,15 +130,15 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     author: {
       '@type': 'Organization',
       name: 'Marius IA',
-      url: 'https://www.mariusia.com'
+      url: 'https://www.iciafrance.com'
     },
     publisher: {
       '@type': 'Organization',
-      '@id': 'https://www.mariusia.com/#organization'
+      '@id': 'https://www.iciafrance.com/#organization'
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.mariusia.com/${lang}/publications/${pub.slug}/`
+      '@id': `https://www.iciafrance.com/${lang}/publications/${pub.slug}/`
     }
   }
 
@@ -184,7 +175,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
           {/* Meta */}
           <FadeIn delay={0.1}>
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-sm ${tagClass}`}>
+              <span className="t-tiny" style={{ padding: '4px 12px', background: 'rgba(0,0,0,0.04)', borderRadius: '4px' }}>
                 {tagLabel}
               </span>
               <span className="t-caption text-tertiary">
@@ -234,7 +225,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
             </FadeIn>
           )}
 
-          {/* Summary cards — AFTER body */}
+          {/* Summary cards  -  AFTER body */}
           {cards.length > 0 && (
             <div className="grid md:grid-cols-3 gap-6 mt-16 mb-16">
               {cards.map((card, i) => (
@@ -270,7 +261,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
             </div>
           )}
 
-          {/* Related articles — "Lire aussi" */}
+          {/* Related articles  -  "Lire aussi" */}
           {relatedArticles.length > 0 && (
             <FadeIn>
               <div className="max-w-3xl mx-auto">

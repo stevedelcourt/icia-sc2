@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "content:build": "node scripts/build-content.js",
-    "prebuild": "node scripts/build-content.js && node scripts/build-publications.js && node scripts/download-images.js",
+    "prebuild": "node scripts/build-content.js && node scripts/build-publications.js && node scripts/build-actualites.js && node scripts/download-images.js",
     "dev": "next dev",
     "build": "next build",
     "build:export": "NEXT_EXPORT=true next build",
@@ -33,6 +33,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
     "prettier": "^3.2.5",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3"
   }
 }

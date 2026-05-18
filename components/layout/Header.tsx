@@ -15,6 +15,8 @@ export function Header() {
   const navLinks = [
     { label: t('header.nav.mission'), href: '/#mission' },
     { label: t('header.nav.programmes'), href: '/#programmes' },
+    { label: t('header.nav.gouvernance') || 'Gouvernance', href: '/gouvernance' },
+    { label: t('header.nav.devenir_membre') || 'Devenir membre', href: '/devenir-membre' },
     { label: t('header.nav.a_propos'), href: '/a-propos' },
   ]
 
@@ -24,19 +26,24 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isHomePage) {
-        setIsScrolled(window.scrollY > 20)
-      } else {
-        setIsScrolled(window.scrollY > 50)
-      }
+      setIsScrolled(window.scrollY > 8)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isHomePage])
+  }, [])
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [isMobileMenuOpen])
 
   const closeMenu = () => setIsMobileMenuOpen(false)
 
@@ -53,14 +60,12 @@ export function Header() {
         right: 0,
         zIndex: 1000,
         height: '64px',
-        backgroundColor: isScrolled ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.98)',
+        backgroundColor: '#ffffff',
         boxShadow: isScrolled ? 'var(--shadow-card)' : 'none',
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        borderBottom: '1px solid rgba(0,0,0,0.05)',
-        transition: 'background-color 0.35s ease, box-shadow 0.35s ease',
+        borderBottom: '1px solid var(--border-subtle)',
+        transition: 'box-shadow 0.35s ease',
       }}>
-      <div className="container-mentivis" style={{ height: '100%' }}>
+      <div className="container-wide" style={{ height: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -68,25 +73,15 @@ export function Header() {
             transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
             <LocalizedLink href="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <span style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
-                ICIA
-              </span>
-              <span style={{
-                fontSize: '12px',
-                color: 'var(--text-tertiary)',
-                marginLeft: '10px',
-                paddingLeft: '10px',
-                borderLeft: '1px solid var(--border-light)',
-                fontWeight: 400,
-                lineHeight: 1.3,
-                display: 'inline-block',
-              }}>
-                Institut Collectif<br />de l&rsquo;IA
-              </span>
+              <img
+                src="/images/icia-logo-wordmark-noir.svg"
+                alt="ICIA, Institut Collectif de l'IA"
+                style={{ height: '36px', width: 'auto' }}
+              />
             </LocalizedLink>
           </motion.div>
 
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="navbar-desktop">
+          <nav className="navbar-desktop" style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
             {navLinks.map((link, i) => (
               <motion.div
                 key={link.href}
@@ -96,8 +91,8 @@ export function Header() {
               >
                 <LocalizedLink
                   href={link.href}
-                  className="t-nav text-primary"
-                  style={{ transition: 'color 0.18s ease' }}
+                  className="navbar-link t-nav"
+                  style={{ color: 'var(--text-secondary)', padding: '20px 0', display: 'inline-block' }}
                 >
                   {link.label}
                 </LocalizedLink>
@@ -105,7 +100,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="navbar-desktop">
+          <div className="navbar-desktop" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,8 +108,20 @@ export function Header() {
             >
               <Link
                 href={getLangSwitchHref()}
-                className="t-nav text-tertiary"
-                style={{ textTransform: 'uppercase', transition: 'color 0.18s ease' }}
+                className="lang-switch"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '32px',
+                  height: '32px',
+                  fontSize: '13px',
+                  fontWeight: 500,
+                  color: 'var(--text-secondary)',
+                  textTransform: 'uppercase',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
               >
                 {lang === 'fr' ? 'EN' : 'FR'}
               </Link>
@@ -124,19 +131,28 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <LocalizedLink href="/contact" className="btn-pill btn-black">
+              <LocalizedLink href="/contact" className="btn-header-outline">
                 {t('header.cta')}
+              </LocalizedLink>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <LocalizedLink href="/contact" className="btn-header-black">
+                {t('header.cta_join')}
               </LocalizedLink>
             </motion.div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }} className="navbar-mobile">
+          <div className="navbar-mobile" style={{ display: 'none', alignItems: 'center', gap: '12px' }}>
             <Link
               href={getLangSwitchHref()}
               style={{
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 500,
-                color: 'var(--text-primary)',
+                color: 'var(--text-secondary)',
                 textTransform: 'uppercase',
               }}
             >
@@ -163,20 +179,25 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="navbar-mobile"
             style={{
-              backgroundColor: '#111827',
-              borderTop: '1px solid rgba(255,255,255,0.1)',
+              position: 'fixed',
+              top: '64px',
+              right: 0,
+              bottom: 0,
               width: '100%',
-              overflow: 'hidden',
-              touchAction: 'manipulation',
+              maxWidth: '400px',
+              backgroundColor: '#ffffff',
+              zIndex: 999,
+              overflowY: 'auto',
+              borderLeft: '1px solid var(--border-light)',
             }}
           >
-            <div style={{ padding: '16px 24px' }}>
+            <div style={{ padding: '32px var(--grid-margin)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 {navLinks.map((link) => (
                   <LocalizedLink
@@ -185,21 +206,24 @@ export function Header() {
                     onClick={closeMenu}
                     style={{
                       display: 'block',
-                      fontSize: '18px',
-                      color: '#ffffff',
-                      padding: '12px 0',
-                      fontWeight: 500,
-                      transition: 'color 0.18s ease',
+                      fontSize: 'var(--text-heading)',
+                      fontWeight: 300,
+                      color: 'var(--text-primary)',
+                      padding: '16px 0',
+                      borderBottom: '1px solid var(--border-light)',
+                      textDecoration: 'none',
                     }}
                   >
                     {link.label}
                   </LocalizedLink>
                 ))}
+              </div>
+              <div style={{ marginTop: '24px' }}>
                 <LocalizedLink
                   href="/contact"
                   onClick={closeMenu}
                   className="btn-pill btn-black"
-                  style={{ marginTop: '8px', justifyContent: 'center', width: '100%' }}
+                  style={{ width: '100%' }}
                 >
                   {t('header.cta')}
                 </LocalizedLink>
@@ -210,6 +234,33 @@ export function Header() {
       </AnimatePresence>
 
       <style jsx>{`
+        .navbar-link {
+          position: relative;
+          text-decoration: none;
+          transition: color 0.18s ease;
+        }
+        .navbar-link::after {
+          content: '';
+          position: absolute;
+          bottom: 16px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--text-primary);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .navbar-link:hover {
+          color: var(--text-primary);
+        }
+        .navbar-link:hover::after {
+          transform: scaleX(1);
+        }
+        .lang-switch:hover {
+          background: rgba(0,0,0,0.04);
+          border-radius: 50%;
+        }
         @media (max-width: 1024px) {
           .navbar-desktop { display: none !important; }
           .navbar-mobile { display: flex !important; }

@@ -22,7 +22,7 @@ function NotFoundContent() {
       }}>
         <h1 style={{
           fontSize: 'clamp(80px, 12vw, 180px)',
-          fontWeight: 700,
+          fontWeight: 500,
           color: 'var(--text-primary)',
           lineHeight: 1,
           marginBottom: '16px',
@@ -32,7 +32,7 @@ function NotFoundContent() {
 
         <p style={{
           fontSize: 'clamp(20px, 3vw, 36px)',
-          fontWeight: 700,
+          fontWeight: 500,
           color: 'var(--text-primary)',
           marginBottom: '12px',
         }}>
@@ -49,12 +49,18 @@ function NotFoundContent() {
             className="btn-pill btn-black"
           >
             {t('not_found.cta_home')}
+            <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </LocalizedLink>
           <LocalizedLink
             href="/fr/contact"
             className="btn-pill btn-outline-shadow"
           >
             {t('not_found.cta_contact')}
+            <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </LocalizedLink>
         </div>
 

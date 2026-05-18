@@ -5,7 +5,7 @@ ICIA | Institut Collectif de l'IA
 %s | ICIA
 
 # layout.seo.description
-Institut Collectif de l'IA (ICIA) — Comprendre l'intelligence artificielle. Développer les capacités d'agir. Construire une transition plus inclusive. Programmes, formations, ressources. Marseille.
+Institut Collectif de l'IA (ICIA) ,  Comprendre l'intelligence artificielle. Développer les capacités d'agir. Construire une transition plus inclusive. Programmes, formations, ressources. Marseille.
 
 # layout.seo.keywords
 intelligence artificielle, IA, institut IA, formation IA, compétences IA, inclusion numérique, transformation IA, association IA, Marseille, ICIA
@@ -26,10 +26,10 @@ ICIA | Institut Collectif de l'IA
 Comprendre l'intelligence artificielle. Développer les capacités d'agir. Construire une transition plus inclusive.
 
 # layout.og.site_name
-ICIA — Institut Collectif de l'IA
+ICIA ,  Institut Collectif de l'IA
 
 # layout.og.image.alt
-ICIA — Institut Collectif de l'IA
+ICIA ,  Institut Collectif de l'IA
 
 # layout.twitter.title
 ICIA | Institut Collectif de l'IA
@@ -59,13 +59,13 @@ Anglais
 Mentivis SAS
 
 # layout.ld_json.org.location.name
-Mariusia — Marseille
+Mariusia ,  Marseille
 
 # layout.ld_json.org.location.city
 Marseille
 
 # layout.ld_json.website.name
-ICIA — Institut Collectif de l'IA
+ICIA ,  Institut Collectif de l'IA
 
 # layout.ld_json.website.description
 Association loi 1901 dédiée à la compréhension, aux compétences et aux usages de l'intelligence artificielle pour tous.
@@ -82,11 +82,20 @@ Programmes
 # header.nav.a_propos
 À propos
 
+# header.nav.gouvernance
+Gouvernance
+
+# header.nav.devenir_membre
+Devenir membre
+
 # header.nav.contact
 Contact
 
 # header.cta
 Nous contacter
+
+# header.cta_join
+Adhérer
 
 # header.aria.menu
 Menu
@@ -338,7 +347,7 @@ L'Institut Collectif de l'IA est implanté à Marseille, au sein du même lieu q
 Ce choix reflète une conviction simple : les transformations liées à l'intelligence artificielle ne se jouent pas uniquement dans les grands centres technologiques. Elles se construisent aussi dans les territoires, les lieux d'apprentissage, les initiatives collectives, les écosystèmes éducatifs et les projets hybrides.
 
 # homepage.territoire.adresse
-4 boulevard Jacques Saadé, 13002 Marseille — France
+4 boulevard Jacques Saadé, 13002 Marseille ,  France
 
 # homepage.cta.title
 Rejoignez l'Institut Collectif de l'IA
@@ -350,7 +359,7 @@ Vous êtes une collectivité, une association, une entreprise, un établissement
 Nous contacter
 
 # footer.tagline
-Institut Collectif de l'IA (ICIA) — Association loi 1901. Comprendre les transformations liées à l'intelligence artificielle. Développer les compétences. Renforcer les capacités d'agir.
+Institut Collectif de l'IA (ICIA) ,  Association loi 1901. Comprendre les transformations liées à l'intelligence artificielle. Développer les compétences. Renforcer les capacités d'agir.
 
 # footer.by
 Programmes développés avec le concours de
@@ -390,6 +399,24 @@ Qui sommes-nous ?
 
 # footer.about.publications
 Publications
+
+# footer.about.gouvernance
+Gouvernance
+
+# footer.about.conseil
+Conseil d'administration
+
+# footer.about.partenaires
+Partenaires
+
+# footer.about.actualites
+Actualités
+
+# footer.about.devenir_membre
+Devenir membre
+
+# footer.about.donations
+Faire un don
 
 # footer.programmes.impact
 Programme Impact
@@ -434,7 +461,7 @@ Gouvernance
 Pour certains dispositifs, l'ICIA s'appuie sur des partenaires spécialisés capables d'assurer la conception, l'ingénierie et le déploiement opérationnel des programmes. Mentivis intervient comme opérateur pédagogique et partenaire d'ingénierie de l'Institut.
 
 # a_propos.adresse
-4 boulevard Jacques Saadé, 13002 Marseille — France
+4 boulevard Jacques Saadé, 13002 Marseille ,  France
 
 # contact.label
 Contact
@@ -578,7 +605,7 @@ Retour à l'accueil
 Nous contacter
 
 # not_found.footer
-ICIA — Institut Collectif de l'IA
+ICIA ,  Institut Collectif de l'IA
 
 # publications.card.read_button
 Lire la suite

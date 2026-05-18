@@ -2,10 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StaggerBlock } from '@/components/Animations'
 import { useT, LocalizedLink } from '@/lib/i18n'
+
+const OpenFreeMap = dynamic(() => import('@/components/OpenFreeMap').then(mod => ({ default: mod.OpenFreeMap })), { ssr: false })
 
 export default function ContactPage() {
   const t = useT()
@@ -45,7 +48,7 @@ export default function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     '@id': 'https://www.iciafrance.com/contact',
-    name: 'Contact — ICIA',
+    name: 'Contact  -  ICIA',
     description: 'Contactez l\'Institut Collectif de l\'IA.',
     mainEntity: {
       '@type': 'Organization',
@@ -95,6 +98,9 @@ export default function ContactPage() {
             <h2 className="t-display text-primary" style={{ marginBottom: '16px' }}>{t('contact_form.success')}</h2>
             <LocalizedLink href="/" className="btn-pill btn-black" style={{ marginTop: '24px' }}>
               Retour à l&rsquo;accueil
+              <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </LocalizedLink>
           </div>
         </main>
@@ -185,6 +191,9 @@ export default function ContactPage() {
 
               <button type="submit" disabled={isSubmitting} className="btn-pill btn-black" style={{ width: '100%', justifyContent: 'center' }}>
                 {isSubmitting ? 'Envoi...' : t('contact_form.send')}
+                <svg className="btn-chevron" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </button>
 
               {submitStatus === 'error' && (
@@ -192,7 +201,19 @@ export default function ContactPage() {
                   {t('contact_form.error')}
                 </p>
               )}
-            </form>
+              </form>
+
+            <div style={{ marginTop: '64px' }}>
+              <h2 className="t-title text-primary" style={{ marginBottom: '16px' }}>
+                Nous trouver
+              </h2>
+              <p className="t-caption" style={{ marginBottom: '24px' }}>
+                Campus Cyber.IA Euromed, 4 boulevard Jacques Saadé, 13002 Marseille
+              </p>
+              <div style={{ width: '100%', aspectRatio: '1/1', border: '1px solid var(--border-light)', borderRadius: 'var(--r-card)', overflow: 'hidden', maxHeight: '500px' }}>
+                <OpenFreeMap />
+              </div>
+            </div>
           </StaggerBlock>
         </div>
       </main>

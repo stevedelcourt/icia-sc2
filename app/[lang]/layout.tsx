@@ -1,15 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { I18nProvider } from '@/lib/i18n'
 import { LangSetter } from '@/components/LangSetter'
+import CookieConsentDeferred from '@/components/cookie-consent-deferred'
 import { t, type Locale } from '@/generated/content'
 import '@/app/globals.css'
-
-const inter = Inter({
-  weight: ['300', '400', '500', '600'],
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
 
 export async function generateStaticParams() {
   return [{ lang: 'fr' }, { lang: 'en' }]
@@ -23,8 +17,18 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   return {
     metadataBase: new URL(baseUrl),
     icons: {
-      icon: '/images/favicon_io/favicon.ico',
-      apple: '/images/favicon_io/apple-touch-icon.png',
+      icon: [
+        { url: '/images/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/images/favicon_io/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/images/favicon_io/favicon.ico', sizes: '48x48' },
+      ],
+      apple: [
+        { url: '/images/favicon_io/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+      other: [
+        { url: '/images/favicon_io/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/images/favicon_io/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      ],
     },
     title: {
       default: t(lang, 'layout.seo.title.default'),
@@ -158,7 +162,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang={lang} className={inter.variable}>
+    <html lang={lang}>
       <body className="antialiased bg-primary text-secondary" style={{ fontFamily: 'Inter, sans-serif' }}>
         <LangSetter lang={lang} />
         <script
@@ -172,6 +176,7 @@ export default function RootLayout({
         <I18nProvider lang={lang}>
           {children}
         </I18nProvider>
+        <CookieConsentDeferred lang={lang} />
       </body>
     </html>
   )

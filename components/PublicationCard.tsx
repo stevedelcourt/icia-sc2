@@ -16,15 +16,15 @@ interface PublicationCardProps {
 }
 
 const tagStyle: Record<string, React.CSSProperties> = {
-  announcements: { backgroundColor: '#a6a6a6', color: '#ffffff' },
-  perspectives: { backgroundColor: '#a6a6a6', color: '#ffffff' },
-  'regulatory-insights': { backgroundColor: '#a6a6a6', color: '#ffffff' },
-  news: { backgroundColor: '#a6a6a6', color: '#ffffff' },
-  'strategy-papers': { backgroundColor: '#a6a6a6', color: '#ffffff' },
+  announcements: { backgroundColor: '#f5f5f5', color: '#4e4e4e' },
+  perspectives: { backgroundColor: '#f5f5f5', color: '#4e4e4e' },
+  'regulatory-insights': { backgroundColor: '#f5f5f5', color: '#4e4e4e' },
+  news: { backgroundColor: '#f5f5f5', color: '#4e4e4e' },
+  'strategy-papers': { backgroundColor: '#f5f5f5', color: '#4e4e4e' },
 }
 
 const defaultTagStyle: React.CSSProperties = {
-  backgroundColor: '#e5e5e5',
+  backgroundColor: '#f5f5f5',
   color: '#4e4e4e',
 }
 
@@ -113,7 +113,7 @@ export function PublicationCard({
                 alignSelf: 'flex-start',
                 padding: '4px 12px',
                 fontSize: '0.75rem',
-                fontWeight: 600,
+                fontWeight: 500,
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 borderRadius: '2px',

@@ -5,7 +5,7 @@ ICIA | Institut Collectif de l'IA (Collective AI Institute)
 %s | ICIA
 
 # layout.seo.description
-Institut Collectif de l'IA (ICIA) — Understanding artificial intelligence. Building capacity to act. Creating a more inclusive transition. Programs, training, resources. Marseille, France.
+Institut Collectif de l'IA (ICIA) ,  Understanding artificial intelligence. Building capacity to act. Creating a more inclusive transition. Programs, training, resources. Marseille, France.
 
 # layout.seo.keywords
 artificial intelligence, AI, AI institute, AI training, AI skills, digital inclusion, AI transformation, non-profit AI, Marseille, ICIA
@@ -26,10 +26,10 @@ ICIA | Institut Collectif de l'IA
 Understanding artificial intelligence. Building capacity to act. Creating a more inclusive transition.
 
 # layout.og.site_name
-ICIA — Collective AI Institute
+ICIA ,  Collective AI Institute
 
 # layout.og.image.alt
-ICIA — Collective AI Institute
+ICIA ,  Collective AI Institute
 
 # layout.twitter.title
 ICIA | Institut Collectif de l'IA
@@ -59,13 +59,13 @@ English
 Mentivis SAS
 
 # layout.ld_json.org.location.name
-Mariusia — Marseille
+Mariusia ,  Marseille
 
 # layout.ld_json.org.location.city
 Marseille
 
 # layout.ld_json.website.name
-ICIA — Collective AI Institute
+ICIA ,  Collective AI Institute
 
 # layout.ld_json.website.description
 French non-profit dedicated to AI understanding, skills and uses for everyone.
@@ -82,11 +82,20 @@ Programs
 # header.nav.a_propos
 About
 
+# header.nav.gouvernance
+Governance
+
+# header.nav.devenir_membre
+Become a member
+
 # header.nav.contact
 Contact
 
 # header.cta
 Contact us
+
+# header.cta_join
+Join
 
 # header.aria.menu
 Menu
@@ -338,7 +347,7 @@ The Institut Collectif de l'IA is based in Marseille, in the same location as Ma
 This choice reflects a simple conviction: AI-driven transformations do not only happen in major tech hubs. They are also built in territories, learning spaces, collective initiatives, educational ecosystems and hybrid projects.
 
 # homepage.territoire.adresse
-4 boulevard Jacques Saadé, 13002 Marseille — France
+4 boulevard Jacques Saadé, 13002 Marseille ,  France
 
 # homepage.cta.title
 Join the Institut Collectif de l'IA
@@ -350,7 +359,7 @@ Are you a local authority, non-profit, company, educational institution or field
 Contact us
 
 # footer.tagline
-Institut Collectif de l'IA (ICIA) — Non-profit association. Understanding AI-driven transformations. Building skills. Strengthening capacity to act.
+Institut Collectif de l'IA (ICIA) ,  Non-profit association. Understanding AI-driven transformations. Building skills. Strengthening capacity to act.
 
 # footer.by
 Programs developed with support from
@@ -390,6 +399,24 @@ Who we are
 
 # footer.about.publications
 Publications
+
+# footer.about.gouvernance
+Governance
+
+# footer.about.conseil
+Board of Directors
+
+# footer.about.partenaires
+Partners
+
+# footer.about.actualites
+News
+
+# footer.about.devenir_membre
+Become a member
+
+# footer.about.donations
+Make a donation
 
 # footer.programmes.impact
 Impact Program
@@ -434,7 +461,7 @@ Governance
 For certain initiatives, ICIA relies on specialized partners. Mentivis serves as the Institute's educational operator and engineering partner.
 
 # a_propos.adresse
-4 boulevard Jacques Saadé, 13002 Marseille — France
+4 boulevard Jacques Saadé, 13002 Marseille ,  France
 
 # contact.label
 Contact
@@ -578,7 +605,7 @@ Back to homepage
 Contact us
 
 # not_found.footer
-ICIA — Institut Collectif de l'IA
+ICIA ,  Institut Collectif de l'IA
 
 # publications.card.read_button
 Read more

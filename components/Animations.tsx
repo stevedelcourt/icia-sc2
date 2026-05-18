@@ -2,25 +2,15 @@
 
 import { motion } from 'framer-motion'
 
-export function StaggerHeading({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
-}
+const easeMentivis = [0.16, 1, 0.3, 1] as const
+const easeCard = [0.22, 1, 0.36, 1] as const
 
 export function StaggerBlock({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      transition={{ duration: 0.6, delay, ease: easeMentivis }}
       className={className}
     >
       {children}
@@ -45,11 +35,11 @@ export function AnimatedCard({ children, delay = 0, className, id, whileHover }:
   return (
     <motion.div
       id={id}
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       whileHover={whileHover}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay, type: 'spring', stiffness: 200, damping: 20 }}
+      transition={{ duration: 0.6, delay, ease: easeMentivis }}
       className={className}
     >
       {children}
@@ -59,17 +49,17 @@ export function AnimatedCard({ children, delay = 0, className, id, whileHover }:
 
 export function FadeIn({ children, delay = 0, direction = 'up', className }: { children: React.ReactNode; delay?: number; direction?: 'up' | 'down' | 'left' | 'right'; className?: string }) {
   const directions = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
+    up: { y: 24, x: 0 },
+    down: { y: -24, x: 0 },
+    left: { x: 24, y: 0 },
+    right: { x: -24, y: 0 },
   }
   return (
     <motion.div
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay, ease: easeMentivis }}
       className={className}
     >
       {children}

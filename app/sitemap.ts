@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getPublicationSlugs } from '@/generated/publications'
+import { getActualiteSlugs } from '@/generated/actualites'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.iciafrance.com'
@@ -10,12 +11,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/programmes',
     '/programme-impact',
     '/gouvernance',
+    '/conseil-administration',
+    '/devenir-membre',
+    '/donations',
+    '/partenaires',
     '/mission',
     '/publications',
     '/contact',
     '/a-propos',
     '/mentions-legales',
     '/politique-confidentialite',
+    '/actualites',
     '/cookies',
     '/conditions-utilisation',
   ]
@@ -52,5 +58,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  return [...staticPages, ...publicationEntries]
+  const actualiteEntries: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    getActualiteSlugs().map((slug) => ({
+      url: `${baseUrl}/${locale}/actualites/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+      alternates: {
+        languages: {
+          'fr-FR': `${baseUrl}/fr/actualites/${slug}`,
+          'en-US': `${baseUrl}/en/actualites/${slug}`,
+          'x-default': `${baseUrl}/fr/actualites/${slug}`,
+        },
+      },
+    }))
+  )
+
+  return [...staticPages, ...publicationEntries, ...actualiteEntries]
 }

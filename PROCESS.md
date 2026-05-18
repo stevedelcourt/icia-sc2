@@ -58,21 +58,21 @@ app/[lang]/contact-formspree/
 
 | Page | Status |
 |------|--------|
-| `app/[lang]/page.tsx` | **Rewritten** — 11-section ICIA homepage |
-| `app/[lang]/mission/` | **New** — Mission detail |
-| `app/[lang]/programmes/` | **New** — Programs overview |
-| `app/[lang]/programme-impact/` | **New** — Impact Program |
-| `app/[lang]/gouvernance/` | **New** — Governance & Operations |
-| `app/[lang]/a-propos/` | **Rewritten** — ICIA about page |
-| `app/[lang]/contact/` | **Rewritten** — Simplified contact form |
-| `app/[lang]/publications/` | **Kept, fixed** — Added missing content keys |
+| `app/[lang]/page.tsx` | **Rewritten**  -  11-section ICIA homepage |
+| `app/[lang]/mission/` | **New**  -  Mission detail |
+| `app/[lang]/programmes/` | **New**  -  Programs overview |
+| `app/[lang]/programme-impact/` | **New**  -  Impact Program |
+| `app/[lang]/gouvernance/` | **New**  -  Governance & Operations |
+| `app/[lang]/a-propos/` | **Rewritten**  -  ICIA about page |
+| `app/[lang]/contact/` | **Rewritten**  -  Simplified contact form |
+| `app/[lang]/publications/` | **Kept, fixed**  -  Added missing content keys |
 | `app/[lang]/publications/[slug]/` | **Kept, fixed** |
-| `app/[lang]/mentions-legales/` | **Rewritten** — Hardcoded FR legal content |
-| `app/[lang]/politique-confidentialite/` | **Rewritten** — Hardcoded FR legal content |
-| `app/[lang]/cookies/` | **Rewritten** — Hardcoded FR legal content |
-| `app/[lang]/conditions-utilisation/` | **Rewritten** — Hardcoded FR legal content |
-| `app/[lang]/llms.txt/route.ts` | **Rewritten** — Updated content keys |
-| `app/not-found.tsx` | **Rewritten** — Removed Tailwind, ICIA branded |
+| `app/[lang]/mentions-legales/` | **Rewritten**  -  Hardcoded FR legal content |
+| `app/[lang]/politique-confidentialite/` | **Rewritten**  -  Hardcoded FR legal content |
+| `app/[lang]/cookies/` | **Rewritten**  -  Hardcoded FR legal content |
+| `app/[lang]/conditions-utilisation/` | **Rewritten**  -  Hardcoded FR legal content |
+| `app/[lang]/llms.txt/route.ts` | **Rewritten**  -  Updated content keys |
+| `app/not-found.tsx` | **Rewritten**  -  Removed Tailwind, ICIA branded |
 
 ### 6. Components
 
@@ -83,9 +83,9 @@ app/[lang]/contact-formspree/
 **Kept**: `Animations.tsx`, `Picture.tsx`, `LangSetter.tsx`, `CookieConsent.tsx`, `CookieConsentClient.tsx`, `ScrollGradient.tsx` (unused), `ScrollExpandSection.tsx` (unused), `CounterNumber.tsx` (unused), `OpenFreeMap.tsx` (unused)
 
 ### 7. Content (i18n)
-- `content/site.fr.txt` — Full rewrite (~192 keys, ICIA content in French)
-- `content/site.en.txt` — Same keys, English translations
-- `generated/content.ts` — Auto-regenerated on build
+- `content/site.fr.txt`  -  Full rewrite (~192 keys, ICIA content in French)
+- `content/site.en.txt`  -  Same keys, English translations
+- `generated/content.ts`  -  Auto-regenerated on build
 - Added missing keys for publications, filter, tags, not-found
 
 ### 8. Design System
@@ -97,20 +97,20 @@ Following MentivisOS design tokens via CSS custom properties:
 - Layout: 1240px max container, responsive grids, no centering
 
 ### 9. Homepage Architecture (11 sections, immuable)
-1. Hero — H1, baseline, intro, 2 CTAs
-2. Mission — 4 cards (Intelligible, Compétences, Fractures, Débat)
-3. Nos actions — 5 cards
-4. Pour qui — 5 cards (Citoyens, Professionnels, Organisations, Acteurs publics, Éducation)
-5. Nos engagements — 5 principles
-6. Programmes ICIA — 3 cards + highlighted Programme Impact
-7. Qui sommes-nous ? — Association text
-8. Collaborer — Partner types list
-9. Gouvernance & Opération — Association + Mentivis operator model
-10. Ancrage territorial — Marseille section
-11. CTA final — Contact
+1. Hero  -  H1, baseline, intro, 2 CTAs
+2. Mission  -  4 cards (Intelligible, Compétences, Fractures, Débat)
+3. Nos actions  -  5 cards
+4. Pour qui  -  5 cards (Citoyens, Professionnels, Organisations, Acteurs publics, Éducation)
+5. Nos engagements  -  5 principles
+6. Programmes ICIA  -  3 cards + highlighted Programme Impact
+7. Qui sommes-nous ?  -  Association text
+8. Collaborer  -  Partner types list
+9. Gouvernance & Opération  -  Association + Mentivis operator model
+10. Ancrage territorial  -  Marseille section
+11. CTA final  -  Contact
 
 ### 10. Build Verification
-- `npm run build` — ✅ Successful
+- `npm run build`  -  ✅ Successful
 - 17 static routes (FR + EN for all pages)
 - 4 SSG publication detail pages
 - Zero Tailwind dependencies

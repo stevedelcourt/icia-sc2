@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematical Graphics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e1e1e1;
+    padding: 38px 30px 56px;
+    font-family: 'DM Mono', 'Courier New', monospace;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .cell {
+    background: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px 10px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cell svg { width: 100%; height: auto; display: block; }
+  .lbl { font-size: 10px; color: #999; margin-top: 5px; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+<div class="grid" id="g"></div>
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const C = 100;
+
+function el(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+function svgEl() {
+  return el('svg', { viewBox: '0 0 200 200', xmlns: NS });
+}
+function dot(p, x, y, r) {
+  r = r === undefined ? 2 : r;
+  p.appendChild(el('circle', { cx: x, cy: y, r: r, fill: '#1a1a1a' }));
+}
+function line(p, x1, y1, x2, y2, sw) {
+  sw = sw === undefined ? 0.6 : sw;
+  p.appendChild(el('line', { x1, y1, x2, y2, stroke: '#1a1a1a', 'stroke-width': sw }));
+}
+function polyline(p, pts, sw, col) {
+  sw = sw === undefined ? 0.6 : sw;
+  col = col || '#1a1a1a';
+  if (pts.length < 2) return;
+  p.appendChild(el('polyline', {
+    points: pts.map(q => q.join(',')).join(' '),
+    fill: 'none', stroke: col, 'stroke-width': sw
+  }));
+}
+
+// Clip line y = m*x + b to SVG bounds [0,200]x[0,200]
+function clipLine(m, b) {
+  const pts = [];
+  function add(x, y) {
+    x = Math.round(x * 1000) / 1000;
+    y = Math.round(y * 1000) / 1000;
+    if (x >= -0.5 && x <= 200.5 && y >= -0.5 && y <= 200.5) {
+      if (!pts.some(p => Math.abs(p[0] - x) < 0.5 && Math.abs(p[1] - y) < 0.5))
+        pts.push([x, y]);
+    }
+  }
+  add(0, b);
+  add(200, 200 * m + b);
+  if (Math.abs(m) > 0.01) {
+    add(-b / m, 0);
+    add((200 - b) / m, 200);
+  }
+  if (pts.length < 2) return null;
+  pts.sort((a, c) => a[0] - c[0]);
+  return [pts[0][0], pts[0][1], pts[pts.length - 1][0], pts[pts.length - 1][1]];
+}
+
+// Circle-circle intersection points
+function circleX(x1, y1, x2, y2, r1, r2) {
+  const dx = x2 - x1, dy = y2 - y1;
+  const d = Math.sqrt(dx * dx + dy * dy);
+  if (d > r1 + r2 + 0.05 || d < Math.abs(r1 - r2) - 0.05 || d < 0.05) return [];
+  const a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+  const h2 = r1 * r1 - a * a;
+  if (h2 < 0) return [];
+  const h = Math.sqrt(h2);
+  const mx = x1 + a * dx / d, my = y1 + a * dy / d;
+  if (h < 0.05) return [[mx, my]];
+  return [
+    [mx + h * dy / d, my - h * dx / d],
+    [mx - h * dy / d, my + h * dx / d]
+  ];
+}
+
+// 1. Nested rotating squares
+function d1(s) {
+  for (let i = 0; i < 18; i++) {
+    const sz = 84 * Math.pow(0.87, i);
+    const ang = i * (Math.PI / 44) + Math.PI / 4;
+    const pts = [0, 1, 2, 3].map(j => {
+      const a = ang + j * Math.PI / 2;
+      return [C + sz * Math.cos(a), C + sz * Math.sin(a)];
+    });
+    s.appendChild(el('polygon', {
+      points: pts.map(p => p.join(',')).join(' '),
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.6'
+    }));
+  }
+}
+
+// 2. Fibonacci / sunflower spiral
+function d2(s) {
+  const phi = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < 235; i++) {
+    const r = 5.2 * Math.sqrt(i);
+    const t = i * phi;
+    dot(s, C + r * Math.cos(t), C + r * Math.sin(t), 1.15);
+  }
+}
+
+// 3. Hyperboloid of one sheet
+function d3(s) {
+  for (let i = 0; i < 23; i++) {
+    const t = (i / 22) * 2 - 1;
+    const y = C + t * 85;
+    const rx = Math.min(18 * Math.sqrt(1 + (t * 4.5) * (t * 4.5)), 88);
+    s.appendChild(el('ellipse', {
+      cx: C, cy: y, rx: rx, ry: 4,
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.5'
+    }));
+  }
+}
+
+// 4. Lissajous family 3:1
+function d4(s) {
+  dot(s, C - 82, C, 2.5);
+  dot(s, C + 82, C, 2.5);
+  for (let k = 0; k < 9; k++) {
+    const delta = (k / 8) * Math.PI;
+    const pts = [];
+    for (let i = 0; i <= 480; i++) {
+      const t = (i / 480) * Math.PI * 2;
+      pts.push([C + 82 * Math.sin(3 * t + delta), C + 28 * Math.sin(t)]);
+    }
+    polyline(s, pts, 0.48);
+  }
+}
+
+// 5. Starburst with irregular radial lines
+function d5(s) {
+  const rays = [
+    [0, 72], [14, 55], [29, 80], [44, 61], [62, 51],
+    [78, 75], [96, 60], [113, 64], [131, 54], [149, 70],
+    [166, 49], [182, 63], [196, 52], [212, 66], [229, 58],
+    [249, 73], [267, 55], [285, 49], [305, 69], [323, 53],
+    [341, 49], [354, 66], [49, 42], [168, 37]
+  ];
+  for (const [deg, len] of rays) {
+    const a = deg * Math.PI / 180;
+    const ex = C + len * Math.cos(a), ey = C + len * Math.sin(a);
+    line(s, C, C, ex, ey);
+    dot(s, ex, ey, 1.5);
+  }
+}
+
+// 6. Archimedean spiral
+function d6(s) {
+  const b = 15, n = 4.5;
+  const pts = [];
+  for (let i = 0; i <= 900; i++) {
+    const t = (i / 900) * n * Math.PI * 2;
+    const r = b * t / (Math.PI * 2);
+    pts.push([C + r * Math.cos(t + Math.PI), C + r * Math.sin(t + Math.PI)]);
+  }
+  polyline(s, pts, 0.7);
+  const et = n * Math.PI * 2;
+  const er = b * et / (Math.PI * 2);
+  dot(s, C + er * Math.cos(et + Math.PI), C + er * Math.sin(et + Math.PI), 2.5);
+}
+
+// 7. Flower of Life
+function d7(s) {
+  const r = 34;
+  const ctrs = [[C, C]];
+  for (let i = 0; i < 6; i++) {
+    const a = i * Math.PI / 3;
+    ctrs.push([C + r * Math.cos(a), C + r * Math.sin(a)]);
+  }
+  s.appendChild(el('circle', {
+    cx: C, cy: C, r: r * 2,
+    fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.65'
+  }));
+  for (const [ox, oy] of ctrs) {
+    s.appendChild(el('circle', {
+      cx: ox, cy: oy, r: r,
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.5'
+    }));
+  }
+  const seen = new Set();
+  function addDot(x, y) {
+    const k = Math.round(x) + ',' + Math.round(y);
+    if (!seen.has(k)) { seen.add(k); dot(s, x, y, 1.8); }
+  }
+  for (let i = 0; i < ctrs.length; i++) {
+    for (let j = i + 1; j < ctrs.length; j++) {
+      for (const [px, py] of circleX(ctrs[i][0], ctrs[i][1], ctrs[j][0], ctrs[j][1], r, r))
+        addDot(px, py);
+    }
+  }
+}
+
+// 8. Diamond / rhombus lattice
+function d8(s) {
+  const a = 21, b = 14, N = 4;
+  const V = (i, j) => [C + (i - j) * a, C + (i + j - N) * b];
+  for (let i = 0; i <= N; i++) {
+    for (let j = 0; j <= N; j++) {
+      const [x, y] = V(i, j);
+      if (i < N) { const [rx, ry] = V(i + 1, j); line(s, x, y, rx, ry); }
+      if (j < N) { const [bx, by] = V(i, j + 1); line(s, x, y, bx, by); }
+      dot(s, x, y, 2.2);
+    }
+  }
+}
+
+// 9. Fibonacci sphere projection
+function d9(s) {
+  const R = 80, N = 500;
+  const phi = Math.PI * (3 - Math.sqrt(5));
+  const dots = [];
+  for (let i = 0; i < N; i++) {
+    const y3 = 1 - (i + 0.5) / N * 2;
+    const rho = Math.sqrt(Math.max(0, 1 - y3 * y3));
+    const theta = phi * i;
+    const z3 = rho * Math.sin(theta);
+    const depth = (z3 + 1) / 2;
+    dots.push({
+      x: C + R * rho * Math.cos(theta),
+      y: C - R * y3,
+      sz: 0.4 + depth * 2.4,
+      z: z3
+    });
+  }
+  dots.sort((a, b) => a.z - b.z);
+  for (const d of dots) dot(s, d.x, d.y, d.sz);
+}
+
+// 10. Downward cone
+function d10(s) {
+  const tY = 33, bY = 168;
+  line(s, C, tY - 14, C, bY, 0.5);
+  dot(s, C, tY - 14, 2.2);
+  dot(s, C, bY, 2.2);
+  for (let i = 0; i < 19; i++) {
+    const t = i / 18;
+    const y = tY + t * (bY - tY);
+    const rx = 54 * (1 - t) + 2 * t;
+    const ry = Math.max(2, 8 * (1 - t) + 2 * t);
+    s.appendChild(el('ellipse', {
+      cx: C, cy: y, rx: rx, ry: ry,
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.5'
+    }));
+  }
+}
+
+// 11. Triangle string art
+function d11(s) {
+  const R = 72;
+  const vs = [0, 1, 2].map(i => {
+    const a = -Math.PI / 2 + i * 2 * Math.PI / 3;
+    return [C + R * Math.cos(a), C + R * Math.sin(a)];
+  });
+  const M = 15;
+  for (let vi = 0; vi < 3; vi++) {
+    const [vx, vy] = vs[vi];
+    const [ax, ay] = vs[(vi + 1) % 3];
+    const [bx, by] = vs[(vi + 2) % 3];
+    for (let k = 0; k <= M; k++) {
+      const t = k / M;
+      line(s, vx, vy, ax + t * (bx - ax), ay + t * (by - ay), 0.44);
+    }
+  }
+  for (const [vx, vy] of vs) dot(s, vx, vy, 2.5);
+}
+
+// 12. Zigzag parallel waves
+function d12(s) {
+  const rows = 10, amp = 8, hw = 14;
+  for (let r = 0; r < rows; r++) {
+    const yb = 22 + r * 17;
+    const pts = [];
+    for (let k = -1; k <= 17; k++) {
+      pts.push([k * hw + r * 3, yb + (k % 2 === 0 ? -amp : amp)]);
+    }
+    polyline(s, pts, 0.6);
+  }
+}
+
+// 13. Confocal ellipses
+function d13(s) {
+  const fc = 55;
+  dot(s, C - fc, C, 2.5);
+  dot(s, C + fc, C, 2.5);
+  for (let k = 1; k <= 10; k++) {
+    const a = fc + k * 4;
+    const bv = Math.sqrt(a * a - fc * fc);
+    s.appendChild(el('ellipse', {
+      cx: C, cy: C, rx: Math.min(a, 92), ry: bv,
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.5'
+    }));
+  }
+}
+
+// 14. Oblique perspective dot grid
+function d14(s) {
+  const e1 = [15, 3], e2 = [5, 13];
+  const cols = 9, rows = 7;
+  const sx = C - (cols - 1) / 2 * e1[0] - (rows - 1) / 2 * e2[0];
+  const sy = C - (cols - 1) / 2 * e1[1] - (rows - 1) / 2 * e2[1];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      dot(s, sx + c * e1[0] + r * e2[0], sy + c * e1[1] + r * e2[1], 1.8);
+    }
+  }
+}
+
+// 15. Interlocked torus rings
+function d15(s) {
+  const R = 30, r = 52, N = 18;
+  for (let k = 0; k < N; k++) {
+    const phi = (k / N) * Math.PI * 2;
+    s.appendChild(el('circle', {
+      cx: C + R * Math.cos(phi), cy: C + R * Math.sin(phi), r: r,
+      fill: 'none', stroke: '#1a1a1a', 'stroke-width': '0.5'
+    }));
+  }
+}
+
+// 16. Fan lines from a single point
+function d16(s) {
+  const sx = 22, sy = C;
+  dot(s, sx, sy, 2.2);
+  const angs = [-72, -58, -44, -30, -18, -8, 0, 9, 19, 30,
+                 42, 54, 67, 82, 97, 112, 128, 145, 163, 178];
+  const lens = [96, 110, 102, 115, 106, 111, 102, 108, 105, 112,
+                99, 107, 96, 104, 97, 110, 103, 95, 99, 106];
+  for (let i = 0; i < angs.length; i++) {
+    const a = angs[i] * Math.PI / 180;
+    const ex = sx + lens[i] * Math.cos(a);
+    const ey = sy + lens[i] * Math.sin(a);
+    line(s, sx, sy, ex, ey, 0.5);
+    dot(s, ex, ey, 1.8);
+  }
+}
+
+// 17. Corner perspective rays
+function d17(s) {
+  const ox = 12, oy = 188, N = 19;
+  for (let i = 0; i < N; i++) {
+    const a = (-Math.PI / 2) + (i / (N - 1)) * (Math.PI / 2);
+    const sa = Math.abs(Math.sin(a)), ca = Math.abs(Math.cos(a));
+    const dT = sa > 0.01 ? Math.abs((2 - oy) / Math.sin(a)) : Infinity;
+    const dR = ca > 0.01 ? Math.abs((198 - ox) / Math.cos(a)) : Infinity;
+    const d = Math.min(dT, dR);
+    line(s, ox, oy, ox + d * Math.cos(a), oy + d * Math.sin(a), 0.55);
+  }
+}
+
+// 18. Uniform radial lines with dots
+function d18(s) {
+  const N = 24, len = 68;
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2;
+    const ex = C + len * Math.cos(a), ey = C + len * Math.sin(a);
+    line(s, C, C, ex, ey);
+    dot(s, ex, ey, 2.1);
+  }
+}
+
+// 19. Two families of crossing diagonals with intersection dots
+function d19(s) {
+  const m1 = 0.7, m2 = -0.7, sp = 20;
+  const b1s = [-3, -2, -1, 0, 1, 2, 3].map(k => 30 + k * sp);
+  const b2s = [-3, -2, -1, 0, 1, 2, 3].map(k => 170 + k * sp);
+
+  for (const b of b1s) {
+    const r = clipLine(m1, b);
+    if (r) line(s, r[0], r[1], r[2], r[3], 0.45);
+  }
+  for (const b of b2s) {
+    const r = clipLine(m2, b);
+    if (r) line(s, r[0], r[1], r[2], r[3], 0.45);
+  }
+  for (const b1 of b1s) {
+    for (const b2 of b2s) {
+      const x = (b2 - b1) / (m1 - m2);
+      const y = m1 * x + b1;
+      if (x >= 4 && x <= 196 && y >= 4 && y <= 196) dot(s, x, y, 2);
+    }
+  }
+}
+
+// 20. Flowing curves with scattered dots
+function d20(s) {
+  for (let r = 0; r < 8; r++) {
+    const yb = 18 + r * 23;
+    const phase = r * 0.9;
+    const amp = 7;
+    const pts = [];
+    for (let i = 0; i <= 165; i++) {
+      const x = 6 + i * 1.14;
+      pts.push([x, yb + amp * Math.sin(0.062 * x + phase)]);
+    }
+    polyline(s, pts, 0.6);
+    const nD = 6 + (r % 3);
+    for (let d = 0; d < nD; d++) {
+      const x = 10 + (d / (nD - 1)) * 175;
+      const y = yb + amp * Math.sin(0.062 * x + phase);
+      dot(s, x, y, 1.9);
+    }
+  }
+}
+
+// Assemble page
+const draws = [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10,
+               d11, d12, d13, d14, d15, d16, d17, d18, d19, d20];
+const g = document.getElementById('g');
+
+draws.forEach(function(fn, i) {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  const s = svgEl();
+  fn(s);
+  const lbl = document.createElement('div');
+  lbl.className = 'lbl';
+  lbl.textContent = i + 1;
+  cell.appendChild(s);
+  cell.appendChild(lbl);
+  g.appendChild(cell);
+});
+</script>
+</body>
+</html>

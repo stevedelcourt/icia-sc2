@@ -64,7 +64,7 @@ export function PublicationFilter({
         }
         .pf-pill-hover:hover { border-color: #a3a3a3; }
         .pf-sortbtn:hover { border-color: #a3a3a3; }
-        .pf-sortopt:hover { background-color: #f9f9f9; }
+        .pf-sortopt:hover { background-color: #f5f5f5; }
         .pf-chevron { transition: transform 0.2s ease; }
         .pf-chevron.open { transform: rotate(180deg); }
       `}</style>
@@ -154,7 +154,7 @@ export function PublicationFilter({
                 width: '12rem',
                 backgroundColor: '#ffffff',
                 border: '1px solid #e5e5e5',
-                borderRadius: '2px',
+                borderRadius: '8px',
                 boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
                 zIndex: 10,
               }}
@@ -173,7 +173,7 @@ export function PublicationFilter({
                     fontSize: '0.875rem',
                     textAlign: 'left',
                     color: sortOrder === order ? '#000000' : '#4e4e4e',
-                    fontWeight: sortOrder === order ? 600 : 400,
+                    fontWeight: sortOrder === order ? 500 : 400,
                     backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',

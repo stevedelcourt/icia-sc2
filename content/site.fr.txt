@@ -79,8 +79,14 @@ Mission
 # header.nav.programmes
 Programmes
 
+# header.nav.association
+Association
+
 # header.nav.a_propos
 À propos
+
+# header.nav.actualites
+Actualités
 
 # header.nav.gouvernance
 Gouvernance
@@ -110,9 +116,7 @@ Fermer le sous-menu
 Institut Collectif de l'IA
 
 # homepage.hero.h1
-Comprendre l'intelligence artificielle.
-Développer les capacités d'agir.
-Construire une transition plus inclusive.
+L'intelligence artificielle, comprise et utile pour tous.
 
 # homepage.hero.baseline
 L'intelligence artificielle transforme déjà le travail, l'éducation, l'information, les services publics, la culture et la vie quotidienne.
@@ -191,7 +195,7 @@ Rencontres, ateliers, conférences, tables rondes et formats participatifs.
 
 # homepage.pour_qui.title
 L'ICIA s'adresse à ceux qui doivent composer avec l'IA.
-Autrement dit : presque tout le monde.
+Autrement dit : tout le monde.
 
 # homepage.pour_qui.citoyens.title
 Citoyens
@@ -379,6 +383,9 @@ Programmes
 # footer.column.a_propos
 À propos
 
+# footer.column.association
+Association
+
 # footer.column.legal
 Informations légales
 
@@ -397,8 +404,8 @@ Conditions d'utilisation
 # footer.about.qui_sommes_nous
 Qui sommes-nous ?
 
-# footer.about.publications
-Publications
+# footer.about.manifeste
+ICIA Manifeste
 
 # footer.about.gouvernance
 Gouvernance
@@ -611,7 +618,7 @@ ICIA ,  Institut Collectif de l'IA
 Lire la suite
 
 # publications.tag.announcements
-Annonces
+Presse
 
 # publications.filter.all_tags
 Tous

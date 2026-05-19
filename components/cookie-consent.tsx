@@ -190,10 +190,11 @@ export default function CookieConsentBanner({ lang }: Props) {
           if (modalName === 'preferencesModal' && modal) {
             const body = modal.querySelector('.pm__body')
             if (body && !body.querySelector('.cc-logo')) {
-              const logo = document.createElement('div')
+              const logo = document.createElement('img')
+              logo.src = '/images/icia-logo-wordmark-noir.svg'
+              logo.alt = 'ICIA'
               logo.className = 'cc-logo'
-              logo.style.cssText = 'font-size:24px;font-weight:500;color:#000;margin-bottom:20px;display:block;'
-              logo.textContent = 'ICIA'
+              logo.style.cssText = 'height:28px;width:auto;margin-bottom:20px;display:block;'
               body.insertBefore(logo, body.firstChild)
             }
           }

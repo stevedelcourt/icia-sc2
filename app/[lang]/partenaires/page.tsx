@@ -1,11 +1,12 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
+import { LocalizedLink } from '@/lib/i18n'
 
 const PARTENAIRES = [
   { name: 'Mentivis', desc: 'Opérateur pédagogique et partenaire d\'ingénierie de l\'Institut.', url: 'https://mentivis.com' },
   { name: 'Mariusia', desc: 'Lieu d\'ancrage physique et écosystème marseillais de l\'ICIA.', url: 'https://mariusia.com' },
-  { name: 'Campus Cyber.IA Euromed', desc: 'Campus dédié à la cybersécurité et à l\'intelligence artificielle.', url: 'https://campuscyber.fr' },
+  { name: 'Campus Cyber.IA Euromed', desc: 'Campus dédié à la cybersécurité et à l\'intelligence artificielle.', url: 'https://maps.app.goo.gl/nw2Ugmzh1av1gfku8' },
 ]
 
 export default function PartenairesPage({ params }: { params: { lang: string } }) {
@@ -21,7 +22,7 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
             <h1 className="t-display text-primary" style={{ marginBottom: '24px' }}>
               {lang === 'fr' ? 'Partenaires' : 'Partners'}
             </h1>
-            <p className="t-lead" style={{ maxWidth: '640px', marginBottom: '56px' }}>
+            <p className="t-lead" style={{ marginBottom: '56px' }}>
               {lang === 'fr'
                 ? "L'ICIA s'appuie sur un réseau de partenaires spécialisés pour assurer la conception, l'ingénierie et le déploiement de ses programmes."
                 : 'ICIA relies on a network of specialized partners to ensure the design, engineering and deployment of its programs.'}
@@ -67,6 +68,34 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
             ))}
           </div>
         </div>
+
+        {/* CTA */}
+        <section style={{ marginTop: 'var(--section-gap)' }}>
+          <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+            <FadeIn>
+              <h2 className="t-title text-primary" style={{ marginBottom: '16px' }}>
+                {lang === 'fr' ? 'Devenez partenaire de l\'ICIA' : 'Become an ICIA partner'}
+              </h2>
+              <p className="t-lead" style={{ marginBottom: '32px' }}>
+                {lang === 'fr'
+                  ? "Rejoignez notre réseau de partenaires engagés et contribuez à la mission d'intérêt général de l'ICIA."
+                  : 'Join our network of committed partners and contribute to ICIA\'s public interest mission.'}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                <LocalizedLink href="/contact" className="btn-pill btn-black">
+                  {lang === 'fr' ? 'Devenir partenaire' : 'Become a partner'}
+                  <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </LocalizedLink>
+                <LocalizedLink href="/devenir-membre" className="btn-pill btn-outline-shadow">
+                  {lang === 'fr' ? 'Devenir membre' : 'Become a member'}
+                  <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </LocalizedLink>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

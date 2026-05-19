@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
+import { LocalizedLink } from '@/lib/i18n'
 import { getActualiteBySlug } from '@/generated/actualites'
 import { MarkdownBody } from '@/components/MarkdownBody'
 
@@ -18,7 +19,7 @@ export default function ActualiteDetailPage() {
       <>
         <Header />
         <main className="section" style={{ backgroundColor: 'var(--bg-primary)', paddingTop: 'calc(64px + var(--section-gap))', minHeight: '60vh' }}>
-          <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+          <div className="container-mentivis">
             <h1 className="t-display text-primary" style={{ marginBottom: '16px' }}>
               {lang === 'fr' ? 'Article introuvable' : 'Article not found'}
             </h1>
@@ -47,6 +48,21 @@ export default function ActualiteDetailPage() {
       <Header />
       <main className="section" style={{ backgroundColor: 'var(--bg-primary)', paddingTop: 'calc(64px + var(--section-gap))' }}>
         <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+          <LocalizedLink href="/actualites" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 500, color: 'var(--text-tertiary)', textDecoration: 'none', marginBottom: '32px', transition: 'color 0.18s ease' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            {lang === 'fr' ? 'Retour aux actualités' : 'Back to news'}
+          </LocalizedLink>
+
+          {article.image && (
+            <FadeIn>
+              <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--r-module)', overflow: 'hidden', marginBottom: '40px', background: '#f5f5f5' }}>
+                <img src={article.image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            </FadeIn>
+          )}
+
           <FadeIn>
             <p className="eyebrow">{article.category}</p>
             <h1 className="t-display text-primary" style={{ marginBottom: '16px' }}>{title}</h1>

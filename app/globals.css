@@ -81,14 +81,13 @@ html {
 }
 
 /* CookieConsent v3 overrides */
-/* Banner buttons */
 #cc-main .cm__btn[data-role="all"] {
-  background-color: #bdf5ab !important;
-  color: #000 !important;
+  background-color: #000776 !important;
+  color: #fff !important;
 }
 #cc-main .cm__btn[data-role="necessary"] {
-  background-color: #aebddb !important;
-  color: #000 !important;
+  background-color: #bdbdbd !important;
+  color: #fff !important;
 }
 #cc-main .cm__btn {
   border-radius: 4px !important;
@@ -99,18 +98,17 @@ html {
   box-shadow: none !important;
 }
 
-/* Modal buttons */
 #cc-main .pm__btn[data-role="all"] {
-  background-color: #bdf5ab !important;
-  color: #000 !important;
+  background-color: #000776 !important;
+  color: #fff !important;
 }
 #cc-main .pm__btn[data-role="necessary"] {
-  background-color: #aebddb !important;
-  color: #000 !important;
+  background-color: #bdbdbd !important;
+  color: #fff !important;
 }
 #cc-main .pm__btn[data-role="save"] {
-  background-color: #bdf5ab !important;
-  color: #000 !important;
+  background-color: #000776 !important;
+  color: #fff !important;
 }
 #cc-main .pm__btn {
   border-radius: 4px !important;

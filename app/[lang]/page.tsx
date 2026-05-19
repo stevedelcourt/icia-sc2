@@ -11,6 +11,9 @@ import { useT, LocalizedLink } from '@/lib/i18n'
 
 const staggerItem = 0.08
 
+const ROSE = `radial-gradient(ellipse 58% 52% at 88% 18%, rgba(38, 52, 218, 0.92) 0%, transparent 58%),radial-gradient(ellipse 55% 58% at 38% 62%, rgba(118, 38, 202, 0.88) 0%, transparent 56%),radial-gradient(ellipse 46% 42% at 12% 88%, rgba(202, 48, 152, 0.78) 0%, transparent 52%),radial-gradient(ellipse 35% 30% at 65% 85%, rgba(148, 28, 178, 0.55) 0%, transparent 48%),linear-gradient(138deg, #2232b8 0%, #6e1e9e 100%)`
+const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E")`
+
 const chevron = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 18l6-6-6-6" />
@@ -21,11 +24,6 @@ export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
-
-  const h1Full = t('homepage.hero.h1')
-  const h1Lines = h1Full.split('\n')
-  const h1First = h1Lines.slice(0, 2).join('\n')
-  const h1Last = h1Lines[2] || ''
 
   return (
     <>
@@ -47,8 +45,7 @@ export default function Home() {
               <p className="eyebrow">{t('homepage.hero.label')}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-              <h1 className="t-hero text-primary" style={{ whiteSpace: 'pre-line', marginBottom: '4px' }}>{h1First}</h1>
-              <h1 className="t-hero text-primary" style={{ whiteSpace: 'nowrap', marginBottom: '40px' }}>{h1Last}</h1>
+              <h1 className="t-hero text-primary" style={{ marginBottom: '40px' }}>{t('homepage.hero.h1')}</h1>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
               <p className="t-lead" style={{ maxWidth: '620px', marginBottom: '40px' }}>{t('homepage.hero.baseline')}</p>
@@ -111,7 +108,7 @@ export default function Home() {
               <p className="eyebrow">Ce que nous faisons</p>
               <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.actions.title')}</h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {[
                 [t('homepage.actions.formation.title'), t('homepage.actions.formation.desc')],
                 [t('homepage.actions.recherche.title'), t('homepage.actions.recherche.desc')],
@@ -123,14 +120,69 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+                  style={{
+                    aspectRatio: '1/1',
+                    background: '#f5f5f5',
+                    borderRadius: '22px',
+                    padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-4px)'
+                    e.currentTarget.style.background = `${ROSE}, ${GRAIN}`
+                    e.currentTarget.style.backgroundSize = '100% 100%, 250px 250px'
+                    const t = e.currentTarget.querySelector('h3') as HTMLElement
+                    const d = e.currentTarget.querySelector('p') as HTMLElement
+                    if (t) t.style.color = '#fff'
+                    if (d) d.style.color = 'rgba(255,255,255,0.85)'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'none'
+                    e.currentTarget.style.background = '#f5f5f5'
+                    const t = e.currentTarget.querySelector('h3') as HTMLElement
+                    const d = e.currentTarget.querySelector('p') as HTMLElement
+                    if (t) t.style.color = '#000'
+                    if (d) d.style.color = '#4e4e4e'
+                  }}
                 >
-                  <h3 className="t-heading" style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#000', lineHeight: 1.3 }}>{title}</h3>
-                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{desc}</p>
+                  <h3 style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#000', lineHeight: 1.3, position: 'relative', zIndex: 1 }}>{title}</h3>
+                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0, position: 'relative', zIndex: 1 }}>{desc}</p>
                 </motion.div>
               ))}
+              {/* 6th card */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  aspectRatio: '1/1',
+                  background: 'linear-gradient(135deg, #1A2B80 0%, #7030A0 38%, #B02050 72%, #C83040 100%)',
+                  borderRadius: '22px',
+                  padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+              >
+                <img src="/images/squaretunnel.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.25, pointerEvents: 'none' }} />
+                <h3 style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#fff', lineHeight: 1.3, position: 'relative', zIndex: 1 }}>{lang === 'fr' ? 'Rejoignez-nous' : 'Join us'}</h3>
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <LocalizedLink href="/devenir-membre" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 16px' }}>
+                    {lang === 'fr' ? 'Adhérer' : 'Join'}
+                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </LocalizedLink>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -155,7 +207,7 @@ export default function Home() {
                 <p className="eyebrow">Principes</p>
                 <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.engagements.title')}</h2>
               </FadeIn>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
                 {[
                   [t('homepage.engagements.independance.title'), t('homepage.engagements.independance.desc')],
                   [t('homepage.engagements.interet.title'), t('homepage.engagements.interet.desc')],
@@ -175,6 +227,34 @@ export default function Home() {
                     <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{desc}</p>
                   </motion.div>
                 ))}
+                {/* 6th card — Manifeste */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    aspectRatio: '1/1',
+                    background: 'linear-gradient(135deg, #A03020 0%, #C05828 35%, #D08840 70%, #E0AA50 100%)',
+                    borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)',
+                    display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+                    transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
+                    position: 'relative', overflow: 'hidden',
+                    boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+                >
+                  <div style={{ position: 'absolute', top: '14px', left: '14px', zIndex: 2, display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: '10px', padding: '6px 12px 6px 8px', fontSize: '12px', fontWeight: 500, color: '#fff' }}>
+                    ICIA
+                  </div>
+                  <h3 className="t-heading" style={{ color: '#fff', marginBottom: '12px', position: 'relative', zIndex: 1, fontWeight: 500 }}>{lang === 'fr' ? 'Le manifeste de l\'ICIA' : 'The ICIA Manifesto'}</h3>
+                  <div style={{ position: 'relative', zIndex: 1 }}>
+                    <LocalizedLink href="/manifeste" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 16px' }}>
+                      {lang === 'fr' ? 'Lire' : 'Read'}
+                      <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </LocalizedLink>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -197,12 +277,16 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' }}
+                  style={{ background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', display: 'flex', flexDirection: 'column' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
                 >
                   <h3 style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#000', lineHeight: 1.3 }}>{title}</h3>
-                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{desc}</p>
+                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', marginBottom: '14px' }}>{desc}</p>
+                  <LocalizedLink href={i === 0 ? '/icia-territoires' : i === 1 ? '/icia-education' : '/icia-travail-competences'} className="btn-pill btn-outline-shadow" style={{ fontSize: '13px', padding: '8px 14px', marginTop: 'auto' }}>
+                    {lang === 'fr' ? 'Découvrir' : 'Discover'}
+                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </LocalizedLink>
                 </motion.div>
               ))}
             </div>
@@ -236,7 +320,7 @@ export default function Home() {
                 <FadeIn delay={0.2}><p className="t-lead">{t('homepage.a_propos.body.3')}</p></FadeIn>
               </div>
               <FadeIn delay={0.25}>
-                <img src="/images/star.svg" alt="" style={{ width: '100%', height: 'auto', aspectRatio: '1/1' }} />
+                <iframe src="/images/star-3d-volume.html" style={{ width: '100%', height: '100%', aspectRatio: '1/1', border: 'none' }} title="" />
               </FadeIn>
             </div>
           </div>
@@ -249,10 +333,10 @@ export default function Home() {
               <p className="eyebrow">Partenariats</p>
               <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.collaborer.title')}</h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', alignItems: 'stretch' }}>
               {t('homepage.collaborer.list').split('\n').map((item, i) => (
                 <FadeIn key={item} delay={i * 0.05}>
-                  <div style={{ background: '#f5f5f5', borderRadius: '16px', padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '12px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' }}
+                  <div style={{ background: '#f5f5f5', borderRadius: '16px', padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '12px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', height: '100%' }}
                     onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)' }}
                     onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
                   >
@@ -288,45 +372,45 @@ export default function Home() {
         {/* 10. Ancrage territorial */}
         <section id="territoire" style={{ background: '#f5f3f1', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis">
-            <FadeIn>
-              <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>
-                {lang === 'fr' ? 'Né à Marseille. Pensé pour la France.' : 'Born in Marseille. Built for France.'}
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="t-lead" style={{ marginBottom: '12px', maxWidth: '720px' }}>
-                {lang === 'fr'
-                  ? "L'Institut Collectif de l'IA est une initiative nationale dont l'ancrage initial se situe à Marseille, au sein du même lieu que Mariusia."
-                  : 'The Institut Collectif de l\'IA is a national initiative, initially anchored in Marseille, in the same location as Mariusia.'}
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <p className="t-lead" style={{ marginBottom: '12px', maxWidth: '720px' }}>
-                {lang === 'fr'
-                  ? "Parce que l'IA transforme déjà les compétences, l'éducation, le travail et l'accès à l'information, ses enjeux ne peuvent être réservés à quelques acteurs spécialisés ou à quelques métropoles."
-                  : 'Because AI is already transforming skills, education, work and access to information, its challenges cannot be reserved for a few specialized players or a few major cities.'}
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="t-lead" style={{ marginBottom: '24px', maxWidth: '720px' }}>
-                {lang === 'fr'
-                  ? "L'ICIA défend une approche distribuée, ancrée dans les territoires, connectée aux réalités de terrain et ouverte à l'ensemble des acteurs publics, éducatifs, économiques et associatifs."
-                  : 'ICIA champions a distributed approach, anchored in territories, connected to field realities and open to all public, educational, economic and associative actors.'}
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.25}>
-              <p className="t-caption" style={{ fontWeight: 500, color: '#000', marginBottom: '4px' }}>
-                4 boulevard Jacques Saadé
-              </p>
-              <p className="t-caption" style={{ fontWeight: 500, color: '#000' }}>
-                13002 Marseille, France
-              </p>
-            </FadeIn>
+            <div className="ancrage-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
+              <div>
+                <FadeIn>
+                  <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                    {lang === 'fr' ? 'Né à Marseille. Pensé pour la France.' : 'Born in Marseille. Built for France.'}
+                  </h2>
+                </FadeIn>
+                <FadeIn delay={0.1}>
+                  <p className="t-lead" style={{ marginBottom: '12px' }}>
+                    {lang === 'fr'
+                      ? "L'Institut Collectif de l'IA est une initiative nationale dont l'ancrage initial se situe à Marseille, au sein du même lieu que Mariusia."
+                      : 'The Institut Collectif de l\'IA is a national initiative, initially anchored in Marseille, in the same location as Mariusia.'}
+                  </p>
+                </FadeIn>
+                <FadeIn delay={0.15}>
+                  <p className="t-lead" style={{ marginBottom: '12px' }}>
+                    {lang === 'fr'
+                      ? "Parce que l'IA transforme déjà les compétences, l'éducation, le travail et l'accès à l'information, ses enjeux ne peuvent être réservés à quelques acteurs spécialisés ou à quelques métropoles."
+                      : 'Because AI is already transforming skills, education, work and access to information, its challenges cannot be reserved for a few specialized players or a few major cities.'}
+                  </p>
+                </FadeIn>
+                <FadeIn delay={0.2}>
+                  <p className="t-lead" style={{ marginBottom: '24px' }}>
+                    {lang === 'fr'
+                      ? "L'ICIA défend une approche distribuée, ancrée dans les territoires, connectée aux réalités de terrain et ouverte à l'ensemble des acteurs publics, éducatifs, économiques et associatifs."
+                      : 'ICIA champions a distributed approach, anchored in territories, connected to field realities and open to all public, educational, economic and associative actors.'}
+                  </p>
+                </FadeIn>
+                <FadeIn delay={0.25}>
+                  <p className="t-caption" style={{ fontWeight: 500, color: '#000', marginBottom: '4px' }}>4 boulevard Jacques Saadé</p>
+                  <p className="t-caption" style={{ fontWeight: 500, color: '#000' }}>13002 Marseille, France</p>
+                </FadeIn>
+              </div>
+              <FadeIn delay={0.2}>
+                <img src="/images/mrs.avif" alt="Marseille" style={{ width: '100%', borderRadius: '22px', aspectRatio: '4/3', objectFit: 'cover', boxShadow: '0 20px 60px rgba(0,0,0,0.08)' }} />
+              </FadeIn>
+            </div>
           </div>
         </section>
-
-        {/* Actualités */}
-        <ActualitesGrid />
 
         {/* 11. CTA Final */}
         <section id="cta" style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
@@ -343,59 +427,73 @@ export default function Home() {
           </div>
         </section>
 
-      </main>
+        {/* Actualités */}
+        <ActualitesGrid />
 
+        </main>
+
+      <Footer />
       <style jsx>{`
         @media (max-width: 768px) {
           .a-propos-grid { grid-template-columns: 1fr !important; }
+          .ancrage-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
         }
       `}</style>
-      <Footer />
     </>
   )
 }
 
 /* ── Interactive Pour Qui (click-to-swap grid) ── */
 function InteractivePourQui({ title, items }: { title: string; items: { title: string; desc: string }[] }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(3)
   const [expandedMobile, setExpandedMobile] = useState<number | null>(null)
+
+  const IMAGES = [
+    '/images/modules/citoyens.avif',
+    '/images/modules/professionnels.avif',
+    '/images/modules/organisations.avif',
+    '/images/modules/acteurs-publics.avif',
+    '/images/modules/monde-educatif.avif',
+  ]
 
   const active = items[activeIndex]
   const smallItems = items.map((_, i) => i).filter(i => i !== activeIndex)
   const positions = [
     { gridColumn: 2, gridRow: 1 },
-    { gridColumn: 3, gridRow: 1 },
     { gridColumn: 2, gridRow: 2 },
-    { gridColumn: 3, gridRow: 2 },
+    { gridColumn: 2, gridRow: 3 },
+    { gridColumn: 2, gridRow: 4, offset: true },
   ]
 
   return (
     <section id="pour-qui" style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
       <div className="container-mentivis">
-        <div style={{ background: '#f5f5f5', borderRadius: '24px', padding: 'clamp(40px, 5vw, 56px) clamp(32px, 5vw, 48px)' }}>
         <FadeIn>
           <p className="eyebrow">Publics</p>
           <h2 className="t-display text-primary" style={{ marginBottom: '48px', whiteSpace: 'pre-line' }}>{title}</h2>
         </FadeIn>
 
-        {/* Desktop: 3-col click-to-swap grid */}
-        <div className="pour-qui-desktop" style={{ display: 'grid', gridTemplateColumns: '2.1fr 1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '16px' }}>
-          {/* Big card — active item */}
+        {/* Desktop: 3:1 grid */}
+        <div className="pour-qui-desktop" style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', gridTemplateRows: 'auto', gap: '12px' }}>
+          {/* Big card — active item with image */}
           <motion.div
             key={active.title}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              gridRow: 'span 2',
-              background: 'linear-gradient(135deg, #3886c1 0%, #2a6ba0 100%)',
+              gridRow: 'span 4',
+              backgroundImage: `url(${IMAGES[activeIndex]})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
               borderRadius: '22px',
               padding: 'clamp(36px, 5vw, 52px) clamp(32px, 5vw, 44px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-end',
-              transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+              transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-image 0.5s ease',
               boxShadow: '0 8px 32px rgba(56,134,193,0.18)',
+              minHeight: 'clamp(360px, 40vw, 520px)',
             }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
@@ -410,12 +508,16 @@ function InteractivePourQui({ title, items }: { title: string; items: { title: s
               {String(activeIndex + 1).padStart(2, '0')}
             </div>
             <div style={{ marginTop: 'auto' }}>
-              <h3 className="t-title" style={{ color: '#fff', marginBottom: '16px', lineHeight: 1.15 }}>{active.title}</h3>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(255,255,255,0.85)', margin: 0, maxWidth: '500px' }}>{active.desc}</p>
+              <h3 className="t-title" style={{ color: '#fff', marginBottom: '16px', lineHeight: 1.15 }}>
+                <span style={{ background: '#000776', padding: '4px 12px', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{active.title}</span>
+              </h3>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: '#fff', margin: 0, maxWidth: '500px' }}>
+                <span style={{ background: '#000776', padding: '4px 12px', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{active.desc}</span>
+              </p>
             </div>
           </motion.div>
 
-          {/* 4 small cards */}
+          {/* 4 small cards stacked */}
           {smallItems.map((itemIndex, i) => {
             const pos = positions[i]
             const item = items[itemIndex]
@@ -427,25 +529,33 @@ function InteractivePourQui({ title, items }: { title: string; items: { title: s
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setActiveIndex(itemIndex)}
+                className="pq-small"
                 style={{
                   gridColumn: pos.gridColumn,
                   gridRow: pos.gridRow,
-                  background: '#ffffff',
+                  background: '#f5f5f5',
                   borderRadius: '18px',
-                  padding: 'clamp(20px, 3vw, 28px) clamp(20px, 3vw, 24px)',
+                  padding: pos.offset ? 'clamp(10px, 2vw, 16px) clamp(16px, 2vw, 24px)' : 'clamp(20px, 3vw, 28px) clamp(20px, 3vw, 24px)',
                   cursor: 'pointer',
                   transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
+                  marginLeft: pos.offset ? '-clamp(20px, 3vw, 40px)' : '0',
+                  zIndex: pos.offset ? 2 : 1,
+                  boxShadow: pos.offset ? '0 4px 16px rgba(0,0,0,0.06)' : 'none',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.background = '#f0f0f0' }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#ffffff' }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-4px)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'none'
+                }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 500, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px', display: 'block' }}>
+                <span className="pq-small__num" style={{ fontSize: '11px', fontWeight: 500, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px', display: 'block' }}>
                   {String(itemIndex + 1).padStart(2, '0')}
                 </span>
-                <h4 style={{ fontSize: '14px', fontWeight: 500, color: '#000', lineHeight: 1.3, margin: 0 }}>{item.title}</h4>
+                <h4 className="pq-small__title" style={{ fontSize: '14px', fontWeight: 500, color: '#000', lineHeight: 1.3, margin: 0 }}>{item.title}</h4>
               </motion.div>
             )
           })}
@@ -470,17 +580,17 @@ function InteractivePourQui({ title, items }: { title: string; items: { title: s
                   <span style={{ fontSize: '11px', fontWeight: 500, color: '#9CA3AF' }}>{String(i + 1).padStart(2, '0')}</span>
                 </button>
                 <div style={{
-                  maxHeight: isExpanded ? '200px' : '0',
-                  opacity: isExpanded ? 1 : 0,
                   overflow: 'hidden',
-                  transition: 'max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease',
+                  maxHeight: isExpanded ? '600px' : '0',
+                  opacity: isExpanded ? 1 : 0,
+                  transition: 'max-height 0.5s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease',
                 }}>
-                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: '0 0 20px' }}>{item.desc}</p>
+                    <img src={IMAGES[i]} alt="" style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', borderRadius: '12px', marginBottom: '16px', marginTop: '12px' }} />
+                    <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: '0 0 20px' }}>{item.desc}</p>
                 </div>
               </div>
             )
           })}
-        </div>
         </div>
       </div>
 
@@ -489,6 +599,9 @@ function InteractivePourQui({ title, items }: { title: string; items: { title: s
           .pour-qui-desktop { display: none !important; }
           .pour-qui-mobile { display: block !important; }
         }
+        .pq-small:hover { background: #3886c1 !important; }
+        .pq-small:hover .pq-small__num { color: rgba(255,255,255,0.7) !important; }
+        .pq-small:hover .pq-small__title { color: #fff !important; }
       `}</style>
     </section>
   )
@@ -504,9 +617,9 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
         { question: "Qu'est-ce que l'ICIA ?", answer: "L'Institut Collectif de l'IA (ICIA) est une association loi 1901 dédiée aux enjeux collectifs de l'intelligence artificielle. Sa mission : rendre l'IA plus compréhensible, développer les compétences, réduire les fractures et favoriser un débat informé." },
         { question: 'À qui s\'adressent les programmes de l\'ICIA ?', answer: 'Aux citoyens, professionnels, organisations, acteurs publics et territoriaux, et au monde éducatif. Nos programmes sont conçus pour tous ceux qui doivent composer avec l\'IA dans leur quotidien.' },
         { question: 'Comment sont financés les programmes ?', answer: "Les programmes de l'ICIA sont financés par des contributions volontaires, des subventions publiques, des partenariats avec des fondations et des entreprises engagées dans l'intérêt général." },
-        { question: 'Où se déroulent les formations ?', answer: "Les formations sont proposées en présentiel à Marseille (Campus Cyber.IA Euromed), en distanciel, et en formats hybrides. Des sessions peuvent également être organisées dans vos locaux." },
+        { question: 'Où se déroulent les formations ?', answer: <>Les formations sont proposées en présentiel à Marseille (<a href="https://maps.app.goo.gl/nw2Ugmzh1av1gfku8" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Campus Cyber.IA Euromed</a>), en distanciel, et en formats hybrides. Des sessions peuvent également être organisées dans vos locaux.</> },
         { question: "Comment puis-je participer aux activités de l'ICIA ?", answer: "Vous pouvez nous contacter via le formulaire de contact pour rejoindre un programme, proposer un partenariat ou contribuer aux activités de l'association." },
-        { question: "Quelle est la différence entre l'ICIA et Mentivis ?", answer: "L'ICIA est l'association qui définit la mission d'intérêt général et les programmes. Mentivis intervient comme opérateur pédagogique et partenaire d'ingénierie pour la conception et le déploiement des dispositifs." },
+        { question: "Comment l'ICIA conçoit-elle et déploie-t-elle ses dispositifs ?", answer: "L'ICIA définit les orientations programmatiques et les exigences de qualité. Elle s'appuie sur un réseau de partenaires opérationnels spécialisés en ingénierie de formation et en déploiement pédagogique pour la mise en œuvre concrète des programmes." },
       ],
     },
     en: {
@@ -516,9 +629,9 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
         { question: 'What is ICIA?', answer: 'The Institut Collectif de l\'IA (ICIA) is a French non-profit association dedicated to the collective challenges of artificial intelligence.' },
         { question: 'Who are the programs for?', answer: 'Citizens, professionals, organizations, public actors and the educational world. Our programs are designed for everyone who has to navigate AI in their daily lives.' },
         { question: 'How are programs funded?', answer: 'ICIA programs are funded through voluntary contributions, public grants, and partnerships with foundations and companies committed to the public interest.' },
-        { question: 'Where do the training sessions take place?', answer: 'In-person in Marseille (Campus Cyber.IA Euromed), remotely, and in hybrid formats. Sessions can also be organized at your premises.' },
+        { question: 'Where do the training sessions take place?', answer: <>In-person in Marseille (<a href="https://maps.app.goo.gl/nw2Ugmzh1av1gfku8" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Campus Cyber.IA Euromed</a>), remotely, and in hybrid formats. Sessions can also be organized at your premises.</> },
         { question: 'How can I get involved?', answer: 'Contact us via the contact form to join a program, propose a partnership, or contribute to the association\'s activities.' },
-        { question: 'What is the difference between ICIA and Mentivis?', answer: 'ICIA is the association that defines the public interest mission and programs. Mentivis serves as the educational operator and engineering partner for program design and deployment.' },
+        { question: 'How does ICIA design and deploy its programs?', answer: 'ICIA defines the programmatic orientations and quality requirements. It relies on a network of specialized operational partners in training engineering and educational deployment for the concrete implementation of programs.' },
       ],
     },
   }

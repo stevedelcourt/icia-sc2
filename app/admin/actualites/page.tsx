@@ -26,6 +26,35 @@ export default function ActualitesAdminPage() {
   const [mode, setMode] = useState<'list' | 'edit'>('list')
   const [status, setStatus] = useState('')
   const [preview, setPreview] = useState(false)
+  const [uploading, setUploading] = useState(false)
+
+  const slugify = (t: string) => t.toLowerCase()
+    .replace(/[àâä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[îï]/g, 'i')
+    .replace(/[ôö]/g, 'o').replace(/[ùûü]/g, 'u').replace(/ç/g, 'c')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+
+  const handleImageUpload = async () => {
+    if (!editing) return
+    const input = document.createElement('input')
+    input.type = 'file'; input.accept = 'image/*'
+    input.onchange = async () => {
+      const file = input.files?.[0]; if (!file) return
+      setUploading(true)
+      const form = new FormData()
+      form.append('file', file)
+      form.append('slug', editing.slug || slugify(editing.title || 'article'))
+      try {
+        const res = await fetch('/api/admin/actualites/images/', { method: 'POST', body: form })
+        const data = await res.json()
+        if (data.success) {
+          updateField('image', data.path)
+          setStatus(`Uploadée: ${data.fileName}`)
+        }
+      } catch { setStatus('Erreur upload.') }
+      setUploading(false)
+    }
+    input.click()
+  }
 
   useEffect(() => {
     fetchArticles()
@@ -33,7 +62,7 @@ export default function ActualitesAdminPage() {
 
   const fetchArticles = async () => {
     try {
-      const res = await fetch('/api/admin/actualites')
+      const res = await fetch('/api/admin/actualites/')
       const data = await res.json()
       setArticles(data.articles || [])
     } catch {}
@@ -52,7 +81,7 @@ export default function ActualitesAdminPage() {
   const handleDelete = async (slug: string) => {
     if (!confirm('Supprimer cet article ?')) return
     try {
-      await fetch(`/api/admin/actualites?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' })
+      await fetch(`/api/admin/actualites/?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' })
       setStatus('Article supprimé.')
       fetchArticles()
     } catch { setStatus('Erreur suppression.') }
@@ -65,7 +94,7 @@ export default function ActualitesAdminPage() {
       return
     }
     try {
-      const res = await fetch('/api/admin/actualites', {
+      const res = await fetch('/api/admin/actualites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editing),
@@ -148,8 +177,8 @@ export default function ActualitesAdminPage() {
             <div style={{ background: '#fff', borderRadius: '16px', padding: '32px', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div>
-                  <label style={labelStyle}>Slug</label>
-                  <input value={editing.slug} onChange={e => updateField('slug', e.target.value)} style={fieldStyle} />
+                  <label style={labelStyle}>Slug {editing?.slug && editing?.title && editing.slug === slugify(editing.title) ? '(auto)' : ''}</label>
+                  <input value={editing.slug} onChange={e => updateField('slug', e.target.value)} style={fieldStyle} placeholder={editing?.title ? slugify(editing.title) : 'auto'} />
                 </div>
                 <div>
                   <label style={labelStyle}>Catégorie</label>
@@ -160,15 +189,20 @@ export default function ActualitesAdminPage() {
                   <input type="date" value={editing.date} onChange={e => updateField('date', e.target.value)} style={fieldStyle} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Image URL (optionnel)</label>
-                  <input value={editing.image} onChange={e => updateField('image', e.target.value)} style={fieldStyle} />
+                  <label style={labelStyle}>Image</label>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <input value={editing.image} onChange={e => updateField('image', e.target.value)} style={{ ...fieldStyle, flex: 1 }} placeholder="ex: /images/path.webp" />
+                    <button onClick={handleImageUpload} disabled={uploading} style={{
+                      padding: '8px 14px', border: '1px solid #e5e5e5', borderRadius: '6px', background: '#fff', cursor: 'pointer', fontSize: '12px', whiteSpace: 'nowrap',
+                    }}>{uploading ? '...' : '↥'}</button>
+                  </div>
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '20px' }}>
                 <div>
                   <label style={labelStyle}>Titre FR</label>
-                  <input value={editing.title} onChange={e => updateField('title', e.target.value)} style={fieldStyle} />
+                  <input value={editing.title} onChange={e => { const v = e.target.value; if (editing && (!editing.slug || editing.slug === slugify(editing.title || ''))) { updateField('slug', slugify(v)) }; updateField('title', v) }} style={fieldStyle} />
                 </div>
                 <div>
                   <label style={labelStyle}>Titre EN</label>

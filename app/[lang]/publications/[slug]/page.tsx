@@ -84,8 +84,11 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
             <h1 className="t-title text-primary mb-4">
               {lang === 'en' ? 'Publication not found' : 'Publication non trouvée'}
             </h1>
-            <LocalizedLink href="/publications/" className="t-caption text-tertiary hover:text-primary transition-colors">
-              {t(lang, 'publications.detail.back_button')}
+            <LocalizedLink href="/actualites" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 500, color: 'var(--text-tertiary)', textDecoration: 'none' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+              {lang === 'fr' ? 'Retour aux actualités' : 'Back to news'}
             </LocalizedLink>
           </div>
         </main>
@@ -94,8 +97,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     )
   }
 
-  const tagKey = `publications.tag.${pub.category}`
-  const tagLabel = (t as any)(lang, tagKey) || pub.category
+  const tagLabel = pub.category
   const heroPath = pub.heroImage
     ? `/images/publications/${pub.slug}/${pub.heroImage}`
     : '/images/og-image.png'
@@ -129,7 +131,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     wordCount,
     author: {
       '@type': 'Organization',
-      name: 'Marius IA',
+      name: 'ICIA',
       url: 'https://www.iciafrance.com'
     },
     publisher: {
@@ -149,33 +151,26 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
       <main className="section pt-16 bg-primary">
         <div className="container-mentivis">
           {/* Back link */}
-          <FadeIn>
-            <LocalizedLink
-              href="/publications/"
-              className="inline-flex items-center t-caption text-tertiary hover:text-primary transition-colors mb-8"
-            >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {t(lang, 'publications.detail.back_button')}
-            </LocalizedLink>
-          </FadeIn>
+          <LocalizedLink href="/actualites" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 500, color: 'var(--text-tertiary)', textDecoration: 'none', marginBottom: '32px', transition: 'color 0.18s ease' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            {lang === 'fr' ? 'Retour aux actualités' : 'Back to news'}
+          </LocalizedLink>
 
           {/* Hero image */}
-          <FadeIn>
-            <div className="w-full aspect-video overflow-hidden bg-secondary mb-8 rounded-card">
-              <Picture
-                src={heroPath}
-                alt={pub.headline}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </FadeIn>
+          {pub.heroImage && (
+            <FadeIn>
+              <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--r-module)', overflow: 'hidden', marginBottom: '40px', background: '#f5f5f5' }}>
+                <img src={heroPath} alt={pub.headline} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            </FadeIn>
+          )}
 
           {/* Meta */}
           <FadeIn delay={0.1}>
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="t-tiny" style={{ padding: '4px 12px', background: 'rgba(0,0,0,0.04)', borderRadius: '4px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+              <span style={{ padding: '4px 12px', fontSize: '11px', fontWeight: 500, background: 'rgba(0,0,0,0.04)', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 {tagLabel}
               </span>
               <span className="t-caption text-tertiary">

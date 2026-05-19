@@ -17,21 +17,24 @@ export function Footer() {
 
   const programmeLinks = [
     { label: t('footer.programmes.impact'), href: '/programme-impact' },
-    { label: t('footer.programmes.territoires'), href: '/programmes' },
-    { label: t('footer.programmes.education'), href: '/programmes' },
-    { label: t('footer.programmes.travail'), href: '/programmes' },
+    { label: t('footer.programmes.territoires'), href: '/icia-territoires' },
+    { label: t('footer.programmes.education'), href: '/icia-education' },
+    { label: t('footer.programmes.travail'), href: '/icia-travail-competences' },
+  ]
+
+  const associationLinks = [
+    { label: t('footer.about.gouvernance') || 'Gouvernance', href: '/gouvernance' },
+    { label: t('footer.about.conseil') || 'Conseil stratégique', href: '/gouvernance' },
+    { label: t('footer.about.partenaires') || 'Partenaires', href: '/partenaires' },
+    { label: t('footer.about.devenir_membre') || 'Devenir membre', href: '/devenir-membre' },
   ]
 
   const aboutLinks = [
     { label: t('footer.about.qui_sommes_nous'), href: '/a-propos' },
-    { label: t('footer.programmes.impact'), href: '/programme-impact' },
-    { label: t('footer.about.gouvernance') || 'Gouvernance', href: '/gouvernance' },
-    { label: t('footer.about.conseil') || "Conseil d'administration", href: '/conseil-administration' },
-    { label: t('footer.about.partenaires') || 'Partenaires', href: '/partenaires' },
-    { label: t('footer.about.actualites') || 'Actualités', href: '/actualites' },
-    { label: t('footer.about.devenir_membre') || 'Devenir membre', href: '/devenir-membre' },
+    { label: t('footer.about.manifeste') || 'ICIA Manifeste', href: '/manifeste' },
+    { label: t('footer.about.conseil') || "Conseil d'administration", href: '/gouvernance' },
     { label: t('footer.about.donations') || 'Faire un don', href: '/donations' },
-    { label: t('footer.about.publications'), href: '/publications' },
+    { label: t('footer.about.actualites') || 'Actualités', href: '/actualites' },
   ]
 
   const legalLinks = [
@@ -44,7 +47,7 @@ export function Footer() {
   return (
     <footer style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', padding: '64px 0 32px' }}>
       <div className="container-mentivis">
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: '40px' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', gap: '40px' }}>
           <div>
             <LocalizedLink href="/" style={{ display: 'inline-block', marginBottom: '12px' }}>
               <img
@@ -53,17 +56,14 @@ export function Footer() {
                 style={{ height: '28px', width: 'auto', opacity: 0.85 }}
               />
             </LocalizedLink>
-            <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '2px', maxWidth: '280px' }}>
-              Association loi 1901.
-            </p>
-            <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '2px', maxWidth: '280px' }}>
-              Comprendre les transformations liées à l&rsquo;IA.
-            </p>
-            <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '2px', maxWidth: '280px' }}>
-              Développer les compétences.
+            <p style={{ fontSize: '13px', fontWeight: 500, lineHeight: 1.4, color: 'var(--text-primary)', marginBottom: '6px', maxWidth: '280px' }}>
+              Comprendre les transformations liées à l&rsquo;IA
             </p>
             <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '16px', maxWidth: '280px' }}>
-              Renforcer les capacités d&rsquo;agir.
+              Association loi 1901{' '}
+              <a href="/Recepisse_CR.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
+                W133042589
+              </a>
             </p>
             <p style={{ fontSize: '14px', lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '4px' }}>
               <a
@@ -76,11 +76,12 @@ export function Footer() {
               </a>
             </p>
             <p style={{ fontSize: '14px', lineHeight: 1.5, color: 'var(--text-tertiary)' }}>
-              4 boulevard Jacques Saadé, 13002 Marseille
+              4 boulevard Jacques Saadé<br />
+              13002 Marseille
             </p>
           </div>
 
-          <div>
+          <div style={{ paddingTop: '40px' }}>
             <p style={{ fontSize: '12px', fontWeight: 400, letterSpacing: '0.02em', textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: '16px' }}>
               {t('footer.column.programmes')}
             </p>
@@ -89,7 +90,7 @@ export function Footer() {
                 <LocalizedLink
                   key={link.label}
                   href={link.href}
-                  className="t-caption"
+                  className="t-caption ft-link"
                   style={{ display: 'block', color: 'var(--text-tertiary)' }}
                 >
                   {link.label}
@@ -98,7 +99,25 @@ export function Footer() {
             </nav>
           </div>
 
-          <div>
+          <div style={{ paddingTop: '40px' }}>
+            <p style={{ fontSize: '12px', fontWeight: 400, letterSpacing: '0.02em', textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: '16px' }}>
+              {t('footer.column.association') || 'Association'}
+            </p>
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {associationLinks.map((link) => (
+                <LocalizedLink
+                  key={link.label}
+                  href={link.href}
+                  className="t-caption ft-link"
+                  style={{ display: 'block', color: 'var(--text-tertiary)' }}
+                >
+                  {link.label}
+                </LocalizedLink>
+              ))}
+            </nav>
+          </div>
+
+          <div style={{ paddingTop: '40px' }}>
             <p style={{ fontSize: '12px', fontWeight: 400, letterSpacing: '0.02em', textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: '16px' }}>
               {t('footer.column.a_propos')}
             </p>
@@ -107,7 +126,7 @@ export function Footer() {
                 <LocalizedLink
                   key={link.label}
                   href={link.href}
-                  className="t-caption"
+                  className="t-caption ft-link"
                   style={{ display: 'block', color: 'var(--text-tertiary)' }}
                 >
                   {link.label}
@@ -149,13 +168,30 @@ export function Footer() {
       </div>
 
       <style jsx>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
           .footer-grid { grid-template-columns: 1fr 1fr !important; }
           .footer-grid > :first-child { grid-column: 1 / -1; }
         }
         @media (max-width: 768px) {
           .footer-grid { grid-template-columns: 1fr !important; }
           .footer-bottom { flex-direction: column; align-items: flex-start; }
+        }
+        .ft-link {
+          transition: color 0.18s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .ft-link::before {
+          content: '→';
+          opacity: 0;
+          margin-right: 0;
+          transition: opacity 0.25s ease, margin-right 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .ft-link:hover {
+          color: var(--text-primary) !important;
+          transform: translateX(4px);
+        }
+        .ft-link:hover::before {
+          opacity: 1;
+          margin-right: 6px;
         }
       `}</style>
     </footer>

@@ -151,5 +151,5 @@ zoom: 14.5,
     }
   }, [])
 
-  return <div ref={mapContainer} className={`w-full h-full ${className}`} />
+  return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} className={className} />
 }

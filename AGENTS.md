@@ -100,7 +100,8 @@ Mariusia (mariusia.com)  →  Ancrage physique, lieu, écosystème marseillais
 5. **French typography**: Use U+2019 apostrophe (') in French text
 6. **Em-dashes FORBIDDEN**: Never use U+2014 (—). Use comma or colon instead.
 7. **Background colors restricted**: Only `#ffffff` (dominant, headers, main sections), `#f5f5f5` (footer, alt sections, legal pages, cards), `#f5f3f1` (warm cards). No other background colors allowed unless explicitly stated.
-8. **Build before restart**: `rm -rf .next && pkill -f next && npm run dev`
+8. **Auto-clean stale files**: Never ask before removing obsolete images, logos, unused components, or stale generated files. Just delete them.
+9. **Build before restart**: `rm -rf .next && pkill -f next && npm run dev`
 
 ## Page Structure
 

@@ -30,7 +30,7 @@ export default function ProgrammesPage({ params }: { params: { lang: string } })
             <h1 className="t-display text-primary" style={{ marginBottom: '24px' }}>
               {t(lang, 'programmes.title')}
             </h1>
-            <p className="t-lead" style={{ maxWidth: '640px', marginBottom: '48px' }}>
+            <p className="t-lead" style={{ marginBottom: '48px' }}>
               {t(lang, 'programmes.intro')}
             </p>
           </FadeIn>

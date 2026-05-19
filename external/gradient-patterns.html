@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Patterns</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f7;
+  padding: 32px;
+  font-family: sans-serif;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 960px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.card {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 250px 250px;
+  mix-blend-mode: overlay;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.flash {
+  background:
+    radial-gradient(ellipse 55% 48% at 12% 90%, rgba(196, 108, 42, 0.88) 0%, rgba(155, 75, 28, 0.42) 38%, transparent 62%),
+    radial-gradient(ellipse 38% 32% at 30% 60%, rgba(145, 68, 118, 0.38) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 38% at 68% 28%, rgba(18, 48, 72, 0.5) 0%, transparent 58%),
+    linear-gradient(148deg, #1a3042 0%, #152535 55%, #0e1f30 100%);
+}
+
+.turbo {
+  background:
+    radial-gradient(ellipse 18% 68% at 28% 105%, rgba(202, 118, 62, 0.85) 0%, transparent 58%),
+    radial-gradient(ellipse 22% 72% at 50% 100%, rgba(188, 72, 158, 0.78) 0%, transparent 62%),
+    radial-gradient(ellipse 28% 66% at 68% 92%, rgba(122, 72, 205, 0.55) 0%, transparent 58%),
+    radial-gradient(ellipse 35% 42% at 62% 58%, rgba(72, 52, 160, 0.28) 0%, transparent 52%),
+    linear-gradient(155deg, #101545 0%, #0d1238 100%);
+}
+
+.multi {
+  background:
+    radial-gradient(ellipse 62% 52% at 17% 84%, rgba(192, 132, 48, 0.85) 0%, rgba(148, 98, 28, 0.42) 38%, transparent 64%),
+    radial-gradient(ellipse 35% 28% at 38% 56%, rgba(125, 72, 108, 0.32) 0%, transparent 52%),
+    radial-gradient(ellipse 40% 35% at 72% 32%, rgba(22, 52, 68, 0.45) 0%, transparent 55%),
+    linear-gradient(142deg, #1e3648 0%, #183245 50%, #112538 100%);
+}
+
+.eleven {
+  background:
+    radial-gradient(ellipse 58% 52% at 80% 80%, rgba(218, 42, 52, 0.94) 0%, rgba(178, 28, 38, 0.6) 32%, transparent 62%),
+    radial-gradient(ellipse 32% 28% at 65% 62%, rgba(235, 82, 38, 0.22) 0%, transparent 48%),
+    radial-gradient(ellipse 30% 25% at 45% 45%, rgba(12, 18, 45, 0.4) 0%, transparent 60%),
+    linear-gradient(138deg, #07102c 0%, #090e2e 100%);
+}
+
+.flows {
+  background:
+    radial-gradient(ellipse 18% 55% at -2% 8%, rgba(115, 22, 182, 0.88) 0%, transparent 52%),
+    radial-gradient(ellipse 15% 35% at 0% 72%, rgba(18, 135, 78, 0.78) 0%, transparent 48%),
+    radial-gradient(ellipse 22% 25% at 5% 40%, rgba(18, 88, 185, 0.5) 0%, transparent 45%),
+    radial-gradient(ellipse 72% 62% at 58% 42%, rgba(238, 112, 28, 0.92) 0%, transparent 62%),
+    radial-gradient(ellipse 52% 55% at 78% 72%, rgba(205, 55, 38, 0.88) 0%, transparent 56%),
+    radial-gradient(ellipse 42% 35% at 85% 18%, rgba(225, 158, 18, 0.72) 0%, transparent 52%),
+    linear-gradient(138deg, #cf6228 0%, #c03228 100%);
+}
+
+.music {
+  background:
+    radial-gradient(ellipse 55% 52% at 12% 18%, rgba(115, 18, 175, 0.88) 0%, transparent 58%),
+    radial-gradient(ellipse 52% 56% at 78% 52%, rgba(232, 48, 108, 0.9) 0%, transparent 56%),
+    radial-gradient(ellipse 46% 42% at 52% 92%, rgba(222, 88, 58, 0.78) 0%, transparent 52%),
+    radial-gradient(ellipse 28% 28% at 92% 8%, rgba(85, 15, 142, 0.62) 0%, transparent 48%),
+    radial-gradient(ellipse 30% 30% at 8% 88%, rgba(95, 12, 138, 0.55) 0%, transparent 46%),
+    linear-gradient(138deg, #6e12b2 0%, #c23272 100%);
+}
+
+.imgvid {
+  background:
+    radial-gradient(ellipse 58% 52% at 88% 18%, rgba(38, 52, 218, 0.92) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 58% at 38% 62%, rgba(118, 38, 202, 0.88) 0%, transparent 56%),
+    radial-gradient(ellipse 46% 42% at 12% 88%, rgba(202, 48, 152, 0.78) 0%, transparent 52%),
+    radial-gradient(ellipse 35% 30% at 65% 85%, rgba(148, 28, 178, 0.55) 0%, transparent 48%),
+    linear-gradient(138deg, #2232b8 0%, #6e1e9e 100%);
+}
+
+.aurora {
+  background:
+    radial-gradient(ellipse 92% 16% at 50% 42%, rgba(0, 198, 182, 0.6) 0%, transparent 56%),
+    radial-gradient(ellipse 78% 13% at 38% 60%, rgba(18, 178, 78, 0.52) 0%, transparent 54%),
+    radial-gradient(ellipse 65% 11% at 68% 27%, rgba(178, 18, 178, 0.5) 0%, transparent 52%),
+    radial-gradient(ellipse 48% 9% at 28% 72%, rgba(0, 215, 148, 0.32) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 8% at 72% 80%, rgba(18, 148, 210, 0.28) 0%, transparent 48%),
+    linear-gradient(180deg, #070c14 0%, #090f1a 100%);
+}
+
+.dusk {
+  background:
+    radial-gradient(ellipse 88% 55% at 50% -8%, rgba(72, 16, 128, 0.92) 0%, transparent 58%),
+    radial-gradient(ellipse 58% 45% at 18% 18%, rgba(52, 10, 112, 0.65) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 48% at 78% 82%, rgba(208, 75, 36, 0.84) 0%, transparent 56%),
+    radial-gradient(ellipse 52% 42% at 28% 88%, rgba(218, 108, 42, 0.74) 0%, transparent 52%),
+    radial-gradient(ellipse 40% 30% at 55% 55%, rgba(148, 32, 75, 0.42) 0%, transparent 50%),
+    linear-gradient(175deg, #200c3e 0%, #7a2618 60%, #be5025 100%);
+}
+
+.abyss {
+  background:
+    radial-gradient(ellipse 35% 30% at 30% 38%, rgba(0, 188, 178, 0.5) 0%, transparent 56%),
+    radial-gradient(ellipse 28% 25% at 70% 62%, rgba(0, 218, 155, 0.44) 0%, transparent 54%),
+    radial-gradient(ellipse 22% 20% at 55% 22%, rgba(0, 158, 202, 0.36) 0%, transparent 50%),
+    radial-gradient(ellipse 18% 15% at 82% 85%, rgba(0, 178, 168, 0.3) 0%, transparent 46%),
+    radial-gradient(ellipse 15% 12% at 15% 68%, rgba(0, 195, 158, 0.25) 0%, transparent 44%),
+    linear-gradient(138deg, #011420 0%, #03182c 100%);
+}
+
+.ember {
+  background:
+    radial-gradient(ellipse 58% 44% at 50% 98%, rgba(208, 65, 16, 0.94) 0%, rgba(158, 35, 8, 0.58) 36%, transparent 64%),
+    radial-gradient(ellipse 38% 32% at 20% 78%, rgba(190, 52, 14, 0.58) 0%, transparent 54%),
+    radial-gradient(ellipse 32% 27% at 78% 70%, rgba(228, 92, 20, 0.44) 0%, transparent 50%),
+    radial-gradient(ellipse 25% 20% at 50% 62%, rgba(242, 128, 28, 0.22) 0%, transparent 46%),
+    linear-gradient(135deg, #0c0808 0%, #100a0a 100%);
+}
+
+.acid {
+  background:
+    radial-gradient(ellipse 55% 52% at 16% 26%, rgba(145, 228, 0, 0.9) 0%, transparent 56%),
+    radial-gradient(ellipse 52% 48% at 82% 60%, rgba(255, 200, 0, 0.88) 0%, transparent 54%),
+    radial-gradient(ellipse 46% 44% at 52% 90%, rgba(255, 115, 0, 0.75) 0%, transparent 52%),
+    radial-gradient(ellipse 35% 30% at 86% 16%, rgba(202, 242, 0, 0.62) 0%, transparent 48%),
+    radial-gradient(ellipse 28% 25% at 8% 75%, rgba(80, 200, 0, 0.5) 0%, transparent 46%),
+    linear-gradient(138deg, #70be00 0%, #e89600 100%);
+}
+
+.storm {
+  background:
+    radial-gradient(ellipse 28% 24% at 64% 30%, rgba(75, 145, 255, 0.7) 0%, transparent 52%),
+    radial-gradient(ellipse 22% 20% at 30% 58%, rgba(35, 208, 118, 0.54) 0%, transparent 50%),
+    radial-gradient(ellipse 20% 18% at 82% 70%, rgba(55, 80, 208, 0.64) 0%, transparent 48%),
+    radial-gradient(ellipse 26% 22% at 16% 24%, rgba(0, 162, 220, 0.42) 0%, transparent 50%),
+    radial-gradient(ellipse 18% 15% at 55% 82%, rgba(58, 188, 158, 0.3) 0%, transparent 46%),
+    linear-gradient(138deg, #161c30 0%, #121828 100%);
+}
+
+.rosegold {
+  background:
+    radial-gradient(ellipse 58% 52% at 26% 30%, rgba(218, 170, 130, 0.75) 0%, transparent 57%),
+    radial-gradient(ellipse 52% 48% at 76% 64%, rgba(200, 134, 108, 0.7) 0%, transparent 53%),
+    radial-gradient(ellipse 44% 40% at 50% 90%, rgba(185, 110, 84, 0.62) 0%, transparent 51%),
+    radial-gradient(ellipse 36% 30% at 90% 12%, rgba(228, 190, 150, 0.56) 0%, transparent 48%),
+    radial-gradient(ellipse 30% 25% at 10% 85%, rgba(172, 98, 72, 0.48) 0%, transparent 46%),
+    linear-gradient(138deg, #caa28c 0%, #b87a62 100%);
+}
+
+.void {
+  background:
+    radial-gradient(ellipse 64% 36% at 36% 64%, rgba(36, 16, 96, 0.6) 0%, transparent 64%),
+    radial-gradient(ellipse 36% 30% at 74% 26%, rgba(0, 75, 118, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 28% 25% at 16% 82%, rgba(56, 8, 76, 0.5) 0%, transparent 54%),
+    radial-gradient(ellipse 20% 18% at 85% 78%, rgba(18, 8, 55, 0.35) 0%, transparent 50%),
+    linear-gradient(138deg, #030408 0%, #04050e 100%);
+}
+</style>
+</head>
+<body>
+
+<div class="grid">
+  <div class="row">
+    <div class="card flash"></div>
+    <div class="card turbo"></div>
+    <div class="card multi"></div>
+    <div class="card eleven"></div>
+  </div>
+  <div class="row">
+    <div class="card flows"></div>
+    <div class="card music"></div>
+    <div class="card imgvid"></div>
+  </div>
+  <div class="row">
+    <div class="card aurora"></div>
+    <div class="card dusk"></div>
+    <div class="card abyss"></div>
+    <div class="card ember"></div>
+  </div>
+  <div class="row">
+    <div class="card acid"></div>
+    <div class="card storm"></div>
+    <div class="card rosegold"></div>
+    <div class="card void"></div>
+  </div>
+</div>
+
+</body>
+</html>

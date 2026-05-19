@@ -42,7 +42,7 @@ export function ActualiteCard({ slug, title, titleEn, excerpt, excerptEn, catego
         onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.08) 0px 8px 24px' }}
         onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px' }}
       >
-        <div style={{ width: '100%', aspectRatio: '16/9', background: GRADIENTS[gradIdx], position: 'relative', overflow: 'hidden' }}>
+        <div style={{ width: '100%', aspectRatio: '1/1', background: GRADIENTS[gradIdx], position: 'relative', overflow: 'hidden' }}>
           {image && (
             <img src={image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           )}

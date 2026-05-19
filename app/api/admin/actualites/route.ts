@@ -3,6 +3,7 @@
 // Disabled in production (returns 403)
 
 import { NextRequest, NextResponse } from 'next/server'
+import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
@@ -10,6 +11,12 @@ const contentDir = path.join(process.cwd(), 'content', 'actualites')
 
 if (!fs.existsSync(contentDir)) {
   fs.mkdirSync(contentDir, { recursive: true })
+}
+
+function regenerate() {
+  try {
+    execSync('node scripts/build-actualites.js', { cwd: process.cwd(), stdio: 'pipe' })
+  } catch {}
 }
 
 // GET /api/admin/actualites — list all articles
@@ -38,7 +45,7 @@ export async function POST(req: NextRequest) {
 
     const filePath = path.join(contentDir, `${article.slug}.json`)
     fs.writeFileSync(filePath, JSON.stringify(article, null, 2))
-
+    regenerate()
     return NextResponse.json({ success: true, slug: article.slug })
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
@@ -57,6 +64,7 @@ export async function DELETE(req: NextRequest) {
     const filePath = path.join(contentDir, `${slug}.json`)
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath)
+      regenerate()
       return NextResponse.json({ success: true })
     }
     return NextResponse.json({ error: 'Not found' }, { status: 404 })

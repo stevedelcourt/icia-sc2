@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" viewBox="0 0 3404 689" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xml:space="preserve"
+  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+
+  <!-- ICIA lettres sans les carres (chemins originaux intacts) -->
+  <g transform="matrix(2.41626,0,0,2.41626,-1297.25,-131.566)">
+    <rect x="539.435" y="98.664" width="49.536" height="203.904" style="fill-rule:nonzero;"/>
+    <path d="M810.443,274.344C801.419,284.712 790.283,292.92 777.035,298.968C763.787,305.016 748.523,308.04 731.243,308.04C715.499,308.04 700.955,305.448 687.611,300.264C674.267,295.08 662.699,287.736 652.907,278.232C643.115,268.728 635.435,257.352 629.867,244.104C624.299,230.856 621.515,216.264 621.515,200.328C621.515,184.008 624.347,169.224 630.011,155.976C635.675,142.728 643.499,131.448 653.483,122.136C663.467,112.824 675.179,105.672 688.619,100.68C702.059,95.688 716.555,93.192 732.107,93.192C746.507,93.192 760.667,95.736 774.587,100.824C788.507,105.912 799.787,113.352 808.427,123.144L775.019,156.552C770.411,150.216 764.363,145.512 756.875,142.44C749.387,139.368 741.707,137.832 733.835,137.832C725.195,137.832 717.275,139.416 710.075,142.584C702.875,145.752 696.683,150.12 691.499,155.688C686.315,161.256 682.283,167.832 679.403,175.416C676.523,183 675.083,191.304 675.083,200.328C675.083,209.544 676.523,217.992 679.403,225.672C682.283,233.352 686.267,239.928 691.355,245.4C696.443,250.872 702.539,255.144 709.643,258.216C716.747,261.288 724.523,262.824 732.971,262.824C742.763,262.824 751.307,260.904 758.603,257.064C765.899,253.224 771.755,248.232 776.171,242.088L810.443,274.344Z" style="fill-rule:nonzero;"/>
+    <rect x="831.467" y="98.664" width="49.536" height="203.904" style="fill-rule:nonzero;"/>
+    <path d="M1061.29,302.568L1045.45,262.536L966.539,262.536L951.563,302.568L897.995,302.568L983.531,98.664L1031.34,98.664L1116.01,302.568L1061.29,302.568ZM1006.57,153.096L980.651,223.08L1031.91,223.08L1006.57,153.096Z" style="fill-rule:nonzero;"/>
+  </g>
+
+  <!--
+    ANIMATION 1 : STAMP
+    Chaque carre apparait depuis l'echelle 0 avec un rebond spring,
+    le bleu en premier, le rouge 200ms apres.
+    Cycle : 1s animation + 5s pause = 6s total.
+    Technique : wrapper translate() centre l'origine sur le centre du carre,
+    l'animateTransform scale opère depuis ce centre.
+  -->
+
+  <!-- Carre bleu : centre (1509, 357) -->
+  <g transform="translate(1509, 357)">
+    <g>
+      <animateTransform id="sb"
+        attributeName="transform"
+        type="scale"
+        values="0; 1.22; 0.91; 1.05; 1"
+        keyTimes="0; 0.45; 0.68; 0.84; 1"
+        calcMode="spline"
+        keySplines="0.22 0 0.1 1; 0.36 0 0.66 1; 0.36 0 0.66 1; 0.36 0 0.66 1"
+        dur="1s"
+        begin="0s; sb.end + 5s"
+        fill="remove"/>
+      <rect x="-60" y="-60" width="120" height="120" fill="rgb(0,5,146)"/>
+    </g>
+  </g>
+
+  <!-- Carre rouge : centre (1509, 536) -->
+  <g transform="translate(1509, 536)">
+    <g>
+      <animateTransform id="sr"
+        attributeName="transform"
+        type="scale"
+        values="0; 1.22; 0.91; 1.05; 1"
+        keyTimes="0; 0.45; 0.68; 0.84; 1"
+        calcMode="spline"
+        keySplines="0.22 0 0.1 1; 0.36 0 0.66 1; 0.36 0 0.66 1; 0.36 0 0.66 1"
+        dur="1s"
+        begin="0.2s; sr.end + 5s"
+        fill="remove"/>
+      <rect x="-60" y="-60" width="120" height="120" fill="rgb(255,0,0)"/>
+    </g>
+  </g>
+
+</svg>

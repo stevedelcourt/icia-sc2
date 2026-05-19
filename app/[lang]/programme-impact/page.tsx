@@ -181,8 +181,8 @@ export default function ProgrammeImpactPage({ params }: { params: { lang: string
                 </FadeIn>
               </div>
               <FadeIn delay={0.3}>
-                <div className="impact-hero-img" style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(0,0,0,0.08)', marginTop: 'clamp(100px, 11vw, 140px)', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span className="t-micro" style={{ color: 'var(--text-tertiary)' }}>Programme Impact</span>
+                <div className="impact-hero-img" style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(0,0,0,0.08)', marginTop: 'clamp(100px, 11vw, 140px)' }}>
+                  <img src="/images/asso.webp" alt="Programme Impact" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </FadeIn>
             </div>
@@ -202,7 +202,7 @@ export default function ProgrammeImpactPage({ params }: { params: { lang: string
         <section style={{ background: '#ffffff', padding: 'clamp(80px, 10vw, 120px) 0' }}>
           <div className="container-mentivis" style={{ maxWidth: 1240 }}>
             <FadeIn>
-              <p className="eyebrow" style={{ maxWidth: 640 }}>
+              <p className="eyebrow">
                 {lang === 'fr' ? 'CE QUE LE PROGRAMME IMPACT CHANGE CONCRÈTEMENT' : 'WHAT THE IMPACT PROGRAM CHANGES'}
               </p>
               <h2 className="t-display text-primary" style={{ marginBottom: 56 }}>
@@ -229,7 +229,7 @@ export default function ProgrammeImpactPage({ params }: { params: { lang: string
 
         {/* 4. CTA */}
         <section style={{ background: '#f5f5f5', padding: 'clamp(80px, 10vw, 120px) 0' }}>
-          <div className="container-mentivis" style={{ maxWidth: 720 }}>
+          <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow">{lang === 'fr' ? 'FORMATS' : 'FORMATS'}</p>
               <h2 className="t-display text-primary" style={{ marginBottom: 20 }}>

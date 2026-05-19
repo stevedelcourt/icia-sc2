@@ -79,8 +79,14 @@ Mission
 # header.nav.programmes
 Programs
 
+# header.nav.association
+Association
+
 # header.nav.a_propos
 About
+
+# header.nav.actualites
+News
 
 # header.nav.gouvernance
 Governance
@@ -110,9 +116,7 @@ Close submenu
 Collective AI Institute
 
 # homepage.hero.h1
-Understanding artificial intelligence.
-Building capacity to act.
-Creating a more inclusive transition.
+Artificial intelligence, understood and useful for everyone.
 
 # homepage.hero.baseline
 Artificial intelligence is already transforming work, education, information, public services, culture and daily life.
@@ -191,7 +195,7 @@ Meetings, workshops, conferences, roundtables and participatory formats.
 
 # homepage.pour_qui.title
 ICIA is for everyone who has to navigate AI.
-In other words: almost everyone.
+In other words: everyone.
 
 # homepage.pour_qui.citoyens.title
 Citizens
@@ -379,6 +383,9 @@ Programs
 # footer.column.a_propos
 About
 
+# footer.column.association
+Association
+
 # footer.column.legal
 Legal
 
@@ -397,8 +404,8 @@ Terms of use
 # footer.about.qui_sommes_nous
 Who we are
 
-# footer.about.publications
-Publications
+# footer.about.manifeste
+ICIA Manifesto
 
 # footer.about.gouvernance
 Governance
@@ -611,7 +618,7 @@ ICIA ,  Institut Collectif de l'IA
 Read more
 
 # publications.tag.announcements
-Announcements
+Press
 
 # publications.filter.all_tags
 All

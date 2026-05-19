@@ -15,12 +15,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/devenir-membre',
     '/donations',
     '/partenaires',
+    '/icia-territoires',
+    '/icia-education',
+    '/icia-travail-competences',
     '/mission',
-    '/publications',
     '/contact',
     '/a-propos',
     '/mentions-legales',
     '/politique-confidentialite',
+    '/manifeste',
     '/actualites',
     '/cookies',
     '/conditions-utilisation',
@@ -30,8 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     paths.map((path) => ({
       url: `${baseUrl}/${locale}${path}`,
       lastModified: new Date(),
-      changeFrequency: path === '/publications' ? 'daily' : path === '' ? 'weekly' : path.startsWith('/mentions') || path.startsWith('/politique') || path.startsWith('/cookies') || path.startsWith('/conditions') ? 'yearly' : 'monthly',
-      priority: path === '' ? 1 : ['/programmes', '/programme-impact', '/gouvernance', '/mission'].includes(path) ? 0.9 : ['/publications'].includes(path) ? 0.8 : 0.7,
+      changeFrequency: path === '/actualites' ? 'daily' : path === '' ? 'weekly' : path.startsWith('/mentions') || path.startsWith('/politique') || path.startsWith('/cookies') || path.startsWith('/conditions') ? 'yearly' : 'monthly',
+      priority: path === '' ? 1 : ['/programmes', '/programme-impact', '/gouvernance', '/mission'].includes(path) ? 0.9 : ['/actualites'].includes(path) ? 0.8 : 0.7,
       alternates: {
         languages: {
           'fr-FR': `${baseUrl}/fr${path}`,

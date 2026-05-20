@@ -63,8 +63,8 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <LocalizedLink href="/#mission" className="btn-pill btn-black hero-cta">{isMobile ? (lang === 'fr' ? 'Notre mission' : 'Our mission') : t('homepage.hero.cta_mission')}{chevron}</LocalizedLink>
-                <LocalizedLink href="/#programmes" className="btn-pill btn-warm hero-cta">{isMobile ? (lang === 'fr' ? 'Nos programmes' : 'Our programs') : t('homepage.hero.cta_programmes')}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#mission" className="btn-pill btn-black" style={isMobile ? { fontSize: '12px', padding: '6px 10px' } : undefined}>{isMobile ? (lang === 'fr' ? 'Notre mission' : 'Our mission') : t('homepage.hero.cta_mission')}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#programmes" className="btn-pill btn-warm" style={isMobile ? { fontSize: '12px', padding: '6px 10px' } : undefined}>{isMobile ? (lang === 'fr' ? 'Nos programmes' : 'Our programs') : t('homepage.hero.cta_programmes')}{chevron}</LocalizedLink>
               </div>
             </motion.div>
           </div>
@@ -465,7 +465,6 @@ export default function Home() {
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
           .star3d-wrap { max-width: 300px !important; }
-          .hero-cta { font-size: 12px !important; padding: 6px 10px !important; }
         }
         @media (max-width: 480px) {
           .actions-grid { grid-template-columns: 1fr !important; }

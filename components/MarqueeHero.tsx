@@ -81,8 +81,8 @@ export default function MarqueeHero() {
       offsetRef.current -= speed // negative = scroll left
 
       const stepW = imgWRef.current + GAP
-      if (stepW > 0) {
-        const wrapRange = 2 * stepW
+      if (imgWRef.current > 0) {
+        const wrapRange = 2 * (imgWRef.current + GAP)
         while (offsetRef.current < -wrapRange) offsetRef.current += wrapRange
         while (offsetRef.current > 0) offsetRef.current -= wrapRange
 

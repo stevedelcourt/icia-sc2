@@ -31,24 +31,24 @@ export default function GouvernancePage({ params }: { params: { lang: string } }
 
         {/* Content */}
         <section style={{ background: '#ffffff', padding: '0 0 var(--section-gap) 0' }}>
-          <div className="container-mentivis" style={{ maxWidth: '780px' }}>
+          <div className="container-mentivis">
             <FadeIn delay={0.1}>
-              <p className="t-lead" style={{ marginBottom: '16px' }}>
+              <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
                 {t(lang, 'gouvernance.body.1')}
               </p>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="t-lead" style={{ marginBottom: '16px' }}>
+              <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
                 {t(lang, 'gouvernance.body.2')}
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="t-lead" style={{ marginBottom: '16px' }}>
+              <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
                 {t(lang, 'gouvernance.body.3')}
               </p>
             </FadeIn>
             <FadeIn delay={0.25}>
-              <p className="t-lead">
+              <p className="t-lead" style={{ maxWidth: '680px' }}>
                 {t(lang, 'gouvernance.body.4')}
               </p>
             </FadeIn>

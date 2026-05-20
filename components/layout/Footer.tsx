@@ -56,7 +56,7 @@ export function Footer() {
               />
             </LocalizedLink>
             <p style={{ fontSize: '13px', fontWeight: 500, lineHeight: 1.4, color: 'var(--text-primary)', marginBottom: '6px', maxWidth: '280px' }}>
-              Comprendre les transformations liées à l&rsquo;IA
+              Institut Collectif de l&rsquo;IA
             </p>
             <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '16px', maxWidth: '280px' }}>
               Association loi 1901{' '}

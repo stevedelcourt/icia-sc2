@@ -85,8 +85,8 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
                       src={`/images/partners/${p.slug}.svg`}
                       alt={p.name}
                       style={{
-                        width: 'clamp(72px, 7vw, 100px)',
-                        height: 'clamp(72px, 7vw, 100px)',
+                        width: 'clamp(144px, 14vw, 200px)',
+                        height: 'clamp(144px, 14vw, 200px)',
                         marginBottom: '10px',
                       }}
                     />

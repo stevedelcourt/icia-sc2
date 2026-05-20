@@ -62,7 +62,9 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
                 </FadeIn>
               </div>
               <FadeIn delay={0.2}>
-                <Globus3D size={580} />
+                <div className="globus3d-wrap" style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Globus3D size={580} />
+                </div>
               </FadeIn>
             </div>
           </div>

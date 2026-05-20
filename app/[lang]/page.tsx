@@ -25,6 +25,21 @@ export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
+  const [heroSlide, setHeroSlide] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const img = document.querySelector('.hero-img') as HTMLImageElement | null
+      if (!img) return
+      const rect = img.getBoundingClientRect()
+      const vh = window.innerHeight
+      const progress = 1 - Math.max(0, Math.min(1, rect.bottom / vh))
+      setHeroSlide(progress * 30)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
@@ -60,7 +75,7 @@ export default function Home() {
           </div>
 
           {/* Full-width image, edge to edge */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden' }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden', transform: `translateX(${heroSlide}%)`, transition: 'transform 0.1s linear' }}>
             <img
               src="/images/hero-icia.webp"
               alt=""
@@ -318,7 +333,9 @@ export default function Home() {
                 <FadeIn delay={0.2}><p className="t-lead">{t('homepage.a_propos.body.3')}</p></FadeIn>
               </div>
               <FadeIn delay={0.25}>
-                <Star3D size={580} />
+                <div className="star3d-wrap" style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Star3D size={580} />
+                </div>
               </FadeIn>
             </div>
           </div>

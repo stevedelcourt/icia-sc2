@@ -26,15 +26,6 @@ export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)')
-    setIsMobile(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
 
   return (
     <>
@@ -63,8 +54,8 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <LocalizedLink href="/#mission" className="btn-pill btn-black" style={isMobile ? { fontSize: '14px', padding: '8px 12px' } : undefined}>{isMobile ? (lang === 'fr' ? 'Notre mission' : 'Our mission') : t('homepage.hero.cta_mission')}{chevron}</LocalizedLink>
-                <LocalizedLink href="/#programmes" className="btn-pill btn-warm" style={isMobile ? { fontSize: '14px', padding: '8px 12px' } : undefined}>{isMobile ? (lang === 'fr' ? 'Nos programmes' : 'Our programs') : t('homepage.hero.cta_programmes')}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#mission" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 12px' }}>{lang === 'fr' ? 'Notre mission' : 'Our mission'}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#programmes" className="btn-pill btn-warm" style={{ fontSize: '14px', padding: '8px 12px' }}>{lang === 'fr' ? 'Nos programmes' : 'Our programs'}{chevron}</LocalizedLink>
               </div>
             </motion.div>
           </div>

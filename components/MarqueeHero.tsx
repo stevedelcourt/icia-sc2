@@ -16,6 +16,7 @@ export default function MarqueeHero() {
   const lastScrollRef = useRef(0)
   const rafRef = useRef(0)
   const measureTimer = useRef<ReturnType<typeof setTimeout>>()
+  const fallbackTimer = useRef<ReturnType<typeof setTimeout>>()
 
   const measure = useCallback(() => {
     if (!trackRef.current) return
@@ -23,6 +24,12 @@ export default function MarqueeHero() {
     if (!img) return
     imgWRef.current = img.getBoundingClientRect().width
   }, [])
+
+  const imgRef = useCallback((el: HTMLImageElement | null) => {
+    if (!el) return
+    if (el.complete) { measure() }
+    else { el.addEventListener('load', measure, { once: true }) }
+  }, [measure])
 
   useEffect(() => {
     measure()
@@ -39,7 +46,7 @@ export default function MarqueeHero() {
 
   useEffect(() => {
     // Fallback: retry measure if image hasn't loaded after 1s
-    const t = setTimeout(() => { if (imgWRef.current === 0) measure() }, 1000)
+    fallbackTimer.current = setTimeout(() => { if (imgWRef.current === 0) measure() }, 1000)
     // Start mobile centered
     const isMobile = window.innerWidth <= 768
     if (isMobile) {
@@ -99,6 +106,7 @@ export default function MarqueeHero() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
       cancelAnimationFrame(rafRef.current)
+      clearTimeout(fallbackTimer.current)
     }
   }, [])
 
@@ -114,7 +122,7 @@ export default function MarqueeHero() {
             willChange: 'transform',
           }}
         >
-        <img src="/images/hero-icia.avif" alt="" draggable={false} onLoad={measure} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img ref={imgRef} src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
         <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
         <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
         <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />

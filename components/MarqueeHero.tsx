@@ -80,7 +80,7 @@ export default function MarqueeHero() {
       if (!visible) boostRef.current = 0
 
       const speed = BASE + boostRef.current
-      offsetRef.current -= speed // negative = scroll left
+      offsetRef.current += speed // scroll right
 
       if (imgWRef.current > 0) {
         const wrapRange = 2 * (imgWRef.current + GAP)
@@ -102,8 +102,6 @@ export default function MarqueeHero() {
     }
   }, [])
 
-  const imgH = `var(--marquee-img-h, 25vh)`
-
   return (
     <>
       <div ref={wrapRef} className="marquee-wrap" style={{ width: '100%', overflow: 'hidden', marginTop: 'var(--section-gap)' }}>
@@ -116,16 +114,15 @@ export default function MarqueeHero() {
             willChange: 'transform',
           }}
         >
-        <img src="/images/hero-icia.avif" alt="" draggable={false} onLoad={measure} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} onLoad={measure} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} className="marquee-img" style={{ height: '25vh', width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: `
-        :root { --marquee-img-h: 25vh; }
         @media (max-width: 768px) {
-          :root { --marquee-img-h: 18vh; }
+          .marquee-img { height: 18vh !important; }
           .marquee-wrap { margin-top: clamp(32px, 6vw, 64px) !important; }
         }
       ` }} />

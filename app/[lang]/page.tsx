@@ -26,6 +26,15 @@ export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   return (
     <>
@@ -54,8 +63,8 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <LocalizedLink href="/#mission" className="btn-pill btn-black">{t('homepage.hero.cta_mission')}{chevron}</LocalizedLink>
-                <LocalizedLink href="/#programmes" className="btn-pill btn-warm">{t('homepage.hero.cta_programmes')}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#mission" className="btn-pill btn-black hero-cta">{isMobile ? (lang === 'fr' ? 'Notre mission' : 'Our mission') : t('homepage.hero.cta_mission')}{chevron}</LocalizedLink>
+                <LocalizedLink href="/#programmes" className="btn-pill btn-warm hero-cta">{isMobile ? (lang === 'fr' ? 'Nos programmes' : 'Our programs') : t('homepage.hero.cta_programmes')}{chevron}</LocalizedLink>
               </div>
             </motion.div>
           </div>
@@ -456,6 +465,7 @@ export default function Home() {
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
           .star3d-wrap { max-width: 300px !important; }
+          .hero-cta { font-size: 13px !important; padding: 9px 14px !important; }
         }
         @media (max-width: 480px) {
           .actions-grid { grid-template-columns: 1fr !important; }

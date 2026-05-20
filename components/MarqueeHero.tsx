@@ -3,9 +3,9 @@
 import { useRef, useEffect, useCallback } from 'react'
 
 const GAP = 30
-const BASE = 0.15   // pixels/frame auto-drift
-const DECAY = 0.95   // boost decay per frame
-const GAIN = 0.03    // scroll delta → boost multiplier
+const BASE = 0.15
+const DECAY = 0.95
+const GAIN = 0.03
 
 export default function MarqueeHero() {
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -15,6 +15,7 @@ export default function MarqueeHero() {
   const boostRef = useRef(0)
   const lastScrollRef = useRef(0)
   const rafRef = useRef(0)
+  const measureTimer = useRef<ReturnType<typeof setTimeout>>()
 
   const measure = useCallback(() => {
     if (!trackRef.current) return
@@ -25,8 +26,15 @@ export default function MarqueeHero() {
 
   useEffect(() => {
     measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
+    const debouncedMeasure = () => {
+      clearTimeout(measureTimer.current)
+      measureTimer.current = setTimeout(measure, 250)
+    }
+    window.addEventListener('resize', debouncedMeasure)
+    return () => {
+      window.removeEventListener('resize', debouncedMeasure)
+      clearTimeout(measureTimer.current)
+    }
   }, [measure])
 
   useEffect(() => {
@@ -46,31 +54,36 @@ export default function MarqueeHero() {
 
     lastScrollRef.current = window.scrollY
 
-    // IntersectionObserver: freeze when image is off-screen
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) boostRef.current = 0
-    }, { threshold: 0.01 })
-    if (wrapRef.current) obs.observe(wrapRef.current)
-
     const handleScroll = () => {
       const scrollY = window.scrollY
       const delta = scrollY - lastScrollRef.current
       lastScrollRef.current = scrollY
-      // scroll down (delta > 0) feeds boost, scroll up reduces it
-      boostRef.current = Math.max(0, boostRef.current + delta * GAIN)
+
+      // Ignore scroll up and overscroll bounce (mobile address bar, rubber-banding)
+      if (delta <= 0) return
+
+      // Clamp delta to prevent massive jumps (address bar hide/show)
+      const clampedDelta = Math.min(delta, 200)
+      boostRef.current += clampedDelta * GAIN
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     const tick = () => {
       boostRef.current *= DECAY
+
+      // Freeze when image is off-screen (replaces IntersectionObserver)
+      const rect = wrapRef.current?.getBoundingClientRect()
+      const visible = rect && rect.bottom > 0 && rect.top < window.innerHeight
+      if (!visible) boostRef.current = 0
+
       const speed = BASE + boostRef.current
-      offsetRef.current += speed
+      offsetRef.current -= speed // negative = scroll left
 
       const stepW = imgWRef.current + GAP
       if (stepW > 0) {
-        while (offsetRef.current > stepW) offsetRef.current -= stepW
-        while (offsetRef.current < 0) offsetRef.current += stepW
+        while (offsetRef.current < -stepW) offsetRef.current += stepW
+        while (offsetRef.current > 0) offsetRef.current -= stepW
 
         if (trackRef.current) {
           trackRef.current.style.transform = `translateX(${-offsetRef.current}px)`
@@ -83,7 +96,6 @@ export default function MarqueeHero() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      obs.disconnect()
       cancelAnimationFrame(rafRef.current)
     }
   }, [])

@@ -87,7 +87,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.15 + i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ background: '#ffffff', borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease' }}
+                    style={{ background: '#f5f5f5', borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease' }}
                     onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.06) 0px 4px 12px' }}
                     onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px' }}
                   >
@@ -219,7 +219,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ aspectRatio: '16/9', background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
+                style={{ aspectRatio: '16/9', background: 'linear-gradient(135deg, #ba274a 0%, #e2611d 100%)', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
                 >
@@ -240,10 +240,10 @@ export default function Home() {
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', color: 'var(--text-tertiary)', display: 'block', marginBottom: '12px' }}>06</span>
-                <h3 style={{ fontSize: '17px', fontWeight: 500, color: '#000', marginBottom: '8px', lineHeight: 1.3 }}>{lang === 'fr' ? 'Le manifeste de l\'ICIA' : 'The ICIA Manifesto'}</h3>
+                <span style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '12px' }}>06</span>
+                <h3 style={{ fontSize: '17px', fontWeight: 500, color: '#fff', marginBottom: '8px', lineHeight: 1.3 }}>{lang === 'fr' ? 'Le manifeste de l\'ICIA' : 'The ICIA Manifesto'}</h3>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{lang === 'fr' ? 'Consultez nos principes fondateurs.' : 'Read our founding principles.'}</p>
+                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: 'rgba(255,255,255,0.85)', margin: 0 }}>{lang === 'fr' ? 'Consultez nos principes fondateurs.' : 'Read our founding principles.'}</p>
                   <LocalizedLink href="/manifeste" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 16px', flexShrink: 0, marginLeft: '12px' }}>
                     {lang === 'fr' ? 'Lire' : 'Read'}
                     <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -408,8 +408,11 @@ export default function Home() {
                   </p>
                 </FadeIn>
                 <FadeIn delay={0.25}>
-                  <p className="t-caption" style={{ fontWeight: 500, color: '#000', marginBottom: '4px' }}>4 boulevard Jacques Saadé</p>
-                  <p className="t-caption" style={{ fontWeight: 500, color: '#000' }}>13002 Marseille, France</p>
+                  <a href="https://www.google.com/maps/place/Campus+Cyber+R%C3%A9gion+Sud+%2F+Euromed/@43.3136566,5.3663277,17z/data=!3m2!4b1!5s0x12c9c0f13fce974f:0x7fd62ed04cf28c16!4m6!3m5!1s0x12c9c1002ab85d81:0x202c6089924a8bc4!8m2!3d43.3136566!4d5.3663277!16s%2Fg%2F11wn5b8jd9?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
+                    <p className="t-caption" style={{ fontWeight: 500, color: '#000', marginBottom: '4px' }}>Tour Mirabeau</p>
+                    <p className="t-caption" style={{ fontWeight: 500, color: '#000', marginBottom: '4px' }}>4 boulevard Jacques Saadé</p>
+                    <p className="t-caption" style={{ fontWeight: 500, color: '#000' }}>13002 Marseille, France</p>
+                  </a>
                 </FadeIn>
               </div>
               <FadeIn delay={0.2}>
@@ -712,7 +715,7 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
                     alignItems: 'center', gap: '1.5rem', fontSize: '1.0625rem', fontWeight: 400,
                     letterSpacing: '-0.005em', lineHeight: 1.4,
                   }}>
-                    <span style={{ fontSize: '0.6875rem', fontWeight: 500, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.35)' }}>
+                    <span style={{ fontSize: '0.6875rem', fontWeight: 500, letterSpacing: '0.12em', color: '#fff' }}>
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span>{item.question}</span>

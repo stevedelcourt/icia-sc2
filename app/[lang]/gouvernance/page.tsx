@@ -56,7 +56,7 @@ export default function GouvernancePage({ params }: { params: { lang: string } }
         </section>
 
         {/* Conseil stratégique */}
-        <section style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
+        <section id="conseil-strategique" style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow" style={{ marginBottom: '12px' }}>

@@ -411,7 +411,7 @@ ICIA Manifeste
 Gouvernance
 
 # footer.about.conseil
-Conseil d'administration
+Conseil stratégique
 
 # footer.about.partenaires
 Partenaires

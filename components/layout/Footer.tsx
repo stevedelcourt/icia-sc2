@@ -24,7 +24,7 @@ export function Footer() {
 
   const associationLinks = [
     { label: t('footer.about.gouvernance') || 'Gouvernance', href: '/gouvernance' },
-    { label: t('footer.about.conseil') || 'Conseil stratégique', href: '/gouvernance' },
+    { label: t('footer.about.conseil') || 'Conseil stratégique', href: '/gouvernance#conseil-strategique' },
     { label: t('footer.about.partenaires') || 'Partenaires', href: '/partenaires' },
     { label: t('footer.about.devenir_membre') || 'Devenir membre', href: '/devenir-membre' },
   ]

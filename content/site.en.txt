@@ -411,7 +411,7 @@ ICIA Manifesto
 Governance
 
 # footer.about.conseil
-Board of Directors
+Strategic Council
 
 # footer.about.partenaires
 Partners

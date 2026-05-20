@@ -7,9 +7,9 @@ const PARTENAIRES = [
   { slug: 'mentivis', name: 'Mentivis', desc: 'Opérateur pédagogique et partenaire d\'ingénierie de l\'Institut. Conception et déploiement des dispositifs pédagogiques dédiés à l\'IA.' },
   { slug: 'mariusia', name: 'Mariusia', desc: 'Lieu d\'ancrage physique et écosystème marseillais. Espace dédié aux initiatives éducatives, créatives et entrepreneuriales en IA.' },
   { slug: 'campus-cyber-ia', name: 'Campus Cyber.IA', desc: 'Campus dédié à la cybersécurité et à l\'intelligence artificielle. Formation, innovation et recherche appliquée.' },
-  { slug: 'region-sud', name: 'Région Sud', desc: 'Soutien à l\'innovation territoriale et aux politiques publiques de formation numérique en Provence-Alpes-Côte d\'Azur.' },
+  { slug: 'airwell', name: 'Airwell', desc: '' },
   { slug: 'france-travail', name: 'France Travail', desc: 'Accompagnement des transitions professionnelles et anticipation des besoins en compétences numériques sur les territoires.' },
-  { slug: 'the-camp', name: 'The Camp', desc: 'Campus d\'innovation dédié aux technologies émergentes et à la transformation durable des organisations.' },
+  { slug: 'mk2', name: 'MK2', desc: '' },
 ]
 
 export default function PartenairesPage({ params }: { params: { lang: string } }) {
@@ -65,7 +65,7 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
                 {lang === 'fr' ? '6 organisations, une conviction commune.' : '6 organizations, one shared conviction.'}
               </p>
             </FadeIn>
-            <div className="partners-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '2px' }}>
+            <div className="partners-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2px' }}>
               {PARTENAIRES.map((p, i) => (
                 <FadeIn key={p.name} delay={i * 0.02}>
                   <div className="partner-card" style={{
@@ -128,7 +128,7 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
 
       </main>
       <style dangerouslySetInnerHTML={{ __html: `
-        @media (max-width: 900px) { .partners-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+        @media (max-width: 900px) { .partners-grid { grid-template-columns: repeat(3, 1fr) !important; } }
         @media (max-width: 600px) { .partners-grid { grid-template-columns: repeat(3, 1fr) !important; } }
         @media (max-width: 400px) { .partners-grid { grid-template-columns: repeat(2, 1fr) !important; } }
       ` }} />

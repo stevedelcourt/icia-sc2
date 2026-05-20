@@ -197,7 +197,7 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
               </div>
 
               {/* Right: image or slide-out form (desktop only) */}
-              <div className="membre-form-col" style={{ height: '100%', display: isMobile ? 'none' : 'flex', flexDirection: 'column', paddingTop: 'clamp(30px, 4vw, 60px)', position: 'relative' }}>
+              <div className="membre-form-col" style={{ height: '100%', display: isMobile ? 'none' : 'flex', flexDirection: 'column', paddingTop: selectedTier ? 'clamp(30px, 4vw, 60px)' : '0', position: 'relative' }}>
                 {/* Default image when no tier selected */}
                 {!selectedTier && (
                   <div style={{ flex: 1, display: 'flex' }}>

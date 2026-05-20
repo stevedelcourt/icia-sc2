@@ -72,7 +72,7 @@ export default function Home() {
             <div style={{ background: '#ffffff', borderRadius: '24px', padding: 'clamp(40px, 5vw, 56px) clamp(32px, 5vw, 48px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px' }}>
               <FadeIn>
                 <p className="eyebrow">Notre mission</p>
-                <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>{t('homepage.mission.title')}</h2>
+                <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '24px' }}>{t('homepage.mission.title')}</h2>
                 <p className="t-lead" style={{ maxWidth: '800px', marginBottom: '48px' }}>{t('homepage.mission.intro')}</p>
               </FadeIn>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
@@ -105,7 +105,7 @@ export default function Home() {
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow">Ce que nous faisons</p>
-              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.actions.title')}</h2>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '48px' }}>{t('homepage.actions.title')}</h2>
             </FadeIn>
             <div className="actions-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {[
@@ -205,7 +205,7 @@ export default function Home() {
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow">Principes</p>
-              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.engagements.title')}</h2>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '48px' }}>{t('homepage.engagements.title')}</h2>
             </FadeIn>
             <div className="engagements-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {[
@@ -259,7 +259,7 @@ export default function Home() {
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow">Programmes</p>
-              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.programmes.title')}</h2>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '48px' }}>{t('homepage.programmes.title')}</h2>
             </FadeIn>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginBottom: '20px' }}>
               {[
@@ -307,7 +307,7 @@ export default function Home() {
               <div>
                 <FadeIn>
                   <p className="eyebrow">ICIA</p>
-                  <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.a_propos.title')}</h2>
+                  <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '32px' }}>{t('homepage.a_propos.title')}</h2>
                 </FadeIn>
                 <FadeIn delay={0.1}><p className="t-lead" style={{ maxWidth: '620px', marginBottom: '16px' }}>{t('homepage.a_propos.body.1')}</p></FadeIn>
                 <FadeIn delay={0.15}><p className="t-lead" style={{ maxWidth: '620px', marginBottom: '16px' }}>{t('homepage.a_propos.body.2')}</p></FadeIn>
@@ -327,7 +327,7 @@ export default function Home() {
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow">Partenariats</p>
-              <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.collaborer.title')}</h2>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '32px' }}>{t('homepage.collaborer.title')}</h2>
             </FadeIn>
             <FadeIn>
               <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: '#000' }}>
@@ -364,7 +364,7 @@ export default function Home() {
             <div style={{ background: '#f5f5f5', borderRadius: '24px', padding: 'clamp(40px, 5vw, 56px) clamp(32px, 5vw, 48px)' }}>
               <FadeIn>
                 <p className="eyebrow">Modèle</p>
-                <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.gouvernance.title')}</h2>
+                <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '32px' }}>{t('homepage.gouvernance.title')}</h2>
               </FadeIn>
               <FadeIn delay={0.1}><p className="t-lead" style={{ marginBottom: '12px', maxWidth: '680px' }}>{t('homepage.gouvernance.body.1')}</p></FadeIn>
               <FadeIn delay={0.15}><p className="t-lead" style={{ marginBottom: '12px', maxWidth: '680px' }}>{t('homepage.gouvernance.body.2')}</p></FadeIn>
@@ -382,7 +382,7 @@ export default function Home() {
             <div className="ancrage-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
               <div>
                 <FadeIn>
-                  <h2 className="t-display text-primary" style={{ marginBottom: '24px' }}>
+                  <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '24px' }}>
                     {lang === 'fr' ? 'Né à Marseille. Pensé pour la France.' : 'Born in Marseille. Built for France.'}
                   </h2>
                 </FadeIn>
@@ -423,7 +423,7 @@ export default function Home() {
         <section id="cta" style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis">
             <FadeIn>
-              <h2 className="t-display text-primary" style={{ marginBottom: '20px' }}>{t('homepage.cta.title')}</h2>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '20px' }}>{t('homepage.cta.title')}</h2>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="t-lead" style={{ marginBottom: '32px', maxWidth: '620px' }}>{t('homepage.cta.body')}</p>
@@ -496,7 +496,7 @@ function InteractivePourQui({ title, items }: { title: string; items: { title: s
       <div className="container-mentivis">
         <FadeIn>
           <p className="eyebrow">Publics</p>
-          <h2 className="t-display text-primary" style={{ marginBottom: '48px', whiteSpace: 'pre-line' }}>{title}</h2>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, color: '#000', marginBottom: '48px', whiteSpace: 'pre-line' }}>{title}</h2>
         </FadeIn>
 
         {/* Desktop: 3:1 grid */}

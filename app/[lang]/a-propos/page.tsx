@@ -99,22 +99,19 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
             </FadeIn>
 
             <FadeIn delay={0.5}>
-              <div style={{ marginTop: '64px', background: '#ffffff', borderRadius: 'var(--r-module)', padding: 'clamp(32px, 4vw, 48px) clamp(28px, 4vw, 40px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px', display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(20px, 4vw, 40px)', alignItems: 'center' }}>
-                <div>
-                  <h3 className="t-heading text-primary" style={{ fontWeight: 500, marginBottom: '12px' }}>
-                    {lang === 'fr' ? 'Notre manifeste' : 'Our manifesto'}
-                  </h3>
-                  <p className="t-lead" style={{ marginBottom: '20px' }}>
-                    {lang === 'fr'
-                      ? "Dix principes qui engagent ce que nous sommes, ce que nous refusons, et ce que nous construisons. L'intelligence artificielle ne peut pas rester la chose de quelques-uns."
-                      : 'Ten principles that commit what we are, what we refuse, and what we build. Artificial intelligence cannot remain the domain of the few.'}
-                  </p>
-                  <LocalizedLink href="/manifeste" className="btn-pill btn-black">
-                    {lang === 'fr' ? 'Lire le manifeste' : 'Read the manifesto'}
-                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </LocalizedLink>
-                </div>
-                <img src="/images/star.svg" alt="" style={{ width: '180px', height: 'auto', opacity: 0.35, marginLeft: '-20px' }} />
+              <div style={{ marginTop: '64px' }}>
+                <h3 style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 300, color: '#000', marginBottom: '12px' }}>
+                  {lang === 'fr' ? 'Notre manifeste' : 'Our manifesto'}
+                </h3>
+                <p className="t-lead" style={{ marginBottom: '20px', maxWidth: '680px' }}>
+                  {lang === 'fr'
+                    ? "Dix principes qui engagent ce que nous sommes, ce que nous refusons, et ce que nous construisons. L'intelligence artificielle ne peut pas rester la chose de quelques-uns."
+                    : 'Ten principles that commit what we are, what we refuse, and what we build. Artificial intelligence cannot remain the domain of the few.'}
+                </p>
+                <LocalizedLink href="/manifeste" className="btn-pill btn-black">
+                  {lang === 'fr' ? 'Lire le manifeste' : 'Read the manifesto'}
+                  <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </LocalizedLink>
               </div>
             </FadeIn>
         </div>

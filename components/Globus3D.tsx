@@ -89,8 +89,7 @@ export default function Globus3D({
   return (
     <svg
       ref={svgRef}
-      width={size}
-      height={size}
+      style={{ width: size, height: size }}
       viewBox={`0 0 ${size} ${size}`}
       className={className}
       fill="none"

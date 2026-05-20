@@ -34,7 +34,8 @@ export default function Home() {
       const rect = img.getBoundingClientRect()
       const vh = window.innerHeight
       const progress = 1 - Math.max(0, Math.min(1, rect.bottom / vh))
-      setHeroSlide(progress * 30)
+      if (window.innerWidth > 768) return
+      setHeroSlide(progress * 120)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
@@ -75,9 +76,9 @@ export default function Home() {
           </div>
 
           {/* Full-width image, edge to edge */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden', transform: `translateX(${heroSlide}%)`, transition: 'transform 0.1s linear' }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden', transform: `translateX(-${heroSlide}%)`, transition: 'transform 0.1s linear' }}>
             <img
-              src="/images/hero-icia.webp"
+              src="/images/hero-icia.avif"
               alt=""
               className="hero-img"
               style={{ width: '100%', height: 'auto', display: 'block', marginTop: 'var(--section-gap)', objectFit: 'cover', objectPosition: 'right' }}
@@ -296,8 +297,8 @@ export default function Home() {
                 >
                   <h3 style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#000', lineHeight: 1.3 }}>{title}</h3>
                   <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', marginBottom: '14px' }}>{desc}</p>
-                  <LocalizedLink href={i === 0 ? '/icia-territoires' : i === 1 ? '/icia-education' : '/icia-travail-competences'} className="btn-pill btn-outline-shadow" style={{ fontSize: '13px', padding: '8px 14px', marginTop: 'auto' }}>
-                    {lang === 'fr' ? 'Découvrir' : 'Discover'}
+                  <LocalizedLink href={i === 0 ? '/icia-territoires' : i === 1 ? '/icia-education' : '/icia-travail-competences'} className="btn-pill btn-black" style={{ fontSize: '13px', padding: '7px 12px', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                    {lang === 'fr' ? 'Voir' : 'See'}
                     <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </LocalizedLink>
                 </motion.div>
@@ -328,9 +329,9 @@ export default function Home() {
                   <p className="eyebrow">ICIA</p>
                   <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.a_propos.title')}</h2>
                 </FadeIn>
-                <FadeIn delay={0.1}><p className="t-lead" style={{ marginBottom: '16px' }}>{t('homepage.a_propos.body.1')}</p></FadeIn>
-                <FadeIn delay={0.15}><p className="t-lead" style={{ marginBottom: '16px' }}>{t('homepage.a_propos.body.2')}</p></FadeIn>
-                <FadeIn delay={0.2}><p className="t-lead">{t('homepage.a_propos.body.3')}</p></FadeIn>
+                <FadeIn delay={0.1}><p className="t-lead" style={{ maxWidth: '620px', marginBottom: '16px' }}>{t('homepage.a_propos.body.1')}</p></FadeIn>
+                <FadeIn delay={0.15}><p className="t-lead" style={{ maxWidth: '620px', marginBottom: '16px' }}>{t('homepage.a_propos.body.2')}</p></FadeIn>
+                <FadeIn delay={0.2}><p className="t-lead" style={{ maxWidth: '620px' }}>{t('homepage.a_propos.body.3')}</p></FadeIn>
               </div>
               <FadeIn delay={0.25}>
                 <div className="star3d-wrap" style={{ display: 'flex', justifyContent: 'center' }}>
@@ -460,20 +461,29 @@ export default function Home() {
 
       <Footer />
       <style jsx>{`
+        @media (max-width: 1080px) {
+          .star3d-wrap svg { width: 420px !important; height: 420px !important; }
+        }
+        @media (max-width: 870px) {
+          .star3d-wrap svg { width: 340px !important; height: 340px !important; }
+        }
         @media (max-width: 768px) {
           .a-propos-grid { grid-template-columns: 1fr !important; }
+          .a-propos-grid > * { min-width: 0 !important; overflow: hidden; }
           .ancrage-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .hero-img { height: auto !important; min-height: 50vh; object-fit: cover; }
+          .hero-img { height: auto !important; min-height: 35vh; object-fit: cover; }
           .actions-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .action-card { aspect-ratio: 16/9 !important; }
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
+          .star3d-wrap svg { width: 300px !important; height: 300px !important; }
         }
         @media (max-width: 480px) {
           .actions-grid { grid-template-columns: 1fr !important; }
           .action-card { aspect-ratio: auto !important; }
           .engagements-grid { grid-template-columns: 1fr !important; }
           .engagement-card { aspect-ratio: auto !important; min-width: 0; }
+          .star3d-wrap svg { width: 250px !important; height: 250px !important; }
         }
       `}</style>
     </>
@@ -690,7 +700,7 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
   return (
     <section ref={sectionRef} style={{
       padding: 'var(--section-gap) 0',
-      background: '#ffffff',
+      background: '#000',
       opacity: visible ? 1 : 0,
       transform: visible ? 'translateY(0)' : 'translateY(24px)',
       transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -698,10 +708,10 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
       <div className="container-mentivis">
         <div className="faq-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(2.5rem, 6vw, 6rem)' }}>
           <div className="faq-intro">
-            <p style={{ marginBottom: '1.75rem', color: '#4e4e4e', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '12px' }}>
+            <p style={{ marginBottom: '1.75rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '12px' }}>
               {data.eyebrow}
             </p>
-            <h2 className="t-display" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.75rem' }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.75rem', color: '#fff' }}>
               {data.title}
             </h2>
           </div>
@@ -713,7 +723,7 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
                   background: '#000',
                   borderRadius: '16px',
                   padding: '0 24px',
-                  borderTop: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none',
+                  borderTop: i > 0 ? '1px solid rgba(255,255,255,0.35)' : 'none',
                   transition: 'background 0.3s ease',
                 }}>
                   <button onClick={() => setOpenIndex(isOpen ? null : i)} style={{

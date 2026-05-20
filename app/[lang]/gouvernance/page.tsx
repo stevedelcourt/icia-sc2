@@ -31,29 +31,27 @@ export default function GouvernancePage({ params }: { params: { lang: string } }
 
         {/* Content */}
         <section style={{ background: '#ffffff', padding: '0 0 var(--section-gap) 0' }}>
-          <div className="container-mentivis">
-            <div style={{ background: '#f5f5f5', borderRadius: '24px', padding: 'clamp(40px, 5vw, 56px) clamp(32px, 5vw, 48px)' }}>
-              <FadeIn delay={0.1}>
-                <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
-                  {t(lang, 'gouvernance.body.1')}
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.15}>
-                <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
-                  {t(lang, 'gouvernance.body.2')}
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <p className="t-lead" style={{ marginBottom: '16px', maxWidth: '680px' }}>
-                  {t(lang, 'gouvernance.body.3')}
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.25}>
-                <p className="t-lead" style={{ maxWidth: '680px' }}>
-                  {t(lang, 'gouvernance.body.4')}
-                </p>
-              </FadeIn>
-            </div>
+          <div className="container-mentivis" style={{ maxWidth: '780px' }}>
+            <FadeIn delay={0.1}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t(lang, 'gouvernance.body.1')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t(lang, 'gouvernance.body.2')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="t-lead" style={{ marginBottom: '16px' }}>
+                {t(lang, 'gouvernance.body.3')}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.25}>
+              <p className="t-lead">
+                {t(lang, 'gouvernance.body.4')}
+              </p>
+            </FadeIn>
           </div>
         </section>
 

@@ -49,12 +49,12 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
                   <h1 className="t-display text-primary" style={{ marginBottom: '20px' }}>
                     {lang === 'fr' ? 'Manifeste' : 'Manifesto'}
                   </h1>
-                  <p className="t-lead" style={{ marginBottom: '24px' }}>
+                  <p className="t-lead" style={{ maxWidth: '560px', marginBottom: '24px' }}>
                     {lang === 'fr'
                       ? "L'ICIA est né d'un constat simple et d'une exigence radicale : l'intelligence artificielle ne peut pas rester la chose de quelques-uns. Ni la propriété exclusive des grandes firmes technologiques, ni le monopole d'une élite académique déconnectée du réel. Ce manifeste est notre contrat avec le monde."
                       : 'ICIA was born from a simple observation and a radical demand: artificial intelligence cannot remain the domain of the few. Neither the exclusive property of large technology firms, nor the monopoly of an academic elite disconnected from reality. This manifesto is our contract with the world.'}
                   </p>
-                  <p className="t-lead">
+                  <p className="t-lead" style={{ maxWidth: '560px' }}>
                     {lang === 'fr'
                       ? 'Il engage ce que nous sommes, ce que nous refusons, et ce que nous construisons.'
                       : 'It commits what we are, what we refuse, and what we build.'}
@@ -115,7 +115,7 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
         </section>
 
       </main>
-      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}.manifeste-body{font-size:16px!important}}` }} />
+      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:1080px){.globus3d-wrap svg{width:420px!important;height:420px!important}}@media (max-width:870px){.globus3d-wrap svg{width:340px!important;height:340px!important}}@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}.manifeste-hero-grid>*{min-width:0!important;overflow:hidden}.manifeste-body{font-size:16px!important}.globus3d-wrap svg{width:300px!important;height:300px!important}}@media (max-width:480px){.globus3d-wrap svg{width:250px!important;height:250px!important}}` }} />
       <Footer />
     </>
   )

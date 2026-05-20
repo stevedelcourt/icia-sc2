@@ -197,11 +197,11 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
               </div>
 
               {/* Right: image or slide-out form (desktop only) */}
-              <div className="membre-form-col" style={{ height: '100%', display: isMobile ? 'none' : 'flex', flexDirection: 'column', paddingTop: selectedTier ? 'clamp(30px, 4vw, 60px)' : '0', position: 'relative' }}>
+              <div className="membre-form-col" style={{ height: '100%', display: isMobile ? 'none' : 'flex', flexDirection: 'column', paddingTop: selectedTier ? 'clamp(30px, 4vw, 60px)' : 'clamp(48px, 5vw, 60px)', position: 'relative' }}>
                 {/* Default image when no tier selected */}
                 {!selectedTier && (
                   <div style={{ flex: 1, display: 'flex' }}>
-                    <img src="/images/winner.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '22px' }} />
+                    <img src="/images/winner-small.avif" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '22px' }} />
                   </div>
                 )}
                 <AnimatePresence>

@@ -31,7 +31,7 @@ function BarChart({
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
-  const barH = isMobile ? 11 : 13
+  const barH = isMobile ? 8 : 10
   const vgap = isMobile ? 18 : 22
   const n = values.length
   const H = n * (barH + vgap) + 10
@@ -42,6 +42,14 @@ function BarChart({
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto' }}>
+      <defs>
+        <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#1A2B80" />
+          <stop offset="38%" stopColor="#7030A0" />
+          <stop offset="72%" stopColor="#B02050" />
+          <stop offset="100%" stopColor="#C83040" />
+        </linearGradient>
+      </defs>
       {[0, 0.25, 0.5, 0.75, 1].map((p) => {
         const x = Ml + p * pw
         return (
@@ -58,19 +66,18 @@ function BarChart({
         const bw = (v / max) * pw
         return (
           <g key={i}>
-            <rect x={Ml} y={y} width={pw} height={barH} fill="#f3f4f6" rx={4} />
+            <rect x={Ml} y={y} width={pw} height={barH} fill="#f3f4f6" />
             <rect
               x={Ml} y={y}
               width={visible ? bw : 0}
               height={barH}
-              fill={color}
-              rx={4}
+              fill="url(#barGrad)"
               style={{ transition: `width 1s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + i * 0.1}s` }}
             />
             <text x={Ml - 10} y={y + barH / 2 + 4} textAnchor="end" fill="#374151" fontSize={11} fontWeight={500}>
               {labels[i]}
             </text>
-            <text x={Ml + bw + 6} y={y + barH / 2 + 4} fill={color} fontSize={11} fontWeight={500}>
+            <text x={Ml + bw + 6} y={y + barH / 2 + 4} fill="#4e4e4e" fontSize={11} fontWeight={500}>
               {v}{unit}
             </text>
           </g>

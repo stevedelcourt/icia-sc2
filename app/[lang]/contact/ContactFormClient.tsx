@@ -101,8 +101,8 @@ export function ContactFormClient() {
     <main>
       <section style={{ backgroundColor: 'var(--bg-secondary)', paddingTop: 'calc(64px + var(--section-gap))', paddingBottom: '0' }}>
         <div className="container-mentivis">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
-            <div>
+          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
+            <div className="contact-form-col">
               <StaggerBlock delay={0}>
                 <p className="eyebrow">{t('contact.label')}{adhesionNote}{donationNote}</p>
                 <h1 className="t-display text-primary" style={{ marginBottom: '16px' }}>{t('contact.title')}</h1>
@@ -150,7 +150,7 @@ export function ContactFormClient() {
               </StaggerBlock>
             </div>
 
-            <div style={{ paddingTop: '4px' }}>
+            <div className="contact-map-col" style={{ paddingTop: '4px' }}>
               <h2 className="t-title text-primary" style={{ marginBottom: '16px' }}>Nous trouver</h2>
               <p className="t-caption" style={{ marginBottom: '24px' }}>
                 <a href="https://maps.app.goo.gl/nw2Ugmzh1av1gfku8" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -162,6 +162,13 @@ export function ContactFormClient() {
                 </div>
             </div>
           </div>
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media (max-width: 768px) {
+              .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+              .contact-map-col { order: 2 !important; }
+              .contact-form-col { order: 1 !important; }
+            }
+          ` }} />
         </div>
       </section>
     </main>

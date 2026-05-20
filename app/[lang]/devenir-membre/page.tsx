@@ -60,7 +60,7 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
         {/* Hero */}
         <section style={{ background: '#ffffff', padding: 'clamp(64px, 8vw, 100px) 0 clamp(40px, 6vw, 80px)' }}>
           <div className="container-mentivis">
-            <div className="membre-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
+            <div className="membre-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'stretch' }}>
               <div>
                 <FadeIn>
                   <p className="eyebrow">ICIA</p>
@@ -73,11 +73,11 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
                   </p>
                 </FadeIn>
               </div>
-              <FadeIn delay={0.2}>
-                <div style={{ borderRadius: '22px', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(0,0,0,0.08)' }}>
+              <div style={{ display: 'flex', opacity: 0 }} className="membre-hero-img">
+                <div style={{ borderRadius: '22px', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.08)', flex: 1 }}>
                   <img src="/images/modules/organisations.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-              </FadeIn>
+              </div>
             </div>
           </div>
         </section>
@@ -125,8 +125,11 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
                             <span style={{ fontSize: '24px', fontWeight: 500, lineHeight: 1.1 }}>{tier.name}</span>
                             <span style={{ fontSize: '12px', opacity: 0.5 }}>{tier.range}</span>
                           </div>
-                          <p style={{ fontSize: '14px', opacity: 0.7, margin: 0 }}>
-                            {tier.price} — {tier.desc}
+                          <p style={{ fontSize: '17px', fontWeight: 500, color: selectedTier?.num === tier.num ? 'inherit' : '#000', margin: '0 0 2px', whiteSpace: 'nowrap' }}>
+                            {tier.price}
+                          </p>
+                          <p style={{ fontSize: '13px', opacity: 0.7, margin: 0 }}>
+                            {tier.desc}
                           </p>
                         </div>
                         <span style={{ fontSize: '22px', opacity: selectedTier?.num === tier.num ? 1 : 0.3 }}>→</span>
@@ -137,16 +140,17 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
               </div>
 
               {/* Right: image or slide-out form */}
-              <div style={{ height: '100%', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(30px, 4vw, 60px)', position: 'relative' }}>
+              <div className="membre-form-col" style={{ height: '100%', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(30px, 4vw, 60px)', position: 'relative' }}>
                 {/* Default image when no tier selected */}
                 {!selectedTier && (
-                  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/images/winner.webp" alt="" style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain', borderRadius: '22px' }} />
+                  <div style={{ flex: 1, display: 'flex' }}>
+                    <img src="/images/winner.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '22px' }} />
                   </div>
                 )}
                 <AnimatePresence>
                   {selectedTier && (
                     <motion.div
+                      className="membre-form-panel"
                       initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       style={{ background: '#fff', borderRadius: '22px', padding: 'clamp(30px, 4vw, 60px) clamp(28px, 4vw, 36px) clamp(24px, 3vw, 32px)', boxShadow: '0 16px 48px rgba(0,0,0,0.08)', flex: 1, display: 'flex', flexDirection: 'column', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -200,7 +204,9 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
             </div>
 
             <style dangerouslySetInnerHTML={{ __html: `
-              @media (max-width: 768px) { .membre-grid { grid-template-columns: 1fr !important; } .membre-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }
+              @media (max-width: 768px) { .membre-grid { grid-template-columns: 1fr !important; } .membre-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; } .membre-form-col { height: auto !important; min-height: 540px; } .membre-form-panel { position: static !important; } }
+              .membre-hero-img { animation: fadeIn 0.7s ease 0.2s forwards; }
+              @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
             ` }} />
           </div>
         </section>

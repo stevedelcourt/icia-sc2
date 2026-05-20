@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
 import { LocalizedLink } from '@/lib/i18n'
+import Globus3D from '@/components/Globus3D'
 
 const SECTIONS_FR = [
   { title: "I. L'intelligence artificielle appartient à tous", body: <>L&rsquo;IA n&rsquo;est pas un produit. Elle est une <a href="https://www.oecd.org/en/topics/policy-issues/artificial-intelligence.html" target="_blank" rel="noopener noreferrer" style={{ color: '#3886c1', textDecoration: 'underline', textUnderlineOffset: '3px' }}>transformation civilisationnelle d&rsquo;une portée comparable à l&rsquo;imprimerie ou à l&rsquo;électricité</a>. À ce titre, elle ne peut être abandonnée aux seules logiques du marché. L&rsquo;ICIA affirme que toute personne, toute organisation, tout territoire a le droit d&rsquo;accéder aux savoirs, aux outils et aux débats qui façonnent cette transformation. La <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" rel="noopener noreferrer" style={{ color: '#3886c1', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Recommandation de l&rsquo;UNESCO sur l&rsquo;éthique de l&rsquo;IA</a>, adoptée à l&rsquo;unanimité par 193 États membres en 2021, le pose sans ambiguïté : la protection de la dignité humaine et l&rsquo;équité d&rsquo;accès sont les pierres angulaires de tout cadre éthique sérieux. L&rsquo;accès n&rsquo;est pas un privilège. C&rsquo;est une condition de la démocratie.</> },
@@ -61,7 +62,7 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
                 </FadeIn>
               </div>
               <FadeIn delay={0.2}>
-                <iframe src="/images/globus-3d.html" style={{ width: '100%', height: '100%', aspectRatio: '1/1', border: 'none', background: 'transparent' }} title="" />
+                <Globus3D size={580} />
               </FadeIn>
             </div>
           </div>

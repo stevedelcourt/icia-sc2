@@ -47,7 +47,7 @@ export default function ActualiteDetailPage() {
       }) }} />
       <Header />
       <main className="section" style={{ backgroundColor: 'var(--bg-primary)', paddingTop: 'calc(64px + var(--section-gap))' }}>
-        <div className="container-mentivis" style={{ maxWidth: '720px' }}>
+        <div className="container-mentivis">
           <LocalizedLink href="/actualites" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 500, color: 'var(--text-tertiary)', textDecoration: 'none', marginBottom: '32px', transition: 'color 0.18s ease' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
@@ -72,16 +72,15 @@ export default function ActualiteDetailPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div style={{ background: '#f5f5f5', borderRadius: '16px', padding: '24px 28px', marginBottom: '40px' }}>
-              <p className="t-lead" style={{ margin: 0, fontWeight: 500, color: 'var(--text-primary)' }}>
-                {lang === 'en' ? article.excerptEn : article.excerpt}
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div className="prose" style={{ maxWidth: 'none' }}>
-              <MarkdownBody content={body} />
+            <div style={{ maxWidth: '720px' }}>
+              <div style={{ background: '#f5f5f5', borderRadius: '16px', padding: '24px 28px', marginBottom: '40px' }}>
+                <p className="t-lead" style={{ margin: 0, fontWeight: 500, color: 'var(--text-primary)' }}>
+                  {lang === 'en' ? article.excerptEn : article.excerpt}
+                </p>
+              </div>
+              <div className="prose" style={{ maxWidth: 'none' }}>
+                <MarkdownBody content={body} />
+              </div>
             </div>
           </FadeIn>
         </div>

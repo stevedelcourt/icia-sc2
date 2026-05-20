@@ -4,27 +4,8 @@ import { FadeIn } from '@/components/Animations'
 import { LocalizedLink } from '@/lib/i18n'
 import { t, type Locale } from '@/generated/content'
 
-const MEMBRES_FR = [
-  { name: 'Mathias Costes', role: 'Président' },
-  { name: 'Roxan Roumegas', role: 'Vice-Président' },
-  { name: 'Julie Steiner', role: 'Trésorière' },
-  { name: 'Steven Delcourt', role: 'Secrétaire Général' },
-  { name: 'Stéphane Vannier', role: 'Administrateur' },
-  { name: 'Léonard Cox', role: 'Administrateur' },
-]
-
-const MEMBRES_EN = [
-  { name: 'Mathias Costes', role: 'President' },
-  { name: 'Roxan Roumegas', role: 'Vice President' },
-  { name: 'Julie Steiner', role: 'Treasurer' },
-  { name: 'Steven Delcourt', role: 'General Secretary' },
-  { name: 'Stéphane Vannier', role: 'Board Member' },
-  { name: 'Léonard Cox', role: 'Board Member' },
-]
-
 export default function GouvernancePage({ params }: { params: { lang: string } }) {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
-  const membres = lang === 'en' ? MEMBRES_EN : MEMBRES_FR
 
   return (
     <>
@@ -76,39 +57,27 @@ export default function GouvernancePage({ params }: { params: { lang: string } }
           </div>
         </section>
 
-        {/* Conseil d'administration */}
-        <section style={{ background: '#f5f5f5', padding: '0 0 var(--section-gap) 0' }}>
+        {/* Conseil stratégique */}
+        <section style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis">
             <FadeIn>
               <p className="eyebrow" style={{ marginBottom: '12px' }}>
-                {lang === 'fr' ? "Conseil d'administration" : 'Board of Directors'}
+                {lang === 'fr' ? 'Conseil stratégique' : 'Strategic Council'}
               </p>
-              <h2 className="t-title text-primary" style={{ marginBottom: '40px' }}>
-                {lang === 'fr' ? 'Les membres du conseil' : 'Board members'}
+              <h2 className="t-title text-primary" style={{ marginBottom: '24px' }}>
+                {lang === 'fr' ? 'Une gouvernance éclairée' : 'Enlightened governance'}
               </h2>
+              <p className="t-lead" style={{ lineHeight: 1.65, maxWidth: '680px' }}>
+                {lang === 'fr'
+                  ? "L'ICIA se dote prochainement d'un Conseil stratégique composé de personnalités issues des mondes académique, économique et institutionnel, réunies autour d'une conviction commune : l'intelligence artificielle appelle une gouvernance éducative à la hauteur de ses enjeux. Ce conseil aura pour mission d'éclairer les orientations programmatiques de l'Institut, de renforcer son ancrage dans les débats qui structurent la transformation des organisations et des territoires, et d'assurer la crédibilité scientifique et éthique de ses travaux. Ses membres, dont les noms seront communiqués prochainement, apportent à l'ICIA une diversité d'expertises et une indépendance de jugement conformes aux exigences d'une institution d'intérêt général."
+                  : 'ICIA will soon establish a Strategic Council composed of personalities from the academic, economic and institutional worlds, united around a shared conviction: artificial intelligence calls for educational governance commensurate with its challenges. This council will have the mission of informing the Institute\'s programmatic orientations, strengthening its anchoring in the debates that structure the transformation of organizations and territories, and ensuring the scientific and ethical credibility of its work. Its members, whose names will be communicated shortly, bring to ICIA a diversity of expertise and an independence of judgment in line with the requirements of a public interest institution.'}
+              </p>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '24px' }}>
-              {membres.map((m, i) => (
-                <FadeIn key={m.name} delay={0.1 + i * 0.06}>
-                  <div>
-                    <div style={{
-                      width: '100%', aspectRatio: '1/1', borderRadius: '16px', overflow: 'hidden',
-                      marginBottom: '14px', background: '#ffffff',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <span style={{ fontSize: '48px', fontWeight: 300, color: '#d4d4d4' }}>{m.name.charAt(0)}</span>
-                    </div>
-                    <p style={{ fontSize: '15px', fontWeight: 500, color: '#000', margin: '0 0 4px' }}>{m.name}</p>
-                    <p style={{ fontSize: '13px', color: '#4e4e4e', margin: 0 }}>{m.role}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section style={{ background: '#f5f5f5', padding: 'var(--section-gap) 0' }}>
+        <section style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis" style={{ maxWidth: '720px' }}>
             <FadeIn>
               <h2 className="t-title text-primary" style={{ marginBottom: '16px' }}>

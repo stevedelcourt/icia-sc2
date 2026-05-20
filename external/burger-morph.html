@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burger Menu Morph</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0a0a0b;
+  --stroke: #d8d6d0;
+  --stroke-hover: #ffffff;
+  --label: #3e3e3e;
+  --ring-idle: rgba(255, 255, 255, 0.05);
+  --ring-hover: rgba(255, 255, 255, 0.11);
+  --dur-arms: 0.52s;
+  --dur-mid: 0.26s;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* -------- ambient -------- */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 45%, rgba(255,255,255,0.012) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* -------- stage -------- */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  user-select: none;
+}
+
+/* -------- button -------- */
+
+.menu-btn {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--ring-idle);
+  transition:
+    transform 0.55s var(--spring),
+    border-color 0.3s ease,
+    background 0.3s ease;
+  pointer-events: none;
+}
+
+.menu-btn:hover .ring {
+  transform: scale(1.07);
+  border-color: var(--ring-hover);
+  background: rgba(255,255,255,0.02);
+}
+
+.menu-btn:active .ring {
+  transform: scale(0.95);
+  transition-duration: 0.15s;
+}
+
+.menu-btn:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.28);
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+/* -------- SVG lines -------- */
+/*
+  viewBox 0 0 100 100, rendered at natural 100x100px (1:1 SVG units to CSS px).
+  This is CRITICAL: translateY values in CSS px map exactly to SVG user units.
+
+  Line geometry:
+    All lines: x1=18 x2=82 (length 64, centered at x=50)
+    Top: y=34  |  Mid: y=50  |  Bot: y=66
+    Spacing: 16 units above and below center — perfectly symmetric.
+
+  X state math:
+    Top arm: rotate(45deg) around fill-box center (50,34), then translateY(+16px) → center lands at (50,50)
+    Bot arm: rotate(-45deg) around fill-box center (50,66), then translateY(-16px) → center lands at (50,50)
+    Both arms length 64 units, cross at exact center (50,50), at ±45°. Perfect symmetrical X.
+*/
+
+.line {
+  fill: none;
+  stroke: var(--stroke);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: stroke 0.3s ease;
+}
+
+.line-top,
+.line-bot {
+  transition:
+    transform var(--dur-arms) var(--spring),
+    stroke 0.3s ease;
+}
+
+.line-mid {
+  transition:
+    transform var(--dur-mid) var(--out),
+    opacity var(--dur-mid) var(--out),
+    stroke 0.3s ease;
+}
+
+.menu-btn:hover .line {
+  stroke: var(--stroke-hover);
+}
+
+/* -------- OPEN state -------- */
+
+.menu-btn.is-open .line-top {
+  transform: translateY(16px) rotate(45deg);
+}
+
+.menu-btn.is-open .line-mid {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.menu-btn.is-open .line-bot {
+  transform: translateY(-16px) rotate(-45deg);
+}
+
+/* -------- slow-motion override -------- */
+
+.slow .line-top,
+.slow .line-bot {
+  transition-duration: 3.2s !important;
+}
+
+.slow .line-mid {
+  transition-duration: 2s !important;
+}
+
+/* -------- label -------- */
+
+.label-wrap {
+  position: relative;
+  height: 12px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lbl {
+  position: absolute;
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--label);
+  transition:
+    opacity 0.22s ease,
+    transform 0.35s var(--out);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.lbl-menu  { opacity: 1; transform: translateY(0);  }
+.lbl-close { opacity: 0; transform: translateY(7px); }
+
+.is-open-label .lbl-menu  { opacity: 0; transform: translateY(-7px); }
+.is-open-label .lbl-close { opacity: 1; transform: translateY(0);    }
+
+/* -------- controls -------- */
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ctrl {
+  font-family: 'DM Mono', monospace;
+  font-size: 7.5px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #272727;
+  background: none;
+  border: 1px solid #1c1c1c;
+  padding: 7px 13px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.ctrl:hover {
+  color: #555;
+  border-color: #383838;
+}
+
+.ctrl.on {
+  color: #606060;
+  border-color: #424242;
+}
+
+/* -------- geometry guide (hidden by default) -------- */
+
+.guide-lines {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.show-guide .guide-lines {
+  opacity: 1;
+}
+
+.guide-cross {
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 4;
+}
+
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <button
+    class="menu-btn"
+    id="menuBtn"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    <div class="ring"></div>
+
+    <!--
+      SVG rendered at exact natural size: width=100 height=100.
+      viewBox="0 0 100 100" — 1 SVG unit = 1 CSS pixel.
+      This is what makes the translateY math exact.
+    -->
+    <svg
+      width="100"
+      height="100"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <!-- Faint geometry guide: center crosshair + circle — visible with guide toggle -->
+      <g class="guide-lines">
+        <line class="guide-cross" x1="50" y1="0"  x2="50"  y2="100"/>
+        <line class="guide-cross" x1="0"  y1="50" x2="100" y2="50"/>
+        <circle cx="50" cy="50" r="22.6" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" stroke-dasharray="2 5"/>
+        <circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.15)"/>
+      </g>
+
+      <!-- The three burger lines -->
+      <line class="line line-top" x1="18" y1="34" x2="82" y2="34"/>
+      <line class="line line-mid" x1="18" y1="50" x2="82" y2="50"/>
+      <line class="line line-bot" x1="18" y1="66" x2="82" y2="66"/>
+    </svg>
+  </button>
+
+  <div class="label-wrap" id="labelWrap">
+    <span class="lbl lbl-menu">menu</span>
+    <span class="lbl lbl-close">close</span>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl" id="slowBtn">slow motion</button>
+    <button class="ctrl" id="guideBtn">geometry</button>
+    <button class="ctrl" id="resetBtn">reset</button>
+  </div>
+
+</div>
+
+<script>
+(function () {
+
+  var btn       = document.getElementById('menuBtn');
+  var labelWrap = document.getElementById('labelWrap');
+  var slowBtn   = document.getElementById('slowBtn');
+  var guideBtn  = document.getElementById('guideBtn');
+  var resetBtn  = document.getElementById('resetBtn');
+  var svg       = btn.querySelector('svg');
+
+  var isOpen  = false;
+  var isSlow  = false;
+  var isGuide = false;
+
+  function open(state) {
+    isOpen = state;
+    btn.classList.toggle('is-open', state);
+    btn.setAttribute('aria-label',    state ? 'Close menu' : 'Open menu');
+    btn.setAttribute('aria-expanded', String(state));
+    labelWrap.classList.toggle('is-open-label', state);
+  }
+
+  btn.addEventListener('click', function () { open(!isOpen); });
+
+  slowBtn.addEventListener('click', function () {
+    isSlow = !isSlow;
+    document.body.classList.toggle('slow', isSlow);
+    slowBtn.classList.toggle('on', isSlow);
+    slowBtn.textContent = isSlow ? 'slow on' : 'slow motion';
+  });
+
+  guideBtn.addEventListener('click', function () {
+    isGuide = !isGuide;
+    svg.classList.toggle('show-guide', isGuide);
+    guideBtn.classList.toggle('on', isGuide);
+    guideBtn.textContent = isGuide ? 'geometry on' : 'geometry';
+  });
+
+  resetBtn.addEventListener('click', function () {
+    open(false);
+  });
+
+}());
+</script>
+
+</body>
+</html>

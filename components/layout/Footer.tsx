@@ -32,7 +32,6 @@ export function Footer() {
   const aboutLinks = [
     { label: t('footer.about.qui_sommes_nous'), href: '/a-propos' },
     { label: t('footer.about.manifeste') || 'ICIA Manifeste', href: '/manifeste' },
-    { label: t('footer.about.conseil') || "Conseil d'administration", href: '/gouvernance' },
     { label: t('footer.about.donations') || 'Faire un don', href: '/donations' },
     { label: t('footer.about.actualites') || 'Actualités', href: '/actualites' },
   ]
@@ -76,6 +75,7 @@ export function Footer() {
               </a>
             </p>
             <p style={{ fontSize: '14px', lineHeight: 1.5, color: 'var(--text-tertiary)' }}>
+              Tour Mirabeau<br />
               4 boulevard Jacques Saadé<br />
               13002 Marseille
             </p>
@@ -145,6 +145,7 @@ export function Footer() {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '16px',
+          flexDirection: 'row-reverse',
         }}>
           <p style={{ fontSize: '12px', fontWeight: 400, color: 'var(--text-tertiary)' }}>
             &copy; {new Date().getFullYear()} ICIA, Association loi 1901
@@ -174,7 +175,7 @@ export function Footer() {
         }
         @media (max-width: 768px) {
           .footer-grid { grid-template-columns: 1fr !important; }
-          .footer-bottom { flex-direction: column; align-items: flex-start; }
+          .footer-bottom { flex-direction: column-reverse !important; align-items: flex-start; }
         }
         .ft-link {
           transition: color 0.18s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);

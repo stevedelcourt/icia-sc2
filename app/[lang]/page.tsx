@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
 import { ActualitesGrid } from '@/components/ActualitesGrid'
 import { useT, LocalizedLink } from '@/lib/i18n'
+import Star3D from '@/components/Star3D'
 
 const staggerItem = 0.08
 
@@ -59,11 +60,12 @@ export default function Home() {
           </div>
 
           {/* Full-width image, edge to edge */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden' }}>
             <img
               src="/images/hero-icia.webp"
               alt=""
-              style={{ width: '100%', height: 'auto', display: 'block', marginTop: 'var(--section-gap)' }}
+              className="hero-img"
+              style={{ width: '100%', height: 'auto', display: 'block', marginTop: 'var(--section-gap)', objectFit: 'cover', objectPosition: 'right' }}
             />
           </motion.div>
         </section>
@@ -84,8 +86,9 @@ export default function Home() {
                   [t('homepage.mission.fractures.title'), t('homepage.mission.fractures.desc')],
                   [t('homepage.mission.debat.title'), t('homepage.mission.debat.desc')],
                 ].map(([title, desc], i) => (
-                  <motion.div key={title}
-                    initial={{ opacity: 0, y: 16 }}
+                <motion.div key={title}
+                  className="engagement-card"
+                  initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.15 + i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
                     style={{ background: '#ffffff', borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease' }}
@@ -108,7 +111,7 @@ export default function Home() {
               <p className="eyebrow">Ce que nous faisons</p>
               <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.actions.title')}</h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+            <div className="actions-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {[
                 [t('homepage.actions.formation.title'), t('homepage.actions.formation.desc')],
                 [t('homepage.actions.recherche.title'), t('homepage.actions.recherche.desc')],
@@ -117,11 +120,12 @@ export default function Home() {
                 [t('homepage.actions.debats.title'), t('homepage.actions.debats.desc')],
               ].map(([title, desc], i) => (
                 <motion.div key={title}
+                  className="action-card"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
                   style={{
-                    aspectRatio: '1/1',
+                    aspectRatio: '16/9',
                     background: '#f5f5f5',
                     borderRadius: '22px',
                     padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)',
@@ -156,11 +160,12 @@ export default function Home() {
               ))}
               {/* 6th card */}
               <motion.div
+                className="action-card action-cta"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  aspectRatio: '1/1',
+                  style={{
+                    aspectRatio: '16/9',
                   background: 'linear-gradient(135deg, #1A2B80 0%, #7030A0 38%, #B02050 72%, #C83040 100%)',
                   borderRadius: '22px',
                   padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)',
@@ -202,60 +207,53 @@ export default function Home() {
         {/* 5. Nos engagements */}
         <section id="engagements" style={{ background: '#ffffff', padding: 'var(--section-gap) 0' }}>
           <div className="container-mentivis">
-            <div style={{ background: '#f5f3f1', borderRadius: '24px', padding: 'clamp(40px, 5vw, 56px) clamp(32px, 5vw, 48px)' }}>
-              <FadeIn>
-                <p className="eyebrow">Principes</p>
-                <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.engagements.title')}</h2>
-              </FadeIn>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
-                {[
-                  [t('homepage.engagements.independance.title'), t('homepage.engagements.independance.desc')],
-                  [t('homepage.engagements.interet.title'), t('homepage.engagements.interet.desc')],
-                  [t('homepage.engagements.accessibilite.title'), t('homepage.engagements.accessibilite.desc')],
-                  [t('homepage.engagements.critique.title'), t('homepage.engagements.critique.desc')],
-                  [t('homepage.engagements.action.title'), t('homepage.engagements.action.desc')],
-                ].map(([title, desc], i) => (
-                  <motion.div key={title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ background: '#ffffff', borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)', boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
-                  >
-                    <h3 className="t-heading text-primary" style={{ marginBottom: '10px' }}>{title}</h3>
-                    <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{desc}</p>
-                  </motion.div>
-                ))}
-                {/* 6th card — Manifeste */}
-                <motion.div
+            <FadeIn>
+              <p className="eyebrow">Principes</p>
+              <h2 className="t-display text-primary" style={{ marginBottom: '48px' }}>{t('homepage.engagements.title')}</h2>
+            </FadeIn>
+            <div className="engagements-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+              {[
+                [t('homepage.engagements.independance.title'), t('homepage.engagements.independance.desc')],
+                [t('homepage.engagements.interet.title'), t('homepage.engagements.interet.desc')],
+                [t('homepage.engagements.accessibilite.title'), t('homepage.engagements.accessibilite.desc')],
+                [t('homepage.engagements.critique.title'), t('homepage.engagements.critique.desc')],
+                [t('homepage.engagements.action.title'), t('homepage.engagements.action.desc')],
+              ].map(([title, desc], i) => (
+                <motion.div key={title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                  style={{
-                    aspectRatio: '1/1',
-                    background: 'linear-gradient(135deg, #A03020 0%, #C05828 35%, #D08840 70%, #E0AA50 100%)',
-                    borderRadius: '16px', padding: 'clamp(24px, 3vw, 32px)',
-                    display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-                    transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
-                    position: 'relative', overflow: 'hidden',
-                    boxShadow: 'rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px',
-                  }}
+                  transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ aspectRatio: '16/9', background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
                 >
-                  <div style={{ position: 'absolute', top: '14px', left: '14px', zIndex: 2, display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: '10px', padding: '6px 12px 6px 8px', fontSize: '12px', fontWeight: 500, color: '#fff' }}>
-                    ICIA
-                  </div>
-                  <h3 className="t-heading" style={{ color: '#fff', marginBottom: '12px', position: 'relative', zIndex: 1, fontWeight: 500 }}>{lang === 'fr' ? 'Le manifeste de l\'ICIA' : 'The ICIA Manifesto'}</h3>
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <LocalizedLink href="/manifeste" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 16px' }}>
-                      {lang === 'fr' ? 'Lire' : 'Read'}
-                      <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </LocalizedLink>
-                  </div>
+                  <span style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', color: 'var(--text-tertiary)', display: 'block', marginBottom: '12px' }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 style={{ fontSize: '17px', fontWeight: 500, color: '#000', marginBottom: '8px', lineHeight: 1.3 }}>{title}</h3>
+                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{desc}</p>
                 </motion.div>
-              </div>
+              ))}
+              {/* 6th card — Manifeste */}
+              <motion.div
+                className="engagement-card"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
+                style={{ aspectRatio: '16/9', background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+              >
+                <span style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', color: 'var(--text-tertiary)', display: 'block', marginBottom: '12px' }}>06</span>
+                <h3 style={{ fontSize: '17px', fontWeight: 500, color: '#000', marginBottom: '8px', lineHeight: 1.3 }}>{lang === 'fr' ? 'Le manifeste de l\'ICIA' : 'The ICIA Manifesto'}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', margin: 0 }}>{lang === 'fr' ? 'Consultez nos principes fondateurs.' : 'Read our founding principles.'}</p>
+                  <LocalizedLink href="/manifeste" className="btn-pill btn-black" style={{ fontSize: '14px', padding: '8px 16px', flexShrink: 0, marginLeft: '12px' }}>
+                    {lang === 'fr' ? 'Lire' : 'Read'}
+                    <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </LocalizedLink>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -320,7 +318,7 @@ export default function Home() {
                 <FadeIn delay={0.2}><p className="t-lead">{t('homepage.a_propos.body.3')}</p></FadeIn>
               </div>
               <FadeIn delay={0.25}>
-                <iframe src="/images/star-3d-volume.html" style={{ width: '100%', height: '100%', aspectRatio: '1/1', border: 'none' }} title="" />
+                <Star3D size={580} />
               </FadeIn>
             </div>
           </div>
@@ -333,21 +331,32 @@ export default function Home() {
               <p className="eyebrow">Partenariats</p>
               <h2 className="t-display text-primary" style={{ marginBottom: '32px' }}>{t('homepage.collaborer.title')}</h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', alignItems: 'stretch' }}>
-              {t('homepage.collaborer.list').split('\n').map((item, i) => (
-                <FadeIn key={item} delay={i * 0.05}>
-                  <div style={{ background: '#f5f5f5', borderRadius: '16px', padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '12px', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', height: '100%' }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)' }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
-                  >
-                    <span style={{ fontSize: '18px', color: '#4e4e4e' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                    </span>
-                    <span style={{ fontSize: '15px', fontWeight: 500, color: '#000' }}>{item}</span>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
+            <FadeIn>
+              <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: '#000' }}>
+                {t('homepage.collaborer.list').split('\n').map((item, i) => {
+                  const icons = [
+                    <path key="c" d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 13h6"/>,
+                    <path key="a" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 3a4 4 0 0 1 0 8 4 4 0 0 1 0-8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>,
+                    <path key="e" d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V6.5A2.5 2.5 0 0 1 6.5 4h6l2.5 3h5A2.5 2.5 0 0 1 22 9.5v10"/>,
+                    <path key="f" d="M2 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM9 8h4M9 12h4M9 16h3"/>,
+                    <path key="b" d="M20 7h-4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 3v4M18 11v.01M18 15v.01"/>,
+                    <path key="g" d="M6 3h12l-4 7h4l-8 11 3-8H9z"/>,
+                    <path key="h" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>,
+                  ]
+                  return (
+                    <div key={item} className="collab-line" style={{ padding: '8px 0', borderBottom: i < t('homepage.collaborer.list').split('\n').length - 1 ? '1px solid var(--border-light)' : 'none', display: 'flex', alignItems: 'center', gap: '18px' }}>
+                      <svg className="collab-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0, flexShrink: 0, transition: 'opacity 0.25s ease' }}>
+                        {icons[i % icons.length]}
+                      </svg>
+                      <span>{item}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </FadeIn>
+            <style dangerouslySetInnerHTML={{ __html: `
+              .collab-line:hover .collab-icon { opacity: 1 !important; }
+            ` }} />
           </div>
         </section>
 
@@ -437,6 +446,17 @@ export default function Home() {
         @media (max-width: 768px) {
           .a-propos-grid { grid-template-columns: 1fr !important; }
           .ancrage-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .hero-img { height: auto !important; min-height: 50vh; object-fit: cover; }
+          .actions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .action-card { aspect-ratio: 16/9 !important; }
+          .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
+        }
+        @media (max-width: 480px) {
+          .actions-grid { grid-template-columns: 1fr !important; }
+          .action-card { aspect-ratio: auto !important; }
+          .engagements-grid { grid-template-columns: 1fr !important; }
+          .engagement-card { aspect-ratio: auto !important; min-width: 0; }
         }
       `}</style>
     </>
@@ -668,30 +688,36 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
               {data.title}
             </h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {data.items.map((item, i) => {
               const isOpen = openIndex === i
               return (
-                <article key={i} style={{ borderTop: i > 0 ? '1px solid var(--border-light)' : 'none' }}>
+                <article key={i} style={{
+                  background: '#000',
+                  borderRadius: '16px',
+                  padding: '0 24px',
+                  borderTop: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none',
+                  transition: 'background 0.3s ease',
+                }}>
                   <button onClick={() => setOpenIndex(isOpen ? null : i)} style={{
-                    width: '100%', background: 'none', border: 'none', color: 'var(--text-primary)',
+                    width: '100%', background: 'none', border: 'none', color: '#fff',
                     fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
-                    padding: '1.85rem 0', display: 'grid', gridTemplateColumns: '2.25rem 1fr auto',
+                    padding: '1.6rem 0', display: 'grid', gridTemplateColumns: '2.25rem 1fr auto',
                     alignItems: 'center', gap: '1.5rem', fontSize: '1.0625rem', fontWeight: 400,
                     letterSpacing: '-0.005em', lineHeight: 1.4,
                   }}>
-                    <span style={{ fontSize: '0.6875rem', fontWeight: 500, letterSpacing: '0.12em', color: isOpen ? 'var(--text-primary)' : 'var(--text-tertiary)' }}>
+                    <span style={{ fontSize: '0.6875rem', fontWeight: 500, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.35)' }}>
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span>{item.question}</span>
                     <span style={{ position: 'relative', width: 14, height: 14, flexShrink: 0 }}>
-                      <span style={{ position: 'absolute', top: '50%', left: 0, width: '100%', height: 1, background: isOpen ? 'var(--text-primary)' : 'var(--text-tertiary)', transform: 'translateY(-50%)', transition: 'background 0.3s ease, transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)' }} />
-                      <span style={{ position: 'absolute', left: '50%', top: 0, width: 1, height: '100%', background: isOpen ? 'var(--text-primary)' : 'var(--text-tertiary)', transform: isOpen ? 'translateX(-50%) rotate(90deg)' : 'translateX(-50%)', transition: 'background 0.3s ease, transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)' }} />
+                      <span style={{ position: 'absolute', top: '50%', left: 0, width: '100%', height: 1, background: 'rgba(255,255,255,0.6)', transform: 'translateY(-50%)', transition: 'transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)' }} />
+                      <span style={{ position: 'absolute', left: '50%', top: 0, width: 1, height: '100%', background: 'rgba(255,255,255,0.6)', transform: isOpen ? 'translateX(-50%) rotate(90deg)' : 'translateX(-50%)', transition: 'transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)' }} />
                     </span>
                   </button>
                   <div style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.5s cubic-bezier(0.65, 0, 0.35, 1)' }}>
                     <div style={{ overflow: 'hidden' }}>
-                      <p style={{ padding: '0 0 2.25rem calc(2.25rem + 1.5rem)', fontSize: '0.9375rem', lineHeight: 1.75, color: 'var(--text-secondary)', maxWidth: '62ch', fontWeight: 400, margin: 0 }}>
+                      <p style={{ padding: '0 0 2.25rem calc(2.25rem + 1.5rem)', fontSize: '0.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.7)', maxWidth: '62ch', fontWeight: 300, margin: 0 }}>
                         {item.answer}
                       </p>
                     </div>
@@ -699,7 +725,6 @@ function FaqSection({ lang }: { lang: 'fr' | 'en' }) {
                 </article>
               )
             })}
-            <div style={{ borderTop: '1px solid var(--border-light)' }} />
           </div>
         </div>
       </div>

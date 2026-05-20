@@ -38,6 +38,8 @@ export default function MarqueeHero() {
   }, [measure])
 
   useEffect(() => {
+    // Fallback: retry measure if image hasn't loaded after 1s
+    const t = setTimeout(() => { if (imgWRef.current === 0) measure() }, 1000)
     // Start mobile centered
     const isMobile = window.innerWidth <= 768
     if (isMobile) {
@@ -80,7 +82,6 @@ export default function MarqueeHero() {
       const speed = BASE + boostRef.current
       offsetRef.current -= speed // negative = scroll left
 
-      const stepW = imgWRef.current + GAP
       if (imgWRef.current > 0) {
         const wrapRange = 2 * (imgWRef.current + GAP)
         while (offsetRef.current < -wrapRange) offsetRef.current += wrapRange
@@ -115,10 +116,10 @@ export default function MarqueeHero() {
             willChange: 'transform',
           }}
         >
-          <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-          <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-          <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
-          <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} onLoad={measure} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
+        <img src="/images/hero-icia.avif" alt="" draggable={false} style={{ height: imgH, width: 'auto', flexShrink: 0, display: 'block', userSelect: 'none' }} />
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: `

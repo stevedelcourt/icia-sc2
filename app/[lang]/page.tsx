@@ -465,7 +465,7 @@ export default function Home() {
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
           .star3d-wrap { max-width: 300px !important; }
-          .hero-cta { font-size: 13px !important; padding: 9px 14px !important; }
+          .hero-cta { font-size: 12px !important; padding: 6px 10px !important; }
         }
         @media (max-width: 480px) {
           .actions-grid { grid-template-columns: 1fr !important; }

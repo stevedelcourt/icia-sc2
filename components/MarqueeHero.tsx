@@ -82,8 +82,9 @@ export default function MarqueeHero() {
 
       const stepW = imgWRef.current + GAP
       if (stepW > 0) {
-        while (offsetRef.current < -stepW) offsetRef.current += stepW
-        while (offsetRef.current > 0) offsetRef.current -= stepW
+        const wrapRange = 2 * stepW
+        while (offsetRef.current < -wrapRange) offsetRef.current += wrapRange
+        while (offsetRef.current > 0) offsetRef.current -= wrapRange
 
         if (trackRef.current) {
           trackRef.current.style.transform = `translateX(${-offsetRef.current}px)`

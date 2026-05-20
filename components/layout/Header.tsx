@@ -35,7 +35,6 @@ export function Header() {
       children: [
         { label: t('footer.about.qui_sommes_nous'), href: '/a-propos' },
         { label: t('footer.about.manifeste') || 'ICIA Manifeste', href: '/manifeste' },
-        { label: t('footer.about.conseil') || 'Conseil stratégique', href: '/gouvernance#conseil-strategique' },
         { label: t('footer.about.donations') || 'Faire un don', href: '/donations' },
       ],
     },

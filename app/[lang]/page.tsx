@@ -278,7 +278,7 @@ export default function Home() {
                   <h3 style={{ fontSize: '17px', fontWeight: 500, marginBottom: '10px', color: '#000', lineHeight: 1.3 }}>{title}</h3>
                   <p style={{ fontSize: '14px', lineHeight: 1.55, color: '#4e4e4e', marginBottom: '14px' }}>{desc}</p>
                   <LocalizedLink href={i === 0 ? '/icia-territoires' : i === 1 ? '/icia-education' : '/icia-travail-competences'} className="btn-pill btn-black" style={{ fontSize: '13px', padding: '7px 12px', marginTop: 'auto', alignSelf: 'flex-start' }}>
-                    {lang === 'fr' ? 'Voir' : 'See'}
+                    {lang === 'fr' ? 'Découvrir' : 'Discover'}
                     <svg className="btn-chevron" viewBox="0 0 14 14" fill="none"><path d="M5.25 2.625L9.625 7L5.25 11.375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </LocalizedLink>
                 </motion.div>

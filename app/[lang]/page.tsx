@@ -9,6 +9,7 @@ import { FadeIn } from '@/components/Animations'
 import { ActualitesGrid } from '@/components/ActualitesGrid'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import Star3D from '@/components/Star3D'
+import MarqueeHero from '@/components/MarqueeHero'
 
 const staggerItem = 0.08
 
@@ -25,22 +26,6 @@ export default function Home() {
   const t = useT()
   const params = useParams()
   const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
-  const [heroSlide, setHeroSlide] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const img = document.querySelector('.hero-img') as HTMLImageElement | null
-      if (!img) return
-      const rect = img.getBoundingClientRect()
-      const vh = window.innerHeight
-      const progress = 1 - Math.max(0, Math.min(1, rect.bottom / vh))
-      if (window.innerWidth > 768) return
-      setHeroSlide(progress * 120)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <>
@@ -75,14 +60,9 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Full-width image, edge to edge */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }} style={{ overflow: 'hidden', transform: `translateX(-${heroSlide}%)`, transition: 'transform 0.1s linear' }}>
-            <img
-              src="/images/hero-icia.avif"
-              alt=""
-              className="hero-img"
-              style={{ width: '100%', height: 'auto', display: 'block', marginTop: 'var(--section-gap)', objectFit: 'cover', objectPosition: 'right' }}
-            />
+          {/* Full-width image marquee */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
+            <MarqueeHero />
           </motion.div>
         </section>
 
@@ -471,7 +451,6 @@ export default function Home() {
           .a-propos-grid { grid-template-columns: 1fr !important; }
           .a-propos-grid > * { min-width: 0 !important; overflow: hidden; }
           .ancrage-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .hero-img { height: auto !important; min-height: 35vh; object-fit: cover; }
           .actions-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .action-card { aspect-ratio: 16/9 !important; }
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }

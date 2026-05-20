@@ -109,7 +109,7 @@ export function ContactFormClient() {
                 <p className="t-lead" style={{ marginBottom: '40px' }}>{t('contact.body')}</p>
 
                 <form onSubmit={handleSubmit}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                  <div className="contact-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                     <div>
                       <label htmlFor="firstname" className="t-caption" style={{ display: 'block', marginBottom: '6px', color: 'var(--text-secondary)' }}>Prénom</label>
                       <input type="text" id="firstname" name="firstname" style={inputStyle} />
@@ -119,7 +119,7 @@ export function ContactFormClient() {
                       <input type="text" id="lastname" name="lastname" style={inputStyle} />
                     </div>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                  <div className="contact-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                     <div>
                       <label htmlFor="email" className="t-caption" style={{ display: 'block', marginBottom: '6px', color: 'var(--text-secondary)' }}>{t('contact_form.email')} *</label>
                       <input type="email" id="email" name="email" required style={inputStyle} />
@@ -167,6 +167,9 @@ export function ContactFormClient() {
               .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
               .contact-map-col { order: 2 !important; }
               .contact-form-col { order: 1 !important; }
+            }
+            @media (max-width: 480px) {
+              .contact-form-row { grid-template-columns: 1fr !important; }
             }
           ` }} />
         </div>

@@ -77,7 +77,7 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
                   <h2 className="t-title text-primary" style={{ marginBottom: '12px' }}>
                     {s.title}
                   </h2>
-                  <p className="t-lead">{s.body}</p>
+                  <p className="t-lead manifeste-body">{s.body}</p>
                 </div>
               </FadeIn>
             ))}
@@ -113,7 +113,7 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
         </section>
 
       </main>
-      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}}` }} />
+      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}.manifeste-body{font-size:16px!important}}` }} />
       <Footer />
     </>
   )

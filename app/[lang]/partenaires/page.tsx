@@ -87,22 +87,16 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
                       style={{
                         width: 'clamp(72px, 7vw, 100px)',
                         height: 'clamp(72px, 7vw, 100px)',
-                        transition: 'opacity 0.35s ease',
+                        marginBottom: '10px',
                       }}
-                      className="partner-logo"
                     />
-
-                    {/* Hover overlay */}
-                    <div className="partner-overlay" style={{
-                      position: 'absolute', inset: 0, background: '#ffffff',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                      padding: '20px', textAlign: 'center',
-                      opacity: 0, transition: 'opacity 0.3s ease',
-                      borderRadius: 'var(--r-module)',
-                    }}>
-                      <p style={{ fontSize: '14px', fontWeight: 300, color: '#000', marginBottom: '6px' }}>{p.name}</p>
-                      <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#4e4e4e', fontWeight: 300 }}>{p.desc}</p>
-                    </div>
+                    <span style={{
+                      fontSize: '12px',
+                      fontWeight: 400,
+                      color: '#999',
+                      textAlign: 'center',
+                      lineHeight: 1.2,
+                    }}>{p.name}</span>
                   </div>
                 </FadeIn>
               ))}
@@ -137,8 +131,6 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
         @media (max-width: 900px) { .partners-grid { grid-template-columns: repeat(4, 1fr) !important; } }
         @media (max-width: 600px) { .partners-grid { grid-template-columns: repeat(3, 1fr) !important; } }
         @media (max-width: 400px) { .partners-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        .partner-card:hover .partner-overlay { opacity: 1 !important; }
-        .partner-card:hover .partner-logo { opacity: 0.25 !important; }
       ` }} />
       <Footer />
     </>

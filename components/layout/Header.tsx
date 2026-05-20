@@ -160,9 +160,11 @@ export function Header() {
           {/* Mobile burger */}
           <div className="navbar-mobile" style={{ display: 'none', alignItems: 'center', gap: '12px' }}>
             <Link href={getLangSwitchHref()} style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text-secondary)', textTransform: 'uppercase' }}>{lang === 'fr' ? 'EN' : 'FR'}</Link>
-            <button type="button" style={{ padding: '6px', color: 'var(--text-primary)' }} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={t('header.aria.menu')}>
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
+            <button type="button" className={`burger-btn${isMobileMenuOpen ? ' is-open' : ''}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={t('header.aria.menu')} style={{ padding: '6px', color: 'var(--text-primary)', background: 'none', border: 'none', cursor: 'pointer' }}>
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line className="burger-line burger-line-top" x1="18" y1="34" x2="82" y2="34" />
+                <line className="burger-line burger-line-mid" x1="18" y1="50" x2="82" y2="50" />
+                <line className="burger-line burger-line-bot" x1="18" y1="66" x2="82" y2="66" />
               </svg>
             </button>
           </div>
@@ -227,6 +229,12 @@ export function Header() {
         .lang-switch:hover { background: rgba(0,0,0,0.04); border-radius: 50%; }
         @media (max-width: 1024px) { .navbar-desktop { display: none !important; } .navbar-mobile { display: flex !important; } }
         @media (min-width: 1025px) { .navbar-mobile { display: none !important; } }
+        .burger-line { fill: none; stroke: currentColor; stroke-width: 4.5; stroke-linecap: round; transform-box: fill-box; transform-origin: center; }
+        .burger-line-top, .burger-line-bot { transition: transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .burger-line-mid { transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.26s cubic-bezier(0.22, 1, 0.36, 1); }
+        .burger-btn.is-open .burger-line-top { transform: translateY(16px) rotate(45deg); }
+        .burger-btn.is-open .burger-line-mid { transform: scaleX(0); opacity: 0; }
+        .burger-btn.is-open .burger-line-bot { transform: translateY(-16px) rotate(-45deg); }
       `}</style>
     </header>
   )

@@ -31,8 +31,8 @@ function BarChart({
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
-  const barH = isMobile ? 8 : 10
-  const vgap = isMobile ? 18 : 22
+  const barH = isMobile ? 16 : 10
+  const vgap = isMobile ? 36 : 22
   const n = values.length
   const H = n * (barH + vgap) + 10
   const W = 560

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -22,6 +22,15 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
   const [formValues, setFormValues] = useState({ firstname: '', lastname: '', email: '', company: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   const handleSelect = (tier: typeof TIERS[0]) => { setSelectedTier(tier); setSent(false); setFormValues({ firstname: '', lastname: '', email: '', company: '', phone: '' }) }
   const handleCancel = () => { setSelectedTier(null); setSent(false) }
@@ -106,13 +115,13 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
                         boxShadow: selectedTier?.num === tier.num ? '0 8px 32px rgba(0,0,0,0.12)' : 'rgba(0,0,0,0.04) 0px 1px 2px',
                       }}
                       onMouseEnter={e => {
-                        if (selectedTier?.num === tier.num) return
+                        if (selectedTier?.num === tier.num || isMobile) return
                         e.currentTarget.style.background = 'linear-gradient(135deg, #f97316 0%, #d946ef 100%)'
                         e.currentTarget.style.color = '#fff'
                         e.currentTarget.style.transform = 'translateX(4px)'
                       }}
                       onMouseLeave={e => {
-                        if (selectedTier?.num === tier.num) return
+                        if (selectedTier?.num === tier.num || isMobile) return
                         e.currentTarget.style.background = '#fff'
                         e.currentTarget.style.color = '#000'
                         e.currentTarget.style.transform = 'none'
@@ -135,12 +144,60 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
                         <span style={{ fontSize: '22px', opacity: selectedTier?.num === tier.num ? 1 : 0.3 }}>→</span>
                       </div>
                     </div>
+                    {/* Mobile: form inline below clicked tier */}
+                    {isMobile && selectedTier?.num === tier.num && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ background: '#fff', borderRadius: '16px', padding: '28px 24px 24px', marginBottom: '10px', overflow: 'hidden' }}
+                      >
+                        {sent ? (
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#000', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px', marginBottom: '10px' }}>✓</div>
+                            <p style={{ fontSize: '15px', fontWeight: 500, marginBottom: '4px' }}>{lang === 'fr' ? 'Demande envoyée !' : 'Request sent!'}</p>
+                            <button onClick={handleCancel} className="btn-pill btn-black" style={{ marginTop: '8px' }}>{lang === 'fr' ? 'Fermer' : 'Close'}</button>
+                          </div>
+                        ) : (
+                          <>
+                            <p style={{ fontSize: '12px', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>{lang === 'fr' ? 'Formulaire d\'adhésion' : 'Membership form'}</p>
+                            <h3 style={{ fontSize: '20px', fontWeight: 500, marginBottom: '4px' }}>{selectedTier.name}</h3>
+                            <p style={{ fontSize: '16px', fontWeight: 300, color: '#4e4e4e', marginBottom: '6px' }}>{selectedTier.price}</p>
+                            <p style={{ fontSize: '13px', color: '#4e4e4e', marginBottom: '16px' }}>{selectedTier.detail}</p>
+                            <form onSubmit={handleSubmit}>
+                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+                                <input placeholder={lang === 'fr' ? 'Prénom' : 'First name'} value={formValues.firstname} onChange={e => setFormValues({ ...formValues, firstname: e.target.value })} style={inputStyle} />
+                                <input placeholder={lang === 'fr' ? 'Nom' : 'Last name'} value={formValues.lastname} onChange={e => setFormValues({ ...formValues, lastname: e.target.value })} style={inputStyle} />
+                              </div>
+                              <div style={{ marginBottom: '10px' }}>
+                                <input type="email" placeholder="Email *" required value={formValues.email} onChange={e => setFormValues({ ...formValues, email: e.target.value })} style={inputStyle} />
+                              </div>
+                              <div style={{ marginBottom: '10px' }}>
+                                <input placeholder={lang === 'fr' ? 'Organisation' : 'Organization'} value={formValues.company} onChange={e => setFormValues({ ...formValues, company: e.target.value })} style={inputStyle} />
+                              </div>
+                              <div style={{ marginBottom: '16px' }}>
+                                <input type="tel" placeholder={lang === 'fr' ? 'Téléphone (optionnel)' : 'Phone (optional)'} value={formValues.phone} onChange={e => setFormValues({ ...formValues, phone: e.target.value })} style={inputStyle} />
+                              </div>
+                              <div style={{ display: 'flex', gap: '10px' }}>
+                                <button type="submit" disabled={isSubmitting} className="btn-pill btn-black" style={{ flex: 1, justifyContent: 'center' }}>
+                                  {isSubmitting ? '...' : lang === 'fr' ? 'Envoyer' : 'Send'}
+                                </button>
+                                <button type="button" onClick={handleCancel} style={{ padding: '12px 20px', border: '1px solid #e5e5e5', borderRadius: '8px', background: '#fff', cursor: 'pointer', fontSize: '15px', fontFamily: 'inherit' }}>
+                                  {lang === 'fr' ? 'Annuler' : 'Cancel'}
+                                </button>
+                              </div>
+                            </form>
+                          </>
+                        )}
+                      </motion.div>
+                    )}
                   </FadeIn>
                 ))}
               </div>
 
-              {/* Right: image or slide-out form */}
-              <div className="membre-form-col" style={{ height: '100%', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(30px, 4vw, 60px)', position: 'relative' }}>
+              {/* Right: image or slide-out form (desktop only) */}
+              <div className="membre-form-col" style={{ height: '100%', display: isMobile ? 'none' : 'flex', flexDirection: 'column', paddingTop: 'clamp(30px, 4vw, 60px)', position: 'relative' }}>
                 {/* Default image when no tier selected */}
                 {!selectedTier && (
                   <div style={{ flex: 1, display: 'flex' }}>
@@ -204,7 +261,7 @@ export default function DevenirMembrePage({ params }: { params: { lang: string }
             </div>
 
             <style dangerouslySetInnerHTML={{ __html: `
-              @media (max-width: 768px) { .membre-grid { grid-template-columns: 1fr !important; } .membre-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; } .membre-form-col { height: auto !important; min-height: 540px; } .membre-form-panel { position: static !important; } }
+              @media (max-width: 768px) { .membre-grid { grid-template-columns: 1fr !important; } .membre-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }
               .membre-hero-img { animation: fadeIn 0.7s ease 0.2s forwards; }
               @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
             ` }} />

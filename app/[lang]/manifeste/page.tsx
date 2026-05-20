@@ -115,7 +115,7 @@ export default function ManifestePage({ params }: { params: { lang: string } }) 
         </section>
 
       </main>
-      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:1080px){.globus3d-wrap svg{width:420px!important;height:420px!important}}@media (max-width:870px){.globus3d-wrap svg{width:340px!important;height:340px!important}}@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}.manifeste-hero-grid>*{min-width:0!important;overflow:hidden}.manifeste-body{font-size:16px!important}.globus3d-wrap svg{width:300px!important;height:300px!important}}@media (max-width:480px){.globus3d-wrap svg{width:250px!important;height:250px!important}}` }} />
+      <style dangerouslySetInnerHTML={{ __html: `@media (max-width:1080px){.globus3d-wrap{max-width:420px!important;margin-left:auto;margin-right:auto}}@media (max-width:870px){.globus3d-wrap{max-width:340px!important}}@media (max-width:768px){.manifeste-hero-grid{grid-template-columns:1fr!important;gap:32px!important}.manifeste-hero-grid>*{min-width:0!important;overflow:hidden}.manifeste-body{font-size:16px!important}.globus3d-wrap{max-width:300px!important}}@media (max-width:480px){.globus3d-wrap{max-width:250px!important}}` }} />
       <Footer />
     </>
   )

@@ -89,10 +89,10 @@ export default function Globus3D({
   return (
     <svg
       ref={svgRef}
-      style={{ width: size, height: size }}
       viewBox={`0 0 ${size} ${size}`}
       className={className}
       fill="none"
+      style={{ display: 'block', width: '100%', height: 'auto' }}
     >
       <g id="scene" />
     </svg>

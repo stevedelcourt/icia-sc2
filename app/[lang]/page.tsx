@@ -462,10 +462,10 @@ export default function Home() {
       <Footer />
       <style jsx>{`
         @media (max-width: 1080px) {
-          .star3d-wrap svg { width: 420px !important; height: 420px !important; }
+          .star3d-wrap { max-width: 420px !important; margin-left: auto; margin-right: auto; }
         }
         @media (max-width: 870px) {
-          .star3d-wrap svg { width: 340px !important; height: 340px !important; }
+          .star3d-wrap { max-width: 340px !important; }
         }
         @media (max-width: 768px) {
           .a-propos-grid { grid-template-columns: 1fr !important; }
@@ -476,14 +476,14 @@ export default function Home() {
           .action-card { aspect-ratio: 16/9 !important; }
           .engagements-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .engagement-card { aspect-ratio: 16/9 !important; min-width: 0; }
-          .star3d-wrap svg { width: 300px !important; height: 300px !important; }
+          .star3d-wrap { max-width: 300px !important; }
         }
         @media (max-width: 480px) {
           .actions-grid { grid-template-columns: 1fr !important; }
           .action-card { aspect-ratio: auto !important; }
           .engagements-grid { grid-template-columns: 1fr !important; }
           .engagement-card { aspect-ratio: auto !important; min-width: 0; }
-          .star3d-wrap svg { width: 250px !important; height: 250px !important; }
+          .star3d-wrap { max-width: 250px !important; }
         }
       `}</style>
     </>

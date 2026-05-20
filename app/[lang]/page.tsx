@@ -219,7 +219,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                style={{ aspectRatio: '16/9', background: 'linear-gradient(135deg, #ba274a 0%, #e2611d 100%)', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
+                  style={{ aspectRatio: '16/9', background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
                 >
@@ -236,7 +236,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 5 * staggerItem, ease: [0.16, 1, 0.3, 1] }}
-                style={{ aspectRatio: '16/9', background: '#f5f5f5', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
+                style={{ aspectRatio: '16/9', background: 'linear-gradient(135deg, #ba274a 0%, #e2611d 100%)', borderRadius: '22px', padding: 'clamp(28px, 3vw, 36px) clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
               >

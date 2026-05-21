@@ -58,12 +58,6 @@ export function Footer() {
             <p style={{ fontSize: '13px', fontWeight: 500, lineHeight: 1.4, color: 'var(--text-primary)', marginBottom: '6px', maxWidth: '280px' }}>
               Institut Collectif de l&rsquo;IA
             </p>
-            <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '16px', maxWidth: '280px' }}>
-              Association loi 1901{' '}
-              <a href="/Recepisse_CR.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
-                W133042589
-              </a>
-            </p>
             <p style={{ fontSize: '14px', lineHeight: 1.5, color: 'var(--text-tertiary)', marginBottom: '4px' }}>
               <a
                 href="https://www.google.com/maps/place/Campus+Cyber+R%C3%A9gion+Sud+%2F+Euromed/@43.3136566,5.3663277,17z/data=!3m2!4b1!5s0x12c9c0f13fce974f:0x7fd62ed04cf28c16!4m6!3m5!1s0x12c9c1002ab85d81:0x202c6089924a8bc4!8m2!3d43.3136566!4d5.3663277!16s%2Fg%2F11wn5b8jd9?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"

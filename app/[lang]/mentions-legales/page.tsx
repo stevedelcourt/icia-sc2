@@ -15,9 +15,7 @@ export default function MentionsLegales() {
           <FadeIn delay={0.1}>
             <h2 className="t-heading text-primary" style={{ marginTop: '32px', marginBottom: '12px' }}>Éditeur du site</h2>
             <p className="t-lead" style={{ marginBottom: '8px' }}>ICIA, Institut Collectif de l'IA</p>
-            <p className="t-lead" style={{ marginBottom: '8px' }}>Association loi 1901 N°{' '}
-              <a href="/Recepisse_CR.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'underline' }}>W133042589</a>
-            </p>
+              <p className="t-lead" style={{ marginBottom: '8px' }}>Association loi 1901</p>
             <p className="t-lead" style={{ marginBottom: '8px' }}>Siège social : 4 boulevard Jacques Saadé, 13002 Marseille, France</p>
             <p className="t-lead" style={{ marginBottom: '8px' }}>Email : contact@iciafrance.com</p>
             <p className="t-lead" style={{ marginBottom: '20px' }}>Directeur de la publication : Mathias Costes, Président de l'ICIA</p>

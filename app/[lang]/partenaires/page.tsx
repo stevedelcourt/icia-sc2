@@ -7,8 +7,6 @@ const PARTENAIRES = [
   { slug: 'mentivis', name: 'Mentivis', desc: 'Opérateur pédagogique et partenaire d\'ingénierie de l\'Institut. Conception et déploiement des dispositifs pédagogiques dédiés à l\'IA.' },
   { slug: 'mariusia', name: 'Mariusia', desc: 'Lieu d\'ancrage physique et écosystème marseillais. Espace dédié aux initiatives éducatives, créatives et entrepreneuriales en IA.' },
   { slug: 'campus-cyber-ia', name: 'Campus Cyber.IA', desc: 'Campus dédié à la cybersécurité et à l\'intelligence artificielle. Formation, innovation et recherche appliquée.' },
-  { slug: 'airwell', name: 'Airwell', desc: '' },
-  { slug: 'france-travail', name: 'France Travail', desc: 'Accompagnement des transitions professionnelles et anticipation des besoins en compétences numériques sur les territoires.' },
   { slug: 'mk2', name: 'MK2', desc: '' },
 ]
 
@@ -62,7 +60,7 @@ export default function PartenairesPage({ params }: { params: { lang: string } }
                 {lang === 'fr' ? 'Notre réseau de partenaires' : 'Our partner network'}
               </h2>
               <p className="t-caption" style={{ marginBottom: '40px' }}>
-                {lang === 'fr' ? '6 organisations, une conviction commune.' : '6 organizations, one shared conviction.'}
+                {lang === 'fr' ? '4 organisations, une conviction commune.' : '4 organizations, one shared conviction.'}
               </p>
             </FadeIn>
             <div className="partners-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2px' }}>

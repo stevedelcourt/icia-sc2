@@ -10,6 +10,7 @@ import { ActualitesGrid } from '@/components/ActualitesGrid'
 import { useT, LocalizedLink } from '@/lib/i18n'
 import Star3D from '@/components/Star3D'
 import MarqueeHero from '@/components/MarqueeHero'
+import ParallaxHero from '@/components/ParallaxHero'
 
 const staggerItem = 0.08
 
@@ -64,6 +65,11 @@ export default function Home() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
             <MarqueeHero />
           </motion.div>
+        </section>
+
+        {/* Parallax sliding images — experiment */}
+        <section id="slidingImage" style={{ background: '#ffffff' }}>
+          <ParallaxHero />
         </section>
 
         {/* 2. Mission — inner card pattern */}

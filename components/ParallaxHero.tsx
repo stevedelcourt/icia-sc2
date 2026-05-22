@@ -86,24 +86,20 @@ export default function ParallaxHero() {
   return (
     <>
       <div className="parallax-wrap" style={{ width: '100%', marginTop: 'var(--section-gap)' }}>
-        {/* Back layer — visible, same height as marquee */}
-        <div style={{ width: '100%', height: imgH, overflow: 'hidden', position: 'relative', background: '#f5f5f5' }}>
-          <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
-            <img ref={imgRef} src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
-          </div>
+        {/* Back layer */}
+        <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
+          <img ref={imgRef} src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
         </div>
 
-        {/* Front layer — visible, same height as marquee */}
-        <div style={{ width: '100%', height: imgH, overflow: 'hidden', position: 'relative', background: '#ffffff' }}>
-          <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
-            <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
-            <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
-          </div>
+        {/* Front layer */}
+        <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: `

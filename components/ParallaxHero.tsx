@@ -37,8 +37,9 @@ export default function ParallaxHero() {
   }, [measure])
 
   return (
+    <>
     <section style={{ marginTop: 'var(--section-gap)' }}>
-      <div style={{ position: 'relative', width: '100%', height: 'clamp(40vh, 50vh, 60vh)', overflow: 'hidden', background: '#f5f5f5' }}>
+      <div className="parallax-container" style={{ position: 'relative', width: '100%', height: '25vh', overflow: 'hidden', background: '#f5f5f5' }}>
         {/* Back layer — slower */}
         <img
           ref={backRef}
@@ -74,5 +75,11 @@ export default function ParallaxHero() {
         />
       </div>
     </section>
+    <style dangerouslySetInnerHTML={{ __html: `
+      @media (max-width: 768px) {
+        .parallax-container { height: 18vh !important; }
+      }
+    ` }} />
+    </>
   )
 }

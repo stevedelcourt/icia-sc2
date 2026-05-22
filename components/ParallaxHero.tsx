@@ -4,8 +4,9 @@ import { useRef, useEffect, useCallback } from 'react'
 
 const GAP = 30
 const BASE_SPEED = 0.15
-const BACK_VR = 0.2
-const FRONT_VR = 0.5
+const BACK_VR = 0.08
+const FRONT_VR = 0.15
+const FRONT_Y_OFFSET = -60
 
 export default function ParallaxHero() {
   const backTrackRef = useRef<HTMLDivElement>(null)
@@ -51,7 +52,7 @@ export default function ParallaxHero() {
         while (offsetRef.current < 0) offsetRef.current += wrapRange
 
         const backY = scrollYRef.current * BACK_VR
-        const frontY = scrollYRef.current * FRONT_VR
+        const frontY = FRONT_Y_OFFSET + scrollYRef.current * FRONT_VR
 
         if (backTrackRef.current) {
           backTrackRef.current.style.transform = `translateX(${-offsetRef.current}px) translateY(${backY}px)`

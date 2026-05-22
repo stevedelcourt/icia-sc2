@@ -73,8 +73,10 @@ export default function ParallaxHero() {
     }
   }, [measure])
 
+  const imgH = 'var(--parallax-img-h, 25vh)'
+
   const sharedImg: React.CSSProperties = {
-    height: '200%',
+    height: imgH,
     width: 'auto',
     flexShrink: 0,
     display: 'block',
@@ -83,18 +85,20 @@ export default function ParallaxHero() {
 
   return (
     <>
-      <div className="parallax-wrap" style={{ position: 'relative', width: '100%', overflow: 'hidden', marginTop: 'var(--section-gap)' }}>
-        <div className="parallax-container" style={{ position: 'relative', width: '100%', height: '25vh', overflow: 'hidden', background: '#f5f5f5' }}>
-          {/* Back layer — same horizontal speed, slow vertical */}
-          <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'absolute', top: '-50%', left: 0 }}>
+      <div className="parallax-wrap" style={{ width: '100%', marginTop: 'var(--section-gap)' }}>
+        {/* Back layer — visible, same height as marquee */}
+        <div style={{ width: '100%', height: imgH, overflow: 'hidden', position: 'relative', background: '#f5f5f5' }}>
+          <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
             <img ref={imgRef} src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
             <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
             <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
             <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
           </div>
+        </div>
 
-          {/* Front layer — same horizontal speed, fast vertical */}
-          <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'absolute', top: '-50%', left: 0, zIndex: 2 }}>
+        {/* Front layer — visible, same height as marquee */}
+        <div style={{ width: '100%', height: imgH, overflow: 'hidden', position: 'relative', background: '#ffffff' }}>
+          <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform' }}>
             <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
             <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
             <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
@@ -103,8 +107,9 @@ export default function ParallaxHero() {
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: `
+        :root { --parallax-img-h: 25vh; }
         @media (max-width: 768px) {
-          .parallax-container { height: 18vh !important; }
+          :root { --parallax-img-h: 18vh; }
           .parallax-wrap { margin-top: clamp(32px, 6vw, 64px) !important; }
         }
       ` }} />

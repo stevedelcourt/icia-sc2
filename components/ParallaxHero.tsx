@@ -1,65 +1,106 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
+
+const GAP = 30
+const BACK_SPEED = 0.08
+const FRONT_SPEED = 0.25
 
 export default function ParallaxHero() {
-  const backRef = useRef<HTMLImageElement>(null)
-  const frontRef = useRef<HTMLImageElement>(null)
+  const backTrackRef = useRef<HTMLDivElement>(null)
+  const frontTrackRef = useRef<HTMLDivElement>(null)
+  const imgWRef = useRef(0)
+  const backOffsetRef = useRef(0)
+  const frontOffsetRef = useRef(0)
   const rafRef = useRef(0)
+  const fallbackTimer = useRef<ReturnType<typeof setTimeout>>()
+
+  const measure = useCallback(() => {
+    if (!backTrackRef.current) return
+    const img = backTrackRef.current.querySelector('img') as HTMLImageElement | null
+    if (!img) return
+    imgWRef.current = img.getBoundingClientRect().width
+  }, [])
+
+  const imgRef = useCallback((el: HTMLImageElement | null) => {
+    if (!el) return
+    if (el.complete) { measure() }
+    else { el.addEventListener('load', measure, { once: true }) }
+  }, [measure])
 
   useEffect(() => {
-    let lastY = window.scrollY
+    measure()
+    window.addEventListener('resize', measure)
+    fallbackTimer.current = setTimeout(() => { if (imgWRef.current === 0) measure() }, 1000)
 
     const tick = () => {
-      const scrollY = window.scrollY
-      if (scrollY !== lastY) {
-        lastY = scrollY
-        if (backRef.current) {
-          backRef.current.style.transform = `translateY(${scrollY * 0.05}px)`
+      backOffsetRef.current += BACK_SPEED
+      frontOffsetRef.current += FRONT_SPEED
+
+      if (imgWRef.current > 0) {
+        const stepW = imgWRef.current + GAP
+        const wrapRange = 4 * stepW
+
+        while (backOffsetRef.current > wrapRange) backOffsetRef.current -= wrapRange
+        while (backOffsetRef.current < 0) backOffsetRef.current += wrapRange
+        while (frontOffsetRef.current > wrapRange) frontOffsetRef.current -= wrapRange
+        while (frontOffsetRef.current < 0) frontOffsetRef.current += wrapRange
+
+        if (backTrackRef.current) {
+          backTrackRef.current.style.transform = `translateX(${-backOffsetRef.current}px)`
         }
-        if (frontRef.current) {
-          frontRef.current.style.transform = `translateY(${scrollY * 0.2}px)`
+        if (frontTrackRef.current) {
+          frontTrackRef.current.style.transform = `translateX(${-frontOffsetRef.current}px)`
         }
       }
+
       rafRef.current = requestAnimationFrame(tick)
     }
     rafRef.current = requestAnimationFrame(tick)
 
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [])
+    return () => {
+      window.removeEventListener('resize', measure)
+      cancelAnimationFrame(rafRef.current)
+      clearTimeout(fallbackTimer.current)
+    }
+  }, [measure])
+
+  const imgH = 'var(--parallax-img-h, 25vh)'
+
+  const sharedImg: React.CSSProperties = {
+    height: imgH,
+    width: 'auto',
+    flexShrink: 0,
+    display: 'block',
+    userSelect: 'none',
+  }
 
   return (
-    <div style={{ position: 'relative', height: '50vh', overflow: 'hidden', background: '#f5f5f5' }}>
-      <img
-        ref={backRef}
-        src="/images/proportions-back.webp"
-        alt=""
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          willChange: 'transform',
-          zIndex: 1,
-        }}
-      />
-      <img
-        ref={frontRef}
-        src="/images/proportions-front.webp"
-        alt=""
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          willChange: 'transform',
-          zIndex: 2,
-        }}
-      />
-    </div>
+    <>
+      <div className="parallax-wrap" style={{ position: 'relative', width: '100%', overflow: 'hidden', marginTop: 'var(--section-gap)' }}>
+        {/* Back layer — slower */}
+        <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'absolute', top: 0, left: 0 }}>
+          <img ref={imgRef} src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
+        </div>
+
+        {/* Front layer — faster */}
+        <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'relative', zIndex: 2 }}>
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+          <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
+        </div>
+      </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        :root { --parallax-img-h: 25vh; }
+        @media (max-width: 768px) {
+          :root { --parallax-img-h: 18vh; }
+          .parallax-wrap { margin-top: clamp(32px, 6vw, 64px) !important; }
+        }
+      ` }} />
+    </>
   )
 }

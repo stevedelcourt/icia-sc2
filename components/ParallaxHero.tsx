@@ -4,7 +4,9 @@ import { useRef, useEffect, useCallback } from 'react'
 
 const GAP = 30
 const BACK_SPEED = 0.08
-const FRONT_SPEED = 0.25
+const FRONT_BASE = 0.25
+const FRONT_GAIN = 0.05
+const DECAY = 0.95
 
 export default function ParallaxHero() {
   const backTrackRef = useRef<HTMLDivElement>(null)
@@ -12,6 +14,8 @@ export default function ParallaxHero() {
   const imgWRef = useRef(0)
   const backOffsetRef = useRef(0)
   const frontOffsetRef = useRef(0)
+  const frontBoostRef = useRef(0)
+  const lastScrollRef = useRef(0)
   const rafRef = useRef(0)
   const fallbackTimer = useRef<ReturnType<typeof setTimeout>>()
 
@@ -32,10 +36,24 @@ export default function ParallaxHero() {
     measure()
     window.addEventListener('resize', measure)
     fallbackTimer.current = setTimeout(() => { if (imgWRef.current === 0) measure() }, 1000)
+    lastScrollRef.current = window.scrollY
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const delta = scrollY - lastScrollRef.current
+      lastScrollRef.current = scrollY
+      if (delta <= 0) return
+      const clampedDelta = Math.min(delta, 200)
+      frontBoostRef.current += clampedDelta * FRONT_GAIN
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     const tick = () => {
+      frontBoostRef.current *= DECAY
+      const frontSpeed = FRONT_BASE + frontBoostRef.current
+
       backOffsetRef.current += BACK_SPEED
-      frontOffsetRef.current += FRONT_SPEED
+      frontOffsetRef.current += frontSpeed
 
       if (imgWRef.current > 0) {
         const stepW = imgWRef.current + GAP
@@ -59,6 +77,7 @@ export default function ParallaxHero() {
     rafRef.current = requestAnimationFrame(tick)
 
     return () => {
+      window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', measure)
       cancelAnimationFrame(rafRef.current)
       clearTimeout(fallbackTimer.current)
@@ -78,7 +97,7 @@ export default function ParallaxHero() {
   return (
     <>
       <div className="parallax-wrap" style={{ position: 'relative', width: '100%', overflow: 'hidden', marginTop: 'var(--section-gap)' }}>
-        {/* Back layer — slower */}
+        {/* Back layer — constant slow drift */}
         <div ref={backTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'absolute', top: 0, left: 0 }}>
           <img ref={imgRef} src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
           <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
@@ -86,7 +105,7 @@ export default function ParallaxHero() {
           <img src="/images/proportions-back.webp" alt="" draggable={false} style={sharedImg} />
         </div>
 
-        {/* Front layer — faster */}
+        {/* Front layer — base drift + scroll acceleration */}
         <div ref={frontTrackRef} style={{ display: 'flex', gap: `${GAP}px`, width: 'max-content', willChange: 'transform', position: 'relative', zIndex: 2 }}>
           <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />
           <img src="/images/proportions-front.webp" alt="" draggable={false} style={sharedImg} />

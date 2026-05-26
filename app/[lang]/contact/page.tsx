@@ -1,7 +1,12 @@
+import { pageMetadata } from '@/lib/seo-metadata'
 import { Suspense } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ContactFormClient } from './ContactFormClient'
+
+export async function generateMetadata({ params }: { params: { lang: string } }) {
+  return pageMetadata(params.lang, '/contact')
+}
 
 export default function ContactPage() {
   const jsonLd = {

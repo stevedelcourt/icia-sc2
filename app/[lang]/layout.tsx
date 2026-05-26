@@ -11,11 +11,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
-  const baseUrl = 'https://www.iciafrance.com'
-  const canonical = `${baseUrl}/${lang}/`
 
   return {
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL('https://www.iciafrance.com'),
     icons: {
       icon: [
         { url: '/images/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -53,7 +51,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     openGraph: {
       type: 'website',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      url: canonical,
+      url: `https://www.iciafrance.com/${lang}/`,
       siteName: t(lang, 'layout.og.site_name'),
       title: t(lang, 'layout.og.title'),
       description: t(lang, 'layout.og.description'),
@@ -70,14 +68,6 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       card: 'summary_large_image',
       title: t(lang, 'layout.twitter.title'),
       description: t(lang, 'layout.twitter.description'),
-    },
-    alternates: {
-      canonical,
-      languages: {
-        'fr-FR': `${baseUrl}/fr/`,
-        'en-US': `${baseUrl}/en/`,
-        'x-default': `${baseUrl}/fr/`,
-      },
     },
   }
 }

@@ -1,6 +1,11 @@
+import { pageMetadata } from '@/lib/seo-metadata'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ActualitesList } from './ActualitesList'
+
+export async function generateMetadata({ params }: { params: { lang: string } }) {
+  return pageMetadata(params.lang, '/actualites')
+}
 
 export async function generateStaticParams() {
   return [{ lang: 'fr' }, { lang: 'en' }]

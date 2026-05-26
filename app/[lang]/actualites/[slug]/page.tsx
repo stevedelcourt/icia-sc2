@@ -1,6 +1,4 @@
-'use client'
-
-import { useParams } from 'next/navigation'
+import { pageMetadata } from '@/lib/seo-metadata'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
@@ -8,10 +6,13 @@ import { LocalizedLink } from '@/lib/i18n'
 import { getActualiteBySlug } from '@/generated/actualites'
 import { MarkdownBody } from '@/components/MarkdownBody'
 
-export default function ActualiteDetailPage() {
-  const params = useParams()
-  const lang = (params?.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
-  const slug = params?.slug as string
+export async function generateMetadata({ params }: { params: { lang: string; slug: string } }) {
+  return pageMetadata(params.lang, `/actualites/${params.slug}`)
+}
+
+export default function ActualiteDetailPage({ params }: { params: { lang: string; slug: string } }) {
+  const lang = (params.lang === 'en' ? 'en' : 'fr') as 'fr' | 'en'
+  const slug = params.slug
   const article = getActualiteBySlug(slug)
 
   if (!article) {

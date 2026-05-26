@@ -1,7 +1,12 @@
+import { pageMetadata } from '@/lib/seo-metadata'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/Animations'
 import { LocalizedLink } from '@/lib/i18n'
+
+export async function generateMetadata({ params }: { params: { lang: string } }) {
+  return pageMetadata(params.lang, '/plan-du-site')
+}
 
 const SECTIONS = [
   {

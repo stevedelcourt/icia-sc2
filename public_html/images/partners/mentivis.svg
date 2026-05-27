@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.0386628,0,0,0.0386628,59.0507,60.6046)">
+        <g transform="matrix(1,0,0,1,-1067,-1067)">
+            <clipPath id="_clip1">
+                <rect x="0" y="0" width="2134" height="2134"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g>
+                    <rect x="-84.43" y="-46.363" width="2337.91" height="2336.47" style="fill:rgb(119,119,119);"/>
+                    <g transform="matrix(4.16667,0,0,4.16667,0,0)">
+                        <g transform="matrix(0.997922,0,0,1,85.525,243.405)">
+                            <text x="0px" y="0px" style="font-family:'CasOlgans-Regular', 'Cas Olgans';font-size:174.355px;fill:rgb(237,237,237);">Men</text>
+                        </g>
+                        <g transform="matrix(0.997922,0,0,1,90.579,384.373)">
+                            <text x="0px" y="0px" style="font-family:'CasOlgans-Regular', 'Cas Olgans';font-size:188.018px;fill:rgb(237,237,237);">tivis</text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

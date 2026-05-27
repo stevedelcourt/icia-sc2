@@ -6,6 +6,7 @@ node_modules/
 # Build outputs
 .next/
 out/
+public_html/
 dist/
 build/
 

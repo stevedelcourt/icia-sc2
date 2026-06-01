@@ -3,7 +3,7 @@ import { getPublicationSlugs } from '@/generated/publications'
 import { getActualiteSlugs } from '@/generated/actualites'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.iciafrance.com'
+  const baseUrl = 'https://iciafrance.com'
 
   const locales = ['fr', 'en']
   const paths = [

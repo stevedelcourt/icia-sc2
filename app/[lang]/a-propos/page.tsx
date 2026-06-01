@@ -15,14 +15,14 @@ export default function AProposPage({ params }: { params: { lang: string } }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    '@id': 'https://www.iciafrance.com/a-propos',
+    '@id': 'https://iciafrance.com/a-propos',
     name: 'À propos, ICIA',
     description: 'L\'Institut Collectif de l\'IA (ICIA) est une association loi 1901 dédiée aux enjeux collectifs de l\'intelligence artificielle.',
     mainEntity: {
       '@type': 'Organization',
-      '@id': 'https://www.iciafrance.com/#organization',
+      '@id': 'https://iciafrance.com/#organization',
       name: 'Institut Collectif de l\'IA',
-      url: 'https://www.iciafrance.com',
+      url: 'https://iciafrance.com',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '4 boulevard Jacques Saadé',

@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'Applebot-Extended', allow: '/' },
       { userAgent: 'Diffbot', allow: '/' },
     ],
-    sitemap: 'https://www.iciafrance.com/sitemap.xml',
-    host: 'https://www.iciafrance.com',
+    sitemap: 'https://iciafrance.com/sitemap.xml',
+    host: 'https://iciafrance.com',
   }
 }

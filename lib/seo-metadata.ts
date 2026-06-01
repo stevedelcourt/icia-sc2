@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const baseUrl = 'https://www.iciafrance.com'
+const baseUrl = 'https://iciafrance.com'
 
 export function pageMetadata(lang: string, pagePath: string, options?: {
   title?: string

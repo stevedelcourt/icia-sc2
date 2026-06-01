@@ -32,10 +32,10 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "Organization",
         "name": "Institut Collectif de l'IA", "alternateName": "ICIA",
-        "url": "https://www.iciafrance.com",
+        "url": "https://iciafrance.com",
         "description": "Association loi 1901 d\u00e9di\u00e9e aux enjeux collectifs de l'intelligence artificielle.",
         "areaServed": ["France", "Europe"],
-        "contactPoint": { "@type": "ContactPoint", "url": "https://www.iciafrance.com/contact" }
+        "contactPoint": { "@type": "ContactPoint", "url": "https://iciafrance.com/contact" }
       }) }} />
       <Header />
       <main style={{ paddingTop: '64px' }}>

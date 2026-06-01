@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
 
   return {
-    metadataBase: new URL('https://www.iciafrance.com'),
+    metadataBase: new URL('https://iciafrance.com'),
     icons: {
       icon: [
         { url: '/images/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     },
     description: t(lang, 'layout.seo.description'),
     keywords: t(lang, 'layout.seo.keywords').split(',').map(k => k.trim()),
-    authors: [{ name: t(lang, 'layout.seo.author'), url: 'https://www.iciafrance.com' }],
+    authors: [{ name: t(lang, 'layout.seo.author'), url: 'https://iciafrance.com' }],
     creator: t(lang, 'layout.seo.creator'),
     publisher: t(lang, 'layout.seo.publisher'),
     robots: {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     openGraph: {
       type: 'website',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      url: `https://www.iciafrance.com/${lang}/`,
+      url: `https://iciafrance.com/${lang}/`,
       siteName: t(lang, 'layout.og.site_name'),
       title: t(lang, 'layout.og.title'),
       description: t(lang, 'layout.og.description'),
@@ -84,11 +84,11 @@ export default function RootLayout({
   const jsonLdOrganization = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://www.iciafrance.com/#organization',
+    '@id': 'https://iciafrance.com/#organization',
     name: t(lang, 'layout.ld_json.org.name'),
     alternateName: t(lang, 'layout.ld_json.org.alternate_name'),
-    url: 'https://www.iciafrance.com',
-    logo: 'https://www.iciafrance.com/images/ICIA-logo.svg',
+    url: 'https://iciafrance.com',
+    logo: 'https://iciafrance.com/images/ICIA-logo.svg',
     description: t(lang, 'layout.ld_json.org.description'),
     areaServed: [
       { '@type': 'Country', name: 'France' },
@@ -136,16 +136,16 @@ export default function RootLayout({
   const jsonLdWebSite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://www.iciafrance.com/#website',
-    url: 'https://www.iciafrance.com',
+    '@id': 'https://iciafrance.com/#website',
+    url: 'https://iciafrance.com',
     name: t(lang, 'layout.ld_json.website.name'),
     description: t(lang, 'layout.ld_json.website.description'),
-    publisher: { '@id': 'https://www.iciafrance.com/#organization' },
+    publisher: { '@id': 'https://iciafrance.com/#organization' },
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `https://www.iciafrance.com/${lang}/contact`,
+        urlTemplate: `https://iciafrance.com/${lang}/contact`,
       },
       'query-input': 'required name=search_term_string',
     },

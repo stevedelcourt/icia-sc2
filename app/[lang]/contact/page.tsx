@@ -12,12 +12,12 @@ export default function ContactPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    '@id': 'https://www.iciafrance.com/contact',
+    '@id': 'https://iciafrance.com/contact',
     name: 'Contact — ICIA',
     description: "Contactez l'Institut Collectif de l'IA.",
     mainEntity: {
       '@type': 'Organization',
-      '@id': 'https://www.iciafrance.com/#organization',
+      '@id': 'https://iciafrance.com/#organization',
       name: "Institut Collectif de l'IA",
       contactPoint: { '@type': 'ContactPoint', contactType: 'public contact', availableLanguage: ['French', 'English'], areaServed: ['FR', 'Europe'] },
       address: { '@type': 'PostalAddress', streetAddress: '4 boulevard Jacques Saadé', addressLocality: 'Marseille', postalCode: '13002', addressCountry: 'FR' }

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
     }
   }
 
-  const baseUrl = 'https://www.iciafrance.com'
+  const baseUrl = 'https://iciafrance.com'
   const canonical = `${baseUrl}/${lang}/publications/${params.slug}/`
 
   return {
@@ -120,7 +120,7 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    '@id': `https://www.iciafrance.com/${lang}/publications/${pub.slug}/`,
+    '@id': `https://iciafrance.com/${lang}/publications/${pub.slug}/`,
     headline: pub.headline,
     description: pub.subheadline,
     image: heroPath,
@@ -132,15 +132,15 @@ export default function PublicationDetailPage({ params }: { params: { lang: stri
     author: {
       '@type': 'Organization',
       name: 'ICIA',
-      url: 'https://www.iciafrance.com'
+      url: 'https://iciafrance.com'
     },
     publisher: {
       '@type': 'Organization',
-      '@id': 'https://www.iciafrance.com/#organization'
+      '@id': 'https://iciafrance.com/#organization'
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.iciafrance.com/${lang}/publications/${pub.slug}/`
+      '@id': `https://iciafrance.com/${lang}/publications/${pub.slug}/`
     }
   }
 

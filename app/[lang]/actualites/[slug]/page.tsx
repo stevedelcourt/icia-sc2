@@ -44,7 +44,7 @@ export default function ActualiteDetailPage({ params }: { params: { lang: string
         datePublished: article.date,
         description: lang === 'en' ? article.excerptEn : article.excerpt,
         author: { '@type': 'Organization', name: 'ICIA' },
-        publisher: { '@type': 'Organization', name: 'ICIA', logo: { '@type': 'ImageObject', url: 'https://www.iciafrance.com/images/icia-logo-wordmark-noir.svg' } },
+        publisher: { '@type': 'Organization', name: 'ICIA', logo: { '@type': 'ImageObject', url: 'https://iciafrance.com/images/icia-logo-wordmark-noir.svg' } },
       }) }} />
       <Header />
       <main className="section" style={{ backgroundColor: 'var(--bg-primary)', paddingTop: 'calc(64px + var(--section-gap))' }}>

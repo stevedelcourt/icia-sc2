@@ -13,7 +13,7 @@ export async function GET(
   const lang = (params.lang === 'en' ? 'en' : 'fr') as Locale
 
   const content = `# Site: ${t(lang, 'layout.ld_json.org.name')}
-# URL: https://www.iciafrance.com/${lang}/
+# URL: https://iciafrance.com/${lang}/
 # Description: ${t(lang, 'layout.seo.description')}
 # Language: ${lang === 'fr' ? 'Français' : 'English'}
 
@@ -61,7 +61,7 @@ ${t(lang, 'homepage.gouvernance.body.1')}
 ${t(lang, 'homepage.gouvernance.mentivis.title')}
 
 ## Contact
-https://www.iciafrance.com/${lang}/contact
+https://iciafrance.com/${lang}/contact
 
 ## Parent Organization
 ${t(lang, 'layout.ld_json.org.parent_name')}
